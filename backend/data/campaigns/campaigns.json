@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cmp_20260409162633",
+    "name": "test",
+    "description": "",
+    "campaign_type": "promotion",
+    "status": "draft",
+    "budget": {
+      "actual_spend": 10000
+    },
+    "timeline": {},
+    "metrics": {
+      "revenue": 5000,
+      "roi": -50
+    },
+    "target_audience": "",
+    "channels": [],
+    "goals": [],
+    "created_at": "2026-04-09T16:26:33.133655",
+    "updated_at": "2026-04-09T16:26:33.133668"
+  },
+  {
+    "id": "cmp_20260409162659",
+    "name": "test1",
+    "description": "",
+    "campaign_type": "promotion",
+    "status": "draft",
+    "budget": {
+      "actual_spend": 10000
+    },
+    "timeline": {},
+    "metrics": {
+      "revenue": 50000,
+      "roi": 400
+    },
+    "target_audience": "",
+    "channels": [],
+    "goals": [],
+    "created_at": "2026-04-09T16:26:59.889222",
+    "updated_at": "2026-04-09T16:26:59.889235"
+  }
+]

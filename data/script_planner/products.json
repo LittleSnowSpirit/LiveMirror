@@ -1,0 +1,77 @@
+{
+  "prod_001": {
+    "product_id": "prod_001",
+    "name": "智能保温杯",
+    "price": 99.0,
+    "original_price": 199.0,
+    "discount": "5 折",
+    "category": "家居用品",
+    "selling_points": [
+      "24 小时长效保温",
+      "智能测温显示",
+      "316 不锈钢内胆"
+    ],
+    "target_audience": "上班族、学生党",
+    "script_template": "这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。"
+  },
+  "prod_002": {
+    "product_id": "prod_002",
+    "name": "无线蓝牙耳机",
+    "price": 159.0,
+    "original_price": 399.0,
+    "discount": "4 折",
+    "category": "数码配件",
+    "selling_points": [
+      "主动降噪",
+      "30 小时续航",
+      "蓝牙 5.3"
+    ],
+    "target_audience": "音乐爱好者、通勤族",
+    "script_template": "音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。"
+  },
+  "prod_003": {
+    "product_id": "prod_003",
+    "name": "便携式榨汁杯",
+    "price": 79.0,
+    "original_price": 159.0,
+    "discount": "5 折",
+    "category": "小家电",
+    "selling_points": [
+      "无线便携",
+      "30 秒快速榨汁",
+      "USB 充电"
+    ],
+    "target_audience": "健身人士、果汁爱好者",
+    "script_template": "随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！"
+  },
+  "prod_004": {
+    "product_id": "prod_004",
+    "name": "护颈记忆枕",
+    "price": 129.0,
+    "original_price": 299.0,
+    "discount": "4.3 折",
+    "category": "家居用品",
+    "selling_points": [
+      "慢回弹记忆棉",
+      "人体工学设计",
+      "透气枕套"
+    ],
+    "target_audience": "颈椎不适人群、上班族",
+    "script_template": "睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。"
+  },
+  "prod_005": {
+    "product_id": "prod_005",
+    "name": "LED 化妆镜",
+    "price": 89.0,
+    "original_price": 199.0,
+    "discount": "4.5 折",
+    "category": "美妆工具",
+    "selling_points": [
+      "三色调光",
+      "触屏调节",
+      "10 倍放大镜"
+    ],
+    "target_audience": "美妆爱好者",
+    "script_template": "化妆再也不怕光线不好了！三种色温随便调，还有 10 倍放大镜。"
+  }
+}

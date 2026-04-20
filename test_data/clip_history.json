@@ -1,0 +1,13 @@
+[
+  {
+    "clip_id": "test123",
+    "video_id": "video456",
+    "start_time": 10.5,
+    "end_time": 40.5,
+    "duration": 30.0,
+    "aspect_ratio": "16:9",
+    "output_path": "test_output/test.mp4",
+    "file_size": 1024000,
+    "created_at": "2026-04-08T23:31:05.728370"
+  }
+]

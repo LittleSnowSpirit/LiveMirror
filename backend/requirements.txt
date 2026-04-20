@@ -1,0 +1,12 @@
+fastapi>=0.109.0
+uvicorn>=0.27.0
+sqlalchemy>=2.0.25
+pydantic[email]>=2.5.0
+pydantic-settings>=2.1.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.6
+bcrypt>=4.0.0
+httpx>=0.26.0  # DashScope API 调用
+faster-whisper>=1.0.0  # Whisper 转写
+reportlab>=4.0.0  # PDF 导出

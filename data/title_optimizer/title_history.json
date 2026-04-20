@@ -1,0 +1,47 @@
+[
+  {
+    "title": "测试标题0",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.772173",
+    "metrics": {
+      "score": 80,
+      "ctr": 10
+    }
+  },
+  {
+    "title": "测试标题1",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.772545",
+    "metrics": {
+      "score": 82,
+      "ctr": 11
+    }
+  },
+  {
+    "title": "测试标题2",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.772811",
+    "metrics": {
+      "score": 84,
+      "ctr": 12
+    }
+  },
+  {
+    "title": "测试标题3",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.773076",
+    "metrics": {
+      "score": 86,
+      "ctr": 13
+    }
+  },
+  {
+    "title": "测试标题4",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.773408",
+    "metrics": {
+      "score": 88,
+      "ctr": 14
+    }
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "session_id": "session_2026-04-08_1900",
+    "date": "2026-04-08",
+    "start_time": "19:00",
+    "end_time": "21:00",
+    "duration_minutes": 120,
+    "costs": [],
+    "revenues": [
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1000,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "general",
+    "notes": "",
+    "total_cost": 0,
+    "total_revenue": 1000,
+    "gmv": 0.0,
+    "roi": 0.0
+  }
+]

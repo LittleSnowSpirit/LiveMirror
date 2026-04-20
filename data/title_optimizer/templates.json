@@ -1,0 +1,128 @@
+[
+  {
+    "template": "🔥{product}限时秒杀！手慢无！",
+    "category": "general",
+    "description": "紧迫感模板",
+    "effectiveness_score": 0.85
+  },
+  {
+    "template": "✨{benefit}的秘密，99% 的人都不知道",
+    "category": "general",
+    "description": "好奇心模板",
+    "effectiveness_score": 0.88
+  },
+  {
+    "template": "💰今天不买亏大了！{product}史低价",
+    "category": "general",
+    "description": "优惠模板",
+    "effectiveness_score": 0.82
+  },
+  {
+    "template": "🎁买{product}送{gift}！仅限今天",
+    "category": "general",
+    "description": "赠品模板",
+    "effectiveness_score": 0.8
+  },
+  {
+    "template": "🌟{product}口碑爆棚！万人好评",
+    "category": "general",
+    "description": "口碑模板",
+    "effectiveness_score": 0.83
+  },
+  {
+    "template": "💎品质之选{product}，用了都说好",
+    "category": "general",
+    "description": "品质模板",
+    "effectiveness_score": 0.81
+  },
+  {
+    "template": "💄{product}让你美到发光！明星同款",
+    "category": "beauty",
+    "description": "美妆明星模板",
+    "effectiveness_score": 0.87
+  },
+  {
+    "template": "🌟7 天焕肤！{product}效果惊人",
+    "category": "beauty",
+    "description": "美妆效果模板",
+    "effectiveness_score": 0.85
+  },
+  {
+    "template": "💅美妆博主都在用的{product}，绝了！",
+    "category": "beauty",
+    "description": "美妆博主模板",
+    "effectiveness_score": 0.86
+  },
+  {
+    "template": "👗{style}穿搭，美到犯规！",
+    "category": "fashion",
+    "description": "服装风格模板",
+    "effectiveness_score": 0.84
+  },
+  {
+    "template": "🔥显瘦{effect}斤！这件{product}太神了",
+    "category": "fashion",
+    "description": "服装效果模板",
+    "effectiveness_score": 0.88
+  },
+  {
+    "template": "💃明星同款{product}，今天破价！",
+    "category": "fashion",
+    "description": "服装明星模板",
+    "effectiveness_score": 0.83
+  },
+  {
+    "template": "😋好吃到停不下来！{product}必买",
+    "category": "food",
+    "description": "食品美味模板",
+    "effectiveness_score": 0.86
+  },
+  {
+    "template": "🍲正宗{origin}{product}，口水直流",
+    "category": "food",
+    "description": "食品产地模板",
+    "effectiveness_score": 0.84
+  },
+  {
+    "template": "🎉网红爆款{product}，尝鲜价！",
+    "category": "food",
+    "description": "食品网红模板",
+    "effectiveness_score": 0.85
+  },
+  {
+    "template": "📱{product}性能炸裂！性价比之王",
+    "category": "electronics",
+    "description": "数码性能模板",
+    "effectiveness_score": 0.87
+  },
+  {
+    "template": "⚡黑科技{product}，颠覆你的想象",
+    "category": "electronics",
+    "description": "数码科技模板",
+    "effectiveness_score": 0.89
+  },
+  {
+    "template": "🎮数码发烧友必入{product}！",
+    "category": "electronics",
+    "description": "数码发烧友模板",
+    "effectiveness_score": 0.85
+  },
+  {
+    "template": "🏠提升幸福感的{product}，太值了",
+    "category": "home",
+    "description": "家居幸福模板",
+    "effectiveness_score": 0.86
+  },
+  {
+    "template": "✨收纳神器{product}，家变大了",
+    "category": "home",
+    "description": "家居收纳模板",
+    "effectiveness_score": 0.84
+  },
+  {
+    "template": "🛋️提升生活品质的{product}推荐",
+    "category": "home",
+    "description": "家居品质模板",
+    "effectiveness_score": 0.83
+  }
+]

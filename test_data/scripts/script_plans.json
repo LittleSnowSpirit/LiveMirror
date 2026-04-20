@@ -1,0 +1,1279 @@
+[
+  {
+    "id": "33bdc525",
+    "created_at": "2026-04-09T12:34:47.229513",
+    "start_time": "2026-04-09T12:34:47.229478",
+    "total_duration": 120,
+    "style": "friendly",
+    "special_requirements": "",
+    "products": [
+      {
+        "name": "水润保湿面膜",
+        "type": "beauty",
+        "price": 99,
+        "stock": 500,
+        "features": [
+          "深层补水",
+          "舒缓修复",
+          "温和不刺激"
+        ]
+      },
+      {
+        "name": "智能无线耳机",
+        "type": "electronics",
+        "price": 299,
+        "stock": 200,
+        "features": [
+          "降噪技术",
+          "长续航",
+          "舒适佩戴"
+        ]
+      },
+      {
+        "name": "坚果礼盒",
+        "type": "food",
+        "price": 128,
+        "stock": 300,
+        "features": [
+          "新鲜烘焙",
+          "多种口味",
+          "精美包装"
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "slot_id": "opening",
+        "name": "🎬 开场预热",
+        "start_minute": 0,
+        "end_minute": 15,
+        "start_time": "12:34",
+        "end_time": "12:49",
+        "content": "欢迎观众、介绍今日主题、预告福利",
+        "actions": [
+          "开场白",
+          "自我介绍",
+          "今日亮点预告",
+          "第一波抽奖"
+        ],
+        "script": "亲爱的们，欢迎来到直播间！今天我们有很多惊喜等着你们！",
+        "is_critical": true
+      },
+      {
+        "slot_id": "product_0",
+        "name": "📦 水润保湿面膜 展示",
+        "start_minute": 15,
+        "end_minute": 30,
+        "start_time": "12:49",
+        "end_time": "13:04",
+        "content": "详细介绍水润保湿面膜，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是水润保湿面膜！它真的超级棒，深层补水，舒缓修复，而且温和不刺激！",
+        "product_id": 0,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_0",
+        "name": "🎮 互动环节",
+        "start_minute": 30,
+        "end_minute": 40,
+        "start_time": "13:04",
+        "end_time": "13:14",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "现在我们来做个问答互动，答对的朋友有奖品哦！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_1",
+        "name": "📦 智能无线耳机 展示",
+        "start_minute": 40,
+        "end_minute": 55,
+        "start_time": "13:14",
+        "end_time": "13:29",
+        "content": "详细介绍智能无线耳机，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是智能无线耳机！它真的超级棒，降噪技术，长续航，而且舒适佩戴！",
+        "product_id": 1,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_1",
+        "name": "🎮 互动环节",
+        "start_minute": 55,
+        "end_minute": 65,
+        "start_time": "13:29",
+        "end_time": "13:39",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "现在我们来做个问答互动，答对的朋友有奖品哦！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_2",
+        "name": "📦 坚果礼盒 展示",
+        "start_minute": 65,
+        "end_minute": 80,
+        "start_time": "13:39",
+        "end_time": "13:54",
+        "content": "详细介绍坚果礼盒，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是坚果礼盒！它真的超级棒，新鲜烘焙，多种口味，而且精美包装！",
+        "product_id": 2,
+        "is_critical": true
+      },
+      {
+        "slot_id": "closing",
+        "name": "🎯 结尾总结",
+        "start_minute": 80,
+        "end_minute": 120,
+        "start_time": "13:54",
+        "end_time": "14:34",
+        "content": "总结今日产品、感谢观众、预告下次直播",
+        "actions": [
+          "产品回顾",
+          "感谢观众",
+          "关注引导",
+          "下期预告"
+        ],
+        "script": "感谢宝宝们的陪伴！今天我们介绍了水润保湿面膜, 智能无线耳机, 坚果礼盒，希望你们喜欢！记得关注我，下次直播更精彩！",
+        "is_critical": true
+      }
+    ],
+    "product_schedule": [
+      {
+        "product_index": 0,
+        "product_name": "水润保湿面膜",
+        "product_type": "beauty",
+        "上架时间": "12:49:47",
+        "下架时间": "13:19:47",
+        "展示时长": "30分钟",
+        "定价策略": "阶梯式降价",
+        "推荐搭配": [
+          "护肤套装",
+          "彩妆组合",
+          "买一送一"
+        ],
+        "库存预警": 50,
+        "优惠券": {
+          "type": "满减券",
+          "value": 5,
+          "threshold": 99,
+          "quantity": 200,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "这个价格真的超级划算！水润保湿面膜平时都要99元，今天直降19元！"
+      },
+      {
+        "product_index": 1,
+        "product_name": "智能无线耳机",
+        "product_type": "electronics",
+        "上架时间": "13:29:47",
+        "下架时间": "13:59:47",
+        "展示时长": "30分钟",
+        "定价策略": "限时秒杀",
+        "推荐搭配": [
+          "配件套装",
+          "延保服务",
+          "以旧换新"
+        ],
+        "库存预警": 20,
+        "优惠券": {
+          "type": "满减券",
+          "value": 5,
+          "threshold": 299,
+          "quantity": 200,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "这个价格真的超级划算！智能无线耳机平时都要299元，今天直降59元！"
+      },
+      {
+        "product_index": 2,
+        "product_name": "坚果礼盒",
+        "product_type": "food",
+        "上架时间": "14:09:47",
+        "下架时间": "14:39:47",
+        "展示时长": "30分钟",
+        "定价策略": "多件多折",
+        "推荐搭配": [
+          "家庭装",
+          "混合口味",
+          "月度套餐"
+        ],
+        "库存预警": 30,
+        "优惠券": {
+          "type": "无门槛券",
+          "value": 10,
+          "threshold": 384,
+          "quantity": 500,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "宝宝们，坚果礼盒原价128元，今天直播间只要102元！还送超值赠品！"
+      }
+    ],
+    "interactions": [
+      {
+        "interaction_id": "int_0",
+        "name": "小游戏",
+        "scheduled_minute": 20,
+        "scheduled_time": "12:54",
+        "duration": "8分钟",
+        "type": "挑战任务",
+        "description": "小游戏 - 每小时一次",
+        "script": "我们来玩个游戏，猜价格！猜中的宝宝送优惠券！",
+        "rewards": [
+          "优惠券 20 元",
+          "精美礼品",
+          "免单机会"
+        ],
+        "backup_plan": "如效果不佳，切换为quiz"
+      },
+      {
+        "interaction_id": "int_1",
+        "name": "幸运大转盘",
+        "scheduled_minute": 45,
+        "scheduled_time": "13:19",
+        "duration": "10分钟",
+        "type": "免单名额",
+        "description": "幸运大转盘 - 整点触发",
+        "script": "幸运大转盘来啦！人人有机会，快来参与！",
+        "rewards": [
+          "大额券",
+          "实物奖品",
+          "神秘礼包"
+        ],
+        "backup_plan": "如效果不佳，切换为lucky_draw"
+      },
+      {
+        "interaction_id": "int_2",
+        "name": "抽奖活动",
+        "scheduled_minute": 70,
+        "scheduled_time": "13:44",
+        "duration": "5分钟",
+        "type": "分享抽奖",
+        "description": "抽奖活动 - 每 30 分钟一次",
+        "script": "来，宝宝们，3、2、1，截屏！截到谁谁中奖！",
+        "rewards": [
+          "优惠券 10 元",
+          "小礼品",
+          "免单名额",
+          "积分 100"
+        ],
+        "backup_plan": "如效果不佳，切换为lucky_draw"
+      },
+      {
+        "interaction_id": "int_3",
+        "name": "问答互动",
+        "scheduled_minute": 95,
+        "scheduled_time": "14:09",
+        "duration": "5分钟",
+        "type": "品牌故事",
+        "description": "问答互动 - 每 20 分钟一次",
+        "script": "问题来啦！谁知道我们这款产品的核心成分是什么？第一个答对的有奖品！",
+        "rewards": [
+          "优惠券 5 元",
+          "产品试用装",
+          "积分 50"
+        ],
+        "backup_plan": "如效果不佳，切换为quiz"
+      }
+    ],
+    "emergency_plans": [
+      {
+        "plan_id": "emergency_low_traffic",
+        "name": "流量偏低",
+        "triggers": [
+          "在线人数低于预期 50%",
+          "互动率低"
+        ],
+        "actions": [
+          "加大抽奖力度，增加奖品数量",
+          "主动邀请观众互动，点名欢迎",
+          "提前公布下一款产品的重磅福利",
+          "联系运营投放流量"
+        ],
+        "responsible_person": "运营负责人",
+        "communication_code": "暗号：加把火",
+        "recovery_steps": [
+          "加大福利力度",
+          "联系运营投流",
+          "延长互动时间",
+          "预告重磅产品"
+        ]
+      },
+      {
+        "plan_id": "emergency_technical_issue",
+        "name": "技术问题",
+        "triggers": [
+          "卡顿",
+          "断流",
+          "音画不同步",
+          "商品链接失效"
+        ],
+        "actions": [
+          "主播保持镇定，继续口播产品介绍",
+          "助播在评论区引导观众稍等",
+          "技术快速切换备用设备",
+          "恢复后发放补偿优惠券"
+        ],
+        "responsible_person": "技术负责人",
+        "communication_code": "暗号：检查一下",
+        "recovery_steps": [
+          "切换备用设备",
+          "安抚观众情绪",
+          "发放补偿券",
+          "恢复后继续"
+        ]
+      },
+      {
+        "plan_id": "emergency_negative_comments",
+        "name": "负面评论",
+        "triggers": [
+          "恶意差评",
+          "质量问题质疑",
+          "价格对比"
+        ],
+        "actions": [
+          "助播及时屏蔽恶意评论",
+          "主播正面回应质量问题，提供证据",
+          "强调售后保障",
+          "转移话题到产品优势"
+        ],
+        "responsible_person": "助播/场控",
+        "communication_code": "暗号：注意评论",
+        "recovery_steps": [
+          "屏蔽恶意评论",
+          "正面回应质疑",
+          "强调售后保障",
+          "转移话题"
+        ]
+      },
+      {
+        "plan_id": "emergency_stock_shortage",
+        "name": "库存不足",
+        "triggers": [
+          "库存售罄",
+          "超卖"
+        ],
+        "actions": [
+          "立即下架商品",
+          "引导购买其他相似产品",
+          "开启预售通道",
+          "登记需求，后续补货通知"
+        ],
+        "responsible_person": "商品负责人",
+        "communication_code": "暗号：准备下架",
+        "recovery_steps": [
+          "立即下架",
+          "开启预售",
+          "推荐相似品",
+          "登记需求"
+        ]
+      },
+      {
+        "plan_id": "emergency_competitor_sabotage",
+        "name": "竞品干扰",
+        "triggers": [
+          "竞品刷屏",
+          "恶意带节奏"
+        ],
+        "actions": [
+          "快速屏蔽关键词",
+          "不正面回应，继续正常直播",
+          "加大互动频率覆盖负面",
+          "必要时开启评论审核"
+        ],
+        "responsible_person": "场控负责人",
+        "communication_code": "暗号：清理评论",
+        "recovery_steps": [
+          "屏蔽关键词",
+          "正常直播",
+          "加大互动",
+          "开启审核"
+        ]
+      }
+    ],
+    "summary": {
+      "total_slots": 7,
+      "total_products": 3,
+      "total_interactions": 4,
+      "product_time_ratio": "37.5%",
+      "key_moments": [
+        "12:34",
+        "12:49",
+        "13:14",
+        "13:39",
+        "13:54"
+      ],
+      "risk_level": "中",
+      "recommendations": [
+        "计划合理，可按此执行"
+      ]
+    }
+  },
+  {
+    "id": "85c233b2",
+    "created_at": "2026-04-09T12:33:42.836932",
+    "start_time": "2026-04-09T12:33:42.836900",
+    "total_duration": 120,
+    "style": "friendly",
+    "special_requirements": "",
+    "products": [
+      {
+        "name": "水润保湿面膜",
+        "type": "beauty",
+        "price": 99,
+        "stock": 500,
+        "features": [
+          "深层补水",
+          "舒缓修复",
+          "温和不刺激"
+        ]
+      },
+      {
+        "name": "智能无线耳机",
+        "type": "electronics",
+        "price": 299,
+        "stock": 200,
+        "features": [
+          "降噪技术",
+          "长续航",
+          "舒适佩戴"
+        ]
+      },
+      {
+        "name": "坚果礼盒",
+        "type": "food",
+        "price": 128,
+        "stock": 300,
+        "features": [
+          "新鲜烘焙",
+          "多种口味",
+          "精美包装"
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "slot_id": "opening",
+        "name": "🎬 开场预热",
+        "start_minute": 0,
+        "end_minute": 15,
+        "start_time": "12:33",
+        "end_time": "12:48",
+        "content": "欢迎观众、介绍今日主题、预告福利",
+        "actions": [
+          "开场白",
+          "自我介绍",
+          "今日亮点预告",
+          "第一波抽奖"
+        ],
+        "script": "大家好呀！我是你们的主播，今天这场直播绝对不能错过！",
+        "is_critical": true
+      },
+      {
+        "slot_id": "product_0",
+        "name": "📦 水润保湿面膜 展示",
+        "start_minute": 15,
+        "end_minute": 45,
+        "start_time": "12:48",
+        "end_time": "13:18",
+        "content": "详细介绍水润保湿面膜，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是水润保湿面膜！它真的超级棒，深层补水，舒缓修复，而且温和不刺激！",
+        "product_id": 0,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_0",
+        "name": "🎮 互动环节",
+        "start_minute": 45,
+        "end_minute": 55,
+        "start_time": "13:18",
+        "end_time": "13:28",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "现在我们来做个问答互动，答对的朋友有奖品哦！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_1",
+        "name": "📦 智能无线耳机 展示",
+        "start_minute": 55,
+        "end_minute": 85,
+        "start_time": "13:28",
+        "end_time": "13:58",
+        "content": "详细介绍智能无线耳机，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是智能无线耳机！它真的超级棒，降噪技术，长续航，而且舒适佩戴！",
+        "product_id": 1,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_1",
+        "name": "🎮 互动环节",
+        "start_minute": 85,
+        "end_minute": 95,
+        "start_time": "13:58",
+        "end_time": "14:08",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "现在我们来做个问答互动，答对的朋友有奖品哦！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_2",
+        "name": "📦 坚果礼盒 展示",
+        "start_minute": 95,
+        "end_minute": 125,
+        "start_time": "14:08",
+        "end_time": "14:38",
+        "content": "详细介绍坚果礼盒，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是坚果礼盒！它真的超级棒，新鲜烘焙，多种口味，而且精美包装！",
+        "product_id": 2,
+        "is_critical": true
+      }
+    ],
+    "product_schedule": [
+      {
+        "product_index": 0,
+        "product_name": "水润保湿面膜",
+        "product_type": "beauty",
+        "上架时间": "12:48:42",
+        "下架时间": "13:18:42",
+        "展示时长": "30分钟",
+        "定价策略": "阶梯式降价",
+        "推荐搭配": [
+          "护肤套装",
+          "彩妆组合",
+          "买一送一"
+        ],
+        "库存预警": 50,
+        "优惠券": {
+          "type": "无门槛券",
+          "value": 5,
+          "threshold": 198,
+          "quantity": 100,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "库存有限！水润保湿面膜这个价格错过就没了！赶紧下单！"
+      },
+      {
+        "product_index": 1,
+        "product_name": "智能无线耳机",
+        "product_type": "electronics",
+        "上架时间": "13:28:42",
+        "下架时间": "13:58:42",
+        "展示时长": "30分钟",
+        "定价策略": "限时秒杀",
+        "推荐搭配": [
+          "配件套装",
+          "延保服务",
+          "以旧换新"
+        ],
+        "库存预警": 20,
+        "优惠券": {
+          "type": "无门槛券",
+          "value": 10,
+          "threshold": 299,
+          "quantity": 1000,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "宝宝们，智能无线耳机原价299元，今天直播间只要239元！还送超值赠品！"
+      },
+      {
+        "product_index": 2,
+        "product_name": "坚果礼盒",
+        "product_type": "food",
+        "上架时间": "14:08:42",
+        "下架时间": "14:38:42",
+        "展示时长": "30分钟",
+        "定价策略": "多件多折",
+        "推荐搭配": [
+          "家庭装",
+          "混合口味",
+          "月度套餐"
+        ],
+        "库存预警": 30,
+        "优惠券": {
+          "type": "折扣券",
+          "value": 20,
+          "threshold": 256,
+          "quantity": 100,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "这个价格真的超级划算！坚果礼盒平时都要128元，今天直降25元！"
+      }
+    ],
+    "interactions": [
+      {
+        "interaction_id": "int_0",
+        "name": "幸运大转盘",
+        "scheduled_minute": 20,
+        "scheduled_time": "12:53",
+        "duration": "10分钟",
+        "type": "免单名额",
+        "description": "幸运大转盘 - 整点触发",
+        "script": "幸运大转盘来啦！人人有机会，快来参与！",
+        "rewards": [
+          "大额券",
+          "实物奖品",
+          "神秘礼包"
+        ],
+        "backup_plan": "如效果不佳，切换为lottery"
+      },
+      {
+        "interaction_id": "int_1",
+        "name": "幸运大转盘",
+        "scheduled_minute": 45,
+        "scheduled_time": "13:18",
+        "duration": "10分钟",
+        "type": "优惠券",
+        "description": "幸运大转盘 - 整点触发",
+        "script": "幸运大转盘来啦！人人有机会，快来参与！",
+        "rewards": [
+          "大额券",
+          "实物奖品",
+          "神秘礼包"
+        ],
+        "backup_plan": "如效果不佳，切换为quiz"
+      },
+      {
+        "interaction_id": "int_2",
+        "name": "幸运大转盘",
+        "scheduled_minute": 70,
+        "scheduled_time": "13:43",
+        "duration": "10分钟",
+        "type": "小礼品",
+        "description": "幸运大转盘 - 整点触发",
+        "script": "幸运大转盘来啦！人人有机会，快来参与！",
+        "rewards": [
+          "大额券",
+          "实物奖品",
+          "神秘礼包"
+        ],
+        "backup_plan": "如效果不佳，切换为lucky_draw"
+      },
+      {
+        "interaction_id": "int_3",
+        "name": "问答互动",
+        "scheduled_minute": 95,
+        "scheduled_time": "14:08",
+        "duration": "5分钟",
+        "type": "产品知识问答",
+        "description": "问答互动 - 每 20 分钟一次",
+        "script": "问题来啦！谁知道我们这款产品的核心成分是什么？第一个答对的有奖品！",
+        "rewards": [
+          "优惠券 5 元",
+          "产品试用装",
+          "积分 50"
+        ],
+        "backup_plan": "如效果不佳，切换为game"
+      }
+    ],
+    "emergency_plans": [
+      {
+        "plan_id": "emergency_low_traffic",
+        "name": "流量偏低",
+        "triggers": [
+          "在线人数低于预期 50%",
+          "互动率低"
+        ],
+        "actions": [
+          "加大抽奖力度，增加奖品数量",
+          "主动邀请观众互动，点名欢迎",
+          "提前公布下一款产品的重磅福利",
+          "联系运营投放流量"
+        ],
+        "responsible_person": "运营负责人",
+        "communication_code": "暗号：加把火",
+        "recovery_steps": [
+          "加大福利力度",
+          "联系运营投流",
+          "延长互动时间",
+          "预告重磅产品"
+        ]
+      },
+      {
+        "plan_id": "emergency_technical_issue",
+        "name": "技术问题",
+        "triggers": [
+          "卡顿",
+          "断流",
+          "音画不同步",
+          "商品链接失效"
+        ],
+        "actions": [
+          "主播保持镇定，继续口播产品介绍",
+          "助播在评论区引导观众稍等",
+          "技术快速切换备用设备",
+          "恢复后发放补偿优惠券"
+        ],
+        "responsible_person": "技术负责人",
+        "communication_code": "暗号：检查一下",
+        "recovery_steps": [
+          "切换备用设备",
+          "安抚观众情绪",
+          "发放补偿券",
+          "恢复后继续"
+        ]
+      },
+      {
+        "plan_id": "emergency_negative_comments",
+        "name": "负面评论",
+        "triggers": [
+          "恶意差评",
+          "质量问题质疑",
+          "价格对比"
+        ],
+        "actions": [
+          "助播及时屏蔽恶意评论",
+          "主播正面回应质量问题，提供证据",
+          "强调售后保障",
+          "转移话题到产品优势"
+        ],
+        "responsible_person": "助播/场控",
+        "communication_code": "暗号：注意评论",
+        "recovery_steps": [
+          "屏蔽恶意评论",
+          "正面回应质疑",
+          "强调售后保障",
+          "转移话题"
+        ]
+      },
+      {
+        "plan_id": "emergency_stock_shortage",
+        "name": "库存不足",
+        "triggers": [
+          "库存售罄",
+          "超卖"
+        ],
+        "actions": [
+          "立即下架商品",
+          "引导购买其他相似产品",
+          "开启预售通道",
+          "登记需求，后续补货通知"
+        ],
+        "responsible_person": "商品负责人",
+        "communication_code": "暗号：准备下架",
+        "recovery_steps": [
+          "立即下架",
+          "开启预售",
+          "推荐相似品",
+          "登记需求"
+        ]
+      },
+      {
+        "plan_id": "emergency_competitor_sabotage",
+        "name": "竞品干扰",
+        "triggers": [
+          "竞品刷屏",
+          "恶意带节奏"
+        ],
+        "actions": [
+          "快速屏蔽关键词",
+          "不正面回应，继续正常直播",
+          "加大互动频率覆盖负面",
+          "必要时开启评论审核"
+        ],
+        "responsible_person": "场控负责人",
+        "communication_code": "暗号：清理评论",
+        "recovery_steps": [
+          "屏蔽关键词",
+          "正常直播",
+          "加大互动",
+          "开启审核"
+        ]
+      }
+    ],
+    "summary": {
+      "total_slots": 6,
+      "total_products": 3,
+      "total_interactions": 4,
+      "product_time_ratio": "75.0%",
+      "key_moments": [
+        "12:33",
+        "12:48",
+        "13:28",
+        "14:08"
+      ],
+      "risk_level": "中",
+      "recommendations": [
+        "计划合理，可按此执行"
+      ]
+    }
+  },
+  {
+    "id": "7811920e",
+    "created_at": "2026-04-09T12:33:20.948934",
+    "start_time": "2026-04-09T12:33:20.948896",
+    "total_duration": 120,
+    "style": "friendly",
+    "special_requirements": "",
+    "products": [
+      {
+        "name": "水润保湿面膜",
+        "type": "beauty",
+        "price": 99,
+        "stock": 500,
+        "features": [
+          "深层补水",
+          "舒缓修复",
+          "温和不刺激"
+        ]
+      },
+      {
+        "name": "智能无线耳机",
+        "type": "electronics",
+        "price": 299,
+        "stock": 200,
+        "features": [
+          "降噪技术",
+          "长续航",
+          "舒适佩戴"
+        ]
+      },
+      {
+        "name": "坚果礼盒",
+        "type": "food",
+        "price": 128,
+        "stock": 300,
+        "features": [
+          "新鲜烘焙",
+          "多种口味",
+          "精美包装"
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "slot_id": "opening",
+        "name": "🎬 开场预热",
+        "start_minute": 0,
+        "end_minute": 15,
+        "start_time": "12:33",
+        "end_time": "12:48",
+        "content": "欢迎观众、介绍今日主题、预告福利",
+        "actions": [
+          "开场白",
+          "自我介绍",
+          "今日亮点预告",
+          "第一波抽奖"
+        ],
+        "script": "哈喽宝宝们！欢迎来到直播间～今天给你们准备了超多好物！",
+        "is_critical": true
+      },
+      {
+        "slot_id": "product_0",
+        "name": "📦 水润保湿面膜 展示",
+        "start_minute": 15,
+        "end_minute": 45,
+        "start_time": "12:48",
+        "end_time": "13:18",
+        "content": "详细介绍水润保湿面膜，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是水润保湿面膜！它真的超级棒，深层补水，舒缓修复，而且温和不刺激！",
+        "product_id": 0,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_0",
+        "name": "🎮 互动环节",
+        "start_minute": 45,
+        "end_minute": 55,
+        "start_time": "13:18",
+        "end_time": "13:28",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "来，宝宝们，我们玩个小游戏！评论区扣 1 参与抽奖！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_1",
+        "name": "📦 智能无线耳机 展示",
+        "start_minute": 55,
+        "end_minute": 85,
+        "start_time": "13:28",
+        "end_time": "13:58",
+        "content": "详细介绍智能无线耳机，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是智能无线耳机！它真的超级棒，降噪技术，长续航，而且舒适佩戴！",
+        "product_id": 1,
+        "is_critical": true
+      },
+      {
+        "slot_id": "interaction_1",
+        "name": "🎮 互动环节",
+        "start_minute": 85,
+        "end_minute": 95,
+        "start_time": "13:58",
+        "end_time": "14:08",
+        "content": "抽奖、问答、游戏互动",
+        "actions": [
+          "抽奖活动",
+          "问答互动",
+          "观众留言"
+        ],
+        "script": "点赞到 1 万我们就抽一波福利，大家动动手指！",
+        "is_critical": false
+      },
+      {
+        "slot_id": "product_2",
+        "name": "📦 坚果礼盒 展示",
+        "start_minute": 95,
+        "end_minute": 125,
+        "start_time": "14:08",
+        "end_time": "14:38",
+        "content": "详细介绍坚果礼盒，演示使用场景",
+        "actions": [
+          "产品介绍",
+          "功能演示",
+          "使用场景",
+          "用户评价",
+          "价格公布"
+        ],
+        "script": "宝宝们，今天要给你们推荐的是坚果礼盒！它真的超级棒，新鲜烘焙，多种口味，而且精美包装！",
+        "product_id": 2,
+        "is_critical": true
+      }
+    ],
+    "product_schedule": [
+      {
+        "product_index": 0,
+        "product_name": "水润保湿面膜",
+        "product_type": "beauty",
+        "上架时间": "12:48:20",
+        "下架时间": "13:18:20",
+        "展示时长": "30分钟",
+        "定价策略": "阶梯式降价",
+        "推荐搭配": [
+          "护肤套装",
+          "彩妆组合",
+          "买一送一"
+        ],
+        "库存预警": 50,
+        "优惠券": {
+          "type": "折扣券",
+          "value": 5,
+          "threshold": 99,
+          "quantity": 1000,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "宝宝们，水润保湿面膜原价99元，今天直播间只要79元！还送超值赠品！"
+      },
+      {
+        "product_index": 1,
+        "product_name": "智能无线耳机",
+        "product_type": "electronics",
+        "上架时间": "13:28:20",
+        "下架时间": "13:58:20",
+        "展示时长": "30分钟",
+        "定价策略": "限时秒杀",
+        "推荐搭配": [
+          "配件套装",
+          "延保服务",
+          "以旧换新"
+        ],
+        "库存预警": 20,
+        "优惠券": {
+          "type": "折扣券",
+          "value": 10,
+          "threshold": 897,
+          "quantity": 500,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "宝宝们，智能无线耳机原价299元，今天直播间只要239元！还送超值赠品！"
+      },
+      {
+        "product_index": 2,
+        "product_name": "坚果礼盒",
+        "product_type": "food",
+        "上架时间": "14:08:20",
+        "下架时间": "14:38:20",
+        "展示时长": "30分钟",
+        "定价策略": "多件多折",
+        "推荐搭配": [
+          "家庭装",
+          "混合口味",
+          "月度套餐"
+        ],
+        "库存预警": 30,
+        "优惠券": {
+          "type": "折扣券",
+          "value": 50,
+          "threshold": 128,
+          "quantity": 500,
+          "valid_duration": "直播期间有效"
+        },
+        "促销话术": "库存有限！坚果礼盒这个价格错过就没了！赶紧下单！"
+      }
+    ],
+    "interactions": [
+      {
+        "interaction_id": "int_0",
+        "name": "幸运大转盘",
+        "scheduled_minute": 20,
+        "scheduled_time": "12:53",
+        "duration": "10分钟",
+        "type": "优惠券",
+        "description": "幸运大转盘 - 整点触发",
+        "script": "幸运大转盘来啦！人人有机会，快来参与！",
+        "rewards": [
+          "大额券",
+          "实物奖品",
+          "神秘礼包"
+        ],
+        "backup_plan": "如效果不佳，切换为game"
+      },
+      {
+        "interaction_id": "int_1",
+        "name": "问答互动",
+        "scheduled_minute": 45,
+        "scheduled_time": "13:18",
+        "duration": "5分钟",
+        "type": "品牌故事",
+        "description": "问答互动 - 每 20 分钟一次",
+        "script": "问题来啦！谁知道我们这款产品的核心成分是什么？第一个答对的有奖品！",
+        "rewards": [
+          "优惠券 5 元",
+          "产品试用装",
+          "积分 50"
+        ],
+        "backup_plan": "如效果不佳，切换为lucky_draw"
+      },
+      {
+        "interaction_id": "int_2",
+        "name": "问答互动",
+        "scheduled_minute": 70,
+        "scheduled_time": "13:43",
+        "duration": "5分钟",
+        "type": "品牌故事",
+        "description": "问答互动 - 每 20 分钟一次",
+        "script": "问题来啦！谁知道我们这款产品的核心成分是什么？第一个答对的有奖品！",
+        "rewards": [
+          "优惠券 5 元",
+          "产品试用装",
+          "积分 50"
+        ],
+        "backup_plan": "如效果不佳，切换为quiz"
+      },
+      {
+        "interaction_id": "int_3",
+        "name": "抽奖活动",
+        "scheduled_minute": 95,
+        "scheduled_time": "14:08",
+        "duration": "5分钟",
+        "type": "截屏抽奖",
+        "description": "抽奖活动 - 每 30 分钟一次",
+        "script": "来，宝宝们，3、2、1，截屏！截到谁谁中奖！",
+        "rewards": [
+          "优惠券 10 元",
+          "小礼品",
+          "免单名额",
+          "积分 100"
+        ],
+        "backup_plan": "如效果不佳，切换为quiz"
+      }
+    ],
+    "emergency_plans": [
+      {
+        "plan_id": "emergency_low_traffic",
+        "name": "流量偏低",
+        "triggers": [
+          "在线人数低于预期 50%",
+          "互动率低"
+        ],
+        "actions": [
+          "加大抽奖力度，增加奖品数量",
+          "主动邀请观众互动，点名欢迎",
+          "提前公布下一款产品的重磅福利",
+          "联系运营投放流量"
+        ],
+        "responsible_person": "运营负责人",
+        "communication_code": "暗号：加把火",
+        "recovery_steps": [
+          "加大福利力度",
+          "联系运营投流",
+          "延长互动时间",
+          "预告重磅产品"
+        ]
+      },
+      {
+        "plan_id": "emergency_technical_issue",
+        "name": "技术问题",
+        "triggers": [
+          "卡顿",
+          "断流",
+          "音画不同步",
+          "商品链接失效"
+        ],
+        "actions": [
+          "主播保持镇定，继续口播产品介绍",
+          "助播在评论区引导观众稍等",
+          "技术快速切换备用设备",
+          "恢复后发放补偿优惠券"
+        ],
+        "responsible_person": "技术负责人",
+        "communication_code": "暗号：检查一下",
+        "recovery_steps": [
+          "切换备用设备",
+          "安抚观众情绪",
+          "发放补偿券",
+          "恢复后继续"
+        ]
+      },
+      {
+        "plan_id": "emergency_negative_comments",
+        "name": "负面评论",
+        "triggers": [
+          "恶意差评",
+          "质量问题质疑",
+          "价格对比"
+        ],
+        "actions": [
+          "助播及时屏蔽恶意评论",
+          "主播正面回应质量问题，提供证据",
+          "强调售后保障",
+          "转移话题到产品优势"
+        ],
+        "responsible_person": "助播/场控",
+        "communication_code": "暗号：注意评论",
+        "recovery_steps": [
+          "屏蔽恶意评论",
+          "正面回应质疑",
+          "强调售后保障",
+          "转移话题"
+        ]
+      },
+      {
+        "plan_id": "emergency_stock_shortage",
+        "name": "库存不足",
+        "triggers": [
+          "库存售罄",
+          "超卖"
+        ],
+        "actions": [
+          "立即下架商品",
+          "引导购买其他相似产品",
+          "开启预售通道",
+          "登记需求，后续补货通知"
+        ],
+        "responsible_person": "商品负责人",
+        "communication_code": "暗号：准备下架",
+        "recovery_steps": [
+          "立即下架",
+          "开启预售",
+          "推荐相似品",
+          "登记需求"
+        ]
+      },
+      {
+        "plan_id": "emergency_competitor_sabotage",
+        "name": "竞品干扰",
+        "triggers": [
+          "竞品刷屏",
+          "恶意带节奏"
+        ],
+        "actions": [
+          "快速屏蔽关键词",
+          "不正面回应，继续正常直播",
+          "加大互动频率覆盖负面",
+          "必要时开启评论审核"
+        ],
+        "responsible_person": "场控负责人",
+        "communication_code": "暗号：清理评论",
+        "recovery_steps": [
+          "屏蔽关键词",
+          "正常直播",
+          "加大互动",
+          "开启审核"
+        ]
+      }
+    ],
+    "summary": {
+      "total_slots": 6,
+      "total_products": 3,
+      "total_interactions": 4,
+      "product_time_ratio": "75.0%",
+      "key_moments": [
+        "12:33",
+        "12:48",
+        "13:28",
+        "14:08"
+      ],
+      "risk_level": "中",
+      "recommendations": [
+        "计划合理，可按此执行"
+      ]
+    }
+  }
+]

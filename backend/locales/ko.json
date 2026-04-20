@@ -1,0 +1,51 @@
+{
+  "common": {
+    "welcome": "LiveMirror 에 오신 것을 환영합니다",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "search": "검색",
+    "settings": "설정",
+    "language": "언어",
+    "close": "닫기",
+    "open": "열기",
+    "yes": "예",
+    "no": "아니오",
+    "ok": "확인"
+  },
+  "features": {
+    "ab_testing": "A/B 테스트",
+    "competitor_monitor": "경쟁사 모니터링",
+    "prediction": "판매 예측",
+    "report_generator": "보고서 생성",
+    "roi_analysis": "ROI 분석",
+    "sensitive_words": "민감한 단어 감지",
+    "title_optimizer": "제목 최적화"
+  },
+  "messages": {
+    "no_data": "데이터가 없습니다",
+    "load_failed": "로딩 실패",
+    "save_success": "저장되었습니다",
+    "delete_confirm": "삭제하시겠습니까?",
+    "operation_failed": "작업 실패",
+    "network_error": "네트워크 오류",
+    "please_try_again": "다시 시도해 주세요"
+  },
+  "templates": {
+    "greeting": "안녕하세요! 저희 라이브 스트림에 오신 것을 환영합니다",
+    "product_intro": "이 제품은 매우 인기가 많습니다, 오늘 특별 할인입니다",
+    "product_features": "이 제품에는 다음과 같은 특징이 있습니다: {features}",
+    "call_to_action": "좋아하시면 지금 바로 주문해 주세요",
+    "farewell": "시청해 주셔서 감사합니다, 다음에 또 만나요"
+  },
+  "time": {
+    "minute_ago": "{n}분 전",
+    "hour_ago": "{n}시간 전",
+    "day_ago": "{n}일 전"
+  }
+}

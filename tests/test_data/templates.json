@@ -1,0 +1,190 @@
+[
+  {
+    "id": "tpl_product_launch",
+    "name": "产品发布活动",
+    "description": "新产品上市推广活动策划模板",
+    "campaign_type": "product_launch",
+    "default_budget": {
+      "total_budget": 100000,
+      "channel_budget": {
+        "social_media": 30000,
+        "influencer": 25000,
+        "paid_ads": 30000,
+        "pr": 10000,
+        "events": 5000
+      }
+    },
+    "default_timeline_days": 60,
+    "recommended_channels": [
+      "微博",
+      "微信",
+      "抖音",
+      "小红书",
+      "B 站"
+    ],
+    "kpi_templates": [
+      {
+        "name": "曝光量",
+        "target": 1000000
+      },
+      {
+        "name": "互动量",
+        "target": 50000
+      },
+      {
+        "name": "转化率",
+        "target": 3.0
+      },
+      {
+        "name": "销售额",
+        "target": 500000
+      }
+    ],
+    "best_practices": [
+      "提前 2-4 周进行预热宣传",
+      "邀请 KOL/KOC 进行产品体验",
+      "设置早鸟优惠促进首批转化",
+      "准备危机公关预案"
+    ]
+  },
+  {
+    "id": "tpl_promotion",
+    "name": "促销活动",
+    "description": "电商促销活动策划模板",
+    "campaign_type": "promotion",
+    "default_budget": {
+      "total_budget": 50000,
+      "channel_budget": {
+        "paid_ads": 25000,
+        "discounts": 15000,
+        "social_media": 5000,
+        "email": 2000,
+        "sms": 3000
+      }
+    },
+    "default_timeline_days": 14,
+    "recommended_channels": [
+      "淘宝",
+      "京东",
+      "拼多多",
+      "微信小程序"
+    ],
+    "kpi_templates": [
+      {
+        "name": "GMV",
+        "target": 300000
+      },
+      {
+        "name": "订单量",
+        "target": 2000
+      },
+      {
+        "name": "客单价",
+        "target": 150
+      },
+      {
+        "name": "ROI",
+        "target": 300
+      }
+    ],
+    "best_practices": [
+      "设置阶梯优惠促进客单价提升",
+      "限时限量制造紧迫感",
+      "准备充足的库存和客服",
+      "活动后及时进行用户回访"
+    ]
+  },
+  {
+    "id": "tpl_brand",
+    "name": "品牌宣传活动",
+    "description": "品牌知名度和美誉度提升活动",
+    "campaign_type": "brand_awareness",
+    "default_budget": {
+      "total_budget": 200000,
+      "channel_budget": {
+        "content_marketing": 60000,
+        "influencer": 80000,
+        "pr": 40000,
+        "events": 20000
+      }
+    },
+    "default_timeline_days": 90,
+    "recommended_channels": [
+      "微信",
+      "微博",
+      "知乎",
+      "B 站",
+      "线下活动"
+    ],
+    "kpi_templates": [
+      {
+        "name": "品牌提及量",
+        "target": 10000
+      },
+      {
+        "name": "正面评价率",
+        "target": 85
+      },
+      {
+        "name": "搜索指数",
+        "target": 5000
+      },
+      {
+        "name": "粉丝增长",
+        "target": 20000
+      }
+    ],
+    "best_practices": [
+      "统一品牌视觉和语言风格",
+      "讲好品牌故事",
+      "与品牌调性相符的 KOL 合作",
+      "持续监测舆情"
+    ]
+  },
+  {
+    "id": "tpl_user_acquisition",
+    "name": "用户获取活动",
+    "description": "新用户拉新活动策划模板",
+    "campaign_type": "user_acquisition",
+    "default_budget": {
+      "total_budget": 80000,
+      "channel_budget": {
+        "paid_ads": 40000,
+        "referral": 20000,
+        "influencer": 15000,
+        "content": 5000
+      }
+    },
+    "default_timeline_days": 30,
+    "recommended_channels": [
+      "抖音",
+      "快手",
+      "微信广告",
+      "应用商店"
+    ],
+    "kpi_templates": [
+      {
+        "name": "新增用户",
+        "target": 5000
+      },
+      {
+        "name": "获客成本",
+        "target": 16
+      },
+      {
+        "name": "次日留存",
+        "target": 40
+      },
+      {
+        "name": "7 日留存",
+        "target": 25
+      }
+    ],
+    "best_practices": [
+      "设计有吸引力的新人福利",
+      "优化注册转化流程",
+      "设置邀请奖励机制",
+      "追踪各渠道质量"
+    ]
+  }
+]

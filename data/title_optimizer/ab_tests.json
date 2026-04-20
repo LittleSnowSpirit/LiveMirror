@@ -1,0 +1,52 @@
+{
+  "ab_20260408233714": {
+    "id": "ab_20260408233714",
+    "title_a": "🔥限时秒杀!产品 A 史低价",
+    "title_b": "✨产品 B 的秘密,99% 的人都不知道",
+    "category": "general",
+    "created_at": "2026-04-08T23:37:14.770429",
+    "end_at": "2026-04-09T23:37:14.770433",
+    "status": "active",
+    "metrics": {
+      "a": {
+        "views": 0,
+        "clicks": 0,
+        "conversions": 0
+      },
+      "b": {
+        "views": 0,
+        "clicks": 0,
+        "conversions": 0
+      }
+    },
+    "scores": {
+      "a": {
+        "total": 66.15,
+        "predicted_ctr": 14.92,
+        "rating": "C",
+        "factors": {
+          "attractiveness": 63.0,
+          "clarity": 100.0,
+          "relevance": 50.0,
+          "urgency": 60.0,
+          "emotion": 40.0,
+          "keyword": 74.0
+        }
+      },
+      "b": {
+        "total": 58.55,
+        "predicted_ctr": 13.78,
+        "rating": "D",
+        "factors": {
+          "attractiveness": 75.0,
+          "clarity": 75.0,
+          "relevance": 50.0,
+          "urgency": 30.0,
+          "emotion": 40.0,
+          "keyword": 63.0
+        }
+      }
+    },
+    "winner": null
+  }
+}

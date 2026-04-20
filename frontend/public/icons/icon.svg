@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#409EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#67C23A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="256" fill="url(#grad1)"/>
+  
+  <!-- 镜子图标 -->
+  <ellipse cx="256" cy="230" rx="120" ry="140" fill="none" stroke="#fff" stroke-width="12"/>
+  <ellipse cx="256" cy="230" rx="90" ry="110" fill="none" stroke="#fff" stroke-width="8" opacity="0.6"/>
+  
+  <!-- 镜子支架 -->
+  <path d="M 200 350 L 200 390 L 312 390 L 312 350" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="256" cy="390" r="20" fill="#fff"/>
+  
+  <!-- 反光效果 -->
+  <ellipse cx="220" cy="200" rx="30" ry="40" fill="#fff" opacity="0.2"/>
+</svg>

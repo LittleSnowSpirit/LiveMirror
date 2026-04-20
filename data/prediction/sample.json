@@ -1,0 +1,108 @@
+{
+  "prediction": {
+    "target_date": "2026-04-09",
+    "time_slot": "evening",
+    "predicted_gmv": 7518.71,
+    "predicted_viewers": 694,
+    "predicted_conversion_rate": 0.035,
+    "confidence_interval": {
+      "gmv": {
+        "lower": 5800.92,
+        "upper": 9236.49,
+        "confidence_level": 0.95
+      },
+      "viewers": {
+        "lower": 522,
+        "upper": 866,
+        "confidence_level": 0.95
+      },
+      "conversion_rate": {
+        "lower": 0.0171,
+        "upper": 0.0528,
+        "confidence_level": 0.95
+      }
+    },
+    "model_used": "hybrid",
+    "accuracy_score": 0.3,
+    "factors": {
+      "time_slot_impact": 1.2,
+      "weekend_boost": 1.0,
+      "trend": 1.0701126148610431,
+      "data_sufficiency": 1.0,
+      "viewer_trend": "low",
+      "conversion_trend": "low"
+    }
+  },
+  "recommendation": {
+    "recommended_slot": "evening",
+    "score": 1.01,
+    "expected_gmv": 7518.71,
+    "expected_viewers": 694,
+    "reason": "✅ 推荐：晚间黄金时段，流量峰值，适合促销和大场直播，GMV 潜力最大 预测综合得分1.01分",
+    "alternative_slots": [
+      {
+        "slot": "afternoon",
+        "score": 0.78,
+        "expected_gmv": 4849.16
+      },
+      {
+        "slot": "morning",
+        "score": 0.68,
+        "expected_gmv": 3616.77
+      }
+    ]
+  },
+  "historical_trends": {
+    "days": 30,
+    "data_points": 29,
+    "slot_summary": {
+      "morning": {
+        "avg_gmv": 4111.78,
+        "avg_viewers": 411.0,
+        "data_points": 29
+      },
+      "afternoon": {
+        "avg_gmv": 5360.76,
+        "avg_viewers": 536.0,
+        "data_points": 29
+      },
+      "evening": {
+        "avg_gmv": 8217.58,
+        "avg_viewers": 821.0,
+        "data_points": 30
+      },
+      "night": {
+        "avg_gmv": 2642.23,
+        "avg_viewers": 264.0,
+        "data_points": 29
+      }
+    }
+  },
+  "model_performance": {
+    "models": {
+      "gmv": {
+        "model": "hybrid",
+        "weights": {
+          "linear_regression": 0.4,
+          "moving_average": 0.3,
+          "seasonal": 0.3
+        },
+        "accuracy": 0.0
+      },
+      "viewers": {
+        "model": "exponential",
+        "alpha": 0.3,
+        "accuracy": 0.0
+      },
+      "conversion_rate": {
+        "model": "moving_average",
+        "window": 7,
+        "accuracy": 0.0
+      }
+    },
+    "total_predictions": 21,
+    "historical_data_points": 241,
+    "last_updated": "2026-04-08T23:49:45.415759"
+  },
+  "generated_at": "2026-04-08T23:49:45.415779"
+}

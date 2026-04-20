@@ -1,0 +1,158 @@
+{
+  "standard_2h": {
+    "name": "2 小时标准直播模板",
+    "duration": "2h",
+    "structure": [
+      {
+        "type": "opening",
+        "duration": 10,
+        "title": "开场预热"
+      },
+      {
+        "type": "product_intro",
+        "duration": 25,
+        "title": "第一轮产品介绍"
+      },
+      {
+        "type": "interaction",
+        "duration": 10,
+        "title": "互动抽奖"
+      },
+      {
+        "type": "product_intro",
+        "duration": 25,
+        "title": "第二轮产品介绍"
+      },
+      {
+        "type": "break",
+        "duration": 5,
+        "title": "休息过渡"
+      },
+      {
+        "type": "promotion",
+        "duration": 20,
+        "title": "限时促销"
+      },
+      {
+        "type": "product_intro",
+        "duration": 20,
+        "title": "第三轮产品介绍"
+      },
+      {
+        "type": "interaction",
+        "duration": 10,
+        "title": "问答互动"
+      },
+      {
+        "type": "closing",
+        "duration": 15,
+        "title": "总结收尾"
+      }
+    ],
+    "is_default": true
+  },
+  "fast_1h": {
+    "name": "1 小时快闪直播模板",
+    "duration": "1h",
+    "structure": [
+      {
+        "type": "opening",
+        "duration": 5,
+        "title": "快速开场"
+      },
+      {
+        "type": "product_intro",
+        "duration": 20,
+        "title": "核心产品介绍"
+      },
+      {
+        "type": "interaction",
+        "duration": 10,
+        "title": "秒杀互动"
+      },
+      {
+        "type": "promotion",
+        "duration": 15,
+        "title": "限时优惠"
+      },
+      {
+        "type": "closing",
+        "duration": 10,
+        "title": "总结催单"
+      }
+    ],
+    "is_default": true
+  },
+  "marathon_4h": {
+    "name": "4 小时马拉松直播模板",
+    "duration": "4h",
+    "structure": [
+      {
+        "type": "opening",
+        "duration": 15,
+        "title": "开场预热"
+      },
+      {
+        "type": "product_intro",
+        "duration": 30,
+        "title": "第一轮产品"
+      },
+      {
+        "type": "interaction",
+        "duration": 15,
+        "title": "抽奖互动"
+      },
+      {
+        "type": "product_intro",
+        "duration": 30,
+        "title": "第二轮产品"
+      },
+      {
+        "type": "break",
+        "duration": 10,
+        "title": "休息"
+      },
+      {
+        "type": "promotion",
+        "duration": 25,
+        "title": "中场促销"
+      },
+      {
+        "type": "product_intro",
+        "duration": 30,
+        "title": "第三轮产品"
+      },
+      {
+        "type": "interaction",
+        "duration": 15,
+        "title": "游戏互动"
+      },
+      {
+        "type": "product_intro",
+        "duration": 30,
+        "title": "第四轮产品"
+      },
+      {
+        "type": "break",
+        "duration": 10,
+        "title": "休息"
+      },
+      {
+        "type": "promotion",
+        "duration": 30,
+        "title": "压轴大促"
+      },
+      {
+        "type": "interaction",
+        "duration": 15,
+        "title": "终极大奖"
+      },
+      {
+        "type": "closing",
+        "duration": 25,
+        "title": "总结收尾"
+      }
+    ],
+    "is_default": true
+  }
+}

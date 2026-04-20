@@ -1,0 +1,306 @@
+[
+  {
+    "timestamp": "2026-04-08T23:47:59.397422",
+    "target_date": "2026-04-09",
+    "time_slot": "evening",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 6983.07,
+      "predicted_viewers": 655,
+      "predicted_conversion_rate": 0.0389,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 5673.64,
+          "upper": 8292.51,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 524,
+          "upper": 786,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0219,
+          "upper": 0.0558,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 1.2,
+        "weekend_boost": 1.0,
+        "trend": 1.017279267006058,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.418810",
+    "target_date": "2026-04-08",
+    "time_slot": "morning",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 3692.64,
+      "predicted_viewers": 350,
+      "predicted_conversion_rate": 0.034,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 2929.45,
+          "upper": 4455.83,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 274,
+          "upper": 427,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0186,
+          "upper": 0.0494,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 0.6,
+        "weekend_boost": 1.0,
+        "trend": 1.1596581585964547,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.422995",
+    "target_date": "2026-04-08",
+    "time_slot": "afternoon",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 4682.16,
+      "predicted_viewers": 420,
+      "predicted_conversion_rate": 0.0326,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 3771.12,
+          "upper": 5593.2,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 329,
+          "upper": 512,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0152,
+          "upper": 0.05,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 0.8,
+        "weekend_boost": 1.0,
+        "trend": 1.0419342408779348,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.428577",
+    "target_date": "2026-04-08",
+    "time_slot": "evening",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 6983.07,
+      "predicted_viewers": 655,
+      "predicted_conversion_rate": 0.0389,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 5673.64,
+          "upper": 8292.51,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 524,
+          "upper": 786,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0219,
+          "upper": 0.0558,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 1.2,
+        "weekend_boost": 1.0,
+        "trend": 1.017279267006058,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.434708",
+    "target_date": "2026-04-08",
+    "time_slot": "night",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 2420.46,
+      "predicted_viewers": 211,
+      "predicted_conversion_rate": 0.03,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 1924.02,
+          "upper": 2916.9,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 162,
+          "upper": 261,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0129,
+          "upper": 0.0471,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 0.4,
+        "weekend_boost": 1.0,
+        "trend": 1.115701198556302,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.483718",
+    "target_date": "2026-04-09",
+    "time_slot": "evening",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 7188.25,
+      "predicted_viewers": 650,
+      "predicted_conversion_rate": 0.0375,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 5498.42,
+          "upper": 8878.08,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 481,
+          "upper": 819,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0197,
+          "upper": 0.0554,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3,
+      "factors": {
+        "time_slot_impact": 1.2,
+        "weekend_boost": 1.0,
+        "trend": 1.0687599644414985,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.536519",
+    "target_date": "2026-04-09",
+    "time_slot": "morning",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 3692.64,
+      "predicted_viewers": 350,
+      "predicted_conversion_rate": 0.034,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 2929.45,
+          "upper": 4455.83,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 274,
+          "upper": 427,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0186,
+          "upper": 0.0494,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3993333333333333,
+      "factors": {
+        "time_slot_impact": 0.6,
+        "weekend_boost": 1.0,
+        "trend": 1.1596581585964547,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-04-08T23:47:59.541530",
+    "target_date": "2026-04-09",
+    "time_slot": "evening",
+    "category": "general",
+    "result": {
+      "predicted_gmv": 7188.25,
+      "predicted_viewers": 650,
+      "predicted_conversion_rate": 0.0375,
+      "confidence_interval": {
+        "gmv": {
+          "lower": 5498.42,
+          "upper": 8878.08,
+          "confidence_level": 0.95
+        },
+        "viewers": {
+          "lower": 481,
+          "upper": 819,
+          "confidence_level": 0.95
+        },
+        "conversion_rate": {
+          "lower": 0.0197,
+          "upper": 0.0554,
+          "confidence_level": 0.95
+        }
+      },
+      "model_used": "hybrid",
+      "accuracy_score": 0.3993333333333333,
+      "factors": {
+        "time_slot_impact": 1.2,
+        "weekend_boost": 1.0,
+        "trend": 1.0687599644414985,
+        "data_sufficiency": 1.0,
+        "viewer_trend": "low",
+        "conversion_trend": "low"
+      }
+    }
+  }
+]

@@ -1,0 +1,656 @@
+[
+  {
+    "report_id": "report_20260409_135320",
+    "generated_at": "2026-04-09T13:53:20.976880",
+    "summary": {
+      "total_sessions": 11,
+      "total_cost": 18500,
+      "total_revenue": 21000,
+      "total_gmv": 120000,
+      "total_profit": 2500,
+      "overall_roi": 13.51
+    },
+    "best_performer": {
+      "session_id": "session_2026-04-05_1930",
+      "roi": 50.0
+    },
+    "worst_performer": {
+      "session_id": "session_2026-04-07_1800",
+      "roi": 0.0
+    },
+    "cost_breakdown": {
+      "labor": 7400,
+      "venue": 4300,
+      "promotion": 5400,
+      "equipment": 1400
+    },
+    "optimization_suggestions": [
+      {
+        "category": "promotion",
+        "priority": "high",
+        "suggestion": "推广成本占比过高，建议优化投放策略，提高转化率",
+        "expected_impact": "可提高 ROI 10-20%",
+        "estimated_savings": 180.0,
+        "implementation_difficulty": "hard"
+      },
+      {
+        "category": "overall",
+        "priority": "medium",
+        "suggestion": "ROI 偏低（低于 50%），建议优化成本结构或提高收益",
+        "expected_impact": "可提高 ROI 20-40%",
+        "estimated_savings": 0,
+        "implementation_difficulty": "medium"
+      },
+      {
+        "category": "labor",
+        "priority": "high",
+        "suggestion": "人力成本占比过高（超过 50%），建议优化人员配置或采用自动化方案",
+        "expected_impact": "可降低人力成本 20-30%",
+        "estimated_savings": 125.0,
+        "implementation_difficulty": "medium"
+      }
+    ],
+    "sessions": [
+      {
+        "session_id": "session_2026-04-01_1900",
+        "date": "2026-04-01",
+        "start_time": "19:00",
+        "end_time": "22:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 600,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 300,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "抖音投放",
+            "amount": 400,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "商品销售",
+            "amount": 8000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1600,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "beauty",
+        "notes": "美妆专场，表现良好",
+        "total_cost": 1300,
+        "total_revenue": 1600,
+        "gmv": 8000,
+        "roi": 23.076923076923077
+      },
+      {
+        "session_id": "session_2026-04-01_1900",
+        "date": "2026-04-01",
+        "start_time": "19:00",
+        "end_time": "22:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 600,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 300,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "抖音投放",
+            "amount": 400,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "商品销售",
+            "amount": 8000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1600,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "beauty",
+        "notes": "美妆专场，表现良好",
+        "total_cost": 1300,
+        "total_revenue": 1600,
+        "gmv": 8000,
+        "roi": 23.076923076923077
+      },
+      {
+        "session_id": "session_2026-04-03_2000",
+        "date": "2026-04-03",
+        "start_time": "20:00",
+        "end_time": "23:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 800,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 400,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "小红书投放",
+            "amount": 600,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "equipment",
+            "name": "设备租赁",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "服装销售",
+            "amount": 12000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 2400,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "fashion",
+        "notes": "春季新品发布",
+        "total_cost": 2000,
+        "total_revenue": 2400,
+        "gmv": 12000,
+        "roi": 20.0
+      },
+      {
+        "session_id": "session_2026-04-05_1930",
+        "date": "2026-04-05",
+        "start_time": "19:30",
+        "end_time": "22:30",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "厨房场地",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "微信群推广",
+            "amount": 100,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "食品销售",
+            "amount": 5000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "food",
+        "notes": "零食专场，成本低收益好",
+        "total_cost": 800,
+        "total_revenue": 1200,
+        "gmv": 5000,
+        "roi": 50.0
+      },
+      {
+        "session_id": "session_2026-04-07_1800",
+        "date": "2026-04-07",
+        "start_time": "18:00",
+        "end_time": "21:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 1000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "展厅租赁",
+            "amount": 800,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "全平台投放",
+            "amount": 1200,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "equipment",
+            "name": "展示设备",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "数码产品销售",
+            "amount": 25000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 3500,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "electronics",
+        "notes": "数码专场，高成本高收益",
+        "total_cost": 3500,
+        "total_revenue": 3500,
+        "gmv": 25000,
+        "roi": 0.0
+      },
+      {
+        "session_id": "session_2026-04-08_1900",
+        "date": "2026-04-08",
+        "start_time": "19:00",
+        "end_time": "22:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 300,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "朋友圈广告",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "家居用品销售",
+            "amount": 6000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1000,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "home",
+        "notes": "家居日用，稳定表现",
+        "total_cost": 1000,
+        "total_revenue": 1000,
+        "gmv": 6000,
+        "roi": 0.0
+      },
+      {
+        "session_id": "session_2026-04-01_1900",
+        "date": "2026-04-01",
+        "start_time": "19:00",
+        "end_time": "22:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 600,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 300,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "抖音投放",
+            "amount": 400,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "商品销售",
+            "amount": 8000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1600,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "beauty",
+        "notes": "美妆专场，表现良好",
+        "total_cost": 1300,
+        "total_revenue": 1600,
+        "gmv": 8000,
+        "roi": 23.076923076923077
+      },
+      {
+        "session_id": "session_2026-04-03_2000",
+        "date": "2026-04-03",
+        "start_time": "20:00",
+        "end_time": "23:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 800,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 400,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "小红书投放",
+            "amount": 600,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "equipment",
+            "name": "设备租赁",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "服装销售",
+            "amount": 12000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 2400,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "fashion",
+        "notes": "春季新品发布",
+        "total_cost": 2000,
+        "total_revenue": 2400,
+        "gmv": 12000,
+        "roi": 20.0
+      },
+      {
+        "session_id": "session_2026-04-05_1930",
+        "date": "2026-04-05",
+        "start_time": "19:30",
+        "end_time": "22:30",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "厨房场地",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "微信群推广",
+            "amount": 100,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "食品销售",
+            "amount": 5000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "food",
+        "notes": "零食专场，成本低收益好",
+        "total_cost": 800,
+        "total_revenue": 1200,
+        "gmv": 5000,
+        "roi": 50.0
+      },
+      {
+        "session_id": "session_2026-04-07_1800",
+        "date": "2026-04-07",
+        "start_time": "18:00",
+        "end_time": "21:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 1000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "展厅租赁",
+            "amount": 800,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "全平台投放",
+            "amount": 1200,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "equipment",
+            "name": "展示设备",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "数码产品销售",
+            "amount": 25000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 3500,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "electronics",
+        "notes": "数码专场，高成本高收益",
+        "total_cost": 3500,
+        "total_revenue": 3500,
+        "gmv": 25000,
+        "roi": 0.0
+      },
+      {
+        "session_id": "session_2026-04-08_1900",
+        "date": "2026-04-08",
+        "start_time": "19:00",
+        "end_time": "22:00",
+        "duration_minutes": 180,
+        "costs": [
+          {
+            "type": "labor",
+            "name": "主播",
+            "amount": 500,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "venue",
+            "name": "场地租赁",
+            "amount": 300,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "promotion",
+            "name": "朋友圈广告",
+            "amount": 200,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "revenues": [
+          {
+            "type": "gmv",
+            "name": "家居用品销售",
+            "amount": 6000,
+            "unit": "CNY",
+            "notes": ""
+          },
+          {
+            "type": "profit",
+            "name": "利润",
+            "amount": 1000,
+            "unit": "CNY",
+            "notes": ""
+          }
+        ],
+        "category": "home",
+        "notes": "家居日用，稳定表现",
+        "total_cost": 1000,
+        "total_revenue": 1000,
+        "gmv": 6000,
+        "roi": 0.0
+      }
+    ]
+  }
+]

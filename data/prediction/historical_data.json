@@ -1,0 +1,2171 @@
+[
+  {
+    "date": "2026-02-07",
+    "time_slot": "morning",
+    "gmv": 3479.07,
+    "viewers": 347,
+    "conversions": 13,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-07",
+    "time_slot": "afternoon",
+    "gmv": 5615.16,
+    "viewers": 561,
+    "conversions": 25,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-07",
+    "time_slot": "evening",
+    "gmv": 7517.34,
+    "viewers": 751,
+    "conversions": 32,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-07",
+    "time_slot": "night",
+    "gmv": 2860.66,
+    "viewers": 286,
+    "conversions": 10,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-08",
+    "time_slot": "morning",
+    "gmv": 4426.33,
+    "viewers": 442,
+    "conversions": 17,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-08",
+    "time_slot": "afternoon",
+    "gmv": 4693.22,
+    "viewers": 469,
+    "conversions": 13,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-08",
+    "time_slot": "evening",
+    "gmv": 8914.3,
+    "viewers": 891,
+    "conversions": 31,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-08",
+    "time_slot": "night",
+    "gmv": 2280.7,
+    "viewers": 228,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-09",
+    "time_slot": "morning",
+    "gmv": 2841.53,
+    "viewers": 284,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-09",
+    "time_slot": "afternoon",
+    "gmv": 3644.95,
+    "viewers": 364,
+    "conversions": 7,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-09",
+    "time_slot": "evening",
+    "gmv": 6933.89,
+    "viewers": 693,
+    "conversions": 31,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-09",
+    "time_slot": "night",
+    "gmv": 1880.44,
+    "viewers": 188,
+    "conversions": 8,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-10",
+    "time_slot": "morning",
+    "gmv": 3312.48,
+    "viewers": 331,
+    "conversions": 9,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-10",
+    "time_slot": "afternoon",
+    "gmv": 4487.58,
+    "viewers": 448,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-10",
+    "time_slot": "evening",
+    "gmv": 6314.58,
+    "viewers": 631,
+    "conversions": 17,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-10",
+    "time_slot": "night",
+    "gmv": 2289.78,
+    "viewers": 228,
+    "conversions": 5,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-11",
+    "time_slot": "morning",
+    "gmv": 3371.48,
+    "viewers": 337,
+    "conversions": 7,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-11",
+    "time_slot": "afternoon",
+    "gmv": 4232.15,
+    "viewers": 423,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-11",
+    "time_slot": "evening",
+    "gmv": 5741.51,
+    "viewers": 574,
+    "conversions": 15,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-11",
+    "time_slot": "night",
+    "gmv": 2151.41,
+    "viewers": 215,
+    "conversions": 10,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-12",
+    "time_slot": "morning",
+    "gmv": 3049.8,
+    "viewers": 304,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-12",
+    "time_slot": "afternoon",
+    "gmv": 3519.31,
+    "viewers": 351,
+    "conversions": 10,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-12",
+    "time_slot": "evening",
+    "gmv": 6557.81,
+    "viewers": 655,
+    "conversions": 26,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-12",
+    "time_slot": "night",
+    "gmv": 1798.28,
+    "viewers": 179,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-13",
+    "time_slot": "morning",
+    "gmv": 3254.47,
+    "viewers": 325,
+    "conversions": 6,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-13",
+    "time_slot": "afternoon",
+    "gmv": 3673.67,
+    "viewers": 367,
+    "conversions": 12,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-13",
+    "time_slot": "evening",
+    "gmv": 6295.14,
+    "viewers": 629,
+    "conversions": 23,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-13",
+    "time_slot": "night",
+    "gmv": 2363.83,
+    "viewers": 236,
+    "conversions": 9,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-14",
+    "time_slot": "morning",
+    "gmv": 4354.28,
+    "viewers": 435,
+    "conversions": 19,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-14",
+    "time_slot": "afternoon",
+    "gmv": 6124.47,
+    "viewers": 612,
+    "conversions": 21,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-14",
+    "time_slot": "evening",
+    "gmv": 7798.9,
+    "viewers": 779,
+    "conversions": 25,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-14",
+    "time_slot": "night",
+    "gmv": 2424.49,
+    "viewers": 242,
+    "conversions": 11,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-15",
+    "time_slot": "morning",
+    "gmv": 4181.0,
+    "viewers": 418,
+    "conversions": 18,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-15",
+    "time_slot": "afternoon",
+    "gmv": 4617.65,
+    "viewers": 461,
+    "conversions": 22,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-15",
+    "time_slot": "evening",
+    "gmv": 6948.52,
+    "viewers": 694,
+    "conversions": 24,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-15",
+    "time_slot": "night",
+    "gmv": 3068.19,
+    "viewers": 306,
+    "conversions": 6,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-16",
+    "time_slot": "morning",
+    "gmv": 3507.18,
+    "viewers": 350,
+    "conversions": 8,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-16",
+    "time_slot": "afternoon",
+    "gmv": 4697.39,
+    "viewers": 469,
+    "conversions": 14,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-16",
+    "time_slot": "evening",
+    "gmv": 5340.4,
+    "viewers": 534,
+    "conversions": 19,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-16",
+    "time_slot": "night",
+    "gmv": 1971.93,
+    "viewers": 197,
+    "conversions": 5,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-17",
+    "time_slot": "morning",
+    "gmv": 2879.49,
+    "viewers": 287,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-17",
+    "time_slot": "afternoon",
+    "gmv": 4751.76,
+    "viewers": 475,
+    "conversions": 18,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-17",
+    "time_slot": "evening",
+    "gmv": 7232.78,
+    "viewers": 723,
+    "conversions": 14,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-17",
+    "time_slot": "night",
+    "gmv": 2088.58,
+    "viewers": 208,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-18",
+    "time_slot": "morning",
+    "gmv": 3592.6,
+    "viewers": 359,
+    "conversions": 11,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-18",
+    "time_slot": "afternoon",
+    "gmv": 3600.91,
+    "viewers": 360,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-18",
+    "time_slot": "evening",
+    "gmv": 6394.87,
+    "viewers": 639,
+    "conversions": 31,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-18",
+    "time_slot": "night",
+    "gmv": 1813.77,
+    "viewers": 181,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-19",
+    "time_slot": "morning",
+    "gmv": 3498.62,
+    "viewers": 349,
+    "conversions": 8,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-19",
+    "time_slot": "afternoon",
+    "gmv": 4850.24,
+    "viewers": 485,
+    "conversions": 16,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-19",
+    "time_slot": "evening",
+    "gmv": 5697.41,
+    "viewers": 569,
+    "conversions": 22,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-19",
+    "time_slot": "night",
+    "gmv": 2036.25,
+    "viewers": 203,
+    "conversions": 6,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-20",
+    "time_slot": "morning",
+    "gmv": 2948.25,
+    "viewers": 294,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-20",
+    "time_slot": "afternoon",
+    "gmv": 4105.0,
+    "viewers": 410,
+    "conversions": 14,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-20",
+    "time_slot": "evening",
+    "gmv": 7104.08,
+    "viewers": 710,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-20",
+    "time_slot": "night",
+    "gmv": 2111.7,
+    "viewers": 211,
+    "conversions": 5,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-21",
+    "time_slot": "morning",
+    "gmv": 3962.44,
+    "viewers": 396,
+    "conversions": 15,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-21",
+    "time_slot": "afternoon",
+    "gmv": 5487.39,
+    "viewers": 548,
+    "conversions": 25,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-21",
+    "time_slot": "evening",
+    "gmv": 9065.86,
+    "viewers": 906,
+    "conversions": 42,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-21",
+    "time_slot": "night",
+    "gmv": 3134.11,
+    "viewers": 313,
+    "conversions": 6,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-22",
+    "time_slot": "morning",
+    "gmv": 4425.73,
+    "viewers": 442,
+    "conversions": 19,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-22",
+    "time_slot": "afternoon",
+    "gmv": 5401.68,
+    "viewers": 540,
+    "conversions": 23,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-22",
+    "time_slot": "evening",
+    "gmv": 9596.91,
+    "viewers": 959,
+    "conversions": 40,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-22",
+    "time_slot": "night",
+    "gmv": 2980.27,
+    "viewers": 298,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-23",
+    "time_slot": "morning",
+    "gmv": 3362.21,
+    "viewers": 336,
+    "conversions": 16,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-23",
+    "time_slot": "afternoon",
+    "gmv": 4675.31,
+    "viewers": 467,
+    "conversions": 13,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-23",
+    "time_slot": "evening",
+    "gmv": 7132.75,
+    "viewers": 713,
+    "conversions": 33,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-23",
+    "time_slot": "night",
+    "gmv": 2477.07,
+    "viewers": 247,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-24",
+    "time_slot": "morning",
+    "gmv": 3672.43,
+    "viewers": 367,
+    "conversions": 13,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-24",
+    "time_slot": "afternoon",
+    "gmv": 4577.19,
+    "viewers": 457,
+    "conversions": 12,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-24",
+    "time_slot": "evening",
+    "gmv": 6116.53,
+    "viewers": 611,
+    "conversions": 27,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-24",
+    "time_slot": "night",
+    "gmv": 2226.45,
+    "viewers": 222,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-25",
+    "time_slot": "morning",
+    "gmv": 2933.89,
+    "viewers": 293,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-25",
+    "time_slot": "afternoon",
+    "gmv": 4386.23,
+    "viewers": 438,
+    "conversions": 15,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-25",
+    "time_slot": "evening",
+    "gmv": 6938.96,
+    "viewers": 693,
+    "conversions": 19,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-25",
+    "time_slot": "night",
+    "gmv": 2326.34,
+    "viewers": 232,
+    "conversions": 7,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-26",
+    "time_slot": "morning",
+    "gmv": 3244.41,
+    "viewers": 324,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-26",
+    "time_slot": "afternoon",
+    "gmv": 5029.11,
+    "viewers": 502,
+    "conversions": 24,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-26",
+    "time_slot": "evening",
+    "gmv": 6572.97,
+    "viewers": 657,
+    "conversions": 22,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-26",
+    "time_slot": "night",
+    "gmv": 2048.96,
+    "viewers": 204,
+    "conversions": 6,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-27",
+    "time_slot": "morning",
+    "gmv": 3077.04,
+    "viewers": 307,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-27",
+    "time_slot": "afternoon",
+    "gmv": 3810.33,
+    "viewers": 381,
+    "conversions": 10,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-02-27",
+    "time_slot": "evening",
+    "gmv": 7492.53,
+    "viewers": 749,
+    "conversions": 20,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-27",
+    "time_slot": "night",
+    "gmv": 2441.81,
+    "viewers": 244,
+    "conversions": 10,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-28",
+    "time_slot": "morning",
+    "gmv": 3751.36,
+    "viewers": 375,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-02-28",
+    "time_slot": "afternoon",
+    "gmv": 5608.34,
+    "viewers": 560,
+    "conversions": 27,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-02-28",
+    "time_slot": "evening",
+    "gmv": 7668.69,
+    "viewers": 766,
+    "conversions": 17,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-02-28",
+    "time_slot": "night",
+    "gmv": 3189.27,
+    "viewers": 318,
+    "conversions": 13,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-01",
+    "time_slot": "morning",
+    "gmv": 4922.27,
+    "viewers": 492,
+    "conversions": 15,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-01",
+    "time_slot": "afternoon",
+    "gmv": 6384.06,
+    "viewers": 638,
+    "conversions": 25,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-01",
+    "time_slot": "evening",
+    "gmv": 9693.16,
+    "viewers": 969,
+    "conversions": 44,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-01",
+    "time_slot": "night",
+    "gmv": 2839.41,
+    "viewers": 283,
+    "conversions": 9,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-02",
+    "time_slot": "morning",
+    "gmv": 2968.5,
+    "viewers": 296,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-02",
+    "time_slot": "afternoon",
+    "gmv": 3982.52,
+    "viewers": 398,
+    "conversions": 18,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-02",
+    "time_slot": "evening",
+    "gmv": 7420.6,
+    "viewers": 742,
+    "conversions": 20,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-02",
+    "time_slot": "night",
+    "gmv": 2190.46,
+    "viewers": 219,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-03",
+    "time_slot": "morning",
+    "gmv": 3843.07,
+    "viewers": 384,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-03",
+    "time_slot": "afternoon",
+    "gmv": 5048.11,
+    "viewers": 504,
+    "conversions": 17,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-03",
+    "time_slot": "evening",
+    "gmv": 6376.62,
+    "viewers": 637,
+    "conversions": 26,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-03",
+    "time_slot": "night",
+    "gmv": 2123.75,
+    "viewers": 212,
+    "conversions": 6,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-04",
+    "time_slot": "morning",
+    "gmv": 3653.56,
+    "viewers": 365,
+    "conversions": 13,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-04",
+    "time_slot": "afternoon",
+    "gmv": 4668.29,
+    "viewers": 466,
+    "conversions": 17,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-04",
+    "time_slot": "evening",
+    "gmv": 7132.19,
+    "viewers": 713,
+    "conversions": 34,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-04",
+    "time_slot": "night",
+    "gmv": 2028.4,
+    "viewers": 202,
+    "conversions": 7,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-05",
+    "time_slot": "morning",
+    "gmv": 3707.69,
+    "viewers": 370,
+    "conversions": 16,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-05",
+    "time_slot": "afternoon",
+    "gmv": 5195.55,
+    "viewers": 519,
+    "conversions": 13,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-05",
+    "time_slot": "evening",
+    "gmv": 6425.91,
+    "viewers": 642,
+    "conversions": 16,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-05",
+    "time_slot": "night",
+    "gmv": 2220.66,
+    "viewers": 222,
+    "conversions": 7,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-06",
+    "time_slot": "morning",
+    "gmv": 3330.62,
+    "viewers": 333,
+    "conversions": 8,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-06",
+    "time_slot": "afternoon",
+    "gmv": 4545.2,
+    "viewers": 454,
+    "conversions": 20,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-06",
+    "time_slot": "evening",
+    "gmv": 7007.48,
+    "viewers": 700,
+    "conversions": 31,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-06",
+    "time_slot": "night",
+    "gmv": 2437.01,
+    "viewers": 243,
+    "conversions": 10,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-07",
+    "time_slot": "morning",
+    "gmv": 4706.57,
+    "viewers": 470,
+    "conversions": 11,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-07",
+    "time_slot": "afternoon",
+    "gmv": 6732.88,
+    "viewers": 673,
+    "conversions": 22,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-07",
+    "time_slot": "evening",
+    "gmv": 9990.46,
+    "viewers": 999,
+    "conversions": 20,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-07",
+    "time_slot": "night",
+    "gmv": 2791.03,
+    "viewers": 279,
+    "conversions": 8,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-08",
+    "time_slot": "morning",
+    "gmv": 4081.68,
+    "viewers": 408,
+    "conversions": 13,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-08",
+    "time_slot": "afternoon",
+    "gmv": 5063.04,
+    "viewers": 506,
+    "conversions": 16,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-08",
+    "time_slot": "evening",
+    "gmv": 9997.8,
+    "viewers": 999,
+    "conversions": 33,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-08",
+    "time_slot": "night",
+    "gmv": 2564.73,
+    "viewers": 256,
+    "conversions": 12,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-09",
+    "time_slot": "morning",
+    "gmv": 3694.9,
+    "viewers": 369,
+    "conversions": 12,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-09",
+    "time_slot": "afternoon",
+    "gmv": 4215.03,
+    "viewers": 421,
+    "conversions": 15,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-09",
+    "time_slot": "evening",
+    "gmv": 5879.89,
+    "viewers": 587,
+    "conversions": 21,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-09",
+    "time_slot": "night",
+    "gmv": 2114.96,
+    "viewers": 211,
+    "conversions": 7,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-10",
+    "time_slot": "morning",
+    "gmv": 3319.28,
+    "viewers": 331,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-10",
+    "time_slot": "afternoon",
+    "gmv": 4989.88,
+    "viewers": 498,
+    "conversions": 17,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-10",
+    "time_slot": "evening",
+    "gmv": 7767.67,
+    "viewers": 776,
+    "conversions": 16,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-10",
+    "time_slot": "night",
+    "gmv": 2130.72,
+    "viewers": 213,
+    "conversions": 4,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-11",
+    "time_slot": "morning",
+    "gmv": 4001.0,
+    "viewers": 400,
+    "conversions": 14,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-11",
+    "time_slot": "afternoon",
+    "gmv": 4748.16,
+    "viewers": 474,
+    "conversions": 20,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-11",
+    "time_slot": "evening",
+    "gmv": 6410.3,
+    "viewers": 641,
+    "conversions": 23,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-11",
+    "time_slot": "night",
+    "gmv": 2340.55,
+    "viewers": 234,
+    "conversions": 6,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-12",
+    "time_slot": "morning",
+    "gmv": 3868.71,
+    "viewers": 386,
+    "conversions": 16,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-12",
+    "time_slot": "afternoon",
+    "gmv": 4701.56,
+    "viewers": 470,
+    "conversions": 22,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-12",
+    "time_slot": "evening",
+    "gmv": 7595.47,
+    "viewers": 759,
+    "conversions": 19,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-12",
+    "time_slot": "night",
+    "gmv": 2468.97,
+    "viewers": 246,
+    "conversions": 10,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-13",
+    "time_slot": "morning",
+    "gmv": 3993.56,
+    "viewers": 399,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-13",
+    "time_slot": "afternoon",
+    "gmv": 5024.22,
+    "viewers": 502,
+    "conversions": 18,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-13",
+    "time_slot": "evening",
+    "gmv": 7199.25,
+    "viewers": 719,
+    "conversions": 19,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-13",
+    "time_slot": "night",
+    "gmv": 2393.34,
+    "viewers": 239,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-14",
+    "time_slot": "morning",
+    "gmv": 5172.54,
+    "viewers": 517,
+    "conversions": 17,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-14",
+    "time_slot": "afternoon",
+    "gmv": 5638.33,
+    "viewers": 563,
+    "conversions": 16,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-14",
+    "time_slot": "evening",
+    "gmv": 10294.14,
+    "viewers": 1029,
+    "conversions": 44,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-14",
+    "time_slot": "night",
+    "gmv": 2982.16,
+    "viewers": 298,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-15",
+    "time_slot": "morning",
+    "gmv": 4591.33,
+    "viewers": 459,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-15",
+    "time_slot": "afternoon",
+    "gmv": 6648.19,
+    "viewers": 664,
+    "conversions": 30,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-15",
+    "time_slot": "evening",
+    "gmv": 10119.7,
+    "viewers": 1011,
+    "conversions": 23,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-15",
+    "time_slot": "night",
+    "gmv": 3021.23,
+    "viewers": 302,
+    "conversions": 13,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-16",
+    "time_slot": "morning",
+    "gmv": 3800.96,
+    "viewers": 380,
+    "conversions": 16,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-16",
+    "time_slot": "afternoon",
+    "gmv": 4366.44,
+    "viewers": 436,
+    "conversions": 15,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-16",
+    "time_slot": "evening",
+    "gmv": 7762.09,
+    "viewers": 776,
+    "conversions": 37,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-16",
+    "time_slot": "night",
+    "gmv": 2224.24,
+    "viewers": 222,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-17",
+    "time_slot": "morning",
+    "gmv": 3103.71,
+    "viewers": 310,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-17",
+    "time_slot": "afternoon",
+    "gmv": 5164.81,
+    "viewers": 516,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-17",
+    "time_slot": "evening",
+    "gmv": 7893.35,
+    "viewers": 789,
+    "conversions": 25,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-17",
+    "time_slot": "night",
+    "gmv": 2614.36,
+    "viewers": 261,
+    "conversions": 8,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-18",
+    "time_slot": "morning",
+    "gmv": 3984.34,
+    "viewers": 398,
+    "conversions": 17,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-18",
+    "time_slot": "afternoon",
+    "gmv": 4412.23,
+    "viewers": 441,
+    "conversions": 16,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-18",
+    "time_slot": "evening",
+    "gmv": 7933.36,
+    "viewers": 793,
+    "conversions": 33,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-18",
+    "time_slot": "night",
+    "gmv": 2456.97,
+    "viewers": 245,
+    "conversions": 9,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-19",
+    "time_slot": "morning",
+    "gmv": 3294.37,
+    "viewers": 329,
+    "conversions": 10,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-19",
+    "time_slot": "afternoon",
+    "gmv": 4599.35,
+    "viewers": 459,
+    "conversions": 18,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-19",
+    "time_slot": "evening",
+    "gmv": 6229.26,
+    "viewers": 622,
+    "conversions": 19,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-19",
+    "time_slot": "night",
+    "gmv": 2735.61,
+    "viewers": 273,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-20",
+    "time_slot": "morning",
+    "gmv": 3920.01,
+    "viewers": 392,
+    "conversions": 16,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-20",
+    "time_slot": "afternoon",
+    "gmv": 5130.71,
+    "viewers": 513,
+    "conversions": 14,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-20",
+    "time_slot": "evening",
+    "gmv": 6939.12,
+    "viewers": 693,
+    "conversions": 24,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-20",
+    "time_slot": "night",
+    "gmv": 2669.88,
+    "viewers": 266,
+    "conversions": 8,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-21",
+    "time_slot": "morning",
+    "gmv": 4488.91,
+    "viewers": 448,
+    "conversions": 17,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-21",
+    "time_slot": "afternoon",
+    "gmv": 6048.77,
+    "viewers": 604,
+    "conversions": 14,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-21",
+    "time_slot": "evening",
+    "gmv": 9723.66,
+    "viewers": 972,
+    "conversions": 27,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-21",
+    "time_slot": "night",
+    "gmv": 3268.87,
+    "viewers": 326,
+    "conversions": 13,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-22",
+    "time_slot": "morning",
+    "gmv": 4566.15,
+    "viewers": 456,
+    "conversions": 15,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-22",
+    "time_slot": "afternoon",
+    "gmv": 7037.23,
+    "viewers": 703,
+    "conversions": 21,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-22",
+    "time_slot": "evening",
+    "gmv": 10088.08,
+    "viewers": 1008,
+    "conversions": 40,
+    "duration_minutes": 180,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-22",
+    "time_slot": "night",
+    "gmv": 3533.72,
+    "viewers": 353,
+    "conversions": 10,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-23",
+    "time_slot": "morning",
+    "gmv": 3875.9,
+    "viewers": 387,
+    "conversions": 9,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-23",
+    "time_slot": "afternoon",
+    "gmv": 4484.92,
+    "viewers": 448,
+    "conversions": 18,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-23",
+    "time_slot": "evening",
+    "gmv": 6577.22,
+    "viewers": 657,
+    "conversions": 32,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-23",
+    "time_slot": "night",
+    "gmv": 2301.13,
+    "viewers": 230,
+    "conversions": 9,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-24",
+    "time_slot": "morning",
+    "gmv": 3712.54,
+    "viewers": 371,
+    "conversions": 17,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-24",
+    "time_slot": "afternoon",
+    "gmv": 5610.52,
+    "viewers": 561,
+    "conversions": 20,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-24",
+    "time_slot": "evening",
+    "gmv": 6944.34,
+    "viewers": 694,
+    "conversions": 16,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-24",
+    "time_slot": "night",
+    "gmv": 2589.79,
+    "viewers": 258,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-25",
+    "time_slot": "morning",
+    "gmv": 4111.68,
+    "viewers": 411,
+    "conversions": 17,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-25",
+    "time_slot": "afternoon",
+    "gmv": 4910.79,
+    "viewers": 491,
+    "conversions": 22,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-25",
+    "time_slot": "evening",
+    "gmv": 8351.13,
+    "viewers": 835,
+    "conversions": 41,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-25",
+    "time_slot": "night",
+    "gmv": 2258.25,
+    "viewers": 225,
+    "conversions": 5,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-26",
+    "time_slot": "morning",
+    "gmv": 3986.38,
+    "viewers": 398,
+    "conversions": 14,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-26",
+    "time_slot": "afternoon",
+    "gmv": 4776.63,
+    "viewers": 477,
+    "conversions": 23,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-26",
+    "time_slot": "evening",
+    "gmv": 7415.42,
+    "viewers": 741,
+    "conversions": 35,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-26",
+    "time_slot": "night",
+    "gmv": 2236.52,
+    "viewers": 223,
+    "conversions": 7,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-27",
+    "time_slot": "morning",
+    "gmv": 3309.39,
+    "viewers": 330,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-27",
+    "time_slot": "afternoon",
+    "gmv": 4734.03,
+    "viewers": 473,
+    "conversions": 15,
+    "duration_minutes": 90,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-27",
+    "time_slot": "evening",
+    "gmv": 6424.9,
+    "viewers": 642,
+    "conversions": 19,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-27",
+    "time_slot": "night",
+    "gmv": 2471.32,
+    "viewers": 247,
+    "conversions": 9,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-28",
+    "time_slot": "morning",
+    "gmv": 5285.19,
+    "viewers": 528,
+    "conversions": 13,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-28",
+    "time_slot": "afternoon",
+    "gmv": 6923.49,
+    "viewers": 692,
+    "conversions": 32,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-28",
+    "time_slot": "evening",
+    "gmv": 10691.47,
+    "viewers": 1069,
+    "conversions": 41,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-28",
+    "time_slot": "night",
+    "gmv": 3635.76,
+    "viewers": 363,
+    "conversions": 9,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-29",
+    "time_slot": "morning",
+    "gmv": 5347.08,
+    "viewers": 534,
+    "conversions": 22,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-29",
+    "time_slot": "afternoon",
+    "gmv": 6256.79,
+    "viewers": 625,
+    "conversions": 15,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-29",
+    "time_slot": "evening",
+    "gmv": 11016.08,
+    "viewers": 1101,
+    "conversions": 53,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-29",
+    "time_slot": "night",
+    "gmv": 2764.5,
+    "viewers": 276,
+    "conversions": 8,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-30",
+    "time_slot": "morning",
+    "gmv": 4324.02,
+    "viewers": 432,
+    "conversions": 11,
+    "duration_minutes": 60,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-03-30",
+    "time_slot": "afternoon",
+    "gmv": 4419.92,
+    "viewers": 441,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-30",
+    "time_slot": "evening",
+    "gmv": 8220.19,
+    "viewers": 822,
+    "conversions": 30,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-30",
+    "time_slot": "night",
+    "gmv": 2244.97,
+    "viewers": 224,
+    "conversions": 7,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-03-31",
+    "time_slot": "morning",
+    "gmv": 4108.25,
+    "viewers": 410,
+    "conversions": 15,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-31",
+    "time_slot": "afternoon",
+    "gmv": 5270.46,
+    "viewers": 527,
+    "conversions": 11,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-03-31",
+    "time_slot": "evening",
+    "gmv": 7147.41,
+    "viewers": 714,
+    "conversions": 21,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-03-31",
+    "time_slot": "night",
+    "gmv": 2377.39,
+    "viewers": 237,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-01",
+    "time_slot": "morning",
+    "gmv": 3754.69,
+    "viewers": 375,
+    "conversions": 10,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-04-01",
+    "time_slot": "afternoon",
+    "gmv": 4754.73,
+    "viewers": 475,
+    "conversions": 12,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-01",
+    "time_slot": "evening",
+    "gmv": 8182.4,
+    "viewers": 818,
+    "conversions": 34,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-01",
+    "time_slot": "night",
+    "gmv": 2655.51,
+    "viewers": 265,
+    "conversions": 5,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-04-02",
+    "time_slot": "morning",
+    "gmv": 3650.93,
+    "viewers": 365,
+    "conversions": 10,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-04-02",
+    "time_slot": "afternoon",
+    "gmv": 5642.96,
+    "viewers": 564,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-02",
+    "time_slot": "evening",
+    "gmv": 7463.35,
+    "viewers": 746,
+    "conversions": 36,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-02",
+    "time_slot": "night",
+    "gmv": 2380.98,
+    "viewers": 238,
+    "conversions": 8,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-03",
+    "time_slot": "morning",
+    "gmv": 3501.21,
+    "viewers": 350,
+    "conversions": 13,
+    "duration_minutes": 120,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-03",
+    "time_slot": "afternoon",
+    "gmv": 4854.97,
+    "viewers": 485,
+    "conversions": 18,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-03",
+    "time_slot": "evening",
+    "gmv": 6857.72,
+    "viewers": 685,
+    "conversions": 20,
+    "duration_minutes": 60,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-03",
+    "time_slot": "night",
+    "gmv": 2832.97,
+    "viewers": 283,
+    "conversions": 9,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-04-04",
+    "time_slot": "morning",
+    "gmv": 5445.46,
+    "viewers": 544,
+    "conversions": 19,
+    "duration_minutes": 90,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-04-04",
+    "time_slot": "afternoon",
+    "gmv": 7336.86,
+    "viewers": 733,
+    "conversions": 19,
+    "duration_minutes": 180,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-04-04",
+    "time_slot": "evening",
+    "gmv": 8678.81,
+    "viewers": 867,
+    "conversions": 22,
+    "duration_minutes": 90,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-04",
+    "time_slot": "night",
+    "gmv": 2851.83,
+    "viewers": 285,
+    "conversions": 13,
+    "duration_minutes": 120,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-04-05",
+    "time_slot": "morning",
+    "gmv": 4916.69,
+    "viewers": 491,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-05",
+    "time_slot": "afternoon",
+    "gmv": 6363.21,
+    "viewers": 636,
+    "conversions": 19,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-05",
+    "time_slot": "evening",
+    "gmv": 9740.31,
+    "viewers": 974,
+    "conversions": 38,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-05",
+    "time_slot": "night",
+    "gmv": 3010.01,
+    "viewers": 301,
+    "conversions": 7,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-06",
+    "time_slot": "morning",
+    "gmv": 4173.59,
+    "viewers": 417,
+    "conversions": 15,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-06",
+    "time_slot": "afternoon",
+    "gmv": 5035.44,
+    "viewers": 503,
+    "conversions": 12,
+    "duration_minutes": 90,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-06",
+    "time_slot": "evening",
+    "gmv": 7972.49,
+    "viewers": 797,
+    "conversions": 33,
+    "duration_minutes": 180,
+    "category": "electronics"
+  },
+  {
+    "date": "2026-04-06",
+    "time_slot": "night",
+    "gmv": 2673.79,
+    "viewers": 267,
+    "conversions": 11,
+    "duration_minutes": 180,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-07",
+    "time_slot": "morning",
+    "gmv": 3633.79,
+    "viewers": 363,
+    "conversions": 10,
+    "duration_minutes": 60,
+    "category": "fashion"
+  },
+  {
+    "date": "2026-04-07",
+    "time_slot": "afternoon",
+    "gmv": 5576.5,
+    "viewers": 557,
+    "conversions": 27,
+    "duration_minutes": 120,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-07",
+    "time_slot": "evening",
+    "gmv": 8888.7,
+    "viewers": 888,
+    "conversions": 26,
+    "duration_minutes": 120,
+    "category": "beauty"
+  },
+  {
+    "date": "2026-04-07",
+    "time_slot": "night",
+    "gmv": 2499.27,
+    "viewers": 249,
+    "conversions": 6,
+    "duration_minutes": 60,
+    "category": "food"
+  },
+  {
+    "date": "2026-04-07",
+    "time_slot": "evening",
+    "gmv": 10000.0,
+    "viewers": 1000,
+    "conversions": 50,
+    "duration_minutes": 120,
+    "category": "beauty"
+  }
+]

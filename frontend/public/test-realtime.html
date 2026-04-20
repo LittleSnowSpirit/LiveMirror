@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveMirror 实时副播功能测试</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .test-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-success {
+      background: #10b981;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #059669;
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+
+    .btn:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .status-panel {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .status-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .status-value.good {
+      color: #166534;
+    }
+
+    .status-value.warning {
+      color: #92400e;
+    }
+
+    .status-value.bad {
+      color: #991b1b;
+    }
+
+    .dashboard-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .log-panel {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .log-entry {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .log-entry.info {
+      color: #38bdf8;
+    }
+
+    .log-entry.success {
+      color: #4ade80;
+    }
+
+    .log-entry.warning {
+      color: #fbbf24;
+    }
+
+    .log-entry.error {
+      color: #f87171;
+    }
+
+    .test-section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .test-section h2 {
+      color: #1e293b;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .test-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .test-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .result-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .result-item {
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border-left: 3px solid #3b82f6;
+    }
+
+    .result-item.risk {
+      border-left-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .result-item.suggestion {
+      border-left-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .recording-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #fee2e2;
+      color: #991b1b;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .recording-dot {
+      width: 10px;
+      height: 10px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎥 LiveMirror 实时副播功能测试</h1>
+      <p class="subtitle">WebSocket 实时音频流处理 | 流式语音转写 | 实时话术分析</p>
+    </header>
+
+    <!-- 状态面板 -->
+    <div class="status-panel">
+      <div class="status-grid">
+        <div class="status-item">
+          <span class="status-label">连接状态</span>
+          <span class="status-value" id="connectionStatus">未连接</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">会话 ID</span>
+          <span class="status-value" id="sessionId">-</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">平均延迟</span>
+          <span class="status-value" id="avgLatency">0ms</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">片段数</span>
+          <span class="status-value" id="segmentCount">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">情绪</span>
+          <span class="status-value" id="sentiment">-</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">录音状态</span>
+          <span class="status-value" id="recordingStatus">未录音</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="test-controls">
+      <button class="btn btn-primary" id="btnConnect" onclick="connect()">🔌 连接</button>
+      <button class="btn btn-success" id="btnRecord" onclick="toggleRecording()" disabled>🎤 开始录音</button>
+      <button class="btn btn-primary" id="btnTestText" onclick="runTextTest()">📝 文本测试</button>
+      <button class="btn btn-danger" id="btnDisconnect" onclick="disconnect()" disabled>❌ 断开</button>
+    </div>
+
+    <!-- 实时看板容器 -->
+    <div id="dashboardContainer" class="dashboard-container" style="display: none;">
+      <div style="padding: 20px;">
+        <p style="text-align: center; color: #64748b;">
+          实时看板组件已加载<br>
+          <small>使用上方控制按钮进行测试</small>
+        </p>
+      </div>
+    </div>
+
+    <!-- 文本测试 -->
+    <div class="test-section">
+      <h2>📝 文本测试</h2>
+      <input 
+        type="text" 
+        id="testTextInput" 
+        class="test-input" 
+        placeholder="输入文本进行实时分析测试..."
+        onkeypress="if(event.key === 'Enter') sendTestText()"
+      />
+      <button class="btn btn-primary" onclick="sendTestText()" id="btnSendText" disabled>发送测试</button>
+      
+      <div class="result-list" id="testResults" style="margin-top: 16px;"></div>
+    </div>
+
+    <!-- 日志面板 -->
+    <div class="log-panel" id="logPanel">
+      <div class="log-entry info">[系统] 准备就绪，点击"连接"按钮开始测试...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import WebSocketClient from '../src/utils/websocket_client.js'
+
+    let client = null
+    let isRecording = false
+
+    // 日志函数
+    function log(message, type = 'info') {
+      const logPanel = document.getElementById('logPanel')
+      const entry = document.createElement('div')
+      entry.className = `log-entry ${type}`
+      const timestamp = new Date().toLocaleTimeString()
+      entry.textContent = `[${timestamp}] ${message}`
+      logPanel.appendChild(entry)
+      logPanel.scrollTop = logPanel.scrollHeight
+    }
+
+    // 更新状态显示
+    function updateStatus(key, value, className = '') {
+      const element = document.getElementById(key)
+      if (element) {
+        element.textContent = value
+        element.className = `status-value ${className}`
+      }
+    }
+
+    // 连接
+    window.connect = async function() {
+      const sessionId = `test_session_${Date.now()}`
+      updateStatus('sessionId', sessionId)
+      
+      client = new WebSocketClient({
+        url: 'ws://localhost:8000/ws/stream/text',
+        sessionId: sessionId,
+        reconnectInterval: 3000,
+        maxReconnectAttempts: 5
+      })
+
+      client.on('onConnected', () => {
+        log('连接成功', 'success')
+        updateStatus('connectionStatus', '已连接', 'good')
+        document.getElementById('btnConnect').disabled = true
+        document.getElementById('btnDisconnect').disabled = false
+        document.getElementById('btnRecord').disabled = false
+        document.getElementById('btnSendText').disabled = false
+        document.getElementById('dashboardContainer').style.display = 'block'
+      })
+
+      client.on('onDisconnected', () => {
+        log('连接断开', 'warning')
+        updateStatus('connectionStatus', '已断开', 'bad')
+        document.getElementById('btnConnect').disabled = false
+        document.getElementById('btnDisconnect').disabled = true
+        document.getElementById('btnRecord').disabled = true
+        document.getElementById('btnSendText').disabled = true
+        if (isRecording) {
+          toggleRecording()
+        }
+      })
+
+      client.on('onReconnecting', (data) => {
+        log(`尝试重连 (${data.attempt}/${data.maxAttempts})...`, 'warning')
+      })
+
+      client.on('onError', (error) => {
+        log(`错误：${error.message}`, 'error')
+      })
+
+      client.on('onTranscription', (message) => {
+        log(`转写：${message.text}`, 'info')
+        updateStatus('segmentCount', message.segment_index)
+        
+        if (message.performance) {
+          const latency = message.performance.latency_ms || message.performance.avg_latency_ms
+          updateStatus('avgLatency', `${latency.toFixed(0)}ms`, latency < 1000 ? 'good' : latency < 2000 ? 'warning' : 'bad')
+        }
+      })
+
+      client.on('onAnalysis', (message) => {
+        if (message.analysis) {
+          updateStatus('sentiment', message.analysis.sentiment)
+          
+          // 显示建议
+          if (message.analysis.suggestions && message.analysis.suggestions.length > 0) {
+            log(`建议：${message.analysis.suggestions[0]}`, 'info')
+          }
+          
+          // 显示风险
+          if (message.analysis.risks && message.analysis.risks.length > 0) {
+            log(`风险：${message.analysis.risks[0]}`, 'error')
+          }
+        }
+      })
+
+      try {
+        log('正在连接...', 'info')
+        await client.connect()
+      } catch (error) {
+        log(`连接失败：${error.message}`, 'error')
+      }
+    }
+
+    // 断开连接
+    window.disconnect = function() {
+      if (client) {
+        if (isRecording) {
+          toggleRecording()
+        }
+        client.disconnect()
+        client = null
+        log('已断开连接', 'info')
+        updateStatus('connectionStatus', '未连接')
+        updateStatus('sessionId', '-')
+        updateStatus('sentiment', '-')
+        updateStatus('avgLatency', '0ms')
+        updateStatus('segmentCount', '0')
+        document.getElementById('btnConnect').disabled = false
+        document.getElementById('btnDisconnect').disabled = true
+        document.getElementById('dashboardContainer').style.display = 'none'
+      }
+    }
+
+    // 切换录音
+    window.toggleRecording = async function() {
+      if (!client) return
+
+      if (isRecording) {
+        client.stopRecording()
+        client.stop()
+        isRecording = false
+        log('录音已停止', 'info')
+        updateStatus('recordingStatus', '未录音')
+        document.getElementById('btnRecord').textContent = '🎤 开始录音'
+        document.getElementById('btnRecord').classList.remove('btn-danger')
+        document.getElementById('btnRecord').classList.add('btn-success')
+      } else {
+        try {
+          await client.startRecording()
+          isRecording = true
+          log('录音已开始', 'success')
+          updateStatus('recordingStatus', '录音中', 'bad')
+          document.getElementById('btnRecord').textContent = '⏹ 停止录音'
+          document.getElementById('btnRecord').classList.remove('btn-success')
+          document.getElementById('btnRecord').classList.add('btn-danger')
+        } catch (error) {
+          log(`录音启动失败：${error.message}`, 'error')
+        }
+      }
+    }
+
+    // 发送测试文本
+    window.sendTestText = function() {
+      const input = document.getElementById('testTextInput')
+      const text = input.value.trim()
+      
+      if (!text || !client) return
+
+      client.sendText(text)
+      log(`发送文本：${text}`, 'info')
+      input.value = ''
+
+      // 添加到结果列表
+      const resultsDiv = document.getElementById('testResults')
+      const resultItem = document.createElement('div')
+      resultItem.className = 'result-item'
+      resultItem.textContent = text
+      resultsDiv.insertBefore(resultItem, resultsDiv.firstChild)
+
+      // 限制结果数量
+      while (resultsDiv.children.length > 10) {
+        resultsDiv.removeChild(resultsDiv.lastChild)
+      }
+    }
+
+    // 运行文本测试
+    window.runTextTest = async function() {
+      const testTexts = [
+        "大家好，欢迎来到直播间！",
+        "今天给大家带来超值福利。",
+        "这个产品非常好用，价格也很优惠。",
+        "限时限量，赶紧下单不要错过！"
+      ]
+
+      log('开始批量文本测试...', 'info')
+
+      for (const text of testTexts) {
+        const input = document.getElementById('testTextInput')
+        input.value = text
+        sendTestText()
+        await new Promise(resolve => setTimeout(resolve, 500))
+      }
+
+      log('批量测试完成', 'success')
+    }
+
+    // 页面卸载时清理
+    window.addEventListener('beforeunload', () => {
+      if (client) {
+        client.disconnect()
+      }
+    })
+
+    log('页面加载完成', 'success')
+  </script>
+</body>
+</html>

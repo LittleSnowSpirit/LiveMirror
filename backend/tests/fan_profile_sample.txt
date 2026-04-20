@@ -1,0 +1,8 @@
+Fan Profile Sample Report
+============================================================
+
+Total Fans: 1000
+Average LTV: Y16932.19
+Total Revenue: Y5052930.65
+At-Risk Percentage: 76.6%
+Generated: 2026-04-09T15:45:41.259438

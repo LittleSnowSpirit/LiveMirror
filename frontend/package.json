@@ -1,0 +1,34 @@
+{
+  "name": "livemirror-frontend",
+  "version": "1.0.0",
+  "description": "LiveMirror Frontend with Dark Mode Support",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.mjs",
+    "build": "vite build --config vite.config.mjs",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "preview": "node scripts/serve-dist.mjs",
+    "test:visual": "echo 'Visual testing: Open dev server and verify all pages in light/dark mode'"
+  },
+  "dependencies": {
+    "axios": "^1.15.0",
+    "element-plus": "^2.13.6",
+    "vue": "^3.4.0",
+    "vue-i18n": "^11.3.2",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "5.3.3",
+    "vite": "^5.0.0",
+    "vue-tsc": "^1.8.0"
+  },
+  "keywords": [
+    "livemirror",
+    "dark-mode",
+    "theme",
+    "vue3"
+  ],
+  "author": "LiveMirror Team",
+  "license": "MIT"
+}

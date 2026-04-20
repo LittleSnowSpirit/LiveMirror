@@ -1,0 +1,106 @@
+{
+  "06b95064a1cc": {
+    "id": "06b95064a1cc",
+    "name": "测试竞品 A",
+    "platform": "douyin",
+    "room_id": "test_room_001",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.326324"
+  },
+  "7cefb4349b24": {
+    "id": "7cefb4349b24",
+    "name": "竞品 1",
+    "platform": "douyin",
+    "room_id": "room_1",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.365624"
+  },
+  "5c37085c68b7": {
+    "id": "5c37085c68b7",
+    "name": "竞品 2",
+    "platform": "taobao",
+    "room_id": "room_2",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.368378"
+  },
+  "1a1c6c4a70b3": {
+    "id": "1a1c6c4a70b3",
+    "name": "竞品 3",
+    "platform": "kuaishou",
+    "room_id": "room_3",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.370965"
+  },
+  "4d8015128a88": {
+    "id": "4d8015128a88",
+    "name": "目标竞品",
+    "platform": "douyin",
+    "room_id": "target_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.395611"
+  },
+  "c63686ad558f": {
+    "id": "c63686ad558f",
+    "name": "流量测试竞品",
+    "platform": "douyin",
+    "room_id": "spike_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.505326"
+  },
+  "86ea8b289b22": {
+    "id": "86ea8b289b22",
+    "name": "GMV 测试竞品",
+    "platform": "taobao",
+    "room_id": "gmv_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.553556"
+  },
+  "7ed27483ce4b": {
+    "id": "7ed27483ce4b",
+    "name": "话术测试竞品",
+    "platform": "douyin",
+    "room_id": "script_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.608975"
+  },
+  "138faf13cf43": {
+    "id": "138faf13cf43",
+    "name": "历史测试竞品",
+    "platform": "douyin",
+    "room_id": "history_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.711938"
+  },
+  "12625a504fd0": {
+    "id": "12625a504fd0",
+    "name": "话术历史竞品",
+    "platform": "douyin",
+    "room_id": "script_history_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.762889"
+  },
+  "0f4c7be542b8": {
+    "id": "0f4c7be542b8",
+    "name": "监控测试竞品",
+    "platform": "douyin",
+    "room_id": "monitor_room",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:47.787201"
+  },
+  "731a4335eb5f": {
+    "id": "731a4335eb5f",
+    "name": "统计竞品 1",
+    "platform": "douyin",
+    "room_id": "stat_room_1",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.839917"
+  },
+  "70ba6e6a4a01": {
+    "id": "70ba6e6a4a01",
+    "name": "统计竞品 2",
+    "platform": "taobao",
+    "room_id": "stat_room_2",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.842066"
+  }
+}

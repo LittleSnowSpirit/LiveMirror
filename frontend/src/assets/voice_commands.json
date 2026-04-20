@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "language": "zh-CN",
+  "commands": {
+    "control": {
+      "start": {
+        "keywords": ["开始", "启动", "开启", "开始语音", "打开语音"],
+        "action": "start_listening",
+        "description": "开始语音识别"
+      },
+      "stop": {
+        "keywords": ["停止", "关闭", "退出", "停止语音", "关闭语音"],
+        "action": "stop_listening",
+        "description": "停止语音识别"
+      },
+      "toggle": {
+        "keywords": ["切换", "开关", "语音开关"],
+        "action": "toggle_listening",
+        "description": "切换语音识别状态"
+      }
+    },
+    "navigation": {
+      "home": {
+        "keywords": ["首页", "主页", "回家", "返回主页"],
+        "action": "navigate",
+        "params": { "page": "home" },
+        "description": "返回首页"
+      },
+      "dashboard": {
+        "keywords": ["仪表盘", "看板", "数据看板"],
+        "action": "navigate",
+        "params": { "page": "dashboard" },
+        "description": "打开仪表盘"
+      },
+      "reports": {
+        "keywords": ["报告", "报表", "查看报告"],
+        "action": "navigate",
+        "params": { "page": "reports" },
+        "description": "打开报告页面"
+      },
+      "settings": {
+        "keywords": ["设置", "配置", "系统设置"],
+        "action": "navigate",
+        "params": { "page": "settings" },
+        "description": "打开设置页面"
+      },
+      "health": {
+        "keywords": ["健康", "健康数据", "健康页面"],
+        "action": "navigate",
+        "params": { "page": "health" },
+        "description": "打开健康数据页面"
+      },
+      "next": {
+        "keywords": ["下一个", "下一页", "向前"],
+        "action": "navigate_next",
+        "description": "切换到下一个页面"
+      },
+      "previous": {
+        "keywords": ["上一个", "上一页", "向后", "返回"],
+        "action": "navigate_previous",
+        "description": "切换到上一个页面"
+      }
+    },
+    "search": {
+      "search": {
+        "keywords": ["搜索", "查找", "找"],
+        "action": "search",
+        "params": { "type": "general" },
+        "description": "搜索数据"
+      },
+      "search_report": {
+        "keywords": ["搜索报告", "查找报告", "找报告"],
+        "action": "search",
+        "params": { "type": "report" },
+        "description": "搜索报告"
+      },
+      "search_data": {
+        "keywords": ["搜索数据", "查找数据", "找数据"],
+        "action": "search",
+        "params": { "type": "data" },
+        "description": "搜索数据"
+      },
+      "search_health": {
+        "keywords": ["搜索健康", "查找健康数据", "找健康记录"],
+        "action": "search",
+        "params": { "type": "health" },
+        "description": "搜索健康数据"
+      }
+    },
+    "shortcuts": {
+      "refresh": {
+        "keywords": ["刷新", "更新", "重新加载"],
+        "action": "refresh",
+        "description": "刷新当前页面"
+      },
+      "help": {
+        "keywords": ["帮助", "语音帮助", "怎么用"],
+        "action": "show_help",
+        "description": "显示语音命令帮助"
+      },
+      "fullscreen": {
+        "keywords": ["全屏", "放大", "全屏查看"],
+        "action": "toggle_fullscreen",
+        "description": "切换全屏模式"
+      },
+      "dark_mode": {
+        "keywords": ["夜间模式", "黑暗模式", "切换主题"],
+        "action": "toggle_theme",
+        "description": "切换深色/浅色主题"
+      },
+      "screenshot": {
+        "keywords": ["截图", "截屏", "保存截图"],
+        "action": "take_screenshot",
+        "description": "截取当前屏幕"
+      }
+    }
+  },
+  "feedback": {
+    "success": {
+      "text": "已执行：{command}",
+      "sound": "success",
+      "visual": "checkmark"
+    },
+    "error": {
+      "text": "未识别到命令：{input}",
+      "sound": "error",
+      "visual": "warning"
+    },
+    "listening": {
+      "text": "正在聆听...",
+      "sound": "listening",
+      "visual": "waveform"
+    },
+    "processing": {
+      "text": "处理中...",
+      "sound": "processing",
+      "visual": "spinner"
+    },
+    "offline": {
+      "text": "离线模式",
+      "sound": "offline",
+      "visual": "cloud-off"
+    }
+  },
+  "settings": {
+    "default_language": "zh-CN",
+    "sensitivity": 0.8,
+    "continuous_mode": false,
+    "auto_start": false,
+    "feedback_sound": true,
+    "feedback_visual": true,
+    "feedback_voice": true,
+    "offline_mode": true,
+    "wake_word": null,
+    "excluded_keywords": ["的", "了", "是", "在", "我", "有", "和"]
+  }
+}

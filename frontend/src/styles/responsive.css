@@ -1,0 +1,353 @@
+/**
+ * LiveMirror 响应式样式
+ * 支持手机/平板/桌面三端适配
+ */
+
+/* ========================================
+   断点定义
+   ======================================== */
+:root {
+  --breakpoint-xs: 320px;   /* 小手机 */
+  --breakpoint-sm: 480px;   /* 大手机 */
+  --breakpoint-md: 768px;   /* 平板 */
+  --breakpoint-lg: 1024px;  /* 小桌面 */
+  --breakpoint-xl: 1440px;  /* 大桌面 */
+  
+  /* 移动端导航高度 */
+  --mobile-nav-height: 56px;
+  --mobile-header-height: 56px;
+}
+
+/* ========================================
+   基础响应式布局
+   ======================================== */
+
+/* 容器最大宽度优化 */
+#app {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  #app {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+}
+
+/* 头部导航响应式 */
+header .wrapper {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  header .wrapper {
+    padding: 1rem;
+  }
+}
+
+/* ========================================
+   移动端导航（汉堡菜单）
+   ======================================== */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.mobile-nav-toggle .hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--el-text-color-regular);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle .hamburger::before,
+.mobile-nav-toggle .hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--el-text-color-regular);
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle .hamburger::before {
+  top: -7px;
+}
+
+.mobile-nav-toggle .hamburger::after {
+  top: 7px;
+}
+
+/* 汉堡菜单激活状态 */
+.mobile-nav-toggle.active .hamburger {
+  background: transparent;
+}
+
+.mobile-nav-toggle.active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.mobile-nav-toggle.active .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* 移动端导航面板 */
+.mobile-nav-panel {
+  display: none;
+  position: fixed;
+  top: var(--mobile-header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--el-bg-color);
+  z-index: 999;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.mobile-nav-panel.open {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-nav-panel a {
+  display: block;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--el-text-color-regular);
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.mobile-nav-panel a:hover,
+.mobile-nav-panel a.router-link-exact-active {
+  background-color: var(--el-fill-color-light);
+  color: var(--el-color-primary);
+}
+
+/* 桌面端隐藏移动端导航 */
+@media (min-width: 769px) {
+  .mobile-nav-toggle,
+  .mobile-nav-panel {
+    display: none !important;
+  }
+}
+
+/* 移动端显示汉堡菜单 */
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+  
+  .main-nav {
+    display: none !important;
+  }
+  
+  header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* ========================================
+   小屏幕优化（≤480px）
+   ======================================== */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  #app {
+    padding: 0.5rem;
+  }
+  
+  /* 卡片组件优化 */
+  .el-card,
+  .card {
+    border-radius: 8px;
+  }
+  
+  /* 按钮优化 */
+  .el-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* 表格横向滚动 */
+  .el-table {
+    font-size: 0.85rem;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 图表容器优化 */
+  .chart-container {
+    min-height: 250px;
+  }
+}
+
+/* ========================================
+   平板优化（768px - 1024px）
+   ======================================== */
+@media (min-width: 481px) and (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+  
+  #app {
+    padding: 1rem;
+  }
+  
+  .chart-container {
+    min-height: 300px;
+  }
+}
+
+/* ========================================
+   桌面端优化（≥1024px）
+   ======================================== */
+@media (min-width: 1025px) {
+  .main-nav {
+    justify-content: flex-start;
+  }
+  
+  .chart-container {
+    min-height: 350px;
+  }
+}
+
+/* ========================================
+   触摸设备优化
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+  /* 增大触摸目标 */
+  button,
+  a,
+  .el-button,
+  .el-menu-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 移除 hover 效果，使用 active */
+  .main-nav a:hover {
+    background-color: transparent;
+  }
+  
+  .main-nav a:active {
+    background-color: var(--el-fill-color-light);
+  }
+  
+  /* 优化表单元素 */
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* 防止 iOS 自动缩放 */
+  }
+}
+
+/* ========================================
+   安全区域适配（iPhone X+）
+   ======================================== */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  header .wrapper {
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+  
+  .mobile-nav-panel {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ========================================
+   懒加载图片样式
+   ======================================== */
+img[lazy="loading"] {
+  background: linear-gradient(
+    90deg,
+    var(--el-fill-color-light) 25%,
+    var(--el-fill-color) 50%,
+    var(--el-fill-color-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+img[lazy="loaded"] {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* ========================================
+   性能优化类
+   ======================================== */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.touch-none {
+  touch-action: none;
+}
+
+.select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* GPU 加速 */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
