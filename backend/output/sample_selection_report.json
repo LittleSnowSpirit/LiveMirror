@@ -1,0 +1,316 @@
+{
+  "generated_at": "2026-04-09T15:45:13.085456",
+  "total_recommendations": 3,
+  "products": [
+    {
+      "product_id": "P005",
+      "product_name": "LED 化妆镜",
+      "recommendation_score": 70.18,
+      "heat_analysis": {
+        "heat_score": 93.93,
+        "search_trend": {
+          "current_week": 14677,
+          "last_week": 8615,
+          "growth_rate": 5.47
+        },
+        "social_media": {
+          "mentions": 2542,
+          "engagement_rate": 5.54,
+          "sentiment_score": 0.7
+        },
+        "platform_distribution": {
+          "douyin": 47.98,
+          "xiaohongshu": 21.56,
+          "taobao": 24.16,
+          "others": 8.8
+        },
+        "category_ranking": 20,
+        "trend_status": "rising"
+      },
+      "price_comparison": {
+        "our_price": 129.0,
+        "competitor_prices": [
+          114.07,
+          125.89,
+          129.55,
+          137.74,
+          147.05
+        ],
+        "market_avg_price": 130.86,
+        "price_position": "below_average",
+        "price_advantage": 1.44,
+        "lowest_competitor": 114.07,
+        "highest_competitor": 147.05,
+        "price_range": {
+          "min": 114.07,
+          "max": 147.05
+        }
+      },
+      "profit_analysis": {
+        "selling_price": 129.0,
+        "product_cost": 45.0,
+        "platform_fee": 6.45,
+        "shipping_cost": 6.94,
+        "marketing_cost": 5.53,
+        "total_cost": 63.92,
+        "gross_profit": 84.0,
+        "gross_margin_percent": 65.12,
+        "net_profit": 65.08,
+        "net_margin_percent": 50.45,
+        "roi_percent": 101.81,
+        "break_even_units": 1,
+        "profitability_rating": "high"
+      },
+      "seasonality_analysis": {
+        "monthly_factors": {
+          "1 月": 1.1,
+          "2 月": 0.98,
+          "3 月": 0.95,
+          "4 月": 1.02,
+          "5 月": 0.96,
+          "6 月": 0.92,
+          "7 月": 1.01,
+          "8 月": 0.95,
+          "9 月": 1.03,
+          "10 月": 0.92,
+          "11 月": 0.93,
+          "12 月": 0.9
+        },
+        "peak_season": "1 月",
+        "low_season": "12 月",
+        "seasonality_strength": 0.2,
+        "current_month_factor": 1.02,
+        "recommendation": "good_time",
+        "yearly_trend": "stable",
+        "next_peak": "2 月"
+      },
+      "supplier_evaluation": {
+        "supplier_id": "S005",
+        "supplier_name": "美妆供应商",
+        "overall_rating": 4.29,
+        "quality_score": 4.54,
+        "delivery_score": 3.78,
+        "service_score": 4.95,
+        "price_competitiveness": 4.79,
+        "response_time_hours": 19,
+        "defect_rate_percent": 2.37,
+        "on_time_delivery_rate": 92.22,
+        "cooperation_years": 9,
+        "total_products": 1,
+        "certification": [
+          "ISO9001",
+          "CE",
+          "RoHS"
+        ],
+        "risk_level": "low"
+      },
+      "summary": "推荐考虑。LED 化妆镜具有不错的市场潜力，建议关注价格竞争力和季节因素。"
+    },
+    {
+      "product_id": "P002",
+      "product_name": "无线蓝牙耳机",
+      "recommendation_score": 66.22,
+      "heat_analysis": {
+        "heat_score": 90.01,
+        "search_trend": {
+          "current_week": 12434,
+          "last_week": 10746,
+          "growth_rate": 21.98
+        },
+        "social_media": {
+          "mentions": 4570,
+          "engagement_rate": 7.16,
+          "sentiment_score": 0.61
+        },
+        "platform_distribution": {
+          "douyin": 40.7,
+          "xiaohongshu": 27.22,
+          "taobao": 27.47,
+          "others": 10.0
+        },
+        "category_ranking": 42,
+        "trend_status": "rising"
+      },
+      "price_comparison": {
+        "our_price": 199.0,
+        "competitor_prices": [
+          171.78,
+          176.6,
+          183.04,
+          196.68,
+          226.77
+        ],
+        "market_avg_price": 190.97,
+        "price_position": "above_average",
+        "price_advantage": -4.03,
+        "lowest_competitor": 171.78,
+        "highest_competitor": 226.77,
+        "price_range": {
+          "min": 171.78,
+          "max": 226.77
+        }
+      },
+      "profit_analysis": {
+        "selling_price": 199.0,
+        "product_cost": 80.0,
+        "platform_fee": 9.95,
+        "shipping_cost": 5.57,
+        "marketing_cost": 8.92,
+        "total_cost": 104.44,
+        "gross_profit": 119.0,
+        "gross_margin_percent": 59.8,
+        "net_profit": 94.56,
+        "net_margin_percent": 47.52,
+        "roi_percent": 90.54,
+        "break_even_units": 1,
+        "profitability_rating": "high"
+      },
+      "seasonality_analysis": {
+        "monthly_factors": {
+          "1 月": 0.91,
+          "2 月": 0.97,
+          "3 月": 1.07,
+          "4 月": 0.99,
+          "5 月": 1.14,
+          "6 月": 1.03,
+          "7 月": 0.88,
+          "8 月": 0.98,
+          "9 月": 1.08,
+          "10 月": 1.16,
+          "11 月": 1.49,
+          "12 月": 1.2
+        },
+        "peak_season": "11 月",
+        "low_season": "7 月",
+        "seasonality_strength": 0.61,
+        "current_month_factor": 0.99,
+        "recommendation": "wait_for_peak",
+        "yearly_trend": "stable",
+        "next_peak": "12 月"
+      },
+      "supplier_evaluation": {
+        "supplier_id": "S002",
+        "supplier_name": "数码精品厂",
+        "overall_rating": 3.97,
+        "quality_score": 4.8,
+        "delivery_score": 3.74,
+        "service_score": 4.64,
+        "price_competitiveness": 4.88,
+        "response_time_hours": 17,
+        "defect_rate_percent": 1.74,
+        "on_time_delivery_rate": 85.14,
+        "cooperation_years": 3,
+        "total_products": 1,
+        "certification": [
+          "ISO9001",
+          "CE",
+          "RoHS"
+        ],
+        "risk_level": "medium"
+      },
+      "summary": "推荐考虑。无线蓝牙耳机具有不错的市场潜力，建议关注价格竞争力和季节因素。"
+    },
+    {
+      "product_id": "P001",
+      "product_name": "智能保温杯",
+      "recommendation_score": 60.63,
+      "heat_analysis": {
+        "heat_score": 88.44,
+        "search_trend": {
+          "current_week": 13149,
+          "last_week": 7383,
+          "growth_rate": -0.9
+        },
+        "social_media": {
+          "mentions": 1175,
+          "engagement_rate": 4.0,
+          "sentiment_score": 0.7
+        },
+        "platform_distribution": {
+          "douyin": 36.64,
+          "xiaohongshu": 23.17,
+          "taobao": 20.1,
+          "others": 12.61
+        },
+        "category_ranking": 7,
+        "trend_status": "rising"
+      },
+      "price_comparison": {
+        "our_price": 89.0,
+        "competitor_prices": [
+          79.6,
+          85.52,
+          85.94,
+          87.93,
+          100.77
+        ],
+        "market_avg_price": 87.95,
+        "price_position": "above_average",
+        "price_advantage": -1.18,
+        "lowest_competitor": 79.6,
+        "highest_competitor": 100.77,
+        "price_range": {
+          "min": 79.6,
+          "max": 100.77
+        }
+      },
+      "profit_analysis": {
+        "selling_price": 89.0,
+        "product_cost": 35.0,
+        "platform_fee": 4.45,
+        "shipping_cost": 11.53,
+        "marketing_cost": 6.73,
+        "total_cost": 57.71,
+        "gross_profit": 54.0,
+        "gross_margin_percent": 60.67,
+        "net_profit": 31.29,
+        "net_margin_percent": 35.16,
+        "roi_percent": 54.22,
+        "break_even_units": 2,
+        "profitability_rating": "high"
+      },
+      "seasonality_analysis": {
+        "monthly_factors": {
+          "1 月": 1.08,
+          "2 月": 0.95,
+          "3 月": 1.0,
+          "4 月": 1.01,
+          "5 月": 0.92,
+          "6 月": 0.93,
+          "7 月": 0.93,
+          "8 月": 0.97,
+          "9 月": 1.08,
+          "10 月": 1.03,
+          "11 月": 1.06,
+          "12 月": 0.9
+        },
+        "peak_season": "1 月",
+        "low_season": "12 月",
+        "seasonality_strength": 0.18,
+        "current_month_factor": 1.01,
+        "recommendation": "good_time",
+        "yearly_trend": "stable",
+        "next_peak": "2 月"
+      },
+      "supplier_evaluation": {
+        "supplier_id": "S001",
+        "supplier_name": "优质家居供应商",
+        "overall_rating": 4.36,
+        "quality_score": 4.86,
+        "delivery_score": 4.92,
+        "service_score": 4.33,
+        "price_competitiveness": 4.64,
+        "response_time_hours": 3,
+        "defect_rate_percent": 2.53,
+        "on_time_delivery_rate": 89.46,
+        "cooperation_years": 9,
+        "total_products": 1,
+        "certification": [
+          "ISO9001"
+        ],
+        "risk_level": "medium"
+      },
+      "summary": "推荐考虑。智能保温杯具有不错的市场潜力，建议关注价格竞争力和季节因素。"
+    }
+  ]
+}

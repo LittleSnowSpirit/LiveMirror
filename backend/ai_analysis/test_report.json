@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "analysis_time": "2026-04-08T13:23:51.653884",
+    "total_duration": "00:07:00",
+    "total_segments": 13,
+    "model_version": "v1.0",
+    "api_model": "deepseek-chat"
+  },
+  "segments": [
+    {
+      "segment_id": 1,
+      "start_time": "00:00:00",
+      "end_time": "00:00:30",
+      "content": "哈喽大家好，欢迎来到小美的直播间！今天是我们的美妆专场，给宝宝们带来超多福利！",
+      "word_count": 39,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 2,
+      "start_time": "00:00:30",
+      "end_time": "00:01:00",
+      "content": "先给大家介绍一下今天的主打产品，这款精华液我自己已经用了三个月了，效果真的超级明显。",
+      "word_count": 42,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 3,
+      "start_time": "00:01:00",
+      "end_time": "00:01:30",
+      "content": "原价是 399 元，但是今天在直播间，只要 199！直接对半砍！",
+      "word_count": 32,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 4,
+      "start_time": "00:01:30",
+      "end_time": "00:02:00",
+      "content": "想要的宝宝赶紧扣 1 让我看到你们的热情！点赞到 1 万我们再加赠 100 单！",
+      "word_count": 40,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 5,
+      "start_time": "00:02:00",
+      "end_time": "00:02:30",
+      "content": "这款精华液是全网销量第一的，绝对有效，保证你用了之后皮肤水水嫩嫩的。",
+      "word_count": 34,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 6,
+      "start_time": "00:02:30",
+      "end_time": "00:03:00",
+      "content": "我跟你们说，别家那些都是假货，只有我们这里是官方授权，正品保证。",
+      "word_count": 32,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 7,
+      "start_time": "00:03:00",
+      "end_time": "00:03:30",
+      "content": "有些宝宝问敏感肌能不能用，我跟你说，100% 没问题，我闺蜜敏感肌用了都说好。",
+      "word_count": 39,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 8,
+      "start_time": "00:03:30",
+      "end_time": "00:04:00",
+      "content": "库存真的不多了，后台显示只剩 80 单了，卖完真的要等下个月补货。",
+      "word_count": 33,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 9,
+      "start_time": "00:04:00",
+      "end_time": "00:04:30",
+      "content": "来，我们倒计时 5 分钟，5 分钟后恢复原价，到时候别怪我没提醒你们哦。",
+      "word_count": 36,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 10,
+      "start_time": "00:04:30",
+      "end_time": "00:05:00",
+      "content": "哎呀这个价格我真的亏死了，但是为了冲销量，拼了！",
+      "word_count": 24,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 11,
+      "start_time": "00:05:00",
+      "end_time": "00:05:30",
+      "content": "有宝宝说之前买贵了，那个我也没办法，今天是特殊活动价。",
+      "word_count": 27,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 13,
+      "start_time": "00:06:00",
+      "end_time": "00:06:30",
+      "content": "哇已经拍了 50 单了，宝宝们太给力了！还没拍的抓紧了！",
+      "word_count": 28,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    },
+    {
+      "segment_id": 14,
+      "start_time": "00:06:30",
+      "end_time": "00:07:00",
+      "content": "这个产品我真的强烈推荐，不用你绝对会后悔的。",
+      "word_count": 22,
+      "speech_type": "待分析",
+      "is_highlight": false,
+      "is_crash": false
+    }
+  ],
+  "highlights": [
+    {
+      "segment_id": 1,
+      "timestamp": "00:00:00",
+      "type": "互动引导",
+      "original_text": "哈喽大家好，欢迎来到小美的直播间！今天是我们的美妆专场，给宝宝们带来超多福利！",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    },
+    {
+      "segment_id": 3,
+      "timestamp": "00:01:00",
+      "type": "价格锚点",
+      "original_text": "原价是 399 元，但是今天在直播间，只要 199！直接对半砍！",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    },
+    {
+      "segment_id": 4,
+      "timestamp": "00:01:30",
+      "type": "互动引导",
+      "original_text": "想要的宝宝赶紧扣 1 让我看到你们的热情！点赞到 1 万我们再加赠 100 单！",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    },
+    {
+      "segment_id": 8,
+      "timestamp": "00:03:30",
+      "type": "稀缺性营造",
+      "original_text": "库存真的不多了，后台显示只剩 80 单了，卖完真的要等下个月补货。",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    },
+    {
+      "segment_id": 10,
+      "timestamp": "00:04:30",
+      "type": "信任背书",
+      "original_text": "哎呀这个价格我真的亏死了，但是为了冲销量，拼了！",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    },
+    {
+      "segment_id": 13,
+      "timestamp": "00:06:00",
+      "type": "促单话术",
+      "original_text": "哇已经拍了 50 单了，宝宝们太给力了！还没拍的抓紧了！",
+      "effectiveness_score": 6,
+      "analysis": "基于关键词规则识别"
+    }
+  ],
+  "crashes": [],
+  "summary": {
+    "total_highlights": 6,
+    "total_crashes": 0,
+    "critical_crashes": 0,
+    "overall_score": 72,
+    "key_insights": [
+      "主要爆点类型：互动引导（2次）",
+      "[优秀] 整体话术质量优秀，爆点远多于翻车点"
+    ]
+  },
+  "attributions": [
+    {
+      "data_change_type": "涨粉",
+      "timestamp": "00:01:30",
+      "related_speech": "原价是 399 元，但是今天在直播间，只要 199！直接对半砍！",
+      "speech_type": "爆点",
+      "confidence": 0.75,
+      "reasoning": "时间关联：话术发生在数据变化前后 30 秒内"
+    },
+    {
+      "data_change_type": "爆单",
+      "timestamp": "00:03:30",
+      "related_speech": "库存真的不多了，后台显示只剩 80 单了，卖完真的要等下个月补货。",
+      "speech_type": "爆点",
+      "confidence": 0.75,
+      "reasoning": "时间关联：话术发生在数据变化前后 30 秒内"
+    },
+    {
+      "data_change_type": "爆单",
+      "timestamp": "00:05:30",
+      "related_speech": "哇已经拍了 50 单了，宝宝们太给力了！还没拍的抓紧了！",
+      "speech_type": "爆点",
+      "confidence": 0.75,
+      "reasoning": "时间关联：话术发生在数据变化前后 30 秒内"
+    }
+  ]
+}

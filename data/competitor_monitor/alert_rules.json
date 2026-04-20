@@ -1,0 +1,118 @@
+{
+  "rule_traffic_spike": {
+    "id": "rule_traffic_spike",
+    "name": "流量突增告警",
+    "alert_type": "traffic_spike",
+    "enabled": true,
+    "conditions": {
+      "window_minutes": 5
+    },
+    "threshold": 2.0,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat",
+      "email"
+    ],
+    "created_at": "2026-04-08T23:47:13.570115"
+  },
+  "rule_script_plagiarism": {
+    "id": "rule_script_plagiarism",
+    "name": "话术抄袭告警",
+    "alert_type": "script_plagiarism",
+    "enabled": true,
+    "conditions": {
+      "min_match_length": 50
+    },
+    "threshold": 0.8,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:47:13.570119"
+  },
+  "rule_new_product": {
+    "id": "rule_new_product",
+    "name": "新品发布追踪",
+    "alert_type": "new_product",
+    "enabled": true,
+    "conditions": {},
+    "threshold": 0.0,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:47:13.570121"
+  },
+  "rule_promotion": {
+    "id": "rule_promotion",
+    "name": "促销活动告警",
+    "alert_type": "promotion_activity",
+    "enabled": true,
+    "conditions": {
+      "keywords": [
+        "打折",
+        "促销",
+        "秒杀",
+        "特价"
+      ]
+    },
+    "threshold": 0.0,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:47:13.570123"
+  },
+  "rule_0c9c3800": {
+    "id": "rule_0c9c3800",
+    "name": "测试规则",
+    "alert_type": "traffic_spike",
+    "enabled": true,
+    "conditions": {},
+    "threshold": 2.0,
+    "cooldown_minutes": 10,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:49:27.116356"
+  },
+  "rule_7d2bdfb6": {
+    "id": "rule_7d2bdfb6",
+    "name": "更新后的规则",
+    "alert_type": "promotion_activity",
+    "enabled": false,
+    "conditions": {},
+    "threshold": 0.0,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:49:27.123307"
+  },
+  "rule_6de2ec87": {
+    "id": "rule_6de2ec87",
+    "name": "测试规则",
+    "alert_type": "traffic_spike",
+    "enabled": true,
+    "conditions": {},
+    "threshold": 2.0,
+    "cooldown_minutes": 10,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:49:40.050064"
+  },
+  "rule_78c78b2a": {
+    "id": "rule_78c78b2a",
+    "name": "更新后的规则",
+    "alert_type": "promotion_activity",
+    "enabled": false,
+    "conditions": {},
+    "threshold": 0.0,
+    "cooldown_minutes": 5,
+    "notification_channels": [
+      "wechat"
+    ],
+    "created_at": "2026-04-08T23:49:40.058290"
+  }
+}

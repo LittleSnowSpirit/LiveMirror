@@ -1,0 +1,2808 @@
+{
+  "script_20260409140519": {
+    "script_id": "script_20260409140519",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-09T14:05:19.411679",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140519",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140519",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140519",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140519",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140519",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140519",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140519",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140519",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_140519",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140519",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140519",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_140519",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140519",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260409140601": {
+    "script_id": "script_20260409140601",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-09T14:06:01.701602",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140601",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140601",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140601",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140601",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140601",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140601",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140601",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140601",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_140601",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140601",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140601",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_140601",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140601",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260409140626": {
+    "script_id": "script_20260409140626",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-09T14:06:26.028010",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140626",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140626",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140626",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140626",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140626",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140626",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140626",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140626",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_140626",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140626",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140626",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_140626",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140626",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260409140643": {
+    "script_id": "script_20260409140643",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-09T14:06:43.630681",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140643",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140643",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140643",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140643",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140643",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140643",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140643",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140643",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_140643",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140643",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140643",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_140643",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140643",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260409140714": {
+    "script_id": "script_20260409140714",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-09T14:07:14.348619",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140714",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140714",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140714",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140714",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140714",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140714",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140714",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140714",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_140714",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140714",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140714",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_140714",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140714",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260409140721": {
+    "script_id": "script_20260409140721",
+    "title": "双 11 美妆专场直播剧本",
+    "duration": "2h",
+    "generated_at": "2026-04-09T14:07:21.626999",
+    "theme": "双 11 美妆专场",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_140721",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:10:00",
+        "duration_minutes": 10,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（10分钟）\n\n欢迎观众来到直播间！\n今天主题是：双 11 美妆专场\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_140721",
+        "segment_type": "product_intro",
+        "start_time": "00:10:00",
+        "end_time": "00:35:00",
+        "duration_minutes": 25,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_140721",
+        "segment_type": "interaction",
+        "start_time": "00:35:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 10,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_140721",
+        "segment_type": "product_intro",
+        "start_time": "00:45:00",
+        "end_time": "01:10:00",
+        "duration_minutes": 25,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_140721",
+        "segment_type": "break",
+        "start_time": "01:10:00",
+        "end_time": "01:15:00",
+        "duration_minutes": 5,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_140721",
+        "segment_type": "promotion",
+        "start_time": "01:15:00",
+        "end_time": "01:35:00",
+        "duration_minutes": 20,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_140721",
+        "segment_type": "product_intro",
+        "start_time": "01:35:00",
+        "end_time": "01:55:00",
+        "duration_minutes": 20,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_140721",
+        "segment_type": "interaction",
+        "start_time": "01:55:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 10,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_140721",
+        "segment_type": "closing",
+        "start_time": "02:05:00",
+        "end_time": "02:20:00",
+        "duration_minutes": 15,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'双 11 美妆专场'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:10:00",
+        "end_time": "00:35:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "00:45:00",
+        "end_time": "01:10:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "01:35:00",
+        "end_time": "01:55:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:35:00",
+        "duration_minutes": 10,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "01:55:00",
+        "duration_minutes": 10,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【双 11 美妆专场】直播流程概览（120分钟）\n\n00:00:00 - 开场预热（10分钟）\n00:10:00 - 产品介绍：智能保温杯（25分钟）\n00:35:00 - 抢券活动（10分钟）\n00:45:00 - 产品介绍：无线蓝牙耳机（25分钟）\n01:10:00 - 休息过渡（5分钟）\n01:15:00 - 限时促销（20分钟）\n01:35:00 - 产品介绍：便携式榨汁杯（20分钟）\n01:55:00 - 问答互动（10分钟）\n02:05:00 - 总结收尾（15分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  },
+  "script_20260415201855": {
+    "script_id": "script_20260415201855",
+    "title": "马拉松测试直播剧本",
+    "duration": "4h",
+    "generated_at": "2026-04-15T20:18:55.807516",
+    "theme": "马拉松测试",
+    "target_audience": "所有人",
+    "streamer_name": "主播",
+    "segments": [
+      {
+        "segment_id": "seg_opening_201855",
+        "segment_type": "opening",
+        "start_time": "00:00:00",
+        "end_time": "00:15:00",
+        "duration_minutes": 15,
+        "title": "开场预热",
+        "description": "欢迎观众、介绍直播主题、预告福利",
+        "script_content": "【开场话术】（15分钟）\n\n欢迎观众来到直播间！\n今天主题是：马拉松测试\n准备了超多好货和福利！\n新进来的宝宝们记得点点关注！",
+        "notes": [
+          "检查麦克风音量和画面质量",
+          "确认优惠券已上架",
+          "准备抽奖工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_001_201855",
+        "segment_type": "product_intro",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：智能保温杯",
+        "description": "详细介绍智能保温杯的卖点和优惠",
+        "script_content": "【产品介绍】智能保温杯\n直播价：99.0元（原价199.0元）\n卖点：24 小时长效保温, 智能测温显示, 316 不锈钢内胆\n这款智能保温杯真的是上班族必备！早上装的热水，晚上还是温热的。",
+        "notes": [
+          "确认智能保温杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_coupon_201855",
+        "segment_type": "interaction",
+        "start_time": "00:45:00",
+        "end_time": "01:00:00",
+        "duration_minutes": 15,
+        "title": "抢券活动",
+        "description": "限时抢大额优惠券",
+        "script_content": "【互动环节】抢券活动\n规则：主播发放优惠券链接, 限时限量, 每人限领一张\n奖品：50 元券, 30 元券, 满减券",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_002_201855",
+        "segment_type": "product_intro",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：无线蓝牙耳机",
+        "description": "详细介绍无线蓝牙耳机的卖点和优惠",
+        "script_content": "【产品介绍】无线蓝牙耳机\n直播价：159.0元（原价399.0元）\n卖点：主动降噪, 30 小时续航, 蓝牙 5.3\n音质超级棒！降噪效果堪比千元耳机，通勤路上完全隔绝噪音。",
+        "notes": [
+          "确认无线蓝牙耳机库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_201855",
+        "segment_type": "break",
+        "start_time": "01:30:00",
+        "end_time": "01:40:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_201855",
+        "segment_type": "promotion",
+        "start_time": "01:40:00",
+        "end_time": "02:05:00",
+        "duration_minutes": 25,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_003_201855",
+        "segment_type": "product_intro",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：便携式榨汁杯",
+        "description": "详细介绍便携式榨汁杯的卖点和优惠",
+        "script_content": "【产品介绍】便携式榨汁杯\n直播价：79.0元（原价159.0元）\n卖点：无线便携, 30 秒快速榨汁, USB 充电\n随时随地都能喝到新鲜果汁！早上放几个水果，30 秒就好！",
+        "notes": [
+          "确认便携式榨汁杯库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_quiz_201855",
+        "segment_type": "interaction",
+        "start_time": "02:35:00",
+        "end_time": "02:50:00",
+        "duration_minutes": 15,
+        "title": "问答互动",
+        "description": "有奖问答，答对送礼",
+        "script_content": "【互动环节】问答互动\n规则：主播提问, 观众抢答, 第一个答对获奖\n奖品：优惠券, 小礼品, 积分奖励",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_product_prod_004_201855",
+        "segment_type": "product_intro",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "duration_minutes": 30,
+        "title": "产品介绍：护颈记忆枕",
+        "description": "详细介绍护颈记忆枕的卖点和优惠",
+        "script_content": "【产品介绍】护颈记忆枕\n直播价：129.0元（原价299.0元）\n卖点：慢回弹记忆棉, 人体工学设计, 透气枕套\n睡了一周，颈椎真的舒服多了！这个枕头能完美贴合你的脖子。",
+        "notes": [
+          "确认护颈记忆枕库存充足",
+          "准备产品实物展示",
+          "确认优惠券已设置"
+        ]
+      },
+      {
+        "segment_id": "seg_break_201855",
+        "segment_type": "break",
+        "start_time": "03:20:00",
+        "end_time": "03:30:00",
+        "duration_minutes": 10,
+        "title": "休息过渡",
+        "description": "短暂休息、背景音乐、预告下一轮",
+        "script_content": "【休息】\n大家稍等一下，休息几分钟～\n可以去逛逛小黄车\n马上回来！",
+        "notes": [
+          "播放背景音乐",
+          "助理继续互动",
+          "主播喝水休息"
+        ]
+      },
+      {
+        "segment_id": "seg_promotion_201855",
+        "segment_type": "promotion",
+        "start_time": "03:30:00",
+        "end_time": "04:00:00",
+        "duration_minutes": 30,
+        "title": "限时促销",
+        "description": "集中促销、组合优惠、满减活动",
+        "script_content": "【促销活动】\n所有产品历史最低价！\n满 200 减 30，满 300 减 50！\n组合更优惠！",
+        "notes": [
+          "确认满减券已设置",
+          "准备组合套餐链接",
+          "设置倒计时工具"
+        ]
+      },
+      {
+        "segment_id": "seg_interaction_gift_giveaway_201855",
+        "segment_type": "interaction",
+        "start_time": "04:00:00",
+        "end_time": "04:15:00",
+        "duration_minutes": 15,
+        "title": "幸运抽奖",
+        "description": "抽取幸运观众送出精美礼品",
+        "script_content": "【互动环节】幸运抽奖\n规则：关注主播 + 加入粉丝团, 公屏扣'想要'参与, 随机抽取 3 位\n奖品：品牌保温杯, 无线耳机, 现金红包",
+        "notes": [
+          "提前准备好奖品",
+          "确认抽奖工具正常",
+          "助理记录中奖名单"
+        ]
+      },
+      {
+        "segment_id": "seg_closing_201855",
+        "segment_type": "closing",
+        "start_time": "04:15:00",
+        "end_time": "04:40:00",
+        "duration_minutes": 25,
+        "title": "总结收尾",
+        "description": "总结直播内容、感谢观众、预告下次直播",
+        "script_content": "【结尾】\n今天的'马拉松测试'主题直播就要结束了！\n感谢所有陪伴的宝宝们！\n下次直播时间是 [时间]，不见不散！",
+        "notes": [
+          "统计今日销售数据",
+          "准备下次直播预告",
+          "确认下播时间"
+        ]
+      }
+    ],
+    "products": [
+      {
+        "product_id": "prod_001",
+        "product_name": "智能保温杯",
+        "price": 99.0,
+        "original_price": 199.0,
+        "discount": "5 折",
+        "start_time": "00:15:00",
+        "end_time": "00:45:00",
+        "selling_points": [
+          "24 小时长效保温",
+          "智能测温显示",
+          "316 不锈钢内胆"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_002",
+        "product_name": "无线蓝牙耳机",
+        "price": 159.0,
+        "original_price": 399.0,
+        "discount": "4 折",
+        "start_time": "01:00:00",
+        "end_time": "01:30:00",
+        "selling_points": [
+          "主动降噪",
+          "30 小时续航",
+          "蓝牙 5.3"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_003",
+        "product_name": "便携式榨汁杯",
+        "price": 79.0,
+        "original_price": 159.0,
+        "discount": "5 折",
+        "start_time": "02:05:00",
+        "end_time": "02:35:00",
+        "selling_points": [
+          "无线便携",
+          "30 秒快速榨汁",
+          "USB 充电"
+        ],
+        "script_lines": []
+      },
+      {
+        "product_id": "prod_004",
+        "product_name": "护颈记忆枕",
+        "price": 129.0,
+        "original_price": 299.0,
+        "discount": "4.3 折",
+        "start_time": "02:50:00",
+        "end_time": "03:20:00",
+        "selling_points": [
+          "慢回弹记忆棉",
+          "人体工学设计",
+          "透气枕套"
+        ],
+        "script_lines": []
+      }
+    ],
+    "interactions": [
+      {
+        "type": "coupon",
+        "name": "抢券活动",
+        "start_time": "00:45:00",
+        "duration_minutes": 15,
+        "description": "限时抢大额优惠券",
+        "rules": [
+          "主播发放优惠券链接",
+          "限时限量",
+          "每人限领一张"
+        ],
+        "prizes": [
+          "50 元券",
+          "30 元券",
+          "满减券"
+        ]
+      },
+      {
+        "type": "quiz",
+        "name": "问答互动",
+        "start_time": "02:35:00",
+        "duration_minutes": 15,
+        "description": "有奖问答，答对送礼",
+        "rules": [
+          "主播提问",
+          "观众抢答",
+          "第一个答对获奖"
+        ],
+        "prizes": [
+          "优惠券",
+          "小礼品",
+          "积分奖励"
+        ]
+      },
+      {
+        "type": "gift_giveaway",
+        "name": "幸运抽奖",
+        "start_time": "04:00:00",
+        "duration_minutes": 15,
+        "description": "抽取幸运观众送出精美礼品",
+        "rules": [
+          "关注主播 + 加入粉丝团",
+          "公屏扣'想要'参与",
+          "随机抽取 3 位"
+        ],
+        "prizes": [
+          "品牌保温杯",
+          "无线耳机",
+          "现金红包"
+        ]
+      }
+    ],
+    "emergency_plans": [
+      {
+        "scenario": "直播间突然断网/断电",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "保持冷静",
+          "粉丝群发布通知",
+          "尽快恢复设备",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "宝宝们稍等一下，技术小问题，马上回来！",
+        "responsible_person": "主播 + 运营"
+      },
+      {
+        "scenario": "产品链接错误/价格设置错误",
+        "probability": "medium",
+        "impact": "high",
+        "response_steps": [
+          "立即下架错误链接",
+          "向观众道歉",
+          "快速修正后重新上架",
+          "发放补偿优惠券"
+        ],
+        "backup_script": "不好意思宝宝们，链接有点问题，已经修正了！",
+        "responsible_person": "运营 + 客服"
+      },
+      {
+        "scenario": "黑粉/恶意评论",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "不要正面回应",
+          "助理快速禁言",
+          "主播转移话题",
+          "必要时举报"
+        ],
+        "backup_script": "我们继续看下一款产品...",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "库存售罄/超卖",
+        "probability": "medium",
+        "impact": "medium",
+        "response_steps": [
+          "立即下架",
+          "告知观众并道歉",
+          "推荐类似产品",
+          "开启预售通知"
+        ],
+        "backup_script": "哇！太火爆了！已经卖完了！下一款更值得期待！",
+        "responsible_person": "运营 + 主播"
+      },
+      {
+        "scenario": "主播状态不佳/忘词",
+        "probability": "low",
+        "impact": "medium",
+        "response_steps": [
+          "助理提词板提示",
+          "插入互动环节",
+          "播放产品视频过渡",
+          "短暂休息"
+        ],
+        "backup_script": "来，我们先抽个奖！",
+        "responsible_person": "助理 + 主播"
+      },
+      {
+        "scenario": "产品质量问题被曝光",
+        "probability": "low",
+        "impact": "high",
+        "response_steps": [
+          "不要回避",
+          "诚恳道歉",
+          "说明售后政策",
+          "下架相关产品"
+        ],
+        "backup_script": "非常抱歉，我们一定会负责到底！请私信客服处理！",
+        "responsible_person": "主播 + 客服 + 运营"
+      }
+    ],
+    "overall_flow": "【马拉松测试】直播流程概览（240分钟）\n\n00:00:00 - 开场预热（15分钟）\n00:15:00 - 产品介绍：智能保温杯（30分钟）\n00:45:00 - 抢券活动（15分钟）\n01:00:00 - 产品介绍：无线蓝牙耳机（30分钟）\n01:30:00 - 休息过渡（10分钟）\n01:40:00 - 限时促销（25分钟）\n02:05:00 - 产品介绍：便携式榨汁杯（30分钟）\n02:35:00 - 问答互动（15分钟）\n02:50:00 - 产品介绍：护颈记忆枕（30分钟）\n03:20:00 - 休息过渡（10分钟）\n03:30:00 - 限时促销（30分钟）\n04:00:00 - 幸运抽奖（15分钟）\n04:15:00 - 总结收尾（25分钟）\n",
+    "preparation_checklist": [
+      "确认所有产品链接和库存正常",
+      "设置优惠券和促销活动",
+      "准备抽奖工具和奖品",
+      "测试直播设备",
+      "准备背景音乐和音效",
+      "准备提词板",
+      "确认助理和客服就位",
+      "检查网络稳定性",
+      "准备饮用水和润喉糖",
+      "熟悉应急预案流程"
+    ]
+  }
+}

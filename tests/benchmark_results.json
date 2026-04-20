@@ -1,0 +1,22 @@
+[
+  {
+    "model_size": "tiny",
+    "audio_path": "C:\\Users\\LittleXiao\\.openclaw\\workspace\\test_audio\\live_streaming_demo.mp3",
+    "language": "zh",
+    "model_load_time": 10.76,
+    "transcribe_time": 17.2,
+    "total_time": 27.97,
+    "text_length": 565,
+    "text_preview": "欢迎宝宝们来到直播间今天是我们的严度大处全场舞者起刚进来的宝宝点点关注不迷路我们今天准备了超多福利首先给大家介绍一下我们今天的宝款一号练接这个产品我自己已经用了三个月了效果真的非常好原价299今天直播..."
+  },
+  {
+    "model_size": "base",
+    "audio_path": "C:\\Users\\LittleXiao\\.openclaw\\workspace\\test_audio\\live_streaming_demo.mp3",
+    "language": "zh",
+    "model_load_time": 4.21,
+    "transcribe_time": 25.01,
+    "total_time": 29.22,
+    "text_length": 635,
+    "text_preview": "欢迎宝宝们来到直播间,今天是我们的年度大促,全场舞者起,刚进来的宝宝点点关注不迷路,我们今天准备了超多福利,首先给大家介绍一下我们今天的爆款1号链接。这个产品我自己已经用了三个月了,效果真的非常好,原..."
+  }
+]

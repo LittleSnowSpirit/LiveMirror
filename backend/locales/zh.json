@@ -1,0 +1,51 @@
+{
+  "common": {
+    "welcome": "欢迎使用 LiveMirror",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "search": "搜索",
+    "settings": "设置",
+    "language": "语言",
+    "close": "关闭",
+    "open": "打开",
+    "yes": "是",
+    "no": "否",
+    "ok": "确定"
+  },
+  "features": {
+    "ab_testing": "A/B 测试",
+    "competitor_monitor": "竞品监控",
+    "prediction": "销售预测",
+    "report_generator": "报告生成",
+    "roi_analysis": "ROI 分析",
+    "sensitive_words": "敏感词检测",
+    "title_optimizer": "标题优化"
+  },
+  "messages": {
+    "no_data": "暂无数据",
+    "load_failed": "加载失败",
+    "save_success": "保存成功",
+    "delete_confirm": "确定要删除吗？",
+    "operation_failed": "操作失败",
+    "network_error": "网络错误",
+    "please_try_again": "请重试"
+  },
+  "templates": {
+    "greeting": "您好！欢迎来到我们的直播间",
+    "product_intro": "这款产品非常受欢迎，今天有特别优惠",
+    "product_features": "这款产品有以下几个特点：{features}",
+    "call_to_action": "喜欢的宝宝们赶紧下单吧",
+    "farewell": "感谢大家的观看，我们下次再见"
+  },
+  "time": {
+    "minute_ago": "{n} 分钟前",
+    "hour_ago": "{n} 小时前",
+    "day_ago": "{n} 天前"
+  }
+}

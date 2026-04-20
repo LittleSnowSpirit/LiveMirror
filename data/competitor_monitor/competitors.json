@@ -1,0 +1,162 @@
+{
+  "comp_a935dd86": {
+    "id": "comp_a935dd86",
+    "name": "测试直播间",
+    "platform": "douyin",
+    "room_id": "test_room_001",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:26.995475"
+  },
+  "comp_db0b1213": {
+    "id": "comp_db0b1213",
+    "name": "详情测试",
+    "platform": "taobao",
+    "room_id": "tb_001",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:27.057089"
+  },
+  "comp_d89f285d": {
+    "id": "comp_d89f285d",
+    "name": "更新后",
+    "platform": "douyin",
+    "room_id": "update_test",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:27.087593"
+  },
+  "comp_53cbef69": {
+    "id": "comp_53cbef69",
+    "name": "流数据测试",
+    "platform": "douyin",
+    "room_id": "stream_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": "2026-04-08T23:49:27.104192",
+    "added_at": "2026-04-08T23:49:27.100671"
+  },
+  "comp_ec98a3e8": {
+    "id": "comp_ec98a3e8",
+    "name": "获取数据测试",
+    "platform": "douyin",
+    "room_id": "get_stream_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": "2026-04-08T23:49:27.111150",
+    "added_at": "2026-04-08T23:49:27.107518"
+  },
+  "comp_53cacc87": {
+    "id": "comp_53cacc87",
+    "name": "控制测试",
+    "platform": "douyin",
+    "room_id": "control_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:27.302046"
+  },
+  "comp_f38cbd20": {
+    "id": "comp_f38cbd20",
+    "name": "暂停测试",
+    "platform": "douyin",
+    "room_id": "pause_test",
+    "stream_url": null,
+    "status": "paused",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:27.308689"
+  },
+  "comp_6c3f581f": {
+    "id": "comp_6c3f581f",
+    "name": "停止测试",
+    "platform": "douyin",
+    "room_id": "stop_test",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:27.376685"
+  },
+  "comp_add16a8e": {
+    "id": "comp_add16a8e",
+    "name": "测试直播间",
+    "platform": "douyin",
+    "room_id": "test_room_001",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:39.973813"
+  },
+  "comp_6f8b4450": {
+    "id": "comp_6f8b4450",
+    "name": "详情测试",
+    "platform": "taobao",
+    "room_id": "tb_001",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:40.014318"
+  },
+  "comp_a2729d0f": {
+    "id": "comp_a2729d0f",
+    "name": "更新后",
+    "platform": "douyin",
+    "room_id": "update_test",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:40.021438"
+  },
+  "comp_6184ce19": {
+    "id": "comp_6184ce19",
+    "name": "流数据测试",
+    "platform": "douyin",
+    "room_id": "stream_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": "2026-04-08T23:49:40.038570",
+    "added_at": "2026-04-08T23:49:40.035254"
+  },
+  "comp_80647b0e": {
+    "id": "comp_80647b0e",
+    "name": "获取数据测试",
+    "platform": "douyin",
+    "room_id": "get_stream_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": "2026-04-08T23:49:40.044897",
+    "added_at": "2026-04-08T23:49:40.041891"
+  },
+  "comp_94bb888c": {
+    "id": "comp_94bb888c",
+    "name": "控制测试",
+    "platform": "douyin",
+    "room_id": "control_test",
+    "stream_url": null,
+    "status": "active",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:40.091640"
+  },
+  "comp_a8381f4c": {
+    "id": "comp_a8381f4c",
+    "name": "暂停测试",
+    "platform": "douyin",
+    "room_id": "pause_test",
+    "stream_url": null,
+    "status": "paused",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:40.098710"
+  },
+  "comp_db307641": {
+    "id": "comp_db307641",
+    "name": "停止测试",
+    "platform": "douyin",
+    "room_id": "stop_test",
+    "stream_url": null,
+    "status": "offline",
+    "last_seen": null,
+    "added_at": "2026-04-08T23:49:40.107580"
+  }
+}

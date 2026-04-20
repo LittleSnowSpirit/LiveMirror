@@ -1,0 +1,262 @@
+[
+  {
+    "session_id": "session_2026-04-08_1900",
+    "date": "2026-04-08",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 300,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "推广",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "销售",
+        "amount": 5000,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1000,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "general",
+    "notes": "",
+    "total_cost": 500,
+    "total_revenue": 1000,
+    "gmv": 5000,
+    "roi": 100.0
+  },
+  {
+    "session_id": "session_2026-04-09_1900",
+    "date": "2026-04-09",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 320,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "推广",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "销售",
+        "amount": 5500,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1200,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "beauty",
+    "notes": "",
+    "total_cost": 520,
+    "total_revenue": 1200,
+    "gmv": 5500,
+    "roi": 130.76923076923077
+  },
+  {
+    "session_id": "session_2026-04-10_1900",
+    "date": "2026-04-10",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 340,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "推广",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "销售",
+        "amount": 6000,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1400,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "general",
+    "notes": "",
+    "total_cost": 540,
+    "total_revenue": 1400,
+    "gmv": 6000,
+    "roi": 159.25925925925927
+  },
+  {
+    "session_id": "session_2026-04-11_1900",
+    "date": "2026-04-11",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 360,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "推广",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "销售",
+        "amount": 6500,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1600,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "beauty",
+    "notes": "",
+    "total_cost": 560,
+    "total_revenue": 1600,
+    "gmv": 6500,
+    "roi": 185.71428571428572
+  },
+  {
+    "session_id": "session_2026-04-12_1900",
+    "date": "2026-04-12",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 380,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "推广",
+        "amount": 100,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "销售",
+        "amount": 7000,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1800,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "general",
+    "notes": "",
+    "total_cost": 580,
+    "total_revenue": 1800,
+    "gmv": 7000,
+    "roi": 210.3448275862069
+  }
+]

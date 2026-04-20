@@ -1,0 +1,66 @@
+{
+  "06b95064a1cc": {
+    "id": "06b95064a1cc",
+    "name": "测试直播间",
+    "platform": "douyin",
+    "room_id": "test_room_001",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.871461"
+  },
+  "6811662c6fc5": {
+    "id": "6811662c6fc5",
+    "name": "详情测试",
+    "platform": "taobao",
+    "room_id": "tb_001",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.890126"
+  },
+  "bb312b6d561a": {
+    "id": "bb312b6d561a",
+    "name": "更新前",
+    "platform": "douyin",
+    "room_id": "update_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.925835"
+  },
+  "66f0dfe7afb6": {
+    "id": "66f0dfe7afb6",
+    "name": "流数据测试",
+    "platform": "douyin",
+    "room_id": "stream_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:49.975678"
+  },
+  "16a77822e3f8": {
+    "id": "16a77822e3f8",
+    "name": "获取数据测试",
+    "platform": "douyin",
+    "room_id": "get_stream_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:50.002228"
+  },
+  "39a462107c4e": {
+    "id": "39a462107c4e",
+    "name": "控制测试",
+    "platform": "douyin",
+    "room_id": "control_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:50.258573"
+  },
+  "93517dc56708": {
+    "id": "93517dc56708",
+    "name": "暂停测试",
+    "platform": "douyin",
+    "room_id": "pause_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:50.282030"
+  },
+  "f601341991e3": {
+    "id": "f601341991e3",
+    "name": "停止测试",
+    "platform": "douyin",
+    "room_id": "stop_test",
+    "status": "active",
+    "added_at": "2026-04-15T20:18:50.303296"
+  }
+}

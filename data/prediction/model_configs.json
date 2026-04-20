@@ -1,0 +1,21 @@
+{
+  "gmv": {
+    "model": "hybrid",
+    "weights": {
+      "linear_regression": 0.4,
+      "moving_average": 0.3,
+      "seasonal": 0.3
+    },
+    "accuracy": 0.0
+  },
+  "viewers": {
+    "model": "exponential",
+    "alpha": 0.3,
+    "accuracy": 0.0
+  },
+  "conversion_rate": {
+    "model": "moving_average",
+    "window": 7,
+    "accuracy": 0.0
+  }
+}

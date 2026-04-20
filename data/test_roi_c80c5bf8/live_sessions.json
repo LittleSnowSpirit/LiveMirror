@@ -1,0 +1,54 @@
+[
+  {
+    "session_id": "session_2026-04-08_1900",
+    "date": "2026-04-08",
+    "start_time": "19:00",
+    "end_time": "22:00",
+    "duration_minutes": 180,
+    "costs": [
+      {
+        "type": "labor",
+        "name": "主播",
+        "amount": 500,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "venue",
+        "name": "场地租赁",
+        "amount": 300,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "promotion",
+        "name": "广告投放",
+        "amount": 200,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "revenues": [
+      {
+        "type": "gmv",
+        "name": "商品销售",
+        "amount": 5000,
+        "unit": "CNY",
+        "notes": ""
+      },
+      {
+        "type": "profit",
+        "name": "利润",
+        "amount": 1000,
+        "unit": "CNY",
+        "notes": ""
+      }
+    ],
+    "category": "general",
+    "notes": "测试场次",
+    "total_cost": 1000,
+    "total_revenue": 1000,
+    "gmv": 5000,
+    "roi": 0.0
+  }
+]

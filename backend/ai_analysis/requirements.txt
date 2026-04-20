@@ -1,0 +1,10 @@
+# LiveMirror AI 分析模块依赖
+
+# HTTP 请求库（用于调用 DeepSeek/GPT API）
+requests>=2.28.0
+
+# 可选：类型检查
+# mypy>=1.0.0
+
+# 可选：测试
+# pytest>=7.0.0

@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-04-08T23:33:04.219076",
+  "service_info": {
+    "data_dir": "data/clips",
+    "output_dir": "data/clips/output"
+  },
+  "aspect_ratios": {
+    "16:9": {
+      "resolution": "1920x1080"
+    },
+    "9:16": {
+      "resolution": "1080x1920"
+    },
+    "1:1": {
+      "resolution": "1080x1080"
+    }
+  },
+  "thresholds": {
+    "emotion": 0.7,
+    "interaction": 0.6,
+    "volume": 0.8
+  },
+  "demo_highlights": [
+    {
+      "start": 45.5,
+      "end": 78.2,
+      "score": 0.92,
+      "type": "emotion",
+      "reason": "情绪高潮"
+    },
+    {
+      "start": 125.0,
+      "end": 156.8,
+      "score": 0.88,
+      "type": "volume",
+      "reason": "音量高峰"
+    },
+    {
+      "start": 210.3,
+      "end": 245.6,
+      "score": 0.95,
+      "type": "emotion",
+      "reason": "情绪高潮 + 互动热点"
+    },
+    {
+      "start": 305.7,
+      "end": 338.4,
+      "score": 0.85,
+      "type": "volume",
+      "reason": "音量高峰"
+    },
+    {
+      "start": 420.0,
+      "end": 455.2,
+      "score": 0.91,
+      "type": "emotion",
+      "reason": "情绪高潮"
+    }
+  ],
+  "api_endpoints": [
+    "/api/clip/health",
+    "/api/clip/detect",
+    "/api/clip/clip",
+    "/api/clip/batch-clip",
+    "/api/clip/history",
+    "/api/clip/download/:id"
+  ]
+}

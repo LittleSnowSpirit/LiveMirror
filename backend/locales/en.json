@@ -1,0 +1,51 @@
+{
+  "common": {
+    "welcome": "Welcome to LiveMirror",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "settings": "Settings",
+    "language": "Language",
+    "close": "Close",
+    "open": "Open",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK"
+  },
+  "features": {
+    "ab_testing": "A/B Testing",
+    "competitor_monitor": "Competitor Monitor",
+    "prediction": "Sales Prediction",
+    "report_generator": "Report Generator",
+    "roi_analysis": "ROI Analysis",
+    "sensitive_words": "Sensitive Words",
+    "title_optimizer": "Title Optimizer"
+  },
+  "messages": {
+    "no_data": "No data available",
+    "load_failed": "Failed to load",
+    "save_success": "Saved successfully",
+    "delete_confirm": "Are you sure you want to delete?",
+    "operation_failed": "Operation failed",
+    "network_error": "Network error",
+    "please_try_again": "Please try again"
+  },
+  "templates": {
+    "greeting": "Hello! Welcome to our live stream",
+    "product_intro": "This product is very popular, special offer today",
+    "product_features": "This product has the following features: {features}",
+    "call_to_action": "If you like it, please order now",
+    "farewell": "Thank you for watching, see you next time"
+  },
+  "time": {
+    "minute_ago": "{n} minutes ago",
+    "hour_ago": "{n} hours ago",
+    "day_ago": "{n} days ago"
+  }
+}

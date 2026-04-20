@@ -1,0 +1,17 @@
+{
+  "email": {
+    "enabled": false,
+    "smtp_server": "",
+    "smtp_port": 587,
+    "username": "",
+    "password": "",
+    "recipients": []
+  },
+  "wechat": {
+    "enabled": false,
+    "corp_id": "",
+    "agent_id": "",
+    "secret": "",
+    "user_ids": []
+  }
+}

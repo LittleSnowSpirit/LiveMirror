@@ -1,0 +1,128 @@
+{
+  "beauty": [
+    {
+      "word": "美白祛斑",
+      "severity": "serious",
+      "category": "beauty",
+      "replacement": "焕亮肌肤",
+      "reason": "化妆品禁用医疗术语",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "抗衰老",
+      "severity": "warning",
+      "category": "beauty",
+      "replacement": "紧致肌肤",
+      "reason": "化妆品禁用医疗术语",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "治疗痤疮",
+      "severity": "banned",
+      "category": "beauty",
+      "replacement": "改善痘痘",
+      "reason": "化妆品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "激素",
+      "severity": "banned",
+      "category": "beauty",
+      "replacement": null,
+      "reason": "禁用成分",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "干细胞",
+      "severity": "banned",
+      "category": "beauty",
+      "replacement": null,
+      "reason": "化妆品禁用成分",
+      "installed_at": "2026-04-08T23:00:00"
+    }
+  ],
+  "food": [
+    {
+      "word": "治疗",
+      "severity": "serious",
+      "category": "food",
+      "replacement": "有助于",
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "疗效",
+      "severity": "serious",
+      "category": "food",
+      "replacement": "效果",
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "预防",
+      "severity": "serious",
+      "category": "food",
+      "replacement": "帮助",
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "降血压",
+      "severity": "banned",
+      "category": "food",
+      "replacement": null,
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "降血糖",
+      "severity": "banned",
+      "category": "food",
+      "replacement": null,
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "抗癌",
+      "severity": "banned",
+      "category": "food",
+      "replacement": null,
+      "reason": "食品不得宣称医疗功效",
+      "installed_at": "2026-04-08T23:00:00"
+    }
+  ],
+  "clothing": [
+    {
+      "word": "100% 纯棉",
+      "severity": "warning",
+      "category": "clothing",
+      "replacement": "优质棉",
+      "reason": "需检测证明",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "永不褪色",
+      "severity": "serious",
+      "category": "clothing",
+      "replacement": "色牢度高",
+      "reason": "禁止绝对化承诺",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "抗菌",
+      "severity": "serious",
+      "category": "clothing",
+      "replacement": "洁净",
+      "reason": "需检测证明",
+      "installed_at": "2026-04-08T23:00:00"
+    },
+    {
+      "word": "防紫外线",
+      "severity": "warning",
+      "category": "clothing",
+      "replacement": "防晒",
+      "reason": "需检测证明",
+      "installed_at": "2026-04-08T23:00:00"
+    }
+  ]
+}

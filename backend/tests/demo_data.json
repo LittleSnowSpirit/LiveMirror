@@ -1,0 +1,128 @@
+{
+  "stream_info": {
+    "stream_id": "demo_stream_20260409",
+    "started_at": "2026-04-09T15:48:20.829000"
+  },
+  "statistics": {
+    "total_danmaku": 32,
+    "auto_replies": 6,
+    "violations_handled": 6,
+    "alerts_triggered": 7
+  },
+  "emotion": {
+    "positive": 0.21875,
+    "neutral": 0.75,
+    "negative": 0.03125,
+    "excited": 0.03125
+  },
+  "suggestions": [],
+  "recent_logs": [
+    {
+      "timestamp": 1775720898.725522,
+      "action": "auto_reply",
+      "details": {
+        "target_user": "小白",
+        "response": "质量超好的！支持 7 天无理由退换～",
+        "trigger": "质量怎么样"
+      },
+      "operator": "auto"
+    },
+    {
+      "timestamp": 1775720899.381727,
+      "action": "handle_violation",
+      "details": {
+        "user_id": "user_002",
+        "username": "小红",
+        "violation_type": "abuse",
+        "action": "mute",
+        "content": "傻逼东西"
+      },
+      "operator": "auto"
+    },
+    {
+      "timestamp": 1775720899.488675,
+      "action": "handle_violation",
+      "details": {
+        "user_id": "user_003",
+        "username": "小黑",
+        "violation_type": "abuse",
+        "action": "mute",
+        "content": "垃圾产品"
+      },
+      "operator": "auto"
+    },
+    {
+      "timestamp": 1775720899.598761,
+      "action": "handle_violation",
+      "details": {
+        "user_id": "user_004",
+        "username": "小白",
+        "violation_type": "advertisement",
+        "action": "warn",
+        "content": "加微信私聊"
+      },
+      "operator": "auto"
+    },
+    {
+      "timestamp": 1775720899.707679,
+      "action": "handle_violation",
+      "details": {
+        "user_id": "user_005",
+        "username": "小蓝",
+        "violation_type": "advertisement",
+        "action": "warn",
+        "content": "兼职刷单"
+      },
+      "operator": "auto"
+    }
+  ],
+  "recent_alerts": [
+    {
+      "level": "critical",
+      "message": "检测到abuse言论",
+      "type": "violation",
+      "timestamp": 1775720899.381936
+    },
+    {
+      "level": "critical",
+      "message": "检测到abuse言论",
+      "type": "violation",
+      "timestamp": 1775720899.488886
+    },
+    {
+      "level": "warning",
+      "message": "检测到advertisement言论",
+      "type": "violation",
+      "timestamp": 1775720899.59903
+    },
+    {
+      "level": "warning",
+      "message": "检测到advertisement言论",
+      "type": "violation",
+      "timestamp": 1775720899.707943
+    },
+    {
+      "level": "warning",
+      "message": "用户刷屏警告",
+      "type": "spam",
+      "timestamp": 1775720899.816624
+    }
+  ],
+  "sample_danmaku": [
+    {
+      "user": "小明",
+      "content": "直播什么时候结束",
+      "auto_reply": "直播预计持续到晚上 10 点哦～"
+    },
+    {
+      "user": "小黑",
+      "content": "傻逼东西",
+      "action": "禁言"
+    },
+    {
+      "user": "刷屏王",
+      "content": "消息 0-14",
+      "action": "刷屏警告"
+    }
+  ]
+}

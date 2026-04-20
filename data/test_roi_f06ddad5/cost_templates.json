@@ -1,0 +1,67 @@
+{
+  "standard": {
+    "name": "标准直播",
+    "costs": {
+      "labor": {
+        "name": "人力成本",
+        "amount": 500,
+        "unit": "CNY"
+      },
+      "venue": {
+        "name": "场地成本",
+        "amount": 300,
+        "unit": "CNY"
+      },
+      "promotion": {
+        "name": "推广成本",
+        "amount": 200,
+        "unit": "CNY"
+      }
+    }
+  },
+  "premium": {
+    "name": "精品直播",
+    "costs": {
+      "labor": {
+        "name": "人力成本",
+        "amount": 1500,
+        "unit": "CNY"
+      },
+      "venue": {
+        "name": "场地成本",
+        "amount": 1000,
+        "unit": "CNY"
+      },
+      "promotion": {
+        "name": "推广成本",
+        "amount": 800,
+        "unit": "CNY"
+      },
+      "equipment": {
+        "name": "设备成本",
+        "amount": 500,
+        "unit": "CNY"
+      }
+    }
+  },
+  "minimal": {
+    "name": "简易直播",
+    "costs": {
+      "labor": {
+        "name": "人力成本",
+        "amount": 200,
+        "unit": "CNY"
+      },
+      "venue": {
+        "name": "场地成本",
+        "amount": 0,
+        "unit": "CNY"
+      },
+      "promotion": {
+        "name": "推广成本",
+        "amount": 50,
+        "unit": "CNY"
+      }
+    }
+  }
+}

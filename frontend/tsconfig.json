@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": [
+    "env.d.ts",
+    "src/main.ts",
+    "src/App.vue",
+    "src/api/**/*.ts",
+    "src/router/**/*.ts",
+    "src/views/HomeView.vue",
+    "src/views/Login.vue",
+    "src/views/Register.vue",
+    "src/views/Upload.vue",
+    "src/views/Report.vue",
+    "src/views/SuggestionAnalysis.vue",
+    "src/views/AttributionAnalysis.vue",
+    "src/views/TrendsAnalysis.vue"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

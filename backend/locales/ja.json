@@ -1,0 +1,51 @@
+{
+  "common": {
+    "welcome": "LiveMirror へようこそ",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "search": "検索",
+    "settings": "設定",
+    "language": "言語",
+    "close": "閉じる",
+    "open": "開く",
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK"
+  },
+  "features": {
+    "ab_testing": "A/B テスト",
+    "competitor_monitor": "競合他社監視",
+    "prediction": "販売予測",
+    "report_generator": "レポート生成",
+    "roi_analysis": "ROI 分析",
+    "sensitive_words": "敏感ワード検出",
+    "title_optimizer": "タイトル最適化"
+  },
+  "messages": {
+    "no_data": "データがありません",
+    "load_failed": "読み込みに失敗しました",
+    "save_success": "保存しました",
+    "delete_confirm": "削除してもよろしいですか？",
+    "operation_failed": "操作に失敗しました",
+    "network_error": "ネットワークエラー",
+    "please_try_again": "もう一度お試しください"
+  },
+  "templates": {
+    "greeting": "こんにちは！私たちのライブ配信へようこそ",
+    "product_intro": "この商品はとても人気があります、本日特別価格です",
+    "product_features": "この商品には以下の特徴があります：{features}",
+    "call_to_action": "気に入ったら、今すぐご注文ください",
+    "farewell": "ご視聴ありがとうございました、また次回お会いしましょう"
+  },
+  "time": {
+    "minute_ago": "{n}分前",
+    "hour_ago": "{n}時間前",
+    "day_ago": "{n}日前"
+  }
+}

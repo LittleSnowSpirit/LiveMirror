@@ -1,0 +1,11 @@
+# LiveMirror 测试依赖
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+playwright>=1.40.0
+pytest-playwright>=0.4.3
+httpx>=0.25.0
+pytest-httpx>=0.28.0
+pytest-cov>=4.1.0
+pytest-html>=4.1.0
+python-dotenv>=1.0.0
+faker>=20.0.0

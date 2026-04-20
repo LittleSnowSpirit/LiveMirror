@@ -1,0 +1,47 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyc.*
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
+coverage_html/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+
+# Local data and generated artifacts
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+.tmp/
+.runtime/
+backend/.runtime/
+tests/e2e_core/.runtime/
+uploads/
+reports/
+exports/
+demo_output/
+test_output/
+tests/report.html
+tests/reports/
+tests/screenshots/
+
+# Environment files
+.env
+backend/.env
+frontend/.env
+
+# Logs
+*.log
+*.out
+*.err
+
+# OS files
+.DS_Store
+Thumbs.db

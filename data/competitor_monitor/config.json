@@ -1,0 +1,14 @@
+{
+  "monitor_interval_seconds": 60,
+  "data_retention_days": 30,
+  "notification": {
+    "email": {
+      "enabled": false,
+      "recipients": []
+    },
+    "wechat": {
+      "enabled": true,
+      "webhook_url": "https://test.webhook.url"
+    }
+  }
+}
