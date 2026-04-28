@@ -22,14 +22,13 @@ router = APIRouter(prefix="/api/monitor", tags=["competitor-monitor"])
 
 # ==================== 竞品管理 ====================
 
-@router.get("/competitors", response_model=List[Dict])
+@router.get("/competitors")
 async def list_competitors():
     """获取竞品列表"""
     service = get_monitor_service()
     competitors = service.list_competitors()
-    return [{"id": c.id, "name": c.name, "platform": c.platform, 
-             "room_id": c.room_id, "status": c.status, "added_at": c.added_at}
-            for c in competitors]
+    items = [_competitor_payload(c) for c in competitors]
+    return {"success": True, "data": {"competitors": items, "total": len(items)}}
 
 
 @router.post("/competitors")
@@ -71,14 +70,7 @@ async def get_competitor(competitor_id: str):
     competitor = service.get_competitor(competitor_id)
     if not competitor:
         raise HTTPException(status_code=404, detail="竞品不存在")
-    return {
-        "id": competitor.id,
-        "name": competitor.name,
-        "platform": competitor.platform,
-        "room_id": competitor.room_id,
-        "status": competitor.status,
-        "added_at": competitor.added_at
-    }
+    return {"success": True, "data": _competitor_payload(competitor)}
 
 
 @router.put("/competitors/{competitor_id}/status")
@@ -273,7 +265,7 @@ async def toggle_alert_rule(rule_id: str):
 
 # ==================== 告警记录 ====================
 
-@router.get("/alerts", response_model=List[Dict])
+@router.get("/alerts")
 async def list_alerts(
     competitor_id: Optional[str] = Query(None),
     alert_type: Optional[str] = Query(None),
@@ -285,19 +277,14 @@ async def list_alerts(
     service = get_monitor_service()
     alerts = service.get_alerts(competitor_id, alert_type, start_time, end_time, limit)
     
-    return [{
-        "id": a.id,
-        "rule_id": a.rule_id,
-        "rule_name": a.rule_name,
-        "competitor_id": a.competitor_id,
-        "competitor_name": a.competitor_name,
-        "alert_type": a.alert_type,
-        "message": a.message,
-        "current_value": a.current_value,
-        "threshold": a.threshold,
-        "triggered_at": a.triggered_at,
-        "notified": a.notified
-    } for a in alerts]
+    items = [_alert_payload(a) for a in alerts]
+    return {
+        "success": True,
+        "data": {
+            "alerts": items,
+            "pagination": {"total": len(items), "limit": limit},
+        },
+    }
 
 
 @router.get("/alerts/{alert_id}")
@@ -449,4 +436,243 @@ async def get_stats():
         "total_alerts": total_alerts,
         "alerts_by_type": alerts_by_type,
         "is_monitoring": service.is_monitoring
+    }
+
+
+# ==================== Legacy-compatible route aliases ====================
+
+@router.put("/competitors/{competitor_id}")
+async def update_competitor(competitor_id: str, payload: Dict[str, Any] = Body(...)):
+    service = get_monitor_service()
+    competitor = service.get_competitor(competitor_id)
+    if not competitor:
+        raise HTTPException(status_code=404, detail="Competitor not found.")
+
+    for field in ("name", "platform", "room_id", "status"):
+        if field in payload:
+            setattr(competitor, field, payload[field])
+    service._save_data()
+    return {"success": True, "data": _competitor_payload(competitor)}
+
+
+@router.post("/competitors/{competitor_id}/stream-data")
+async def update_stream_data(competitor_id: str, payload: Dict[str, Any] = Body(...)):
+    service = get_monitor_service()
+    if not service.get_competitor(competitor_id):
+        raise HTTPException(status_code=404, detail="Competitor not found.")
+
+    data = LiveRoomData(
+        competitor_id=competitor_id,
+        viewer_count=int(payload.get("viewer_count", 0)),
+        like_count=int(payload.get("like_count", 0)),
+        comment_count=int(payload.get("comment_count", 0)),
+        share_count=int(payload.get("share_count", 0)),
+        product_count=int(payload.get("product_count", 0)),
+        gmv=float(payload.get("gmv", 0.0)),
+        avg_watch_time=float(payload.get("avg_watch_time", 0.0)),
+    )
+    service.live_data_history.setdefault(competitor_id, []).append(data)
+    return {"success": True, "data": _live_data_payload(data)}
+
+
+@router.get("/competitors/{competitor_id}/stream-data")
+async def get_stream_data(competitor_id: str):
+    service = get_monitor_service()
+    history = service.live_data_history.get(competitor_id, [])
+    if not history:
+        raise HTTPException(status_code=404, detail="Stream data not found.")
+    return {"success": True, "data": _live_data_payload(history[-1])}
+
+
+@router.post("/rules")
+async def create_rule(payload: Dict[str, Any] = Body(...)):
+    service = get_monitor_service()
+    rule = service.add_alert_rule(
+        name=payload.get("name", "Rule"),
+        rule_type=payload.get("alert_type") or payload.get("rule_type", "viewer_spike"),
+        threshold=float(payload.get("threshold", 0.0)),
+        comparison=payload.get("comparison", "gt"),
+        competitor_id=payload.get("competitor_id", ""),
+    )
+    return {"success": True, "data": _rule_payload(rule)}
+
+
+@router.get("/rules")
+async def get_rules():
+    service = get_monitor_service()
+    rules = [_rule_payload(rule) for rule in service.list_alert_rules()]
+    return {"success": True, "data": {"rules": rules, "total": len(rules)}}
+
+
+@router.put("/rules/{rule_id}")
+async def update_rule(rule_id: str, payload: Dict[str, Any] = Body(...)):
+    updates = payload.copy()
+    if "alert_type" in updates:
+        updates["rule_type"] = updates.pop("alert_type")
+
+    service = get_monitor_service()
+    rule = service.update_alert_rule(rule_id, **updates)
+    if not rule:
+        raise HTTPException(status_code=404, detail="Rule not found.")
+    return {"success": True, "data": _rule_payload(rule)}
+
+
+@router.delete("/rules/{rule_id}")
+async def delete_rule(rule_id: str):
+    service = get_monitor_service()
+    if not service.remove_alert_rule(rule_id):
+        raise HTTPException(status_code=404, detail="Rule not found.")
+    return {"success": True}
+
+
+@router.get("/config")
+async def get_monitor_config():
+    service = get_monitor_service()
+    return {
+        "success": True,
+        "data": {
+            "monitor_interval_seconds": service.monitoring_interval,
+            "notification": service.notification_config,
+        },
+    }
+
+
+@router.put("/config")
+async def update_monitor_config(payload: Dict[str, Any] = Body(...)):
+    service = get_monitor_service()
+    if "monitor_interval_seconds" in payload:
+        service.monitoring_interval = int(payload["monitor_interval_seconds"])
+    return {
+        "success": True,
+        "data": {
+            "monitor_interval_seconds": service.monitoring_interval,
+        },
+    }
+
+
+@router.put("/config/notification")
+async def update_monitor_notification_config(payload: Dict[str, Any] = Body(...)):
+    service = get_monitor_service()
+    channel = payload.get("channel", "email")
+    config = {key: value for key, value in payload.items() if key != "channel"}
+    service.update_notification_config(channel, config)
+    return {"success": True, "data": service.notification_config.get(channel, {})}
+
+
+@router.get("/statistics")
+async def get_statistics(days: int = Query(7, ge=1, le=365)):
+    service = get_monitor_service()
+    return {
+        "success": True,
+        "data": {
+            "days": days,
+            "total_competitors": len(service.competitors),
+            "total_alerts": len(service.alerts),
+            "total_rules": len(service.alert_rules),
+        },
+    }
+
+
+@router.get("/dashboard")
+async def get_dashboard():
+    service = get_monitor_service()
+    competitors = list(service.competitors.values())
+    alerts = service.alerts[-10:]
+    return {
+        "success": True,
+        "data": {
+            "overview": {
+                "total_competitors": len(service.competitors),
+                "total_alerts": len(service.alerts),
+                "is_monitoring": service.is_monitoring,
+            },
+            "recent_competitors": [_competitor_payload(item) for item in competitors[-10:]],
+            "recent_alerts": [_alert_payload(item) for item in alerts],
+        },
+    }
+
+
+@router.post("/competitors/{competitor_id}/start")
+async def start_competitor_monitoring(competitor_id: str):
+    service = get_monitor_service()
+    competitor = service.get_competitor(competitor_id)
+    if not competitor:
+        raise HTTPException(status_code=404, detail="Competitor not found.")
+    competitor.status = "active"
+    return {"success": True, "data": _competitor_payload(competitor)}
+
+
+@router.post("/competitors/{competitor_id}/pause")
+async def pause_competitor_monitoring(competitor_id: str):
+    service = get_monitor_service()
+    competitor = service.get_competitor(competitor_id)
+    if not competitor:
+        raise HTTPException(status_code=404, detail="Competitor not found.")
+    competitor.status = "paused"
+    return {"success": True, "data": _competitor_payload(competitor)}
+
+
+@router.post("/competitors/{competitor_id}/stop")
+async def stop_competitor_monitoring(competitor_id: str):
+    service = get_monitor_service()
+    competitor = service.get_competitor(competitor_id)
+    if not competitor:
+        raise HTTPException(status_code=404, detail="Competitor not found.")
+    competitor.status = "inactive"
+    return {"success": True, "data": _competitor_payload(competitor)}
+
+
+def _competitor_payload(competitor: CompetitorInfo) -> Dict[str, Any]:
+    return {
+        "id": competitor.id,
+        "name": competitor.name,
+        "platform": competitor.platform,
+        "room_id": competitor.room_id,
+        "status": competitor.status,
+        "added_at": competitor.added_at,
+    }
+
+
+def _rule_payload(rule: AlertRule) -> Dict[str, Any]:
+    return {
+        "id": rule.id,
+        "name": rule.name,
+        "competitor_id": rule.competitor_id,
+        "rule_type": rule.rule_type,
+        "alert_type": rule.rule_type,
+        "threshold": rule.threshold,
+        "comparison": rule.comparison,
+        "enabled": rule.enabled,
+        "created_at": rule.created_at,
+    }
+
+
+def _live_data_payload(data: LiveRoomData) -> Dict[str, Any]:
+    return {
+        "competitor_id": data.competitor_id,
+        "viewer_count": data.viewer_count,
+        "like_count": data.like_count,
+        "comment_count": data.comment_count,
+        "share_count": data.share_count,
+        "product_count": data.product_count,
+        "gmv": data.gmv,
+        "avg_watch_time": data.avg_watch_time,
+        "capture_time": data.capture_time,
+    }
+
+
+def _alert_payload(alert: Alert) -> Dict[str, Any]:
+    return {
+        "id": alert.id,
+        "rule_id": alert.rule_id,
+        "rule_name": alert.rule_name,
+        "competitor_id": alert.competitor_id,
+        "competitor_name": alert.competitor_name,
+        "alert_type": alert.alert_type,
+        "message": alert.message,
+        "current_value": alert.current_value,
+        "threshold": alert.threshold,
+        "triggered_at": alert.triggered_at,
+        "notified": alert.notified,
+        "notification_channels": alert.notification_channels,
     }

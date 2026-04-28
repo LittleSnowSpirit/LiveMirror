@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import uuid
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
@@ -20,13 +19,10 @@ from services.database import (
     update_task_status,
     update_task_transcription,
 )
+from services.task_queue import get_task_queue
 from services.transcription import get_transcription_service
 
 router = APIRouter(prefix="/api/upload", tags=["core-upload"])
-_TASK_EXECUTOR = ThreadPoolExecutor(
-    max_workers=max(1, settings.task_worker_count),
-    thread_name_prefix="core-upload",
-)
 _CHUNK_SIZE = 1024 * 1024
 
 
@@ -77,7 +73,7 @@ async def upload_media(
     finally:
         db.close()
 
-    _TASK_EXECUTOR.submit(_process_upload_task, task_id)
+    get_task_queue().submit(task_id, _process_upload_task, task_id)
 
     return {
         "task_id": task_id,

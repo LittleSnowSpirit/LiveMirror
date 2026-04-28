@@ -11,11 +11,21 @@
 
       <nav class="nav">
         <RouterLink to="/" class="nav-link">首页</RouterLink>
-        <RouterLink to="/upload" class="nav-link">上传</RouterLink>
-        <RouterLink to="/report" class="nav-link">报告</RouterLink>
-        <RouterLink to="/attribution" class="nav-link">归因</RouterLink>
-        <RouterLink to="/suggestions" class="nav-link">建议</RouterLink>
-        <RouterLink to="/trends" class="nav-link">趋势</RouterLink>
+        <template v-if="authenticated">
+          <RouterLink
+            v-for="item in navigationFeatures"
+            :key="item.id"
+            :to="item.frontend_route || '/'"
+            class="nav-link"
+          >
+            {{ item.navigation_label || item.name }}
+          </RouterLink>
+          <button class="nav-link nav-button" type="button" @click="handleLogout">退出</button>
+        </template>
+        <template v-else>
+          <RouterLink to="/login" class="nav-link">登录</RouterLink>
+          <RouterLink to="/register" class="nav-link">注册</RouterLink>
+        </template>
       </nav>
     </header>
 
@@ -26,13 +36,58 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { getFeatures, isAuthenticated, logout, type FeatureInfo } from './api';
 import { initTheme } from './utils/theme';
+
+const route = useRoute();
+const router = useRouter();
+const features = ref<FeatureInfo[]>([]);
+const authenticated = ref(isAuthenticated());
+
+const navigationFeatures = computed(() => features.value.filter((feature) => (
+  feature.enabled
+  && feature.healthy
+  && Boolean(feature.frontend_route)
+  && Boolean(feature.navigation_label)
+  && feature.group !== 'legacy'
+)));
 
 onMounted(() => {
   initTheme();
+  void refreshNavigation();
 });
+
+watch(
+  () => route.fullPath,
+  () => {
+    authenticated.value = isAuthenticated();
+    void refreshNavigation();
+  }
+);
+
+async function refreshNavigation() {
+  if (!authenticated.value) {
+    features.value = [];
+    return;
+  }
+
+  try {
+    const response = await getFeatures();
+    features.value = response.features;
+  } catch {
+    features.value = [];
+  }
+}
+
+async function handleLogout() {
+  logout();
+  authenticated.value = false;
+  features.value = [];
+  await router.push('/login');
+}
 </script>
 
 <style>
@@ -226,6 +281,10 @@ a,
   text-decoration: none;
   font-weight: 600;
   transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.nav-button {
+  appearance: none;
 }
 
 .nav-link:hover,

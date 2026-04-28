@@ -193,6 +193,8 @@ class Task(Base):
     duration = Column(Float, nullable=True)
 
     status = Column(String(32), nullable=False, default="pending", index=True)
+    current_step = Column(String(64), nullable=False, default="pending")
+    provider = Column(String(64), nullable=True)
     progress = Column(Integer, nullable=False, default=0)
     error_message = Column(Text, nullable=True)
 
@@ -203,6 +205,7 @@ class Task(Base):
     report_data = Column(SAJSON, nullable=True)
 
     created_at = Column(DateTime, default=utc_now, index=True)
+    started_at = Column(DateTime, nullable=True)
     updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
     completed_at = Column(DateTime, nullable=True)
 
@@ -215,9 +218,12 @@ class Task(Base):
             "file_size": self.file_size,
             "duration": self.duration,
             "status": self.status,
+            "current_step": self.current_step,
+            "provider": self.provider,
             "progress": self.progress,
             "error_message": self.error_message,
             "created_at": self.created_at.isoformat() if self.created_at else None,
+            "started_at": self.started_at.isoformat() if self.started_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
             "completed_at": self.completed_at.isoformat() if self.completed_at else None,
         }

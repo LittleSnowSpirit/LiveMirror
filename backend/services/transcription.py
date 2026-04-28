@@ -4,9 +4,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from shutil import which
+from threading import Lock
 from typing import Any, Protocol
 
 from config import settings
+
+
+_MODEL_CACHE: dict[tuple[str, str, str], Any] = {}
+_MODEL_CACHE_LOCK = Lock()
 
 
 @dataclass
@@ -36,16 +42,27 @@ class LocalWhisperTranscriptionService:
         self.language = language or settings.whisper_language
         self.device = device or settings.whisper_device
         self.compute_type = compute_type or settings.whisper_compute_type
-        self._model = None
+        self._model_key = (self.model_name, self.device, self.compute_type)
+
+    def preflight(self) -> None:
+        if which("ffmpeg") is None and which("ffmpeg.exe") is None:
+            raise RuntimeError("FFmpeg is required for local Whisper transcription but was not found on PATH.")
+
+        try:
+            import faster_whisper  # noqa: F401
+        except ImportError as exc:
+            raise RuntimeError(
+                "faster-whisper is not installed. Run `pip install -r backend/requirements.txt`."
+            ) from exc
 
     def _load_model(self):
-        if self._model is None:
-            try:
-                from faster_whisper import WhisperModel
-            except ImportError as exc:
-                raise RuntimeError(
-                    "faster-whisper is not installed. Run `pip install -r backend/requirements.txt`."
-                ) from exc
+        self.preflight()
+
+        with _MODEL_CACHE_LOCK:
+            if self._model_key in _MODEL_CACHE:
+                return _MODEL_CACHE[self._model_key]
+
+            from faster_whisper import WhisperModel
 
             kwargs: dict[str, Any] = {}
             if self.device and self.device != "auto":
@@ -53,8 +70,9 @@ class LocalWhisperTranscriptionService:
             if self.compute_type and self.compute_type != "default":
                 kwargs["compute_type"] = self.compute_type
 
-            self._model = WhisperModel(self.model_name, **kwargs)
-        return self._model
+            model = WhisperModel(self.model_name, **kwargs)
+            _MODEL_CACHE[self._model_key] = model
+            return model
 
     def transcribe(self, file_path: str) -> TranscriptionResult:
         path = Path(file_path)
@@ -115,3 +133,42 @@ def get_transcription_service() -> TranscriptionService:
     if provider == "local":
         return LocalWhisperTranscriptionService()
     raise RuntimeError(f"Unsupported transcription provider: {settings.transcription_provider}")
+
+
+def check_transcription_environment() -> dict[str, Any]:
+    provider = settings.transcription_provider.lower()
+    if provider == "mock":
+        return {
+            "provider": "mock",
+            "ready": True,
+            "details": "Mock transcription is enabled.",
+        }
+    if provider != "local":
+        return {
+            "provider": settings.transcription_provider,
+            "ready": False,
+            "error": f"Unsupported transcription provider: {settings.transcription_provider}",
+        }
+
+    checks: dict[str, Any] = {
+        "provider": "local",
+        "model": settings.whisper_model,
+        "device": settings.whisper_device,
+        "compute_type": settings.whisper_compute_type,
+        "ffmpeg": which("ffmpeg") or which("ffmpeg.exe"),
+    }
+    try:
+        import faster_whisper  # noqa: F401
+        checks["faster_whisper"] = True
+    except ImportError:
+        checks["faster_whisper"] = False
+
+    checks["ready"] = bool(checks["ffmpeg"] and checks["faster_whisper"])
+    if not checks["ready"]:
+        missing = []
+        if not checks["ffmpeg"]:
+            missing.append("FFmpeg")
+        if not checks["faster_whisper"]:
+            missing.append("faster-whisper")
+        checks["error"] = f"Missing local transcription dependency: {', '.join(missing)}."
+    return checks

@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 from typing import Optional
 from sqlalchemy.orm import Session
 
+from config import settings
 from database import Base, SessionLocal, engine
 from models import Task
 
@@ -30,7 +31,9 @@ def create_task(db: Session, task_id: str, filename: str, file_path: str, file_s
         file_path=file_path,
         file_size=file_size,
         status="pending",
-        progress=0
+        current_step="pending",
+        provider=settings.transcription_provider,
+        progress=0,
     )
     db.add(task)
     db.commit()
@@ -43,9 +46,19 @@ def get_task(db: Session, task_id: str) -> Optional[Task]:
     return db.query(Task).filter(Task.task_id == task_id).first()
 
 
-def update_task_status(db: Session, task: Task, status: str, progress: int = None, error_message: str = None):
+def update_task_status(
+    db: Session,
+    task: Task,
+    status: str,
+    progress: int = None,
+    error_message: str = None,
+    current_step: str = None,
+):
     """更新任务状态"""
     task.status = status
+    task.current_step = current_step or status
+    if task.started_at is None and status not in {"pending", "failed"}:
+        task.started_at = datetime.now(UTC)
     if progress is not None:
         task.progress = progress
     if error_message is not None:
@@ -59,6 +72,7 @@ def update_task_transcription(db: Session, task: Task, transcription: str, segme
     task.transcription = transcription
     task.transcription_segments = segments
     task.status = "analyzing"
+    task.current_step = "analyzing"
     task.progress = 70
     db.commit()
     db.refresh(task)
@@ -69,6 +83,7 @@ def update_task_analysis(db: Session, task: Task, analysis_result: dict, report_
     task.analysis_result = analysis_result
     task.report_data = report_data
     task.status = "completed"
+    task.current_step = "completed"
     task.progress = 100
     task.completed_at = datetime.now(UTC)
     db.commit()

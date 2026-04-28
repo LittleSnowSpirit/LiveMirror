@@ -1,232 +1,104 @@
-name: LiveMirror Legacy Tests
+name: LiveMirror Full Checks
 
 on:
-  push:
-    branches: [ legacy-disabled ]
-  pull_request:
-    branches: [ legacy-disabled ]
-  # schedule:
-    # 每天运行一次完整测试
-    - cron: '0 2 * * *'
+  workflow_dispatch:
+  schedule:
+    # Runs at 02:00 Asia/Shanghai.
+    - cron: "0 18 * * *"
 
 jobs:
-  backend-tests:
-    name: Backend API Tests
+  full-backend:
+    name: Full Backend Suite
     runs-on: ubuntu-latest
-    
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-          POSTGRES_DB: livemirror_test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+          python-version: "3.11"
+          cache: pip
+
       - name: Install backend dependencies
         working-directory: ./backend
-        run: |
-          pip install -r requirements.txt
-      
-      - name: Install test dependencies
-        working-directory: ./tests
-        run: |
-          pip install -r requirements.txt
-          playwright install chromium
-      
-      - name: Run backend tests
-        working-directory: ./tests
-        env:
-          TEST_BASE_URL: http://localhost:8000
-          DATABASE_URL: postgresql://test:test@localhost:5432/livemirror_test
-        run: |
-          # 启动后端服务
-          cd ../backend
-          python main.py &
-          cd ../tests
-          
-          # 等待服务启动
-          sleep 5
-          
-          # 运行 API 测试
-          pytest -m api -v --tb=short --html=api-report.html --self-contained-html
-      
-      - name: Upload test report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: api-test-report
-          path: tests/api-report.html
-      
-      - name: Upload coverage
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: coverage-report
-          path: tests/coverage_html/
+        run: python -m pip install -r requirements.txt
 
-  frontend-tests:
-    name: Frontend E2E Tests
+      - name: Install browser test dependencies
+        working-directory: ./tests
+        run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install chromium
+
+      - name: Run full pytest suite
+        env:
+          DATABASE_URL: sqlite://
+          TRANSCRIPTION_PROVIDER: mock
+          LIVEMIRROR_RUN_EXPERIMENTAL_TESTS: "1"
+        run: python -m pytest -q -p no:cacheprovider
+
+  full-frontend:
+    name: Full Frontend Build
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: npm
           cache-dependency-path: frontend/package-lock.json
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm ci
-      
-      - name: Install test dependencies
-        working-directory: ./tests
-        run: |
-          pip install -r requirements.txt
-          playwright install chromium
-      
-      - name: Build frontend
+
+      - name: Typecheck
+        working-directory: ./frontend
+        run: npm run typecheck
+
+      - name: Build
         working-directory: ./frontend
         run: npm run build
-      
-      - name: Start services
-        run: |
-          # 启动后端
-          cd backend
-          pip install -r requirements.txt
-          python main.py &
-          cd ..
-          
-          # 启动前端
-          cd frontend
-          npx serve dist -l 5173 &
-          cd ..
-          
-          # 等待服务启动
-          sleep 10
-      
-      - name: Run E2E tests
-        working-directory: ./tests
-        env:
-          TEST_BASE_URL: http://localhost:8000
-          TEST_FRONTEND_URL: http://localhost:5173
-        run: |
-          pytest -m e2e -v --tb=short --html=e2e-report.html --self-contained-html
-      
-      - name: Upload E2E report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: e2e-test-report
-          path: tests/e2e-report.html
-      
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: failure-screenshots
-          path: tests/screenshots/
 
-  smoke-tests:
-    name: Smoke Tests
+  core-browser-flow:
+    name: Core Browser Flow
     runs-on: ubuntu-latest
-    
+    needs: [full-backend, full-frontend]
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
-      - name: Install dependencies
-        working-directory: ./tests
-        run: |
-          pip install -r requirements.txt
-          playwright install chromium
-      
-      - name: Run smoke tests
-        working-directory: ./tests
-        run: |
-          pytest -m smoke -v --tb=short
+          python-version: "3.11"
+          cache: pip
 
-  lint:
-    name: Code Linting
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install Python linters
-        run: |
-          pip install black flake8 mypy
-      
-      - name: Lint backend
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install backend dependencies
         working-directory: ./backend
-        run: |
-          black --check . || true
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
-      
+        run: python -m pip install -r requirements.txt
+
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm ci
-      
-      - name: Lint frontend
-        working-directory: ./frontend
-        run: |
-          npm run lint || true
 
-  notify:
-    name: Notify Results
-    runs-on: ubuntu-latest
-    needs: [backend-tests, frontend-tests, smoke-tests, lint]
-    if: always()
-    
-    steps:
-      - name: Check test results
+      - name: Install browser test dependencies
+        working-directory: ./tests
         run: |
-          if [ "${{ needs.backend-tests.result }}" == "failure" ] || \
-             [ "${{ needs.frontend-tests.result }}" == "failure" ]; then
-            echo "❌ Tests failed!"
-            exit 1
-          else
-            echo "✅ All tests passed!"
-          fi
+          python -m pip install -r requirements.txt
+          python -m playwright install chromium
+
+      - name: Run core browser flow
+        env:
+          TRANSCRIPTION_PROVIDER: mock
+        run: python -m pytest tests/e2e_core -q -p no:cacheprovider

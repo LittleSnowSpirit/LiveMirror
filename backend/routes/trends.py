@@ -7,22 +7,23 @@
 - 成长报告生成
 """
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Depends
 from typing import List, Dict, Any
 from dataclasses import asdict
 from datetime import datetime
-
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from services.trend_analysis import (
     TrendAnalysisService,
     SessionMetrics,
     analyze_growth
 )
+from routes.core_auth import get_current_user
 
-router = APIRouter(prefix="/api/trends", tags=["趋势分析"])
+router = APIRouter(
+    prefix="/api/trends",
+    tags=["趋势分析"],
+    dependencies=[Depends(get_current_user)],
+)
 
 
 # ==================== API 接口 ====================

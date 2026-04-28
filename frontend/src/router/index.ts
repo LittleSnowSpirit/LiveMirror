@@ -1,18 +1,11 @@
-﻿import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import LoginView from '../views/Login.vue';
-import RegisterView from '../views/Register.vue';
-import UploadView from '../views/Upload.vue';
-import ReportView from '../views/Report.vue';
-import AttributionAnalysisView from '../views/AttributionAnalysis.vue';
-import SuggestionAnalysisView from '../views/SuggestionAnalysis.vue';
-import TrendsAnalysisView from '../views/TrendsAnalysis.vue';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import { isAuthenticated } from '../api';
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: () => import('../views/HomeView.vue'),
     meta: {
       title: '首页 - LiveMirror'
     }
@@ -20,47 +13,52 @@ const routes = [
   {
     path: '/upload',
     name: 'upload',
-    component: UploadView,
+    component: () => import('../views/Upload.vue'),
     meta: {
-      title: '上传 - LiveMirror'
+      title: '上传 - LiveMirror',
+      requiresAuth: true
     }
   },
   {
     path: '/report/:taskId?',
     name: 'report',
-    component: ReportView,
+    component: () => import('../views/Report.vue'),
     meta: {
-      title: '报告 - LiveMirror'
+      title: '报告 - LiveMirror',
+      requiresAuth: true
     }
   },
   {
     path: '/attribution',
     name: 'attribution',
-    component: AttributionAnalysisView,
+    component: () => import('../views/AttributionAnalysis.vue'),
     meta: {
-      title: '归因 - LiveMirror'
+      title: '归因 - LiveMirror',
+      requiresAuth: true
     }
   },
   {
     path: '/suggestions',
     name: 'suggestions',
-    component: SuggestionAnalysisView,
+    component: () => import('../views/SuggestionAnalysis.vue'),
     meta: {
-      title: '建议 - LiveMirror'
+      title: '建议 - LiveMirror',
+      requiresAuth: true
     }
   },
   {
     path: '/trends',
     name: 'trends',
-    component: TrendsAnalysisView,
+    component: () => import('../views/TrendsAnalysis.vue'),
     meta: {
-      title: '趋势 - LiveMirror'
+      title: '趋势 - LiveMirror',
+      requiresAuth: true
     }
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView,
+    component: () => import('../views/Login.vue'),
     meta: {
       title: '登录 - LiveMirror'
     }
@@ -68,7 +66,7 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: RegisterView,
+    component: () => import('../views/Register.vue'),
     meta: {
       title: '注册 - LiveMirror'
     }
@@ -84,9 +82,23 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to) => {
   document.title = (to.meta.title as string) || 'LiveMirror';
-  next();
+
+  if (to.meta.requiresAuth && !isAuthenticated()) {
+    return {
+      name: 'login',
+      query: {
+        redirect: to.fullPath
+      }
+    };
+  }
+
+  if ((to.name === 'login' || to.name === 'register') && isAuthenticated()) {
+    return { name: 'home' };
+  }
+
+  return true;
 });
 
 export default router;

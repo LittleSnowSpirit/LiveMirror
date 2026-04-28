@@ -1,75 +1,88 @@
-"""LiveMirror core FastAPI application."""
-import sys
-from pathlib import Path
+"""LiveMirror FastAPI application factory."""
 
-sys.path.insert(0, str(Path(__file__).parent))
+from __future__ import annotations
 
-from fastapi import FastAPI
+from contextlib import asynccontextmanager
+from importlib import import_module
+
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
 from database import init_db
-from routes import attribution
-from routes import core_auth
-from routes import core_export
-from routes import core_reports
-from routes import core_tasks
-from routes import core_upload
-from routes import suggestions
-from routes import trends
-
-init_db()
-
-app = FastAPI(
-    title="LiveMirror Core API",
-    description="Core upload, transcription, report, attribution, suggestion, trend, and auth APIs.",
-    version=settings.app_version,
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.cors_origin_list,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.include_router(core_auth.router)
-app.include_router(core_upload.router)
-app.include_router(core_tasks.router)
-app.include_router(core_reports.router)
-app.include_router(core_export.router)
-app.include_router(attribution.router)
-app.include_router(suggestions.router)
-app.include_router(trends.router)
+from features import enabled_router_modules
+from routes.core_auth import get_current_user
+from services.task_queue import shutdown_task_queue
+from services.transcription import check_transcription_environment
 
 
-@app.get("/")
-async def root():
-    return {
-        "message": "LiveMirror Core API",
-        "version": settings.app_version,
-        "docs": "/docs",
-        "core_routes": [
-            "/auth",
-            "/api/upload",
-            "/api/task",
-            "/api/report",
-            "/api/export",
-            "/api/attribution",
-            "/api/suggestions",
-            "/api/trends",
-        ],
-    }
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    init_db()
+    try:
+        yield
+    finally:
+        shutdown_task_queue(wait=False)
 
 
-@app.get("/health")
-async def health_check():
-    return {
-        "status": "healthy",
-        "version": settings.app_version,
-        "transcription_provider": settings.transcription_provider,
-    }
+def create_app() -> FastAPI:
+    init_db()
+
+    app = FastAPI(
+        title="LiveMirror Core API",
+        description="Core upload, transcription, report, attribution, suggestion, trend, and auth APIs.",
+        version=settings.app_version,
+        lifespan=lifespan,
+    )
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_origin_list,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    for module_name in ["routes.features", *enabled_router_modules()]:
+        module = import_module(module_name)
+        dependencies = []
+        if getattr(module.router, "prefix", "").startswith("/api"):
+            dependencies.append(Depends(get_current_user))
+        app.include_router(module.router, dependencies=dependencies)
+
+    @app.get("/")
+    async def root():
+        return {
+            "message": "LiveMirror Core API",
+            "version": settings.app_version,
+            "docs": "/docs",
+            "core_routes": [
+                "/auth",
+                "/api/features",
+                "/api/upload",
+                "/api/task",
+                "/api/report",
+                "/api/export",
+                "/api/attribution",
+                "/api/suggestions",
+                "/api/trends",
+                "/api/monitor",
+            ],
+        }
+
+    @app.get("/health")
+    async def health_check():
+        return {
+            "status": "healthy",
+            "version": settings.app_version,
+            "transcription_provider": settings.transcription_provider,
+            "transcription": check_transcription_environment(),
+        }
+
+    return app
+
+
+app = create_app()
 
 
 if __name__ == "__main__":
