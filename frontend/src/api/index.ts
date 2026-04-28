@@ -1,34 +1,28 @@
-﻿import axios from 'axios';
+import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import { ElMessage } from 'element-plus';
 
-export const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL?.trim() || '/api').replace(/\/+$/, '') || '/api';
-export const authBaseUrl = (
-  import.meta.env.VITE_AUTH_BASE_URL?.trim()
-  || (apiBaseUrl.endsWith('/api') ? apiBaseUrl.slice(0, -4) : '')
-).replace(/\/+$/, '');
+type RetriableRequestConfig = InternalAxiosRequestConfig & {
+  _retry?: boolean;
+};
+
+function normalizeBaseUrl(value: string) {
+  return value.trim().replace(/\/+$/, '');
+}
+
+const configuredApiBaseUrl = normalizeBaseUrl(import.meta.env.VITE_API_BASE_URL || '/api');
+export const appBaseUrl = configuredApiBaseUrl.endsWith('/api')
+  ? configuredApiBaseUrl.slice(0, -4)
+  : configuredApiBaseUrl;
+export const apiBaseUrl = `${appBaseUrl || ''}/api`;
+export const authBaseUrl = normalizeBaseUrl(import.meta.env.VITE_AUTH_BASE_URL || appBaseUrl);
 
 const api = axios.create({
-  baseURL: apiBaseUrl,
-  timeout: 300000
-});
-
-const authApi = axios.create({
-  baseURL: authBaseUrl || undefined,
+  baseURL: appBaseUrl || undefined,
   timeout: 300000
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('access_token');
-
-  if (token) {
-    config.headers = config.headers ?? {};
-    config.headers.Authorization = `${localStorage.getItem('token_type') || 'Bearer'} ${token}`;
-  }
-
-  return config;
-});
-
-authApi.interceptors.request.use((config) => {
-  const token = localStorage.getItem('access_token');
+  const token = getAccessToken();
 
   if (token) {
     config.headers = config.headers ?? {};
@@ -40,7 +34,41 @@ authApi.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error)
+  async (error: AxiosError) => {
+    const originalRequest = error.config as RetriableRequestConfig | undefined;
+    const status = error.response?.status;
+    const url = originalRequest?.url || '';
+    const canRefresh = Boolean(
+      originalRequest
+      && status === 401
+      && !originalRequest._retry
+      && !url.includes('/auth/login')
+      && !url.includes('/auth/register')
+      && !url.includes('/auth/refresh')
+    );
+
+    if (canRefresh && originalRequest) {
+      originalRequest._retry = true;
+
+      try {
+        const tokens = await refreshAuthToken();
+        originalRequest.headers = originalRequest.headers ?? {};
+        originalRequest.headers.Authorization = `${tokens.token_type || 'Bearer'} ${tokens.access_token}`;
+        return api(originalRequest);
+      } catch (refreshError) {
+        handleAuthFailure();
+        return Promise.reject(refreshError);
+      }
+    }
+
+    if (status === 401 && !url.includes('/auth/login') && !url.includes('/auth/register')) {
+      handleAuthFailure();
+    } else if (!url.includes('/auth/login') && !url.includes('/auth/register')) {
+      showApiError(error);
+    }
+
+    return Promise.reject(error);
+  }
 );
 
 export interface AuthTokens {
@@ -66,17 +94,40 @@ export interface UploadResponse {
   message?: string;
 }
 
+export interface SpeechItem {
+  id?: string;
+  type?: string;
+  content?: string;
+  text?: string;
+  start_time?: number;
+  end_time?: number;
+  start?: number;
+  end?: number;
+  [key: string]: unknown;
+}
+
+export interface EmotionPoint {
+  timestamp: number;
+  score: number;
+  level?: string;
+  [key: string]: unknown;
+}
+
 export interface AnalysisResult {
   summary: Record<string, unknown>;
   timeline: Array<Record<string, unknown>>;
-  speeches: Array<Record<string, unknown>>;
+  speeches: SpeechItem[];
 }
 
 export interface TaskStatus {
   task_id: string;
   status: string;
   progress: number;
+  current_step?: string;
+  provider?: string | null;
+  started_at?: string | null;
   message?: string;
+  error_message?: string | null;
   result?: AnalysisResult;
 }
 
@@ -87,6 +138,9 @@ export interface TaskInfo {
   duration?: number | null;
   status: string;
   progress: number;
+  current_step?: string;
+  provider?: string | null;
+  started_at?: string | null;
   created_at?: string | null;
   updated_at?: string | null;
   completed_at?: string | null;
@@ -173,6 +227,39 @@ export interface TrendSeriesResponse {
   total?: number;
 }
 
+export interface FeatureInfo {
+  id: string;
+  name: string;
+  group: string;
+  prefix: string | null;
+  frontend_route: string | null;
+  navigation_label: string | null;
+  status: string;
+  enabled: boolean;
+  healthy: boolean;
+}
+
+export interface FeatureGroup {
+  id: string;
+  features: FeatureInfo[];
+}
+
+export interface FeatureResponse {
+  success: boolean;
+  features: FeatureInfo[];
+  groups: FeatureGroup[];
+}
+
+export interface HistoryItem {
+  task_id: string;
+  filename: string;
+  status: string;
+  progress?: number;
+  created_at?: string | null;
+  completed_at?: string | null;
+  [key: string]: unknown;
+}
+
 export function setAuthTokens(tokens: AuthTokens) {
   localStorage.setItem('access_token', tokens.access_token);
   localStorage.setItem('refresh_token', tokens.refresh_token);
@@ -183,6 +270,18 @@ export function clearAuthTokens() {
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   localStorage.removeItem('token_type');
+}
+
+export function logout() {
+  clearAuthTokens();
+}
+
+export function getAccessToken() {
+  return localStorage.getItem('access_token');
+}
+
+export function getToken() {
+  return getAccessToken();
 }
 
 export function getStoredTaskId() {
@@ -196,11 +295,11 @@ export function setStoredTaskId(taskId: string) {
 }
 
 export function isAuthenticated() {
-  return Boolean(localStorage.getItem('access_token'));
+  return Boolean(getAccessToken());
 }
 
 export async function login(payload: URLSearchParams) {
-  const response = await authApi.post<AuthTokens>('/auth/login', payload, {
+  const response = await api.post<AuthTokens>('/auth/login', payload, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -210,12 +309,27 @@ export async function login(payload: URLSearchParams) {
 }
 
 export async function register(payload: { username: string; password: string; email?: string }) {
-  const response = await authApi.post<UserProfile>('/auth/register', payload);
+  const response = await api.post<UserProfile>('/auth/register', payload);
+  return response.data;
+}
+
+export async function refreshAuthToken() {
+  const refreshToken = localStorage.getItem('refresh_token');
+
+  if (!refreshToken) {
+    throw new Error('No refresh token is available.');
+  }
+
+  const response = await api.post<AuthTokens>('/auth/refresh', {
+    refresh_token: refreshToken
+  });
+
+  setAuthTokens(response.data);
   return response.data;
 }
 
 export async function getCurrentUser() {
-  const response = await authApi.get<UserProfile>('/auth/me');
+  const response = await api.get<UserProfile>('/auth/me');
   return response.data;
 }
 
@@ -223,7 +337,7 @@ export async function uploadFile(file: File, onProgress?: (progress: number) => 
   const formData = new FormData();
   formData.append('file', file);
 
-  const response = await api.post<UploadResponse>('/upload', formData, {
+  const response = await api.post<UploadResponse>('/api/upload', formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
@@ -238,29 +352,29 @@ export async function uploadFile(file: File, onProgress?: (progress: number) => 
 }
 
 export async function getTaskStatus(taskId: string) {
-  const response = await api.get<TaskQueryResponse>(`/task/${taskId}`);
+  const response = await api.get<TaskQueryResponse>(`/api/task/${taskId}`);
   return response.data;
 }
 
 export async function getReport(taskId: string) {
-  const response = await api.get<ReportResponse>(`/report/${taskId}`);
+  const response = await api.get<ReportResponse>(`/api/report/${taskId}`);
   return response.data;
 }
 
 export async function exportReport(taskId: string, format: 'json' | 'markdown') {
-  const response = await api.get<Blob>(`/export/${taskId}/${format}`, {
+  const response = await api.get<Blob>(`/api/export/${taskId}/${format}`, {
     responseType: 'blob'
   });
   return response.data;
 }
 
 export async function analyzeSuggestion(request: SuggestionRequest) {
-  const response = await api.post<SuggestionAnalysisResponse>('/suggestions/analyze', request);
+  const response = await api.post<SuggestionAnalysisResponse>('/api/suggestions/analyze', request);
   return response.data;
 }
 
 export async function getExcellentExamples(speechType: string, limit = 3) {
-  const response = await api.get<Record<string, unknown>>('/suggestions/excellent-examples', {
+  const response = await api.get<Record<string, unknown>>('/api/suggestions/excellent-examples', {
     params: {
       speech_type: speechType,
       limit
@@ -270,12 +384,12 @@ export async function getExcellentExamples(speechType: string, limit = 3) {
 }
 
 export async function analyzeAttribution(request: AttributionRequest) {
-  const response = await api.post<AttributionAnalysisResponse>('/attribution/analyze', request);
+  const response = await api.post<AttributionAnalysisResponse>('/api/attribution/analyze', request);
   return response.data;
 }
 
 export async function getEmotionPeaks(emotionCurve: Array<Record<string, unknown>>, windowSeconds = 30) {
-  const response = await api.post<Record<string, unknown>>('/attribution/emotion-peaks', {
+  const response = await api.post<Record<string, unknown>>('/api/attribution/emotion-peaks', {
     emotion_curve: emotionCurve,
     window_seconds: windowSeconds
   });
@@ -283,38 +397,101 @@ export async function getEmotionPeaks(emotionCurve: Array<Record<string, unknown
 }
 
 export async function getTrendSessions(limit = 10) {
-  const response = await api.get<TrendSeriesResponse>('/trends/sessions', {
+  const response = await api.get<TrendSeriesResponse>('/api/trends/sessions', {
     params: { limit }
   });
   return response.data;
 }
 
 export async function getEmotionTrend(sessionIds: string[]) {
-  const response = await api.get<Record<string, unknown>>('/trends/emotion', {
+  const response = await api.get<Record<string, unknown>>('/api/trends/emotion', {
     params: { session_ids: sessionIds.join(',') }
   });
   return response.data;
 }
 
 export async function getSpeechQualityTrend(sessionIds: string[]) {
-  const response = await api.get<Record<string, unknown>>('/trends/speech-quality', {
+  const response = await api.get<Record<string, unknown>>('/api/trends/speech-quality', {
     params: { session_ids: sessionIds.join(',') }
   });
   return response.data;
 }
 
 export async function getEngagementTrend(sessionIds: string[]) {
-  const response = await api.get<Record<string, unknown>>('/trends/engagement', {
+  const response = await api.get<Record<string, unknown>>('/api/trends/engagement', {
     params: { session_ids: sessionIds.join(',') }
   });
   return response.data;
 }
 
 export async function getGrowthReport(sessionIds: string[]) {
-  const response = await api.get<Record<string, unknown>>('/trends/report', {
+  const response = await api.get<Record<string, unknown>>('/api/trends/report', {
     params: { session_ids: sessionIds.join(',') }
   });
   return response.data;
+}
+
+export async function getFeatures() {
+  const response = await api.get<FeatureResponse>('/api/features');
+  return response.data;
+}
+
+export async function getHistory() {
+  const response = await api.get<{ success: boolean; items?: HistoryItem[]; tasks?: HistoryItem[] }>('/api/task');
+  return response.data.items || response.data.tasks || [];
+}
+
+export async function deleteTask(taskId: string) {
+  const response = await api.delete<Record<string, unknown>>(`/api/task/${taskId}`);
+  return response.data;
+}
+
+function handleAuthFailure() {
+  clearAuthTokens();
+
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  const isAuthPage = currentPath.startsWith('/login') || currentPath.startsWith('/register');
+  const redirect = isAuthPage ? '' : `?redirect=${encodeURIComponent(currentPath)}`;
+  window.location.assign(`/login${redirect}`);
+}
+
+function showApiError(error: AxiosError) {
+  const message = extractErrorMessage(error);
+
+  if (message) {
+    ElMessage.error(message);
+  }
+}
+
+function extractErrorMessage(error: AxiosError) {
+  const data = error.response?.data as { detail?: unknown; message?: unknown } | undefined;
+  const detail = data?.detail ?? data?.message;
+
+  if (typeof detail === 'string') {
+    return detail;
+  }
+
+  if (Array.isArray(detail)) {
+    return detail.map((item) => {
+      if (typeof item === 'string') {
+        return item;
+      }
+      if (item && typeof item === 'object' && 'msg' in item) {
+        return String(item.msg);
+      }
+      return String(item);
+    }).join('; ');
+  }
+
+  if (error.message) {
+    return error.message;
+  }
+
+  return 'Request failed.';
 }
 
 export default api;

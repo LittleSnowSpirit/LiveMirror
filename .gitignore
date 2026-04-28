@@ -28,6 +28,8 @@ reports/
 exports/
 demo_output/
 test_output/
+data/test_roi_*/
+data/test_reports/
 tests/report.html
 tests/reports/
 tests/screenshots/
@@ -41,6 +43,9 @@ frontend/.env
 *.log
 *.out
 *.err
+
+# WorkBuddy
+.workbuddy/
 
 # OS files
 .DS_Store

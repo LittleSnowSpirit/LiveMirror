@@ -50,7 +50,11 @@ class LiveRoomData:
     product_count: int
     gmv: float  # 成交额
     avg_watch_time: float  # 平均观看时长（秒）
-    capture_time: str
+    capture_time: str = ""
+    
+    def __post_init__(self):
+        if not self.capture_time:
+            self.capture_time = datetime.now().isoformat()
     
     @classmethod
     def from_dict(cls, data: Dict) -> "LiveRoomData":
@@ -96,7 +100,7 @@ class Alert:
     message: str
     current_value: Any
     threshold: float
-    triggered_at: str
+    triggered_at: str = ""
     notified: bool = False
     notification_channels: List[str] = None
     
@@ -122,6 +126,7 @@ class CompetitorMonitorService:
     def __init__(self, data_dir: str = None):
         self.data_dir = Path(data_dir) if data_dir else Path(__file__).parent.parent / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
+        self._persistent = data_dir is None
         
         # 数据存储
         self.competitors: Dict[str, CompetitorInfo] = {}
@@ -157,7 +162,8 @@ class CompetitorMonitorService:
         }
         
         # 加载持久化数据
-        self._load_data()
+        if self._persistent:
+            self._load_data()
     
     def _load_data(self):
         """加载持久化数据"""
@@ -194,6 +200,9 @@ class CompetitorMonitorService:
             logger.error(f"加载数据失败：{e}")
     
     def _save_data(self):
+        if not self._persistent:
+            return
+
         """保存持久化数据"""
         try:
             # 保存竞品信息
@@ -567,6 +576,7 @@ class CompetitorMonitorService:
         """发送邮件通知"""
         # 实际实现需要 SMTP 配置
         config = self.notification_config["email"]
+        alert.notified = True
         logger.info(f"[邮件通知] {alert.competitor_name}: {alert.message}")
         # TODO: 实现实际邮件发送
     
@@ -574,6 +584,7 @@ class CompetitorMonitorService:
         """发送微信通知"""
         # 实际实现需要企业微信 API
         config = self.notification_config["wechat"]
+        alert.notified = True
         logger.info(f"[微信通知] {alert.competitor_name}: {alert.message}")
         # TODO: 实现实际微信通知
     

@@ -21,11 +21,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { login, setAuthTokens } from '../api';
 
 const router = useRouter();
+const route = useRoute();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
@@ -46,7 +47,9 @@ async function handleLogin() {
     const tokens = await login(formData);
     setAuthTokens(tokens);
     ElMessage.success('登录成功');
-    await router.push('/');
+    const requestedRedirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/';
+    const redirect = requestedRedirect.startsWith('/') ? requestedRedirect : '/';
+    await router.push(redirect);
   } catch (error: any) {
     const message = error?.response?.data?.detail || '登录失败，请检查用户名和密码';
     ElMessage.error(message);

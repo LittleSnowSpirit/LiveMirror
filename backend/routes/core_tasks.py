@@ -31,6 +31,9 @@ async def get_task_progress(task_id: str, _current_user=Depends(get_current_user
             "task_id": task.task_id,
             "status": task.status,
             "progress": task.progress,
+            "current_step": task.current_step,
+            "provider": task.provider,
+            "started_at": task.started_at.isoformat() if task.started_at else None,
             "completed": task.status in {"completed", "failed"},
             "error_message": task.error_message,
         }

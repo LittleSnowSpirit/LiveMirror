@@ -48,6 +48,7 @@ def test_core_health_and_openapi():
     client = TestClient(_load_app())
     assert client.get("/health").status_code == 200
     assert client.get("/openapi.json").status_code == 200
+    assert "/api/features" in client.get("/").json()["core_routes"]
 
 
 def test_upload_to_report_flow_with_mock_transcription():
@@ -73,6 +74,9 @@ def test_upload_to_report_flow_with_mock_transcription():
 
     assert task_payload is not None
     assert task_payload["status"] == "completed"
+    assert task_payload["current_step"] == "completed"
+    assert task_payload["provider"] == "mock"
+    assert task_payload["started_at"]
 
     report = client.get(f"/api/report/{task_id}", headers=headers)
     assert report.status_code == 200
@@ -93,8 +97,23 @@ def test_missing_task_returns_404():
     assert client.get("/api/report/not-found", headers=headers).status_code == 404
 
 
+def test_feature_registry_requires_authentication_and_lists_enabled_modules():
+    client = TestClient(_load_app())
+    assert client.get("/api/features").status_code == 401
+
+    headers = _auth_headers(client)
+    response = client.get("/api/features", headers=headers)
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert payload["success"] is True
+    enabled_ids = {feature["id"] for feature in payload["features"] if feature["enabled"]}
+    assert {"upload", "task", "report", "export", "attribution", "suggestions", "trends"}.issubset(enabled_ids)
+
+
 def test_core_routes_require_authentication():
     client = TestClient(_load_app())
+    assert client.get("/api/features").status_code == 401
     assert client.get("/api/task/not-found").status_code == 401
     assert client.get("/api/report/not-found").status_code == 401
     assert client.get("/api/export/not-found/json").status_code == 401

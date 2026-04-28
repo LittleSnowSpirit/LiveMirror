@@ -7,14 +7,10 @@
 - 推荐优秀话术
 """
 
-from fastapi import APIRouter, HTTPException, Query, Body
+from fastapi import APIRouter, HTTPException, Query, Body, Depends
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
 from dataclasses import asdict
-
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from services.suggestion_engine import (
     SuggestionEngine,
@@ -22,8 +18,13 @@ from services.suggestion_engine import (
     RewriteExample,
     ExcellentExample
 )
+from routes.core_auth import get_current_user
 
-router = APIRouter(prefix="/api/suggestions", tags=["话术优化建议"])
+router = APIRouter(
+    prefix="/api/suggestions",
+    tags=["话术优化建议"],
+    dependencies=[Depends(get_current_user)],
+)
 
 
 # ==================== 请求/响应模型 ====================

@@ -8,18 +8,19 @@
 - 提供优化建议
 """
 
-from fastapi import APIRouter, HTTPException, Query, Body
+from fastapi import APIRouter, HTTPException, Query, Body, Depends
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
 import json
 
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
 from services.attribution import AttributionAnalysisService, analyze_attribution
+from routes.core_auth import get_current_user
 
-router = APIRouter(prefix="/api/attribution", tags=["话术归因分析"])
+router = APIRouter(
+    prefix="/api/attribution",
+    tags=["话术归因分析"],
+    dependencies=[Depends(get_current_user)],
+)
 
 
 # ==================== 请求/响应模型 ====================

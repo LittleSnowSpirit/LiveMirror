@@ -87,6 +87,14 @@ class ControllerLog:
     operator: str = "auto"  # "auto" 或 "manual"
 
 
+class AttrDict(dict):
+    def __getattr__(self, item: str) -> Any:
+        try:
+            return self[item]
+        except KeyError as exc:
+            raise AttributeError(item) from exc
+
+
 class AssistantController:
     """智能场控助手主服务"""
     
@@ -227,6 +235,9 @@ class AssistantController:
         for alert in alerts:
             self.alerts.append(alert)
             self.stats["alerts_triggered"] += 1
+
+        if self.config["emotion_monitoring_enabled"] and len(self.danmaku_buffer) % 10 == 0:
+            self.emotion_history.append(await self._analyze_current_emotion())
         
         return alerts
     
@@ -453,19 +464,19 @@ class AssistantController:
             "is_live": self.is_live,
             "stream_id": self.current_stream_id,
             "stats": self.stats.copy(),
-            "recent_alerts": [asdict(a) for a in self.alerts[-10:]],
+            "recent_alerts": [self._alert_to_dict(a) for a in self.alerts[-10:]],
             "current_emotion": asdict(self.emotion_history[-1]) if self.emotion_history else None,
             "recent_suggestions": [asdict(s) for s in self.suggestions[-5:]],
             "recent_logs": [asdict(l) for l in self.operation_logs[-20:]],
         }
     
-    def get_operation_logs(self, limit: int = 50) -> List[Dict[str, Any]]:
+    def get_operation_logs(self, limit: int = 50) -> List[AttrDict]:
         """获取操作日志"""
-        return [asdict(log) for log in self.operation_logs[-limit:]]
+        return [AttrDict(asdict(log)) for log in self.operation_logs[-limit:]]
     
     def get_alerts(self, limit: int = 50) -> List[Dict[str, Any]]:
         """获取预警记录"""
-        return [asdict(alert) for alert in self.alerts[-limit:]]
+        return [self._alert_to_dict(alert) for alert in self.alerts[-limit:]]
     
     def get_emotion_trend(self, minutes: int = 10) -> List[Dict[str, Any]]:
         """获取情绪趋势"""
@@ -475,6 +486,12 @@ class AssistantController:
     def get_suggestions(self, limit: int = 10) -> List[Dict[str, Any]]:
         """获取节奏建议"""
         return [asdict(s) for s in self.suggestions[-limit:]]
+
+    @staticmethod
+    def _alert_to_dict(alert: Alert) -> Dict[str, Any]:
+        payload = asdict(alert)
+        payload["level"] = alert.level.value
+        return payload
 
 
 # 全局单例

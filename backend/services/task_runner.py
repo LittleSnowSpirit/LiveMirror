@@ -1,6 +1,8 @@
 """
-后台任务执行器
-使用 asyncio 直接管理任务，避免 BackgroundTasks 的问题
+Deprecated background task runner.
+
+New code must use services.task_queue.BackgroundTaskQueue. This module is kept
+only for legacy imports while historical modules are migrated.
 """
 
 import asyncio
