@@ -1,8 +1,0 @@
-{
-  "high_intensity": 75,
-  "low_intensity": 25,
-  "peak_detection": 85,
-  "valley_detection": 15,
-  "trend_window": 10,
-  "alert_threshold": 90
-}

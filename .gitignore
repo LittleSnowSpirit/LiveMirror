@@ -44,6 +44,13 @@ frontend/.env
 *.out
 *.err
 
+# Vue Auto-imports
+frontend/src/auto-imports.d.ts
+frontend/src/components.d.ts
+
+# CodeX
+.codex/
+
 # WorkBuddy
 .workbuddy/
 
