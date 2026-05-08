@@ -159,12 +159,12 @@ class TestGetDanmuBatchDetail:
         batch = batch_insert_danmus(db, user.id, path, "json", "t.json")
         os.unlink(path)
 
-        detail = get_danmu_batch_detail(db, batch.id)
+        detail = get_danmu_batch_detail(db, batch.batch_id)
         assert detail is not None
-        assert detail.id == batch.id
+        assert detail.batch_id == batch.batch_id
 
     def test_not_found(self, db):
-        assert get_danmu_batch_detail(db, 999) is None
+        assert get_danmu_batch_detail(db, "nonexistent") is None
 
 
 class TestGetDanmuByBatch:
@@ -177,7 +177,7 @@ class TestGetDanmuByBatch:
         batch = batch_insert_danmus(db, user.id, path, "json", "t.json")
         os.unlink(path)
 
-        danmus = get_danmu_by_batch(db, batch.id)
+        danmus = get_danmu_by_batch(db, batch.batch_id)
         assert len(danmus) == 2
         # ordered by timestamp
         assert danmus[0].timestamp <= danmus[1].timestamp
@@ -188,9 +188,9 @@ class TestGetDanmuByBatch:
         batch = batch_insert_danmus(db, user.id, path, "json", "t.json")
         os.unlink(path)
 
-        danmus = get_danmu_by_batch(db, batch.id, limit=3)
+        danmus = get_danmu_by_batch(db, batch.batch_id, limit=3)
         assert len(danmus) == 3
 
     def test_empty_for_nonexistent_batch(self, db):
-        danmus = get_danmu_by_batch(db, 999)
+        danmus = get_danmu_by_batch(db, "nonexistent")
         assert danmus == []

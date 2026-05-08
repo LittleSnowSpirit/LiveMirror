@@ -20,6 +20,7 @@ import {
   DataZoomComponent,
   MarkLineComponent,
   MarkPointComponent,
+  MarkAreaComponent,
   RadarComponent
 } from 'echarts/components'
 
@@ -42,6 +43,7 @@ echarts.use([
   DataZoomComponent,
   MarkLineComponent,
   MarkPointComponent,
+  MarkAreaComponent,
   RadarComponent,
   // 渲染器
   CanvasRenderer

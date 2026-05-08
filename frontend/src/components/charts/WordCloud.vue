@@ -134,6 +134,12 @@ function initChart() {
     useWordCloud = false;
     chart.setOption(buildBarFallbackOption());
   }
+
+  chart.on('click', (params: any) => {
+    if (params.name) {
+      emit('word-click', params.name);
+    }
+  });
 }
 
 function handleResize() {
@@ -145,14 +151,6 @@ onMounted(() => {
     initChart();
     window.addEventListener('resize', handleResize);
   });
-
-  if (chart) {
-    chart.on('click', (params: any) => {
-      if (params.name) {
-        emit('word-click', params.name);
-      }
-    });
-  }
 });
 
 onBeforeUnmount(() => {

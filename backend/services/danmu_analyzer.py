@@ -30,7 +30,7 @@ POSITIVE_WORDS: set[str] = {
     "漂亮", "绝了", "神了", "nb", "yyds", "冲", "买它", "下单",
     "喜欢", "棒", "赞", "优秀", "完美", "惊艳", "舒服", "开心",
     "好听", "真香", "良心", "划算", "值", "可以的", "不错", "支持",
-    "顶", "稳", "牛", "牛逼", "太好了", "真棒", "太帅了", "太美了",
+    "顶", "稳", "牛", "太好了", "真棒", "太帅了", "太美了",
     "可爱", "甜", "萌", "暖", "感动", "幸福", "快乐", "笑死",
     "哈哈", "哈哈哈", "笑", "乐", "笑嘻了", "起飞", "炸裂", "燃",
     "秀", "强", "猛", "无敌", "逆天", "封神", "牛逼plus",
@@ -287,22 +287,15 @@ def analyze_danmu_batch(db: Session, batch_id: str) -> dict[str, Any]:
     }
 
     # ── Step 6: 写入 AnalysisReport ──
-    # 查找 batch 对应的 task（如果有）
-    batch = db.query(DanmuBatch).filter(DanmuBatch.batch_id == batch_id).first()
-    if batch:
-        report = db.query(AnalysisReport).filter(
-            AnalysisReport.task_id == batch_id
-        ).first()
-        if report is None:
-            report = AnalysisReport(task_id=batch_id, report_data={})
-            db.add(report)
-        report_data = report.report_data or {}
-        report_data["danmu_analysis"] = result
-        report.report_data = report_data
-    else:
-        # 无 batch 记录，仅创建独立报告
-        report = AnalysisReport(task_id=batch_id, report_data={"danmu_analysis": result})
+    report = db.query(AnalysisReport).filter(
+        AnalysisReport.batch_id == batch_id
+    ).first()
+    if report is None:
+        report = AnalysisReport(batch_id=batch_id, report_data={})
         db.add(report)
+    report_data = report.report_data or {}
+    report_data["danmu_analysis"] = result
+    report.report_data = report_data
 
     db.flush()
     return result
@@ -405,18 +398,16 @@ def correlate_speech_danmu(
     correlations.sort(key=lambda x: x["danmu_count"], reverse=True)
 
     # 保存到报告
-    batch = db.query(DanmuBatch).filter(DanmuBatch.batch_id == batch_id).first()
-    if batch:
-        report = db.query(AnalysisReport).filter(
-            AnalysisReport.task_id == batch_id
-        ).first()
-        if report is None:
-            report = AnalysisReport(task_id=batch_id, report_data={})
-            db.add(report)
-        report_data = report.report_data or {}
-        report_data["speech_danmu_correlation"] = correlations
-        report.report_data = report_data
-        db.flush()
+    report = db.query(AnalysisReport).filter(
+        AnalysisReport.batch_id == batch_id
+    ).first()
+    if report is None:
+        report = AnalysisReport(batch_id=batch_id, report_data={})
+        db.add(report)
+    report_data = report.report_data or {}
+    report_data["speech_danmu_correlation"] = correlations
+    report.report_data = report_data
+    db.flush()
 
     return {
         "task_id": task_id,

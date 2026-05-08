@@ -246,12 +246,13 @@ class Task(Base):
 
 
 class AnalysisReport(Base):
-    """Persisted report payload generated from a task."""
+    """Persisted report payload generated from a task or danmu batch."""
 
     __tablename__ = "analysis_reports"
 
     id = Column(Integer, primary_key=True, index=True)
-    task_id = Column(String(100), ForeignKey("tasks.task_id"), nullable=False, index=True)
+    task_id = Column(String(100), ForeignKey("tasks.task_id"), nullable=True, index=True)
+    batch_id = Column(String(100), ForeignKey("danmu_batches.batch_id"), nullable=True, index=True)
     report_data = Column(SAJSON, nullable=False, default=dict)
     created_at = Column(DateTime, default=utc_now, index=True)
 
