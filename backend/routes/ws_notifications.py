@@ -77,7 +77,10 @@ async def ws_notifications(websocket: WebSocket):
 
         try:
             while True:
-                data = await websocket.receive_json()
+                try:
+                    data = await websocket.receive_json()
+                except Exception:
+                    continue  # skip malformed messages
                 action = data.get("type") or data.get("action")
 
                 if action == "ping":

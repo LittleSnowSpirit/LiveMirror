@@ -649,7 +649,7 @@ export async function pushSubscribe(subscription: { endpoint: string; keys: { p2
 }
 
 export async function pushUnsubscribe(endpoint: string) {
-  await api.delete('/api/notifications/push-unsubscribe', { data: { endpoint } });
+  await api.post('/api/notifications/push-unsubscribe', { endpoint });
 }
 
 function downloadBlob(blob: Blob, filename: string) {

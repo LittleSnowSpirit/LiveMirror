@@ -33,10 +33,20 @@ def get_or_create_quota(db: Session, user_id: int, *, lock: bool = False) -> Use
         db.flush()
 
     # 配额即将用完时发送通知（每周最多一次）
-    if quota.used_this_week >= quota.weekly_limit - 1 and quota.weekly_limit > 1:
+    # lock=True 时跳过：create_notification 会 commit 释放行锁
+    if not lock and quota.used_this_week >= quota.weekly_limit - 1 and quota.weekly_limit > 1:
         _check_and_notify_quota_low(db, user_id, monday)
 
     return quota
+
+
+def notify_quota_low_if_needed(db: Session, user_id: int) -> None:
+    """在配额操作完成后调用（锁已释放），检查并发送 quota_low 通知。"""
+    today = date_type.today()
+    monday = today - timedelta(days=today.weekday())
+    quota = db.query(UserQuota).filter(UserQuota.user_id == user_id).first()
+    if quota and quota.used_this_week >= quota.weekly_limit - 1 and quota.weekly_limit > 1:
+        _check_and_notify_quota_low(db, user_id, monday)
 
 
 def _check_and_notify_quota_low(db: Session, user_id: int, monday: date_type) -> None:

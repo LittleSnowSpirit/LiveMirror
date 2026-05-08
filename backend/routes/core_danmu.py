@@ -145,15 +145,26 @@ def _run_danmu_analysis(batch_id: str, user_id: int) -> None:
                 db.commit()
         except Exception:
             db.rollback()
-        create_notification(
-            db, user_id, "danmu_failed", "弹幕分析失败",
-            "弹幕批次分析失败",
-            link=f"/danmu/{batch_id}",
-            metadata={"batch_id": batch_id},
-        )
+            import logging as _logging
+            _logging.getLogger(__name__).exception("Failed to refund quota for user %d", user_id)
+        try:
+            create_notification(
+                db, user_id, "danmu_failed", "弹幕分析失败",
+                "弹幕批次分析失败",
+                link=f"/danmu/{batch_id}",
+                metadata={"batch_id": batch_id},
+            )
+        except Exception:
+            pass
         import logging
         logging.getLogger(__name__).exception("Danmu analysis failed for batch %s", batch_id)
     finally:
+        # 锁已释放，检查配额通知
+        try:
+            from services.quota import notify_quota_low_if_needed
+            notify_quota_low_if_needed(db, user_id)
+        except Exception:
+            pass
         db.close()
 
 
