@@ -206,42 +206,42 @@ function formatTime(iso: string) {
 
 <style scoped>
 .profile-page {
-  padding: 28px 24px 40px;
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
   width: min(800px, 100%);
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--space-6);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 30px;
+  font-size: var(--text-3xl);
   font-weight: 700;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
 }
 
 .section {
-  padding-bottom: 20px;
+  padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--app-border);
 }
 
@@ -313,32 +313,32 @@ h2 {
 .form-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .form-field label {
   display: block;
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--app-text-soft);
-  margin-bottom: 6px;
+  margin-bottom: var(--space-1);
 }
 
 .form-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   justify-content: flex-end;
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .info-grid {
   display: grid;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .info-grid > div {
   display: grid;
   grid-template-columns: 100px 1fr;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 dt {
@@ -352,10 +352,10 @@ dd {
 .quota-card {
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 20px;
+  gap: var(--space-6);
+  padding: var(--space-5);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
 }
 
@@ -367,23 +367,23 @@ dd {
 }
 
 .quota-number {
-  font-size: 36px;
+  font-size: var(--text-4xl);
   font-weight: 700;
   color: var(--app-primary-strong);
 }
 
 .quota-sep {
-  font-size: 20px;
+  font-size: var(--text-xl);
   color: var(--app-text-soft);
 }
 
 .quota-limit {
-  font-size: 20px;
+  font-size: var(--text-xl);
   color: var(--app-text-soft);
 }
 
 .quota-label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-text-faint);
   text-align: center;
   margin-top: 4px;
@@ -393,7 +393,7 @@ dd {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
   color: var(--app-text-soft);
 }
 
@@ -408,16 +408,16 @@ dd {
 .usage-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .usage-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: var(--space-3) var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
 }
 
@@ -434,13 +434,13 @@ dd {
 }
 
 .usage-meta {
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: var(--app-text-soft);
   margin-top: 2px;
 }
 
 .loading-state {
-  padding: 20px 0;
+  padding: var(--space-5) 0;
 }
 
 @media (max-width: 720px) {

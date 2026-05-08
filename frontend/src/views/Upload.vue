@@ -141,13 +141,13 @@ function resetForm() {
 
 <style scoped>
 .upload-page {
-  padding: 28px 24px 40px;
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
   width: min(840px, 100%);
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background:
     linear-gradient(135deg, rgba(45, 212, 191, 0.08), transparent 38%),
     var(--app-surface);
@@ -156,18 +156,18 @@ function resetForm() {
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-3);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: var(--text-4xl);
   font-weight: 820;
   letter-spacing: 0;
 }
@@ -179,16 +179,16 @@ h1 {
 }
 
 .mode-tabs :deep(.el-tabs__header) {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 
 .picker {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px;
+  gap: var(--space-4);
+  padding: var(--space-4);
   border: 1px dashed var(--app-border-strong);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
@@ -204,16 +204,16 @@ h1 {
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .result-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--space-3);
+  padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
 }
 
@@ -224,13 +224,13 @@ h1 {
 
 dl {
   display: grid;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 dl > div {
   display: grid;
   grid-template-columns: 96px 1fr;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 dt {

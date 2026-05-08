@@ -60,20 +60,20 @@ async function handleExportImage() {
 
 <style scoped>
 .export-panel {
-  padding: 16px;
+  padding: var(--space-4);
   border-top: 1px solid var(--app-border);
 }
 
 .export-panel h3 {
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--app-text);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
 }
 
 .export-actions {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 

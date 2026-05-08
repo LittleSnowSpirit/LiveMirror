@@ -17,21 +17,9 @@
     </section>
 
     <section class="metrics-row" aria-label="核心流程概览">
-      <div class="metric-tile">
-        <span class="metric-label">入口</span>
-        <strong>上传</strong>
-        <span>创建分析任务</span>
-      </div>
-      <div class="metric-tile">
-        <span class="metric-label">产出</span>
-        <strong>报告</strong>
-        <span>转写、分段、摘要</span>
-      </div>
-      <div class="metric-tile">
-        <span class="metric-label">优化</span>
-        <strong>建议</strong>
-        <span>归因、话术、趋势</span>
-      </div>
+      <StatCard label="入口" value="上传" icon="📤" />
+      <StatCard label="产出" value="报告" icon="📊" />
+      <StatCard label="优化" value="建议" icon="💡" />
     </section>
 
     <section class="grid workbench-grid">
@@ -126,6 +114,7 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getStoredTaskId, getTaskStatus } from '../api';
 import type { TaskInfo } from '../api';
+import StatCard from '../components/StatCard.vue';
 
 const router = useRouter();
 const loading = ref(false);
@@ -192,20 +181,20 @@ onMounted(() => {
 .home-page {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--space-4);
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 28px 24px 40px;
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .studio-brief {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 20px;
-  padding: 28px;
+  gap: var(--space-5);
+  padding: var(--space-6);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--app-primary) 10%, transparent), transparent 44%),
     var(--app-surface);
@@ -219,14 +208,14 @@ onMounted(() => {
 .eyebrow,
 .panel-kicker {
   color: var(--app-text-soft);
-  font-size: 12px;
+  font-size: var(--text-xs);
   letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .studio-brief h1 {
-  margin-top: 8px;
-  font-size: clamp(28px, 4vw, 46px);
+  margin-top: var(--space-2);
+  font-size: clamp(var(--text-2xl), 4vw, 46px);
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: 0;
@@ -241,7 +230,7 @@ onMounted(() => {
 }
 
 .hero-copy {
-  margin-top: 12px;
+  margin-top: var(--space-3);
   max-width: 62ch;
   line-height: 1.7;
 }
@@ -249,7 +238,7 @@ onMounted(() => {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
   align-content: flex-start;
   justify-content: flex-end;
   min-width: 240px;
@@ -258,41 +247,13 @@ onMounted(() => {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.metric-tile {
-  display: flex;
-  min-height: 118px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  border: 1px solid var(--app-border);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--app-surface) 72%, var(--app-surface-soft));
-  box-shadow: var(--app-shadow-soft);
-}
-
-.metric-label {
-  color: var(--app-text-soft);
-  font-size: 12px;
-}
-
-.metric-tile strong {
-  color: var(--app-data);
-  font-size: 28px;
-  font-weight: 800;
-}
-
-.metric-tile span:last-child {
-  color: var(--app-text-soft);
-  font-size: 14px;
+  gap: var(--space-3);
 }
 
 .workbench-grid {
@@ -300,53 +261,53 @@ onMounted(() => {
 }
 
 .panel {
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .panel-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .task-id {
-  padding: 10px 12px;
+  padding: var(--space-2) var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   word-break: break-all;
 }
 
 .task-file {
-  font-size: 14px;
+  font-size: var(--text-sm);
 }
 
 .status-block {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .panel-actions,
 .shortcut-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
   padding-left: 0;
   list-style: none;
   line-height: 1.8;
@@ -356,7 +317,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 40px 1fr;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .steps span {
@@ -364,21 +325,21 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   min-height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-strong);
   color: var(--app-primary-strong);
   font-weight: 800;
 }
 
 .small h3 {
-  font-size: 18px;
+  font-size: var(--text-lg);
 }
 
 @media (max-width: 760px) {
   .studio-brief {
     flex-direction: column;
     align-items: stretch;
-    padding: 20px;
+    padding: var(--space-5);
   }
 
   .hero-actions {

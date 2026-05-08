@@ -202,30 +202,30 @@ onMounted(() => {
 .analysis-page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 24px 40px;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-3);
 }
 
 .panel-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
@@ -240,32 +240,32 @@ onMounted(() => {
 .header-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .selection-box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px;
+  gap: var(--space-2);
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
 .session-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .session-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 14px;
+  gap: var(--space-2);
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
   color: var(--app-text);
   text-align: left;
@@ -285,33 +285,33 @@ onMounted(() => {
 .session-date,
 .session-score {
   color: var(--app-text-soft);
-  font-size: 13px;
+  font-size: var(--text-xs);
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .summary-item {
-  padding: 14px;
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
 .label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
   color: var(--app-text-soft);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .result-block {
-  padding: 16px;
+  padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;

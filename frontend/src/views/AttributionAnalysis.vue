@@ -144,30 +144,30 @@ async function runAnalysis() {
 .analysis-page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 24px 40px;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-3);
 }
 
 .panel-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
@@ -176,22 +176,22 @@ async function runAnalysis() {
 .form-grid {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px;
+  gap: var(--space-2);
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .list,
 .empty-result {
-  padding-left: 18px;
+  padding-left: var(--space-4);
   color: var(--app-text-soft);
   line-height: 1.7;
 }

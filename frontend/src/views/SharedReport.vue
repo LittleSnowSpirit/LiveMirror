@@ -179,53 +179,53 @@ function formatTime(value: unknown) {
 
 <style scoped>
 .shared-report-page {
-  padding: 28px 24px 40px;
+  padding: var(--space-6) var(--space-6) var(--space-10);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
   min-height: 100vh;
 }
 
 .panel {
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .access-card {
   max-width: 420px;
-  margin: 60px auto;
+  margin: var(--space-10) auto;
   width: 100%;
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--app-text);
 }
 
 h3 {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--app-text);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 
 .access-hint {
   color: var(--app-text-soft);
-  font-size: 14px;
+  font-size: var(--text-sm);
   line-height: 1.6;
 }
 
@@ -237,48 +237,48 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .badge {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--app-text-faint);
-  padding: 4px 8px;
+  padding: var(--space-1) var(--space-2);
   border: 1px solid var(--app-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .summary-item {
-  padding: 14px;
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
 .summary-item .label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
   color: var(--app-text-soft);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .transcript {
-  padding: 16px;
+  padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
@@ -289,7 +289,7 @@ h3 {
 .two-col {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .two-col > div {
@@ -298,7 +298,7 @@ h3 {
 }
 
 .list {
-  padding-left: 18px;
+  padding-left: var(--space-4);
   color: var(--app-text-soft);
   line-height: 1.7;
 }
@@ -309,7 +309,7 @@ h3 {
 }
 
 .loading-state {
-  padding: 60px 24px;
+  padding: var(--space-10) var(--space-6);
 }
 
 @media (max-width: 720px) {

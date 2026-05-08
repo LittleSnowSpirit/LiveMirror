@@ -211,38 +211,38 @@ function formatDuration(seconds: number) {
 
 <style scoped>
 .history-page {
-  padding: 28px 24px 40px;
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
   width: min(960px, 100%);
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: 30px;
+  font-size: var(--text-3xl);
   font-weight: 700;
 }
 
 .toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--space-3);
   align-items: center;
 }
 
@@ -253,13 +253,13 @@ h1 {
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .task-card {
-  padding: 16px;
+  padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface-soft);
   transition: border-color var(--transition-fast);
 }
@@ -276,7 +276,7 @@ h1 {
 .task-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .task-checkbox {
@@ -299,32 +299,32 @@ h1 {
 }
 
 .task-meta {
-  font-size: 13px;
+  font-size: var(--text-xs);
   color: var(--app-text-soft);
   margin-top: 2px;
 }
 
 .task-progress {
-  margin-top: 10px;
+  margin-top: var(--space-2);
 }
 
 .task-actions {
   display: flex;
-  gap: 4px;
-  margin-top: 10px;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
 }
 
 .empty-state {
-  padding: 40px 0;
+  padding: var(--space-10) 0;
 }
 
 .pagination-wrap {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .loading-state {
-  padding: 20px 0;
+  padding: var(--space-5) 0;
 }
 </style>
