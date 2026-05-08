@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import Task
+from routes.core_auth import get_current_user
 
 router = APIRouter(prefix="/api/batch-export", tags=["core-batch-export"])
 
@@ -64,14 +65,14 @@ def _to_markdown(report: dict) -> str:
 async def batch_export(
     request: BatchExportRequest,
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
     if not request.task_ids:
         raise HTTPException(status_code=400, detail="No task IDs provided.")
 
     tasks = (
         db.query(Task)
-        .filter(Task.task_id.in_(request.task_ids))
+        .filter(Task.task_id.in_(request.task_ids), Task.user_id == current_user.id)
         .all()
     )
 

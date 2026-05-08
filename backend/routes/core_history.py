@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import Task
+from routes.core_auth import get_current_user
 
 router = APIRouter(prefix="/api/history", tags=["core-history"])
 
@@ -16,8 +17,9 @@ async def list_history(
     status: str | None = Query(None),
     search: str | None = Query(None),
     db: Session = Depends(get_db),
+    current_user=Depends(get_current_user),
 ):
-    query = db.query(Task)
+    query = db.query(Task).filter(Task.user_id == current_user.id)
 
     if status:
         query = query.filter(Task.status == status)

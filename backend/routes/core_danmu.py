@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date as date_type, timedelta
 from pathlib import Path
 
-from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, Query, UploadFile
 from sqlalchemy.orm import Session
 
 from config import settings
@@ -18,32 +18,13 @@ from services.danmu_service import (
     get_danmu_batches,
     get_danmu_by_batch,
 )
+from services.quota import get_or_create_quota
 
 router = APIRouter(prefix="/api/danmu", tags=["core-danmu"])
 
 _ALLOWED_EXTENSIONS = {"json", "csv"}
 _CHUNK_SIZE = 1024 * 1024
 
-
-def _get_or_create_quota(db: Session, user_id: int, *, lock: bool = False) -> UserQuota:
-    """Return the current-week quota row, creating one if needed."""
-    today = date_type.today()
-    monday = today - timedelta(days=today.weekday())
-
-    query = db.query(UserQuota).filter(UserQuota.user_id == user_id)
-    if lock:
-        query = query.with_for_update()
-    quota = query.first()
-
-    if quota is None:
-        quota = UserQuota(user_id=user_id, week_start_date=monday)
-        db.add(quota)
-        db.flush()
-    elif quota.week_start_date != monday:
-        quota.used_this_week = 0
-        quota.week_start_date = monday
-        db.flush()
-    return quota
 
 
 @router.post("/upload")
@@ -177,7 +158,7 @@ async def trigger_danmu_analysis(
         raise HTTPException(status_code=403, detail="Forbidden.")
 
     # 配额检查（行锁防竞态）
-    quota = _get_or_create_quota(db, current_user.id, lock=True)
+    quota = get_or_create_quota(db, current_user.id, lock=True)
     if quota.used_this_week >= quota.weekly_limit:
         raise HTTPException(
             status_code=429,
@@ -226,7 +207,7 @@ async def get_danmu_analysis(
 @router.get("/analysis/{batch_id}/correlation")
 async def get_speech_danmu_correlation(
     batch_id: str,
-    task_id: str,
+    task_id: str = Query(..., description="关联的分析任务 ID"),
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
