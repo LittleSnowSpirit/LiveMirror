@@ -98,6 +98,7 @@ npm run test          # 运行前端测试 (vitest)
 - **基建 Agent**：Docker、CI/CD、PWA、部署脚本
 
 约束：
+- **Agent 必须指定 `model` 参数**：代码类用 `model: "sonnet"`，UI/图片类用 `model: "haiku"`（不传会 400 报错）
 - Lead 先定义 API 合约，再启动 Teammate 并行开发
 - Teammate 复杂任务先 Plan Mode，Lead 审核后执行
 - 每个 Agent 负责 3-5 个相关任务，不要拆太细
