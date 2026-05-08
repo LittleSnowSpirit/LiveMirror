@@ -11,3 +11,6 @@ bcrypt>=4.0.0
 httpx>=0.26.0  # DashScope API 调用
 faster-whisper>=1.0.0  # Whisper 转写
 reportlab>=4.0.0  # PDF 导出
+psycopg2-binary>=2.9.9  # PostgreSQL 驱动
+celery[redis]>=5.3.0  # 任务队列
+redis>=5.0.0  # Redis 客户端

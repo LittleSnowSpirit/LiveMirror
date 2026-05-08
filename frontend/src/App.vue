@@ -20,6 +20,8 @@
           >
             {{ item.navigation_label || item.name }}
           </RouterLink>
+          <RouterLink to="/history" class="nav-link">历史记录</RouterLink>
+          <RouterLink to="/profile" class="nav-link">个人中心</RouterLink>
           <button class="nav-link nav-button" type="button" @click="handleLogout">退出</button>
         </template>
         <template v-else>

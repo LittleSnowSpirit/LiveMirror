@@ -28,12 +28,20 @@ def _is_sqlite(database_url: str) -> bool:
     return database_url.startswith("sqlite")
 
 
+def _is_postgresql(database_url: str) -> bool:
+    return database_url.startswith("postgresql")
+
+
 _engine_kwargs = {
     "connect_args": _connect_args(_settings.database_url),
     "pool_pre_ping": True,
 }
+
 if _is_memory_sqlite(_settings.database_url):
     _engine_kwargs["poolclass"] = StaticPool
+elif _is_postgresql(_settings.database_url):
+    _engine_kwargs["pool_size"] = 5
+    _engine_kwargs["max_overflow"] = 10
 
 engine = create_engine(_settings.database_url, **_engine_kwargs)
 
@@ -61,7 +69,7 @@ def init_db() -> None:
         Base.metadata.create_all(bind=engine)
         return
 
-    if _should_stamp_existing_database():
+    if _is_sqlite(_settings.database_url) and _should_stamp_existing_database():
         _stamp_alembic_head()
         return
 

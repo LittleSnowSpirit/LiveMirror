@@ -5,7 +5,7 @@
     "platform": "douyin",
     "room_id": "test_room_001",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.799640"
+    "added_at": "2026-05-08T13:24:11.446361"
   },
   "6811662c6fc5": {
     "id": "6811662c6fc5",
@@ -13,7 +13,7 @@
     "platform": "taobao",
     "room_id": "tb_001",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.817288"
+    "added_at": "2026-05-08T13:24:11.460553"
   },
   "bb312b6d561a": {
     "id": "bb312b6d561a",
@@ -21,7 +21,7 @@
     "platform": "douyin",
     "room_id": "update_test",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.837481"
+    "added_at": "2026-05-08T13:24:11.468908"
   },
   "66f0dfe7afb6": {
     "id": "66f0dfe7afb6",
@@ -29,7 +29,7 @@
     "platform": "douyin",
     "room_id": "stream_test",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.867717"
+    "added_at": "2026-05-08T13:24:11.489382"
   },
   "16a77822e3f8": {
     "id": "16a77822e3f8",
@@ -37,7 +37,7 @@
     "platform": "douyin",
     "room_id": "get_stream_test",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.886229"
+    "added_at": "2026-05-08T13:24:11.499311"
   },
   "39a462107c4e": {
     "id": "39a462107c4e",
@@ -45,7 +45,7 @@
     "platform": "douyin",
     "room_id": "control_test",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.974923"
+    "added_at": "2026-05-08T13:24:11.583969"
   },
   "93517dc56708": {
     "id": "93517dc56708",
@@ -53,7 +53,7 @@
     "platform": "douyin",
     "room_id": "pause_test",
     "status": "paused",
-    "added_at": "2026-05-08T12:51:48.987416"
+    "added_at": "2026-05-08T13:24:11.592631"
   },
   "f601341991e3": {
     "id": "f601341991e3",
@@ -61,6 +61,6 @@
     "platform": "douyin",
     "room_id": "stop_test",
     "status": "active",
-    "added_at": "2026-05-08T12:51:48.999554"
+    "added_at": "2026-05-08T13:24:11.603399"
   }
 }

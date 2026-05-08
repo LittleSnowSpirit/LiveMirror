@@ -255,9 +255,41 @@ export interface HistoryItem {
   filename: string;
   status: string;
   progress?: number;
+  file_size?: number;
+  duration?: number | null;
   created_at?: string | null;
   completed_at?: string | null;
   [key: string]: unknown;
+}
+
+export interface HistoryParams {
+  page?: number;
+  page_size?: number;
+  status?: string;
+  search?: string;
+}
+
+export interface HistoryResponse {
+  success: boolean;
+  items: HistoryItem[];
+  total: number;
+  page: number;
+  page_size: number;
+}
+
+export interface UserQuota {
+  weekly_limit: number;
+  used_this_week: number;
+  remaining: number;
+  reset_at: string;
+}
+
+export interface UsageRecord {
+  id: string;
+  task_id: string;
+  filename: string;
+  created_at: string;
+  status: string;
 }
 
 export function setAuthTokens(tokens: AuthTokens) {
@@ -436,13 +468,34 @@ export async function getFeatures() {
   return response.data;
 }
 
-export async function getHistory() {
+export async function getHistory(params?: HistoryParams) {
+  if (params) {
+    const response = await api.get<HistoryResponse>('/api/history', { params });
+    return response.data;
+  }
   const response = await api.get<{ success: boolean; items?: HistoryItem[]; tasks?: HistoryItem[] }>('/api/task');
-  return response.data.items || response.data.tasks || [];
+  return { success: true, items: response.data.items || response.data.tasks || [], total: 0, page: 1, page_size: 20 };
 }
 
 export async function deleteTask(taskId: string) {
   const response = await api.delete<Record<string, unknown>>(`/api/task/${taskId}`);
+  return response.data;
+}
+
+export async function getUserQuota() {
+  const response = await api.get<{ success: boolean; quota: UserQuota }>('/api/user/quota');
+  return response.data.quota;
+}
+
+export async function getUsageRecords() {
+  const response = await api.get<{ success: boolean; records: UsageRecord[] }>('/api/user/usage');
+  return response.data.records;
+}
+
+export async function batchExport(taskIds: string[], format: 'json' | 'markdown') {
+  const response = await api.post<Blob>('/api/batch-export', { task_ids: taskIds, format }, {
+    responseType: 'blob'
+  });
   return response.data;
 }
 

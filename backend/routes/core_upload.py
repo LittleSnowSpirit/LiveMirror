@@ -6,13 +6,14 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from sqlalchemy.orm import Session
 
 from config import settings
+from database import get_db
 from routes.core_auth import get_current_user
 from services.core_analysis import build_core_analysis, build_report_data
 from services.database import (
     create_task,
-    get_db,
     get_task,
     update_task_analysis,
     update_task_duration,
@@ -29,6 +30,7 @@ _CHUNK_SIZE = 1024 * 1024
 @router.post("")
 async def upload_media(
     file: UploadFile = File(...),
+    db: Session = Depends(get_db),
     _current_user=Depends(get_current_user),
 ):
     if not file.filename:
@@ -67,11 +69,7 @@ async def upload_media(
     finally:
         file.file.close()
 
-    db = next(get_db())
-    try:
-        create_task(db, task_id, safe_name, str(save_path), file_size)
-    finally:
-        db.close()
+    create_task(db, task_id, safe_name, str(save_path), file_size)
 
     get_task_queue().submit(task_id, _process_upload_task, task_id)
 

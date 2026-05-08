@@ -247,7 +247,7 @@ describe('API functions', () => {
       data: { success: true, items: [{ task_id: '1' }] },
     });
     const result = await mod.getHistory();
-    expect(result).toEqual([{ task_id: '1' }]);
+    expect(result.items).toEqual([{ task_id: '1' }]);
   });
 
   it('getHistory falls back to tasks array', async () => {
@@ -255,7 +255,7 @@ describe('API functions', () => {
       data: { success: true, tasks: [{ task_id: '2' }] },
     });
     const result = await mod.getHistory();
-    expect(result).toEqual([{ task_id: '2' }]);
+    expect(result.items).toEqual([{ task_id: '2' }]);
   });
 
   it('deleteTask sends DELETE to /api/task/:id', async () => {

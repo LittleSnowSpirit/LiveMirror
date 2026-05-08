@@ -78,5 +78,85 @@
     "comparison": "gt",
     "enabled": false,
     "created_at": "2026-05-08T12:51:48.912197"
+  },
+  "78119af8532c": {
+    "id": "78119af8532c",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T13:19:05.331116"
+  },
+  "cabda6da3fb3": {
+    "id": "cabda6da3fb3",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T13:19:05.341305"
+  },
+  "759aacb6deb0": {
+    "id": "759aacb6deb0",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T13:21:00.789774"
+  },
+  "7e05df3b4b3a": {
+    "id": "7e05df3b4b3a",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T13:21:00.800012"
+  },
+  "ee79757348c4": {
+    "id": "ee79757348c4",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T13:23:22.696350"
+  },
+  "923cbb71836a": {
+    "id": "923cbb71836a",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T13:23:22.709280"
+  },
+  "636d12a6e600": {
+    "id": "636d12a6e600",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T13:24:11.511831"
+  },
+  "aff0aaf19cb9": {
+    "id": "aff0aaf19cb9",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T13:24:11.526289"
   }
 }
