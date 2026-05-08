@@ -292,19 +292,19 @@ onMounted(() => {
 .report-page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 24px 40px;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
 .panel {
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-surface);
 }
 
 .panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-3);
 }
 
 .header-row,
@@ -312,11 +312,11 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .kicker {
-  font-size: 12px;
+  font-size: var(--text-xs);
   color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
@@ -336,7 +336,7 @@ h3 {
 .two-col {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
 .query-row > :first-child {
@@ -357,30 +357,30 @@ h3 {
 }
 
 .summary-item {
-  padding: 14px;
+  padding: var(--space-3);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
 }
 
 .summary-item .label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
   color: var(--app-text-soft);
-  font-size: 12px;
+  font-size: var(--text-xs);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 4px;
+  gap: var(--space-2);
+  padding-top: var(--space-1);
 }
 
 .transcript {
-  padding: 16px;
+  padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
