@@ -21,19 +21,20 @@ defineProps<{
 }
 
 .kicker {
-  font-size: var(--text-xs);
-  color: var(--app-primary-strong);
-  font-weight: 800;
+  font-size: 13px;
+  color: var(--app-text-faint);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
 }
 
 .section-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: 600;
-  color: var(--app-text);
-  letter-spacing: -0.02em;
+  font-size: 13px;
+  color: var(--app-text-faint);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   line-height: 1.3;
 }
 </style>

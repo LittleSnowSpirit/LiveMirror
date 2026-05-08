@@ -25,8 +25,7 @@ defineProps<{
 .base-panel {
   background: var(--app-surface);
   border: 1px solid var(--app-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--app-shadow-card);
+  border-radius: 6px;
   overflow: hidden;
 }
 

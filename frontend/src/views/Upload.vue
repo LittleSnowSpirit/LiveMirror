@@ -1,18 +1,18 @@
 <template>
   <div class="upload-page">
-    <el-card class="panel glass">
-      <p class="kicker">创建任务</p>
-      <h1>创建分析任务</h1>
-      <p class="copy">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
+    <h1 class="page-title">上传分析</h1>
+    <p class="page-desc">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
 
-      <el-tabs v-model="activeTab" class="mode-tabs styled-tabs">
+    <el-card class="upload-card">
+      <el-tabs v-model="activeTab" class="upload-tabs">
         <!-- File Upload Tab -->
         <el-tab-pane label="上传文件" name="upload">
-          <div class="picker drop-zone">
-            <input ref="fileInput" class="file-input" type="file" accept="audio/*,video/*" @change="handleFileChange" />
-            <div class="file-meta">
-              <p class="file-name">{{ fileName || '还没有选择文件' }}</p>
-              <p class="file-hint">支持常见音视频格式。</p>
+          <div class="drop-zone" @click="fileInput?.click()">
+            <input ref="fileInput" class="file-input-hidden" type="file" accept="audio/*,video/*" @change="handleFileChange" />
+            <div class="drop-content">
+              <span class="drop-icon">📎</span>
+              <p class="drop-text">拖放文件到此处或点击选择</p>
+              <p class="drop-hint">{{ fileName || '支持常见音视频格式' }}</p>
             </div>
           </div>
 
@@ -23,13 +23,13 @@
             <el-button @click="router.push('/report')">去报告页</el-button>
           </div>
 
-          <div v-if="uploading || uploadProgress > 0" class="progress-glow">
+          <div v-if="uploading || uploadProgress > 0" class="progress-area">
             <el-progress :percentage="uploadProgress" :stroke-width="10" />
           </div>
 
           <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
 
-          <div v-if="result" class="result-box result-success">
+          <div v-if="result" class="result-box">
             <p class="result-title">上传完成</p>
             <dl>
               <div>
@@ -143,126 +143,76 @@ function resetForm() {
 
 <style scoped>
 .upload-page {
-  padding: var(--space-6) var(--space-6) var(--space-10);
-}
-
-.panel {
   width: min(840px, 100%);
   margin: 0 auto;
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, rgba(167, 139, 250, 0.06), transparent 38%),
-    var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  transition: box-shadow var(--transition-normal);
-}
-
-.panel:hover {
-  box-shadow: var(--app-glow);
-}
-
-.panel :deep(.el-card__body) {
+  padding: var(--space-6) var(--space-6) var(--space-10);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.kicker {
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.page-title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--app-text);
 }
 
-h1 {
-  font-size: var(--text-4xl);
-  font-weight: 820;
-  letter-spacing: 0;
-}
-
-.copy,
-.file-hint {
+.page-desc {
+  font-size: var(--text-sm);
   color: var(--app-text-soft);
-  line-height: 1.7;
-}
-
-/* Tab bar — gradient underline on active tab */
-.styled-tabs :deep(.el-tabs__header) {
   margin-bottom: var(--space-2);
 }
 
-.styled-tabs :deep(.el-tabs__active-bar) {
-  background: var(--app-gradient-primary-h);
-  height: 3px;
-  border-radius: 2px;
+.upload-card :deep(.el-card__body) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.styled-tabs :deep(.el-tabs__item.is-active) {
-  color: var(--app-primary-strong);
+.upload-tabs :deep(.el-tabs__header) {
+  margin-bottom: var(--space-2);
 }
 
-/* Drop zone — animated dashed border */
 .drop-zone {
-  position: relative;
-  border: none;
-  background: var(--app-bg-deep);
-  z-index: 0;
-}
-
-.drop-zone::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  border: 2px dashed var(--app-border);
   border-radius: var(--radius-lg);
-  padding: 1.5px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--app-primary) 0,
-    var(--app-primary) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  pointer-events: none;
-  opacity: 0.3;
-  animation: dashScroll 20s linear infinite;
-}
-
-@keyframes dashScroll {
-  to {
-    background-position: 200px 0;
-  }
-}
-
-.drop-zone:hover::before {
-  opacity: 0.6;
-}
-
-.picker {
+  padding: var(--space-12) var(--space-6);
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
-  position: relative;
-  z-index: 0;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition-normal);
+  background: var(--app-bg-deep);
 }
 
-.file-input {
-  max-width: 280px;
-  color: var(--app-text-soft);
+.drop-zone:hover {
+  border-color: var(--app-primary);
 }
 
-.file-name {
-  font-weight: 600;
+.file-input-hidden {
+  display: none;
+}
+
+.drop-content {
+  text-align: center;
+}
+
+.drop-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.drop-text {
+  font-size: var(--text-sm);
+  color: var(--app-text);
+  font-weight: 500;
+}
+
+.drop-hint {
+  font-size: var(--text-xs);
+  color: var(--app-text-faint);
+  margin-top: var(--space-1);
 }
 
 .actions {
@@ -271,35 +221,23 @@ h1 {
   gap: var(--space-2);
 }
 
-/* Progress bar — glow container */
-.progress-glow {
+.progress-area {
   padding: var(--space-2) 0;
-  border-radius: var(--radius-md);
-  box-shadow: var(--app-glow-accent);
 }
 
-/* Result area — glass card with success glow */
 .result-box {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4);
   border: 1px solid var(--app-border);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
-}
-
-.result-success {
-  border-color: rgba(74, 222, 128, 0.2);
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+  border-radius: var(--radius-md);
+  background: var(--app-surface);
 }
 
 .result-title {
   font-weight: 600;
-  color: var(--app-primary-strong);
+  color: var(--app-text);
 }
 
 dl {
@@ -320,16 +258,5 @@ dt {
 dd {
   color: var(--app-text);
   word-break: break-all;
-}
-
-@media (max-width: 640px) {
-  .picker {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .file-input {
-    max-width: 100%;
-  }
 }
 </style>

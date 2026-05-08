@@ -61,55 +61,20 @@ async function handleExportImage() {
 <style scoped>
 .export-panel {
   padding: var(--space-4);
-  border-top: 1px solid var(--app-glass-border);
+  border-top: 1px solid var(--app-border);
 }
 
 .export-panel h3 {
   font-size: var(--text-sm);
   font-weight: 600;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--app-text);
   margin-bottom: var(--space-3);
 }
 
-/* Glass buttons with hover glow */
 .export-actions {
   display: flex;
   gap: var(--space-2);
   flex-wrap: wrap;
-}
-
-.export-actions :deep(.el-button) {
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--app-glass-border);
-  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.export-actions :deep(.el-button:hover) {
-  border-color: rgba(167, 139, 250, 0.3);
-  box-shadow: var(--app-glow);
-  transform: translateY(-1px);
-}
-
-/* Primary share button — gradient */
-.export-actions :deep(.el-button--primary) {
-  background: var(--app-gradient-primary);
-  border: none;
-  color: #06110f;
-  font-weight: 600;
-}
-
-.export-actions :deep(.el-button--primary:hover) {
-  box-shadow: var(--app-glow-strong);
-}
-
-/* Dropdown trigger — gradient border on hover */
-.export-actions :deep(.el-dropdown .el-button:hover) {
-  border-image: var(--app-gradient-border) 1;
 }
 
 @media (max-width: 720px) {
