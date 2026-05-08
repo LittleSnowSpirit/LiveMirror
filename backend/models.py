@@ -1,13 +1,13 @@
 """数据模型"""
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, Float, Text, ForeignKey, Index
 from sqlalchemy.orm import relationship
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from database import Base
 import bcrypt
 
 
 def utc_now() -> datetime:
-    return datetime.now(UTC)
+    return datetime.now(timezone.utc)
 
 
 class User(Base):
@@ -240,3 +240,31 @@ class AnalysisReport(Base):
     created_at = Column(DateTime, default=utc_now, index=True)
 
     task = relationship("Task", back_populates="reports")
+
+
+class ExcellentExample(Base):
+    """优秀话术示例模型"""
+    __tablename__ = "excellent_examples"
+
+    id = Column(Integer, primary_key=True, index=True)
+    speech_type = Column(String(50), nullable=False, index=True)
+    content = Column(Text, nullable=False)
+    score = Column(Float, nullable=False)
+    emotion_impact = Column(Float, nullable=False)
+    engagement_rate = Column(Float, nullable=False)
+    session_id = Column(String(100), nullable=True)
+    timestamp = Column(Float, nullable=True)
+    created_at = Column(DateTime, default=utc_now)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "speech_type": self.speech_type,
+            "content": self.content,
+            "score": self.score,
+            "emotion_impact": self.emotion_impact,
+            "engagement_rate": self.engagement_rate,
+            "session_id": self.session_id,
+            "timestamp": self.timestamp,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+        }

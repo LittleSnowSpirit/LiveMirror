@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import time
+from dataclasses import dataclass, field
 from pathlib import Path
 from shutil import which
 from threading import Lock
@@ -21,6 +22,9 @@ class TranscriptionResult:
     segments: list[dict[str, Any]]
     duration: float | None = None
     language: str | None = None
+    model_load_time: float | None = None
+    transcribe_time: float | None = None
+    total_time: float | None = None
 
 
 class TranscriptionService(Protocol):
@@ -79,7 +83,15 @@ class LocalWhisperTranscriptionService:
         if not path.exists():
             raise FileNotFoundError(f"Media file does not exist: {file_path}")
 
+        total_start = time.time()
+
+        # 加载模型
+        model_load_start = time.time()
         model = self._load_model()
+        model_load_time = time.time() - model_load_start
+
+        # 转写
+        transcribe_start = time.time()
         segments_iter, info = model.transcribe(str(path), language=self.language)
         segments: list[dict[str, Any]] = []
         texts: list[str] = []
@@ -96,11 +108,17 @@ class LocalWhisperTranscriptionService:
                 }
             )
 
+        transcribe_time = time.time() - transcribe_start
+        total_time = time.time() - total_start
+
         return TranscriptionResult(
             text=" ".join(texts).strip(),
             segments=segments,
             duration=getattr(info, "duration", None),
             language=getattr(info, "language", self.language),
+            model_load_time=round(model_load_time, 2),
+            transcribe_time=round(transcribe_time, 2),
+            total_time=round(total_time, 2),
         )
 
 

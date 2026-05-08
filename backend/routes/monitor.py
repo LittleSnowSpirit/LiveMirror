@@ -8,7 +8,7 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 import asyncio
 
-from ..services.competitor_monitor import (
+from services.competitor_monitor import (
     get_monitor_service,
     CompetitorInfo,
     LiveRoomData,

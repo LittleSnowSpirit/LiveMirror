@@ -1,10 +1,10 @@
-"""Database engine, sessions, migrations, and compatibility helpers."""
+"""Database engine, sessions, and migrations."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-from sqlalchemy import create_engine, event, inspect, text
+from sqlalchemy import create_engine, event, inspect
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.pool import StaticPool
 
@@ -62,13 +62,11 @@ def init_db() -> None:
         return
 
     if _should_stamp_existing_database():
-        ensure_database_compatibility()
         _stamp_alembic_head()
         return
 
     if not _run_alembic_upgrade():
         Base.metadata.create_all(bind=engine)
-        ensure_database_compatibility()
 
 
 def _should_stamp_existing_database() -> bool:
@@ -109,28 +107,6 @@ def _alembic_config():
     config.set_main_option("script_location", str(BASE_DIR / "migrations"))
     config.set_main_option("sqlalchemy.url", _settings.database_url)
     return config
-
-
-def ensure_database_compatibility() -> None:
-    """Temporary compatibility bridge for SQLite databases created before Alembic."""
-    if not _is_sqlite(_settings.database_url):
-        return
-
-    inspector = inspect(engine)
-    if "tasks" not in inspector.get_table_names():
-        return
-
-    existing = {column["name"] for column in inspector.get_columns("tasks")}
-    additions = {
-        "current_step": "ALTER TABLE tasks ADD COLUMN current_step VARCHAR(64) DEFAULT 'pending'",
-        "provider": "ALTER TABLE tasks ADD COLUMN provider VARCHAR(64)",
-        "started_at": "ALTER TABLE tasks ADD COLUMN started_at DATETIME",
-    }
-
-    with engine.begin() as connection:
-        for column, statement in additions.items():
-            if column not in existing:
-                connection.execute(text(statement))
 
 
 def get_db():

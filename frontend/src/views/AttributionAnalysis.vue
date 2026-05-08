@@ -46,8 +46,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { ElMessage } from 'element-plus';
 import { analyzeAttribution, getReport, getStoredTaskId } from '../api';
+import { ElMessage } from 'element-plus';
 
 const taskIdInput = ref('');
 const topN = ref(10);

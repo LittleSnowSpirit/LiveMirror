@@ -308,13 +308,13 @@ class LiveMirrorAnalyzer:
     def _call_deepseek_api(self, prompt: str) -> Optional[Dict[str, Any]]:
         """调用 DeepSeek API"""
         try:
-            import requests
-            
+            import httpx
+
             headers = {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
-            
+
             payload = {
                 "model": self.model,
                 "messages": [
@@ -324,14 +324,14 @@ class LiveMirrorAnalyzer:
                 "temperature": 0.3,
                 "response_format": {"type": "json_object"}
             }
-            
-            response = requests.post(
+
+            response = httpx.post(
                 f"{self.api_base}/v1/chat/completions",
                 headers=headers,
                 json=payload,
                 timeout=60
             )
-            
+
             if response.status_code == 200:
                 result = response.json()
                 content = result["choices"][0]["message"]["content"]
@@ -339,21 +339,21 @@ class LiveMirrorAnalyzer:
             else:
                 print(f"DeepSeek API 错误：{response.status_code}")
                 return None
-                
+
         except ImportError:
-            print("[警告] 未安装 requests 库，使用规则分析")
+            print("[警告] 未安装 httpx 库，使用规则分析")
             return None
     
     def _call_gpt_api(self, prompt: str) -> Optional[Dict[str, Any]]:
         """调用 GPT API"""
         try:
-            import requests
-            
+            import httpx
+
             headers = {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
-            
+
             payload = {
                 "model": self.model,
                 "messages": [
@@ -363,8 +363,8 @@ class LiveMirrorAnalyzer:
                 "temperature": 0.3,
                 "response_format": {"type": "json_object"}
             }
-            
-            response = requests.post(
+
+            response = httpx.post(
                 "https://api.openai.com/v1/chat/completions",
                 headers=headers,
                 json=payload,

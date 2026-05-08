@@ -1,6 +1,6 @@
 """Core authentication API."""
 
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -43,7 +43,7 @@ class TokenResponse(BaseModel):
 
 def create_token(data: dict, expires_delta: timedelta, token_type: str) -> str:
     payload = data.copy()
-    payload.update({"exp": datetime.now(UTC) + expires_delta, "type": token_type})
+    payload.update({"exp": datetime.now(timezone.utc) + expires_delta, "type": token_type})
     return jwt.encode(payload, settings.secret_key, algorithm=ALGORITHM)
 
 

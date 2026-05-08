@@ -11,6 +11,7 @@ from fastapi import APIRouter, HTTPException, Query, Body, Depends
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
 from dataclasses import asdict
+from sqlalchemy.orm import Session
 
 from services.suggestion_engine import (
     SuggestionEngine,
@@ -19,6 +20,7 @@ from services.suggestion_engine import (
     ExcellentExample
 )
 from routes.core_auth import get_current_user
+from database import get_db
 
 router = APIRouter(
     prefix="/api/suggestions",
@@ -54,22 +56,22 @@ class SuggestionRequest(BaseModel):
 # ==================== API 接口 ====================
 
 @router.post("/diagnose", response_model=Dict[str, Any], summary="诊断话术问题")
-async def diagnose_speech_api(request: SuggestionRequest):
+async def diagnose_speech_api(request: SuggestionRequest, db: Session = Depends(get_db)):
     """
     诊断单个话术的问题
-    
+
     **功能**:
     - 节奏问题（过长/过短）
     - 情感表达（平淡/过度）
     - 互动元素（缺少引导）
     - 关键词使用（缺少促销词）
     - 逻辑结构（不完整）
-    
+
     **返回**:
     - 问题列表（按严重程度排序）
     """
     try:
-        engine = SuggestionEngine()
+        engine = SuggestionEngine(db)
         
         speech_data = request.speech.dict()
         metrics = request.metrics.dict() if request.metrics else None
@@ -90,20 +92,20 @@ async def diagnose_speech_api(request: SuggestionRequest):
 
 
 @router.post("/rewrite", response_model=Dict[str, Any], summary="生成改写示例")
-async def generate_rewrite_api(request: SuggestionRequest):
+async def generate_rewrite_api(request: SuggestionRequest, db: Session = Depends(get_db)):
     """
     生成话术改写示例
-    
+
     **功能**:
     - Before/After 对比
     - 改动说明
     - 预期效果提升
-    
+
     **返回**:
     - 改写示例（如果有改进空间）
     """
     try:
-        engine = SuggestionEngine()
+        engine = SuggestionEngine(db)
         
         speech_data = request.speech.dict()
         metrics = request.metrics.dict() if request.metrics else None
@@ -139,27 +141,27 @@ async def generate_rewrite_api(request: SuggestionRequest):
 
 
 @router.post("/analyze", response_model=Dict[str, Any], summary="完整分析")
-async def analyze_speech_api(request: SuggestionRequest):
+async def analyze_speech_api(request: SuggestionRequest, db: Session = Depends(get_db)):
     """
     完整的话术分析
-    
+
     **功能**:
     - 问题诊断
     - 优化建议
     - 改写示例
     - 优秀案例推荐
-    
+
     **返回**:
     - 完整的分析报告
     """
     try:
         speech_data = request.speech.dict()
         metrics = request.metrics.dict() if request.metrics else None
-        
+
         result = analyze_speech(speech_data, metrics)
-        
+
         # 推荐优秀案例
-        engine = SuggestionEngine()
+        engine = SuggestionEngine(db)
         excellent_examples = engine.recommend_excellent_examples(
             speech_data.get('type', 'unknown'),
             limit=2
@@ -184,11 +186,12 @@ async def analyze_speech_api(request: SuggestionRequest):
 @router.get("/excellent-examples", response_model=Dict[str, Any], summary="优秀话术推荐")
 async def get_excellent_examples_api(
     speech_type: str = Query(..., description="话术类型"),
-    limit: int = Query(3, ge=1, le=10, description="返回数量")
+    limit: int = Query(3, ge=1, le=10, description="返回数量"),
+    db: Session = Depends(get_db)
 ):
     """
     推荐优秀话术示例
-    
+
     **话术类型**:
     - opening: 开场白
     - product_intro: 产品介绍
@@ -197,7 +200,7 @@ async def get_excellent_examples_api(
     - closing: 促单成交
     """
     try:
-        engine = SuggestionEngine()
+        engine = SuggestionEngine(db)
         examples = engine.recommend_excellent_examples(speech_type, limit)
         
         return {

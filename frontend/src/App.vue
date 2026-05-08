@@ -40,7 +40,6 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
 import { getFeatures, isAuthenticated, logout, type FeatureInfo } from './api';
-import { initTheme } from './utils/theme';
 
 const route = useRoute();
 const router = useRouter();
@@ -56,7 +55,6 @@ const navigationFeatures = computed(() => features.value.filter((feature) => (
 )));
 
 onMounted(() => {
-  initTheme();
   void refreshNavigation();
 });
 
@@ -91,86 +89,12 @@ async function handleLogout() {
 </script>
 
 <style>
+@import './styles/tokens.css';
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-:root {
-  color-scheme: dark;
-  --app-bg: #0b1110;
-  --app-bg-deep: #080d0c;
-  --app-surface: #121b18;
-  --app-surface-soft: #18241f;
-  --app-surface-strong: #20302a;
-  --app-surface-raised: #17211e;
-  --app-border: #2b3c35;
-  --app-border-strong: #3e554c;
-  --app-text: #eef6f2;
-  --app-text-soft: #99aaa3;
-  --app-text-faint: #71847b;
-  --app-primary: #2dd4bf;
-  --app-primary-strong: #5eead4;
-  --app-primary-soft: rgba(45, 212, 191, 0.14);
-  --app-accent: #ff7a59;
-  --app-warning: #f2b84b;
-  --app-data: #8de0d4;
-  --app-success: #4ade80;
-  --app-danger: #fb7185;
-  --app-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
-  --app-shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.24);
-
-  --el-bg-color: var(--app-surface);
-  --el-bg-color-page: var(--app-bg);
-  --el-bg-color-overlay: var(--app-surface-raised);
-  --el-border-color: var(--app-border);
-  --el-border-color-light: var(--app-border);
-  --el-border-color-lighter: var(--app-border);
-  --el-card-bg-color: var(--app-surface);
-  --el-color-primary: var(--app-primary);
-  --el-color-primary-light-3: #55decd;
-  --el-color-primary-light-5: #2f8f83;
-  --el-color-primary-light-7: #255f58;
-  --el-color-primary-light-8: #1d463f;
-  --el-color-primary-light-9: #17342f;
-  --el-color-primary-dark-2: var(--app-primary-strong);
-  --el-fill-color: var(--app-surface-soft);
-  --el-fill-color-blank: var(--app-surface);
-  --el-fill-color-light: var(--app-surface-soft);
-  --el-fill-color-lighter: var(--app-surface-soft);
-  --el-text-color-primary: var(--app-text);
-  --el-text-color-regular: var(--app-text);
-  --el-text-color-secondary: var(--app-text-soft);
-  --el-text-color-placeholder: var(--app-text-faint);
-  --el-mask-color: rgba(8, 13, 12, 0.72);
-  --el-disabled-bg-color: #111816;
-  --el-disabled-text-color: var(--app-text-faint);
-}
-
-[data-theme='dark'] {
-  color-scheme: dark;
-  --app-bg: #0b1110;
-  --app-bg-deep: #080d0c;
-  --app-surface: #121b18;
-  --app-surface-soft: #18241f;
-  --app-surface-strong: #20302a;
-  --app-surface-raised: #17211e;
-  --app-border: #2b3c35;
-  --app-border-strong: #3e554c;
-  --app-text: #eef6f2;
-  --app-text-soft: #99aaa3;
-  --app-text-faint: #71847b;
-  --app-primary: #2dd4bf;
-  --app-primary-strong: #5eead4;
-  --app-primary-soft: rgba(45, 212, 191, 0.14);
-  --app-accent: #ff7a59;
-  --app-warning: #f2b84b;
-  --app-data: #8de0d4;
-  --app-success: #4ade80;
-  --app-danger: #fb7185;
-  --app-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
-  --app-shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.24);
 }
 
 html,
@@ -180,12 +104,11 @@ body,
 }
 
 body {
-  background:
-    linear-gradient(180deg, rgba(45, 212, 191, 0.09), rgba(45, 212, 191, 0) 300px),
-    linear-gradient(90deg, rgba(255, 122, 89, 0.05), rgba(255, 122, 89, 0) 460px),
-    var(--app-bg);
+  background: var(--app-bg);
   color: var(--app-text);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -208,8 +131,20 @@ a,
 }
 
 :focus-visible {
-  outline: 3px solid rgba(15, 118, 110, 0.28);
+  outline: 2px solid var(--app-primary);
   outline-offset: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--app-text);
 }
 
 .app-shell {
@@ -226,11 +161,9 @@ a,
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 14px 24px;
+  padding: 16px 40px;
   border-bottom: 1px solid var(--app-border);
-  background: rgba(14, 21, 19, 0.9);
-  box-shadow: var(--app-shadow-soft);
-  backdrop-filter: blur(14px);
+  background: var(--app-surface);
 }
 
 .brand {
@@ -244,17 +177,18 @@ a,
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  font-family: var(--font-heading);
   font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .brand-signal {
   width: 10px;
   height: 10px;
-  border-radius: 3px;
-  background: var(--app-accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--app-accent) 16%, transparent);
+  border-radius: var(--radius-sm);
+  background: var(--app-primary);
+  box-shadow: 0 0 0 4px var(--app-primary-soft);
 }
 
 .brand-copy {
@@ -272,27 +206,31 @@ a,
 .nav-link {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
-  padding: 0 12px;
-  border: 1px solid var(--app-border);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--app-surface) 82%, var(--app-surface-soft));
-  color: var(--app-text);
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--app-text-soft);
   text-decoration: none;
-  font-weight: 600;
-  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  transition: border-color var(--transition-fast), color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .nav-button {
   appearance: none;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--app-text);
+  border-color: var(--app-border);
+}
+
 .nav-link.router-link-active {
   border-color: var(--app-primary);
-  color: var(--app-primary-strong);
+  color: var(--app-primary);
   background: var(--app-primary-soft);
-  box-shadow: inset 0 -2px 0 var(--app-primary);
 }
 
 .app-main {
@@ -316,17 +254,21 @@ a,
 .panel h2,
 .panel h3 {
   color: var(--app-text);
-  font-weight: 760;
-  letter-spacing: 0;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
+
+.panel h1 { font-size: var(--text-3xl); }
+.panel h2 { font-size: var(--text-2xl); }
+.panel h3 { font-size: var(--text-xl); }
 
 .el-card {
   border-color: var(--app-border) !important;
-  background:
-    linear-gradient(180deg, rgba(45, 212, 191, 0.035), rgba(45, 212, 191, 0)),
-    var(--app-surface) !important;
+  background: var(--app-surface) !important;
   color: var(--app-text) !important;
-  box-shadow: var(--app-shadow-soft) !important;
+  box-shadow: var(--app-shadow-card) !important;
 }
 
 .el-card__body {
@@ -335,9 +277,9 @@ a,
 }
 
 .el-button {
-  border-radius: 8px;
-  font-weight: 650;
-  letter-spacing: 0;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .el-button--primary {
@@ -383,7 +325,7 @@ a,
 .el-textarea__inner {
   background-color: var(--app-bg-deep) !important;
   color: var(--app-text) !important;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   box-shadow: 0 0 0 1px var(--app-border) inset !important;
 }
 
@@ -432,7 +374,7 @@ a,
 }
 
 .el-alert {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background-color: var(--app-surface-soft) !important;
   color: var(--app-text) !important;
 }
@@ -476,12 +418,20 @@ a,
     var(--app-surface-strong) 37%,
     var(--app-surface-soft) 63%
   ) !important;
+  background-size: 200% 100% !important;
+  animation: skeleton-loading 1.5s ease-in-out infinite !important;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 @media (max-width: 720px) {
   .topbar {
     align-items: flex-start;
     flex-direction: column;
+    padding: 14px 20px;
   }
 
   .nav {

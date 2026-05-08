@@ -22,8 +22,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
 import { login, setAuthTokens } from '../api';
+import { ElMessage } from 'element-plus';
 
 const router = useRouter();
 const route = useRoute();

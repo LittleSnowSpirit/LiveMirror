@@ -122,8 +122,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { ElMessage } from 'element-plus';
 import { exportReport, getReport, getStoredTaskId, getTaskStatus, setStoredTaskId } from '../api';
+import { ElMessage } from 'element-plus';
 import type { ReportData, TaskInfo } from '../api';
 
 const route = useRoute();

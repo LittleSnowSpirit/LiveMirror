@@ -1,0 +1,288 @@
+/**
+ * LiveMirror Design Tokens
+ *
+ * Single source of truth for all design variables.
+ * Dark theme is the default (:root). Light theme via [data-theme="light"].
+ *
+ * Fonts: DM Sans (body) + Lora (headings)
+ * Style: Minimal luxury — warm neutrals, muted violet accent, generous spacing
+ */
+
+/* ========== Font imports (loaded in index.html via Google Fonts) ========== */
+/* DM Sans 400–700, Lora 400–700 */
+
+/* ========== Dark Theme (Default) ========== */
+:root {
+  color-scheme: dark;
+
+  /* Surface */
+  --app-bg: #0a0a0a;
+  --app-bg-deep: #060606;
+  --app-surface: #141414;
+  --app-surface-soft: #1a1a1a;
+  --app-surface-strong: #222222;
+  --app-surface-raised: #1e1e1e;
+
+  /* Border */
+  --app-border: #2a2a2a;
+  --app-border-strong: #3a3a3a;
+
+  /* Text */
+  --app-text: #f0f0f0;
+  --app-text-soft: #a0a0a0;
+  --app-text-faint: #666666;
+
+  /* Primary — muted violet */
+  --app-primary: #a78bfa;
+  --app-primary-strong: #c4b5fd;
+  --app-primary-soft: rgba(167, 139, 250, 0.12);
+
+  /* Accent — soft pink */
+  --app-accent: #f0abfc;
+  --app-accent-soft: rgba(240, 171, 252, 0.12);
+
+  /* Semantic */
+  --app-success: #4ade80;
+  --app-warning: #fbbf24;
+  --app-danger: #fb7185;
+  --app-data: #8de0d4;
+  --app-info: #60a5fa;
+
+  /* Semantic soft (status backgrounds) */
+  --app-success-soft: rgba(74, 222, 128, 0.12);
+  --app-warning-soft: rgba(251, 191, 36, 0.12);
+  --app-danger-soft: rgba(251, 113, 133, 0.12);
+  --app-info-soft: rgba(96, 165, 250, 0.12);
+
+  /* Shadows */
+  --app-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  --app-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.28);
+  --app-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.24);
+
+  /* Typography */
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Lora', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Font sizes — modular scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 320ms ease;
+
+  /* Legacy aliases (from variables.css, used in components) */
+  --font-xs: var(--text-xs);
+  --font-sm: var(--text-sm);
+  --font-md: var(--text-base);
+  --font-lg: var(--text-lg);
+  --font-xl: var(--text-xl);
+  --font-2xl: var(--text-2xl);
+  --font-3xl: var(--text-3xl);
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-family-base: var(--font-body);
+  --font-family-mono: var(--font-mono);
+  --line-height-tight: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-loose: 1.8;
+  --spacing-xs: var(--space-1);
+  --spacing-sm: var(--space-2);
+  --spacing-md: var(--space-3);
+  --spacing-lg: var(--space-4);
+  --spacing-xl: var(--space-6);
+  --spacing-2xl: var(--space-8);
+  --spacing-3xl: var(--space-12);
+  --radius-xs: 2px;
+  --radius-2xl: 16px;
+  --duration-fast: var(--transition-fast);
+  --duration-normal: var(--transition-normal);
+  --duration-slow: var(--transition-slow);
+  --shadow-sm: var(--app-shadow-card);
+  --shadow-md: var(--app-shadow-soft);
+  --shadow-lg: var(--app-shadow);
+  --shadow-xl: var(--app-shadow);
+
+  /* Z-index layers */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 500;
+  --z-toast: 700;
+  --z-tooltip: 900;
+
+  /* Overlay */
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+
+  /* Scrollbar */
+  --scrollbar-track: var(--app-surface);
+  --scrollbar-thumb: var(--app-border);
+  --scrollbar-thumb-hover: var(--app-border-strong);
+}
+
+/* ========== Light Theme ========== */
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surface */
+  --app-bg: #fafafa;
+  --app-bg-deep: #f5f5f5;
+  --app-surface: #ffffff;
+  --app-surface-soft: #f8f8f8;
+  --app-surface-strong: #eeeeee;
+  --app-surface-raised: #ffffff;
+
+  /* Border */
+  --app-border: #e5e5e5;
+  --app-border-strong: #d4d4d4;
+
+  /* Text */
+  --app-text: #171717;
+  --app-text-soft: #525252;
+  --app-text-faint: #a3a3a3;
+
+  /* Primary — deeper violet for light bg */
+  --app-primary: #7c3aed;
+  --app-primary-strong: #6d28d9;
+  --app-primary-soft: rgba(124, 58, 237, 0.08);
+
+  /* Accent */
+  --app-accent: #c026d3;
+  --app-accent-soft: rgba(192, 38, 211, 0.08);
+
+  /* Semantic */
+  --app-success: #16a34a;
+  --app-warning: #d97706;
+  --app-danger: #e11d48;
+  --app-data: #0d9488;
+  --app-info: #2563eb;
+
+  /* Semantic soft (status backgrounds) */
+  --app-success-soft: rgba(22, 163, 74, 0.08);
+  --app-warning-soft: rgba(217, 119, 6, 0.08);
+  --app-danger-soft: rgba(225, 29, 72, 0.08);
+  --app-info-soft: rgba(37, 99, 235, 0.08);
+
+  /* Shadows */
+  --app-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+  --app-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --app-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* Overlay */
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+
+  /* Scrollbar */
+  --scrollbar-track: var(--app-surface-soft);
+  --scrollbar-thumb: var(--app-border);
+  --scrollbar-thumb-hover: var(--app-border-strong);
+}
+
+/* ========== Element Plus Variable Mapping ========== */
+:root {
+  /* Background */
+  --el-bg-color: var(--app-surface);
+  --el-bg-color-page: var(--app-bg);
+  --el-bg-color-overlay: var(--app-surface-raised);
+
+  /* Border */
+  --el-border-color: var(--app-border);
+  --el-border-color-light: var(--app-border);
+  --el-border-color-lighter: var(--app-border);
+  --el-border-color-extra-light: var(--app-border);
+  --el-border-color-dark: var(--app-border-strong);
+
+  /* Card */
+  --el-card-bg-color: var(--app-surface);
+
+  /* Fill */
+  --el-fill-color: var(--app-surface-soft);
+  --el-fill-color-blank: var(--app-surface);
+  --el-fill-color-light: var(--app-surface-soft);
+  --el-fill-color-lighter: var(--app-surface-soft);
+  --el-fill-color-extra-light: var(--app-surface-soft);
+  --el-fill-color-dark: var(--app-surface-strong);
+
+  /* Text */
+  --el-text-color-primary: var(--app-text);
+  --el-text-color-regular: var(--app-text);
+  --el-text-color-secondary: var(--app-text-soft);
+  --el-text-color-placeholder: var(--app-text-faint);
+  --el-text-color-disabled: var(--app-text-faint);
+
+  /* Primary color */
+  --el-color-primary: var(--app-primary);
+  --el-color-primary-light-3: var(--app-primary);
+  --el-color-primary-light-5: var(--app-primary);
+  --el-color-primary-light-7: var(--app-primary-soft);
+  --el-color-primary-light-8: var(--app-primary-soft);
+  --el-color-primary-light-9: var(--app-primary-soft);
+  --el-color-primary-dark-2: var(--app-primary-strong);
+
+  /* Functional colors */
+  --el-color-success: var(--app-success);
+  --el-color-warning: var(--app-warning);
+  --el-color-danger: var(--app-danger);
+  --el-color-info: var(--app-info);
+  --el-color-error: var(--app-danger);
+
+  /* Mask */
+  --el-mask-color: var(--overlay-bg);
+
+  /* Disabled */
+  --el-disabled-bg-color: var(--app-surface-soft);
+  --el-disabled-text-color: var(--app-text-faint);
+}
+
+/* ========== Utility Classes ========== */
+
+/* No-transition — prevent flash during theme switch */
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
