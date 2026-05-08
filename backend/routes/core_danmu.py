@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import uuid
 from datetime import date as date_type, timedelta
 from pathlib import Path
 
@@ -75,7 +76,7 @@ async def upload_danmu(
     )
 
     return {
-        "batch_id": batch.id,
+        "batch_id": batch.batch_id,
         "total_count": batch.total_count,
         "success_count": batch.success_count,
         "failed_count": batch.failed_count,
@@ -105,7 +106,7 @@ async def batch_detail(
     if batch.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Forbidden.")
 
-    danmus = get_danmu_by_batch(db, batch.id)
+    danmus = get_danmu_by_batch(db, batch.batch_id)
     result = batch.to_dict()
     result["danmus"] = [d.to_dict() for d in danmus]
     return result
