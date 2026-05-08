@@ -183,34 +183,48 @@ onMounted(() => {
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: 600;
-  color: var(--app-text);
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .unread-badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: var(--radius-full);
-  background: var(--app-primary-soft);
+  background: var(--app-glass-bg);
+  border: 1px solid var(--app-glass-border);
   color: var(--app-primary);
   font-size: var(--text-xs);
   font-weight: 500;
 }
 
+/* Glass filter toolbar */
 .header-actions {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  border-radius: var(--radius-lg);
 }
 
+/* Glass notification list */
 .notification-list {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
   min-height: 200px;
 }
 
@@ -219,8 +233,8 @@ onMounted(() => {
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-4);
-  border-bottom: 1px solid var(--app-border);
-  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--app-glass-border);
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .list-item:last-child {
@@ -228,13 +242,16 @@ onMounted(() => {
 }
 
 .list-item:hover {
-  background: var(--app-surface-soft);
+  background: rgba(167, 139, 250, 0.04);
 }
 
+/* Unread items — stronger glow */
 .list-item.unread {
-  background: var(--app-primary-soft);
+  background: rgba(167, 139, 250, 0.06);
+  box-shadow: inset 3px 0 0 var(--app-primary);
 }
 
+/* Left accent bar colored by notification type */
 .item-indicator {
   width: 3px;
   min-height: 40px;
@@ -245,6 +262,23 @@ onMounted(() => {
 
 .item-indicator.active {
   background: var(--app-primary);
+}
+
+/* Type-colored accent overrides */
+.list-item:has(.item-icon.type-success) .item-indicator.active {
+  background: var(--app-success);
+}
+
+.list-item:has(.item-icon.type-warning) .item-indicator.active {
+  background: var(--app-warning);
+}
+
+.list-item:has(.item-icon.type-error) .item-indicator.active {
+  background: var(--app-danger);
+}
+
+.list-item:has(.item-icon.type-info) .item-indicator.active {
+  background: var(--app-info);
 }
 
 .item-icon {
@@ -320,7 +354,8 @@ onMounted(() => {
 }
 
 .unread-tag {
-  background: var(--app-primary-soft);
+  background: var(--app-glass-bg);
+  border: 1px solid var(--app-glass-border);
   color: var(--app-primary);
 }
 
@@ -333,6 +368,11 @@ onMounted(() => {
 
 .empty-state {
   padding: var(--space-12) 0;
+}
+
+/* Gradient icon for empty state */
+.empty-state :deep(.el-empty__icon) {
+  opacity: 0.6;
 }
 
 .pagination-wrapper {

@@ -9,7 +9,7 @@
       </div>
 
       <template v-else>
-        <div class="section avatar-section">
+        <div class="section avatar-section stagger-in" style="--stagger-index: 0">
           <div class="avatar-wrapper" @click="triggerAvatarUpload">
             <img
               v-if="avatarPreview || userStore.profile?.avatar_url"
@@ -31,7 +31,7 @@
           />
         </div>
 
-        <div class="section">
+        <div class="section stagger-in" style="--stagger-index: 1">
           <h2>编辑资料</h2>
           <div class="form-grid">
             <div class="form-field">
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="section stagger-in" style="--stagger-index: 2">
           <h2>用户信息</h2>
           <dl class="info-grid">
             <div>
@@ -72,7 +72,7 @@
           </dl>
         </div>
 
-        <div class="section">
+        <div class="section stagger-in" style="--stagger-index: 3">
           <h2>本周配额</h2>
           <div v-if="userStore.quota" class="quota-card">
             <div class="quota-ring">
@@ -94,7 +94,7 @@
           <p v-else class="empty-text">暂无配额信息</p>
         </div>
 
-        <div class="section">
+        <div class="section stagger-in" style="--stagger-index: 4">
           <h2>使用记录</h2>
           <div v-if="userStore.usageRecords.length === 0" class="empty-text">
             <el-empty description="暂无使用记录" />
@@ -213,7 +213,11 @@ function formatTime(iso: string) {
   width: min(800px, 100%);
   margin: 0 auto;
   border-radius: var(--radius-lg);
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-shadow-glow);
 }
 
 .panel :deep(.el-card__body) {
@@ -232,6 +236,10 @@ function formatTime(iso: string) {
 h1 {
   font-size: var(--text-3xl);
   font-weight: 700;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -242,7 +250,19 @@ h2 {
 
 .section {
   padding-bottom: var(--space-5);
-  border-bottom: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--app-glass-border);
+  position: relative;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--app-gradient-primary-h);
+  opacity: 0.3;
 }
 
 .section:last-child {
@@ -250,6 +270,11 @@ h2 {
   padding-bottom: 0;
 }
 
+.section:last-child::after {
+  display: none;
+}
+
+/* Avatar with gradient border ring */
 .avatar-section {
   display: flex;
   justify-content: center;
@@ -257,23 +282,25 @@ h2 {
 
 .avatar-wrapper {
   position: relative;
-  width: 96px;
-  height: 96px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  overflow: hidden;
+  padding: 3px;
+  background: var(--app-gradient-primary);
   cursor: pointer;
-  border: 2px solid var(--app-border);
-  transition: border-color var(--transition-fast);
+  transition: box-shadow var(--transition-fast);
 }
 
 .avatar-wrapper:hover {
-  border-color: var(--app-primary);
+  box-shadow: var(--app-glow-strong);
 }
 
 .avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--app-bg, #141414);
 }
 
 .avatar-placeholder {
@@ -286,20 +313,24 @@ h2 {
   color: var(--app-text-soft);
   font-size: 32px;
   font-weight: 600;
+  border-radius: 50%;
+  border: 2px solid var(--app-bg, #141414);
 }
 
 .avatar-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
   padding: 4px 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
   color: #fff;
   font-size: 11px;
   text-align: center;
   opacity: 0;
   transition: opacity var(--transition-fast);
+  border-radius: 0 0 50% 50%;
 }
 
 .avatar-wrapper:hover .avatar-overlay {
@@ -349,14 +380,22 @@ dd {
   color: var(--app-text);
 }
 
+/* Quota card — glass treatment */
 .quota-card {
   display: flex;
   align-items: center;
   gap: var(--space-6);
   padding: var(--space-5);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  transition: box-shadow var(--transition-fast);
+}
+
+.quota-card:hover {
+  box-shadow: var(--app-glow);
 }
 
 .quota-ring {
@@ -369,7 +408,10 @@ dd {
 .quota-number {
   font-size: var(--text-4xl);
   font-weight: 700;
-  color: var(--app-primary-strong);
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .quota-sep {
@@ -411,14 +453,23 @@ dd {
   gap: var(--space-2);
 }
 
+/* Usage items — glass cards with hover lift */
 .usage-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.usage-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--app-glow);
 }
 
 .usage-info {

@@ -38,10 +38,14 @@
 
       <div v-else class="task-list">
         <div
-          v-for="task in taskStore.tasks"
+          v-for="(task, idx) in taskStore.tasks"
           :key="task.task_id"
           class="task-card"
-          :class="{ selected: selectedIds.includes(task.task_id) }"
+          :class="[
+            { selected: selectedIds.includes(task.task_id) },
+            `status-${task.status}`
+          ]"
+          :style="{ '--stagger-index': idx }"
         >
           <div class="task-card-header">
             <input
@@ -214,11 +218,16 @@ function formatDuration(seconds: number) {
   padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
+/* Glass panel */
 .panel {
   width: min(960px, 100%);
   margin: 0 auto;
   border-radius: var(--radius-lg);
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-shadow-card);
 }
 
 .panel :deep(.el-card__body) {
@@ -229,21 +238,37 @@ function formatDuration(seconds: number) {
 
 .kicker {
   font-size: var(--text-xs);
-  color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1 {
   font-size: var(--text-3xl);
   font-weight: 700;
+  color: var(--app-text);
 }
 
+/* Glass toolbar */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--app-bg-deep);
+  border: 1px solid var(--app-glass-border);
+}
+
+.toolbar :deep(.el-input__wrapper),
+.toolbar :deep(.el-select__wrapper) {
+  background: var(--app-surface-soft);
+  border: 1px solid var(--app-glass-border);
+  box-shadow: none;
 }
 
 .search-input {
@@ -256,21 +281,49 @@ h1 {
   gap: var(--space-2);
 }
 
+/* Glass task cards with status-colored left border */
 .task-card {
   padding: var(--space-4);
-  border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
-  background: var(--app-surface-soft);
-  transition: border-color var(--transition-fast);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  border-left: 3px solid var(--app-text-faint);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
+  animation: staggerFadeIn 0.4s ease-out forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 60ms);
+  opacity: 0;
+}
+
+.task-card.status-completed {
+  border-left-color: var(--app-success);
+}
+
+.task-card.status-transcribing,
+.task-card.status-analyzing,
+.task-card.status-processing {
+  border-left-color: var(--app-warning);
+}
+
+.task-card.status-failed {
+  border-left-color: var(--app-danger);
+}
+
+.task-card.status-pending {
+  border-left-color: var(--app-info);
 }
 
 .task-card:hover {
-  border-color: var(--app-primary);
+  border-color: rgba(167, 139, 250, 0.25);
+  box-shadow: var(--app-glow);
+  transform: translateY(-2px);
 }
 
 .task-card.selected {
   border-color: var(--app-primary);
-  background: var(--app-primary-soft);
+  background: rgba(167, 139, 250, 0.08);
+  box-shadow: var(--app-glow-strong);
 }
 
 .task-card-header {
@@ -296,6 +349,7 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--app-text);
 }
 
 .task-meta {
@@ -318,13 +372,40 @@ h1 {
   padding: var(--space-10) 0;
 }
 
+/* Pagination with gradient active page */
 .pagination-wrap {
   display: flex;
   justify-content: center;
   margin-top: var(--space-2);
 }
 
+.pagination-wrap :deep(.el-pager li.is-active) {
+  background: var(--app-gradient-primary) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md);
+}
+
+.pagination-wrap :deep(.el-pager li) {
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.pagination-wrap :deep(.el-pager li:hover) {
+  color: var(--app-primary);
+}
+
 .loading-state {
   padding: var(--space-5) 0;
+}
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     <section class="studio-brief">
       <div class="brief-copy">
         <p class="eyebrow">今日工作台</p>
-        <h1>把直播素材变成可执行的复盘结论。</h1>
+        <h1 class="gradient-text">把直播素材变成可执行的复盘结论。</h1>
         <p class="hero-copy">
           从上传、任务状态、报告到归因和话术建议，核心链路保持在同一个工作台里，方便运营和创作者继续推进。
         </p>
@@ -23,7 +23,7 @@
     </section>
 
     <section class="grid workbench-grid">
-      <el-card class="panel">
+      <el-card class="panel workbench-panel stagger-in" style="--stagger-index: 0">
         <div class="panel-header">
           <div>
             <p class="panel-kicker">当前任务</p>
@@ -55,7 +55,7 @@
         <el-empty v-else description="还没有上传记录" />
       </el-card>
 
-      <el-card class="panel workflow-panel">
+      <el-card class="panel workbench-panel workflow-panel stagger-in" style="--stagger-index: 1">
         <div class="panel-header">
           <div>
             <p class="panel-kicker">主线流程</p>
@@ -70,7 +70,7 @@
         </ol>
       </el-card>
 
-      <el-card class="panel action-panel">
+      <el-card class="panel workbench-panel action-panel stagger-in" style="--stagger-index: 2">
         <div class="panel-header">
           <div>
             <p class="panel-kicker">快捷入口</p>
@@ -79,28 +79,28 @@
         </div>
 
         <div class="shortcut-grid">
-          <el-button plain @click="router.push('/upload')">上传</el-button>
-          <el-button plain @click="router.push('/report')">报告</el-button>
-          <el-button plain @click="router.push('/attribution')">归因</el-button>
-          <el-button plain @click="router.push('/suggestions')">建议</el-button>
-          <el-button plain @click="router.push('/trends')">趋势</el-button>
-          <el-button plain @click="router.push('/register')">注册</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/upload')">上传</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/report')">报告</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/attribution')">归因</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/suggestions')">建议</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/trends')">趋势</el-button>
+          <el-button class="shortcut-btn" plain @click="router.push('/register')">注册</el-button>
         </div>
       </el-card>
     </section>
 
     <section class="grid capability-grid">
-      <el-card class="panel small">
+      <el-card class="panel small capability-card stagger-in" style="--stagger-index: 0">
         <p class="panel-kicker">核心能力</p>
         <h3>上传与任务</h3>
         <p class="copy">上传后自动创建任务，按状态进入分析链路。</p>
       </el-card>
-      <el-card class="panel small">
+      <el-card class="panel small capability-card stagger-in" style="--stagger-index: 1">
         <p class="panel-kicker">核心能力</p>
         <h3>报告与导出</h3>
         <p class="copy">报告页聚合转写、分段、建议和导出操作。</p>
       </el-card>
-      <el-card class="panel small">
+      <el-card class="panel small capability-card stagger-in" style="--stagger-index: 2">
         <p class="panel-kicker">核心能力</p>
         <h3>分析页</h3>
         <p class="copy">归因、建议和趋势页都只保留主线入口。</p>
@@ -193,12 +193,19 @@ onMounted(() => {
   justify-content: space-between;
   gap: var(--space-5);
   padding: var(--space-6);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--app-primary) 10%, transparent), transparent 44%),
-    var(--app-surface);
-  box-shadow: var(--app-shadow);
+    linear-gradient(135deg, rgba(167, 139, 250, 0.08), transparent 44%),
+    var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  box-shadow: var(--app-shadow-glow);
+  transition: box-shadow var(--transition-normal);
+}
+
+.studio-brief:hover {
+  box-shadow: var(--app-glow);
 }
 
 .brief-copy {
@@ -215,8 +222,8 @@ onMounted(() => {
 
 .studio-brief h1 {
   margin-top: var(--space-2);
-  font-size: clamp(var(--text-2xl), 4vw, 46px);
-  line-height: 1.2;
+  font-size: clamp(var(--text-3xl), 5vw, 52px);
+  line-height: 1.15;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -250,14 +257,63 @@ onMounted(() => {
   gap: var(--space-4);
 }
 
+/* Metrics Row — glass stat cards with hover lift */
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-3);
 }
 
+.metrics-row > * {
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.metrics-row > *:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--app-glow);
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+/* Workbench Grid — gradient left accent border */
 .workbench-grid {
   grid-template-columns: minmax(320px, 1.35fr) minmax(260px, 0.9fr) minmax(260px, 0.9fr);
+}
+
+.workbench-panel {
+  position: relative;
+  overflow: hidden;
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.workbench-panel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--app-gradient-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  opacity: 0.6;
+  transition: opacity var(--transition-normal);
+}
+
+.workbench-panel:hover {
+  box-shadow: var(--app-glow);
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+.workbench-panel:hover::before {
+  opacity: 1;
 }
 
 .panel {
@@ -304,6 +360,37 @@ onMounted(() => {
   gap: var(--space-2);
 }
 
+/* Shortcut buttons — gradient border on hover */
+.shortcut-btn {
+  position: relative;
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.shortcut-btn:hover {
+  border-color: transparent;
+  box-shadow: var(--app-glow-accent);
+}
+
+.shortcut-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--app-gradient-border);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.shortcut-btn:hover::before {
+  opacity: 1;
+}
+
 .steps {
   display: flex;
   flex-direction: column;
@@ -329,6 +416,17 @@ onMounted(() => {
   background: var(--app-surface-strong);
   color: var(--app-primary-strong);
   font-weight: 800;
+}
+
+/* Capability cards — hover scale + glow */
+.capability-card {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.capability-card:hover {
+  transform: scale(1.03);
+  box-shadow: var(--app-glow-strong);
+  border-color: rgba(167, 139, 250, 0.25);
 }
 
 .small h3 {

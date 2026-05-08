@@ -440,6 +440,100 @@ html {
 /* ==================== 深色模式 ==================== */
 /* Theme colors are handled by tokens.css via [data-theme] attribute */
 
+/* ==================== Glass / Glow Utilities ==================== */
+
+.glass {
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+}
+
+.glass-hover:hover {
+  border-color: rgba(167, 139, 250, 0.2);
+  box-shadow: var(--app-glow);
+}
+
+.gradient-text {
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--app-gradient-border);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.glow-sm { box-shadow: var(--app-glow); }
+.glow-md { box-shadow: var(--app-glow-strong); }
+.glow-accent { box-shadow: var(--app-glow-accent); }
+
+/* Staggered entrance */
+.stagger-in {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: staggerFadeIn 0.4s ease-out forwards;
+  animation-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+
+@keyframes staggerFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(167, 139, 250, 0.2); }
+  50% { box-shadow: 0 0 24px rgba(167, 139, 250, 0.4); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(167, 139, 250, 0.06) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
 /* ==================== 打印优化 ==================== */
 
 @media print {

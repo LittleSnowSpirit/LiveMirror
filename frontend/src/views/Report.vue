@@ -50,15 +50,15 @@
         </div>
 
         <div class="summary-grid">
-          <div class="summary-item">
+          <div class="summary-item" style="--stagger-index: 0">
             <span class="label">时长</span>
             <strong>{{ formatDuration(reportData.duration) }}</strong>
           </div>
-          <div class="summary-item">
+          <div class="summary-item" style="--stagger-index: 1">
             <span class="label">文件</span>
             <strong>{{ reportData.filename }}</strong>
           </div>
-          <div class="summary-item">
+          <div class="summary-item" style="--stagger-index: 2">
             <span class="label">任务</span>
             <strong>{{ reportData.task_id }}</strong>
           </div>
@@ -296,9 +296,20 @@ onMounted(() => {
   padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
+/* Glass panel */
 .panel {
   border-radius: var(--radius-lg);
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-shadow-card);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.panel:hover {
+  box-shadow: var(--app-glow);
+  border-color: rgba(167, 139, 250, 0.15);
 }
 
 .panel :deep(.el-card__body) {
@@ -315,11 +326,31 @@ onMounted(() => {
   gap: var(--space-4);
 }
 
+/* Panel header gradient underline */
+.panel-header {
+  position: relative;
+  padding-bottom: var(--space-3);
+}
+
+.panel-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--app-gradient-primary-h);
+  opacity: 0.3;
+}
+
 .kicker {
   font-size: var(--text-xs);
-  color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1,
@@ -351,16 +382,37 @@ h3 {
   color: var(--app-text-soft);
 }
 
+/* Summary grid - glass cards with colored top border */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-2);
 }
 
 .summary-item {
   padding: var(--space-3);
-  border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal);
+}
+
+.summary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--app-gradient-primary);
+}
+
+.summary-item:hover {
+  box-shadow: var(--app-glow);
 }
 
 .summary-item .label {
@@ -370,6 +422,13 @@ h3 {
   font-size: var(--text-xs);
 }
 
+.summary-item strong {
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .section {
   display: flex;
   flex-direction: column;
@@ -377,15 +436,37 @@ h3 {
   padding-top: var(--space-1);
 }
 
+/* Transcript - dark inset panel with left accent */
 .transcript {
   padding: var(--space-4);
-  border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.7;
+  border: 1px solid var(--app-glass-border);
+  border-left: 3px solid;
+  border-image: var(--app-gradient-primary) 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* Two-column with gradient divider */
+.two-col {
+  position: relative;
+}
+
+.two-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--app-gradient-primary);
+  opacity: 0.2;
+  transform: translateX(-50%);
 }
 
 .two-col > div {
@@ -398,10 +479,47 @@ h3 {
   line-height: 1.7;
 }
 
+/* Table row hover glow */
+.panel :deep(.el-table) {
+  --el-table-tr-bg-color: transparent;
+  --el-table-row-hover-bg-color: rgba(167, 139, 250, 0.06);
+}
+
+.panel :deep(.el-table__row:hover > td) {
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.1);
+}
+
+/* Staggered entrance for panels */
+.panel {
+  animation: staggerFadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.panel:nth-child(1) { animation-delay: 0ms; }
+.panel:nth-child(2) { animation-delay: 80ms; }
+.panel:nth-child(3) { animation-delay: 160ms; }
+.panel:nth-child(4) { animation-delay: 240ms; }
+.panel:nth-child(5) { animation-delay: 320ms; }
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 720px) {
   .header-row,
   .panel-header {
     flex-direction: column;
+  }
+
+  .two-col::before {
+    display: none;
   }
 }
 </style>

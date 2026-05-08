@@ -326,13 +326,16 @@ function batchStatusLabel(status: string) {
   padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
+/* Glass panel */
 .panel {
   width: min(960px, 100%);
   margin: 0 auto;
   border-radius: var(--radius-lg);
-  background:
-    linear-gradient(135deg, rgba(167, 139, 250, 0.06), transparent 38%),
-    var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-shadow-glow);
 }
 
 .panel :deep(.el-card__body) {
@@ -352,6 +355,10 @@ h1 {
   font-size: var(--text-4xl);
   font-weight: 820;
   letter-spacing: 0;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .copy {
@@ -359,29 +366,80 @@ h1 {
   line-height: 1.7;
 }
 
+/* Gradient underline for active tab */
 .mode-tabs :deep(.el-tabs__header) {
   margin-bottom: var(--space-2);
 }
 
-/* Drop zone */
+.mode-tabs :deep(.el-tabs__active-bar) {
+  background: var(--app-gradient-primary-h);
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Drop zone — animated gradient dashed border */
 .drop-zone {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   padding: var(--space-10) var(--space-6);
-  border: 2px dashed var(--app-border-strong);
   border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
-  transition: border-color var(--transition-fast), background var(--transition-fast);
   cursor: pointer;
+  overflow: hidden;
+  transition: background var(--transition-fast);
+}
+
+.drop-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--app-primary) 0,
+    var(--app-primary) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.4;
+  animation: dashScroll 12s linear infinite;
+}
+
+.drop-zone:hover::before,
+.drop-zone.dragover::before {
+  opacity: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    #a78bfa 0,
+    #f0abfc 12px,
+    transparent 12px,
+    transparent 20px
+  );
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: dashScroll 6s linear infinite;
+}
+
+@keyframes dashScroll {
+  to { background-position: 200% 0; }
 }
 
 .drop-zone:hover,
 .drop-zone.dragover {
-  border-color: var(--app-primary);
-  background: var(--app-primary-soft);
+  background: rgba(167, 139, 250, 0.06);
 }
 
 .drop-icon {
@@ -389,6 +447,14 @@ h1 {
   line-height: 1;
   color: var(--app-text-faint);
   font-weight: 300;
+  transition: color var(--transition-fast);
+}
+
+.drop-zone:hover .drop-icon {
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .drop-text {
@@ -400,16 +466,16 @@ h1 {
   align-items: center;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
-  background: var(--app-primary);
+  background: var(--app-gradient-primary);
   color: #06110f;
   font-weight: 600;
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: box-shadow var(--transition-fast);
 }
 
 .drop-label:hover {
-  background: var(--app-primary-strong);
+  box-shadow: var(--app-glow);
 }
 
 .file-input-hidden {
@@ -425,15 +491,17 @@ h1 {
   color: var(--app-text-faint);
 }
 
-/* Selected file */
+/* Selected file — glass */
 .selected-file {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-md);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .file-name {
@@ -454,20 +522,25 @@ h1 {
   margin-top: var(--space-2);
 }
 
-/* Result box */
+/* Result box — glass with glow */
 .result-box {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
 }
 
 .result-title {
   font-weight: 600;
-  color: var(--app-primary-strong);
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .result-stats {

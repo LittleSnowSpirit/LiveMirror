@@ -201,6 +201,19 @@ function formatDate(iso: string) {
   flex: 1;
 }
 
+/* Gradient primary button */
+.share-create :deep(.el-button--primary) {
+  background: var(--app-gradient-primary);
+  border: none;
+  color: #06110f;
+  font-weight: 600;
+  transition: box-shadow var(--transition-fast);
+}
+
+.share-create :deep(.el-button--primary:hover) {
+  box-shadow: var(--app-glow-strong);
+}
+
 .share-result {
   display: flex;
   flex-direction: column;
@@ -223,20 +236,44 @@ function formatDate(iso: string) {
   flex: 1;
 }
 
+.copy-row :deep(.el-input__wrapper) {
+  background: var(--app-glass-bg) !important;
+  border: 1px solid var(--app-glass-border) !important;
+  box-shadow: none !important;
+}
+
+/* Copy button — gradient treatment */
+.copy-row :deep(.el-button) {
+  background: var(--app-glass-bg);
+  border: 1px solid var(--app-glass-border);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.copy-row :deep(.el-button:hover) {
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: var(--app-glow);
+}
+
 .access-code-input {
   max-width: 120px;
 }
 
+/* QR section with glow border */
 .qr-section {
   display: flex;
   justify-content: center;
-  padding: 12px 0;
+  padding: 16px 0;
 }
 
 .qr-section canvas {
   border-radius: 8px;
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.15), 0 0 40px rgba(167, 139, 250, 0.08);
+  border: 1px solid var(--app-glass-border);
+  padding: 8px;
+  background: var(--app-glass-bg);
 }
 
+/* Share list — glass items with hover glow */
 .share-list {
   display: flex;
   flex-direction: column;
@@ -246,7 +283,10 @@ function formatDate(iso: string) {
 .share-list h4 {
   font-size: 14px;
   font-weight: 600;
-  color: var(--app-text);
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 4px;
 }
 
@@ -255,9 +295,17 @@ function formatDate(iso: string) {
   align-items: center;
   justify-content: space-between;
   padding: 10px 12px;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: 6px;
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.share-item:hover {
+  box-shadow: var(--app-glow);
+  transform: translateY(-1px);
 }
 
 .share-item-info {
