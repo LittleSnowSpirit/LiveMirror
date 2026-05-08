@@ -1,4 +1,7 @@
 """数据模型"""
+import random
+import uuid
+
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, Float, Text, ForeignKey, Index, Date
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from datetime import datetime, timezone, date as date_type
@@ -22,6 +25,11 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=utc_now)
     updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
+
+    # 个人资料
+    avatar_url = Column(String(500), nullable=True)
+    nickname = Column(String(100), nullable=True)
+    bio = Column(String(500), nullable=True)
 
     # 关联弹幕
     danmus = relationship("Danmu", back_populates="user", cascade="all, delete-orphan")
@@ -210,6 +218,7 @@ class Task(Base):
     started_at = Column(DateTime, nullable=True)
     updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
     completed_at = Column(DateTime, nullable=True)
+    data_quality_score = Column(Float, nullable=True)
 
     reports = relationship("AnalysisReport", back_populates="task", cascade="all, delete-orphan")
 
@@ -320,3 +329,42 @@ class UsageRecord(Base):
 Task.__table_args__ = (
     Index('idx_task_user_created', 'user_id', 'created_at'),
 )
+
+
+def _generate_token() -> str:
+    return uuid.uuid4().hex[:8]
+
+
+def _generate_access_code() -> str:
+    return str(random.randint(1000, 9999))
+
+
+class ShareLink(Base):
+    """分享链接模型"""
+    __tablename__ = "share_links"
+
+    id = Column(String(32), primary_key=True, default=lambda: uuid.uuid4().hex)
+    task_id = Column(String(100), ForeignKey("tasks.task_id"), nullable=False, index=True)
+    token = Column(String(8), unique=True, index=True, nullable=False, default=_generate_token)
+    access_code = Column(String(4), nullable=False, default=_generate_access_code)
+    template_config = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=utc_now)
+    expires_at = Column(DateTime, nullable=True)
+    view_count = Column(Integer, default=0)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+
+    task = relationship("Task", foreign_keys=[task_id])
+    user = relationship("User", foreign_keys=[user_id])
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "task_id": self.task_id,
+            "token": self.token,
+            "access_code": self.access_code,
+            "template_config": self.template_config,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "expires_at": self.expires_at.isoformat() if self.expires_at else None,
+            "view_count": self.view_count,
+            "user_id": self.user_id,
+        }

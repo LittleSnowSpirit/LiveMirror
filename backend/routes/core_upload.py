@@ -69,6 +69,10 @@ async def upload_media(
     finally:
         file.file.close()
 
+    if file_size == 0:
+        save_path.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+
     create_task(db, task_id, safe_name, str(save_path), file_size)
 
     get_task_queue().submit(task_id, _process_upload_task, task_id)
@@ -100,6 +104,15 @@ def _process_upload_task(task_id: str) -> None:
         update_task_duration(db, task, result.duration or 0.0)
         update_task_transcription(db, task, result.text, result.segments)
         task.language = result.language
+
+        # Data quality scoring
+        quality_score = 1.0
+        text = result.text or ""
+        if not text.strip():
+            quality_score = 0.0
+        elif len(text.strip()) < 10:
+            quality_score = 0.3
+        task.data_quality_score = quality_score
         db.commit()
 
         update_task_status(db, task, "analyzing", 75)

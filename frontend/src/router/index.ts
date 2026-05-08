@@ -90,6 +90,15 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/share/:token',
+    name: 'shared-report',
+    component: () => import('../views/SharedReport.vue'),
+    meta: {
+      title: '分享报告 - LiveMirror',
+      requiresAuth: false
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }

@@ -9,6 +9,51 @@
       </div>
 
       <template v-else>
+        <div class="section avatar-section">
+          <div class="avatar-wrapper" @click="triggerAvatarUpload">
+            <img
+              v-if="avatarPreview || userStore.profile?.avatar_url"
+              :src="avatarPreview || userStore.profile?.avatar_url"
+              alt="头像"
+              class="avatar-img"
+            />
+            <div v-else class="avatar-placeholder">
+              {{ userStore.profile?.nickname?.[0] || userStore.profile?.username?.[0] || '?' }}
+            </div>
+            <div class="avatar-overlay">更换头像</div>
+          </div>
+          <input
+            ref="avatarInput"
+            type="file"
+            accept="image/*"
+            class="hidden-input"
+            @change="handleAvatarChange"
+          />
+        </div>
+
+        <div class="section">
+          <h2>编辑资料</h2>
+          <div class="form-grid">
+            <div class="form-field">
+              <label>昵称</label>
+              <el-input v-model="editForm.nickname" placeholder="输入昵称" />
+            </div>
+            <div class="form-field">
+              <label>简介</label>
+              <el-input
+                v-model="editForm.bio"
+                type="textarea"
+                :rows="3"
+                placeholder="介绍一下自己"
+              />
+            </div>
+          </div>
+          <div class="form-actions">
+            <el-button @click="resetForm">取消</el-button>
+            <el-button type="primary" :loading="saving" @click="handleSave">保存</el-button>
+          </div>
+        </div>
+
         <div class="section">
           <h2>用户信息</h2>
           <dl class="info-grid">
@@ -75,9 +120,14 @@
 import { computed, onMounted, ref } from 'vue';
 import { getCurrentUser, type UserProfile } from '../api';
 import { useUserStore } from '../stores/user';
+import { ElMessage } from 'element-plus';
 
 const userStore = useUserStore();
 const user = ref<UserProfile | null>(null);
+const avatarInput = ref<HTMLInputElement | null>(null);
+const avatarPreview = ref('');
+const saving = ref(false);
+const editForm = ref({ nickname: '', bio: '' });
 
 const quotaPercentage = computed(() => {
   if (!userStore.quota) return 0;
@@ -90,9 +140,63 @@ onMounted(async () => {
   } catch {
     // ignore
   }
+
+  try {
+    const profile = await userStore.fetchProfile();
+    editForm.value.nickname = profile.nickname || '';
+    editForm.value.bio = profile.bio || '';
+  } catch {
+    // ignore
+  }
+
   userStore.fetchQuota();
   userStore.fetchUsageRecords();
 });
+
+function triggerAvatarUpload() {
+  avatarInput.value?.click();
+}
+
+function handleAvatarChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const file = input.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    avatarPreview.value = e.target?.result as string;
+  };
+  reader.readAsDataURL(file);
+
+  userStore.uploadAvatar(file).then(() => {
+    ElMessage.success('头像已更新');
+  }).catch(() => {
+    ElMessage.error('头像上传失败');
+    avatarPreview.value = '';
+  });
+
+  input.value = '';
+}
+
+async function handleSave() {
+  saving.value = true;
+  try {
+    await userStore.updateProfile({
+      nickname: editForm.value.nickname,
+      bio: editForm.value.bio,
+    });
+    ElMessage.success('资料已保存');
+  } catch {
+    ElMessage.error('保存失败');
+  } finally {
+    saving.value = false;
+  }
+}
+
+function resetForm() {
+  editForm.value.nickname = userStore.profile?.nickname || '';
+  editForm.value.bio = userStore.profile?.bio || '';
+}
 
 function formatTime(iso: string) {
   if (!iso) return '';
@@ -144,6 +248,86 @@ h2 {
 .section:last-child {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+.avatar-section {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid var(--app-border);
+  transition: border-color var(--transition-fast);
+}
+
+.avatar-wrapper:hover {
+  border-color: var(--app-primary);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-surface-soft);
+  color: var(--app-text-soft);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.avatar-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4px 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.avatar-wrapper:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 14px;
+  color: var(--app-text-soft);
+  margin-bottom: 6px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
 }
 
 .info-grid {
@@ -257,5 +441,12 @@ dd {
 
 .loading-state {
   padding: 20px 0;
+}
+
+@media (max-width: 720px) {
+  .quota-card {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
