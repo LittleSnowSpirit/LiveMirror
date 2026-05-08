@@ -307,7 +307,6 @@ onBeforeUnmount(() => {
   align-items: stretch;
 }
 
-/* Glass input area */
 .input-container {
   display: flex;
   flex: 1;
@@ -319,17 +318,7 @@ onBeforeUnmount(() => {
 }
 
 .input-container :deep(.el-input__wrapper) {
-  background: var(--app-glass-bg) !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--app-glass-border) !important;
   box-shadow: none !important;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.input-container :deep(.el-input__wrapper:focus-within) {
-  border-color: rgba(167, 139, 250, 0.3) !important;
-  box-shadow: var(--app-glow) !important;
 }
 
 .input-icon {
@@ -340,7 +329,6 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
 }
 
-/* Platform tag — gradient pill badges */
 .platform-tag-row {
   display: flex;
   align-items: center;
@@ -350,50 +338,40 @@ onBeforeUnmount(() => {
 .platform-tag {
   display: inline-flex;
   align-items: center;
-  padding: 3px 12px;
-  border-radius: var(--radius-full, 9999px);
-  font-size: var(--font-xs, 12px);
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
   border: none;
 }
 
 .platform-tag.douyin {
-  background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(254, 44, 85, 0.08));
+  background: rgba(254, 44, 85, 0.12);
   color: #fe2c55;
-  box-shadow: 0 0 12px rgba(254, 44, 85, 0.15);
 }
 
 .platform-tag.bilibili {
-  background: linear-gradient(135deg, rgba(0, 161, 214, 0.2), rgba(0, 161, 214, 0.08));
+  background: rgba(0, 161, 214, 0.12);
   color: #00a1d6;
-  box-shadow: 0 0 12px rgba(0, 161, 214, 0.15);
 }
 
-/* Preview card — glass */
 .preview-card {
   display: flex;
   gap: 16px;
   padding: 14px;
-  border: 1px solid var(--app-glass-border);
-  border-radius: var(--radius-lg, 10px);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  transition: box-shadow var(--transition-fast);
-}
-
-.preview-card:hover {
-  box-shadow: var(--app-glow);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  background: var(--app-surface);
 }
 
 .preview-thumb {
   flex-shrink: 0;
   width: 160px;
   height: 90px;
-  border-radius: var(--radius-md, 6px);
+  border-radius: 4px;
   overflow: hidden;
-  background: var(--app-bg-deep);
+  background: var(--app-surface-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,7 +397,7 @@ onBeforeUnmount(() => {
 }
 
 .preview-title {
-  font-size: var(--font-md, 16px);
+  font-size: 16px;
   font-weight: 600;
   color: var(--app-text);
   overflow: hidden;
@@ -431,7 +409,7 @@ onBeforeUnmount(() => {
 }
 
 .preview-meta {
-  font-size: var(--font-sm, 14px);
+  font-size: 14px;
   color: var(--app-text-soft);
 }
 
@@ -440,17 +418,14 @@ onBeforeUnmount(() => {
   margin-top: 4px;
 }
 
-/* Progress panel — glass with gradient steps */
 .progress-panel {
   display: flex;
   flex-direction: column;
   gap: 14px;
   padding: 16px;
-  border: 1px solid var(--app-glass-border);
-  border-radius: var(--radius-lg, 10px);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  background: var(--app-surface);
 }
 
 .progress-steps {
@@ -466,7 +441,7 @@ onBeforeUnmount(() => {
   gap: 6px;
   flex: 1;
   opacity: 0.35;
-  transition: opacity var(--transition-normal, 200ms ease);
+  transition: opacity 150ms ease;
 }
 
 .progress-step.active,
@@ -481,28 +456,24 @@ onBeforeUnmount(() => {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--app-surface-strong);
+  background: var(--app-surface-soft);
   color: var(--app-text-soft);
-  font-size: var(--font-sm, 14px);
+  font-size: 14px;
   font-weight: 700;
-  transition: box-shadow var(--transition-fast);
 }
 
-/* Active step — gradient dot with glow */
 .progress-step.active .step-indicator {
-  background: var(--app-gradient-primary);
+  background: var(--app-primary);
   color: #fff;
-  box-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
 }
 
-/* Done step — success color */
 .progress-step.done .step-indicator {
   background: var(--app-success);
   color: #fff;
 }
 
 .step-label {
-  font-size: var(--font-xs, 12px);
+  font-size: 12px;
   color: var(--app-text-soft);
 }
 

@@ -22,36 +22,27 @@ defineProps<{
 .stat-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-4);
-  border: 1px solid var(--app-border);
-  border-radius: var(--radius-lg);
-  background: var(--app-surface);
-  box-shadow: var(--app-shadow-card);
-  transition: border-color var(--transition-fast);
-}
-
-.stat-card:hover {
-  border-color: var(--app-primary);
+  gap: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .stat-icon {
-  font-size: var(--text-2xl);
-  line-height: 1;
-  margin-bottom: var(--space-1);
+  display: none;
 }
 
 .stat-value {
-  font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 600;
   color: var(--app-text);
-  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .stat-label {
-  font-size: var(--text-sm);
-  color: var(--app-text-soft);
+  font-size: 11px;
+  color: var(--app-text-faint);
 }
 
 .stat-trend {

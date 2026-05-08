@@ -1,99 +1,81 @@
 <template>
   <div class="history-page">
-    <el-card class="panel">
-      <p class="kicker">历史</p>
-      <h1>历史记录</h1>
+    <h1>历史记录</h1>
 
-      <div class="toolbar">
-        <el-input
-          v-model="searchQuery"
-          placeholder="搜索文件名"
-          clearable
-          class="search-input"
-          @input="handleSearch"
-        />
-        <el-select v-model="statusFilter" placeholder="全部状态" clearable @change="handleFilter">
-          <el-option label="排队中" value="pending" />
-          <el-option label="转写中" value="transcribing" />
-          <el-option label="分析中" value="analyzing" />
-          <el-option label="已完成" value="completed" />
-          <el-option label="失败" value="failed" />
-        </el-select>
-        <el-button
-          v-if="selectedIds.length > 0"
-          type="primary"
-          @click="handleBatchExport"
-        >
-          批量导出 ({{ selectedIds.length }})
-        </el-button>
-      </div>
+    <div class="toolbar">
+      <el-input
+        v-model="searchQuery"
+        placeholder="搜索文件名"
+        clearable
+        class="search-input"
+        @input="handleSearch"
+      />
+      <el-select v-model="statusFilter" placeholder="全部状态" clearable @change="handleFilter">
+        <el-option label="排队中" value="pending" />
+        <el-option label="转写中" value="transcribing" />
+        <el-option label="分析中" value="analyzing" />
+        <el-option label="已完成" value="completed" />
+        <el-option label="失败" value="failed" />
+      </el-select>
+      <el-button
+        v-if="selectedIds.length > 0"
+        type="primary"
+        @click="handleBatchExport"
+      >
+        批量导出 ({{ selectedIds.length }})
+      </el-button>
+    </div>
 
-      <div v-if="taskStore.loading" class="loading-state">
-        <el-skeleton :rows="5" animated />
-      </div>
+    <div v-if="taskStore.loading" class="loading-state">
+      <el-skeleton :rows="5" animated />
+    </div>
 
-      <div v-else-if="taskStore.tasks.length === 0" class="empty-state">
-        <el-empty description="暂无历史记录" />
-      </div>
+    <div v-else-if="taskStore.tasks.length === 0" class="empty-state">
+      <el-empty description="暂无历史记录" />
+    </div>
 
-      <div v-else class="task-list">
-        <div
-          v-for="(task, idx) in taskStore.tasks"
-          :key="task.task_id"
-          class="task-card"
-          :class="[
-            { selected: selectedIds.includes(task.task_id) },
-            `status-${task.status}`
-          ]"
-          :style="{ '--stagger-index': idx }"
-        >
-          <div class="task-card-header">
-            <input
-              type="checkbox"
-              class="task-checkbox"
-              :checked="selectedIds.includes(task.task_id)"
-              @change="toggleSelect(task.task_id)"
-            />
-            <div class="task-info">
-              <p class="task-filename">{{ task.filename }}</p>
-              <p class="task-meta">
-                <span>{{ formatTime(task.created_at) }}</span>
-                <span v-if="task.duration"> / {{ formatDuration(task.duration) }}</span>
-              </p>
-            </div>
-            <el-tag :type="statusType(task.status)" size="small">
-              {{ statusLabel(task.status) }}
-            </el-tag>
-          </div>
+    <el-table v-else :data="taskStore.tasks" class="task-table" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="48" />
+      <el-table-column prop="filename" label="文件名" min-width="200" show-overflow-tooltip />
+      <el-table-column label="状态" width="100">
+        <template #default="{ row }">
+          <el-tag :type="statusType(row.status)" size="small">
+            {{ statusLabel(row.status) }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="时长" width="100">
+        <template #default="{ row }">
+          <span v-if="row.duration">{{ formatDuration(row.duration) }}</span>
+          <span v-else class="text-faint">--</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="创建时间" width="180">
+        <template #default="{ row }">
+          {{ formatTime(row.created_at) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="160" fixed="right">
+        <template #default="{ row }">
+          <el-button size="small" type="primary" text @click="viewReport(row.task_id)">
+            查看报告
+          </el-button>
+          <el-button size="small" type="danger" text @click="handleDelete(row.task_id)">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
-          <el-progress
-            v-if="task.status !== 'completed' && task.status !== 'failed'"
-            :percentage="task.progress"
-            :stroke-width="6"
-            class="task-progress"
-          />
-
-          <div class="task-actions">
-            <el-button size="small" type="primary" text @click="viewReport(task.task_id)">
-              查看报告
-            </el-button>
-            <el-button size="small" type="danger" text @click="handleDelete(task.task_id)">
-              删除
-            </el-button>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="taskStore.total > taskStore.pageSize" class="pagination-wrap">
-        <el-pagination
-          v-model:current-page="currentPage"
-          :page-size="taskStore.pageSize"
-          :total="taskStore.total"
-          layout="prev, pager, next"
-          @current-change="handlePageChange"
-        />
-      </div>
-    </el-card>
+    <div v-if="taskStore.total > taskStore.pageSize" class="pagination-wrap">
+      <el-pagination
+        v-model:current-page="currentPage"
+        :page-size="taskStore.pageSize"
+        :total="taskStore.total"
+        layout="prev, pager, next"
+        @current-change="handlePageChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -140,13 +122,8 @@ function handlePageChange(page: number) {
   loadTasks();
 }
 
-function toggleSelect(taskId: string) {
-  const idx = selectedIds.value.indexOf(taskId);
-  if (idx === -1) {
-    selectedIds.value.push(taskId);
-  } else {
-    selectedIds.value.splice(idx, 1);
-  }
+function handleSelectionChange(rows: any[]) {
+  selectedIds.value = rows.map((r: any) => r.task_id);
 }
 
 function viewReport(taskId: string) {
@@ -215,35 +192,12 @@ function formatDuration(seconds: number) {
 
 <style scoped>
 .history-page {
-  padding: var(--space-6) var(--space-6) var(--space-10);
-}
-
-/* Glass panel */
-.panel {
-  width: min(960px, 100%);
-  margin: 0 auto;
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-shadow-card);
-}
-
-.panel :deep(.el-card__body) {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-}
-
-.kicker {
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  padding: var(--space-6) var(--space-6) var(--space-10);
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -252,127 +206,25 @@ h1 {
   color: var(--app-text);
 }
 
-/* Glass toolbar */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
-  border: 1px solid var(--app-glass-border);
-}
-
-.toolbar :deep(.el-input__wrapper),
-.toolbar :deep(.el-select__wrapper) {
-  background: var(--app-surface-soft);
-  border: 1px solid var(--app-glass-border);
-  box-shadow: none;
 }
 
 .search-input {
   max-width: 280px;
 }
 
-.task-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-/* Glass task cards with status-colored left border */
-.task-card {
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  border-left: 3px solid var(--app-text-faint);
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
-  animation: staggerFadeIn 0.4s ease-out forwards;
-  animation-delay: calc(var(--stagger-index, 0) * 60ms);
-  opacity: 0;
-}
-
-.task-card.status-completed {
-  border-left-color: var(--app-success);
-}
-
-.task-card.status-transcribing,
-.task-card.status-analyzing,
-.task-card.status-processing {
-  border-left-color: var(--app-warning);
-}
-
-.task-card.status-failed {
-  border-left-color: var(--app-danger);
-}
-
-.task-card.status-pending {
-  border-left-color: var(--app-info);
-}
-
-.task-card:hover {
-  border-color: rgba(167, 139, 250, 0.25);
-  box-shadow: var(--app-glow);
-  transform: translateY(-2px);
-}
-
-.task-card.selected {
-  border-color: var(--app-primary);
-  background: rgba(167, 139, 250, 0.08);
-  box-shadow: var(--app-glow-strong);
-}
-
-.task-card-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.task-checkbox {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--app-primary);
-  cursor: pointer;
-}
-
-.task-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.task-filename {
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--app-text);
-}
-
-.task-meta {
-  font-size: var(--text-xs);
-  color: var(--app-text-soft);
-  margin-top: 2px;
-}
-
-.task-progress {
-  margin-top: var(--space-2);
-}
-
-.task-actions {
-  display: flex;
-  gap: var(--space-1);
-  margin-top: var(--space-2);
+.text-faint {
+  color: var(--app-text-faint);
 }
 
 .empty-state {
   padding: var(--space-10) 0;
 }
 
-/* Pagination with gradient active page */
 .pagination-wrap {
   display: flex;
   justify-content: center;
@@ -380,14 +232,14 @@ h1 {
 }
 
 .pagination-wrap :deep(.el-pager li.is-active) {
-  background: var(--app-gradient-primary) !important;
+  background: var(--app-primary) !important;
   color: #fff !important;
   border-radius: var(--radius-md);
 }
 
 .pagination-wrap :deep(.el-pager li) {
   border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 .pagination-wrap :deep(.el-pager li:hover) {
@@ -396,16 +248,5 @@ h1 {
 
 .loading-state {
   padding: var(--space-5) 0;
-}
-
-@keyframes staggerFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 </style>

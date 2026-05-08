@@ -1,9 +1,8 @@
 <template>
   <div class="shared-report-page">
     <div v-if="!verified" class="access-form">
-      <el-card class="panel access-card">
-        <p class="kicker">分享报告</p>
-        <h1>输入提取码</h1>
+      <div class="access-card">
+        <h1>输入访问码</h1>
         <p class="access-hint">请输入 4 位提取码以查看分享的报告。</p>
 
         <el-input
@@ -19,72 +18,67 @@
         <el-button type="primary" :loading="verifying" @click="handleVerify">
           查看报告
         </el-button>
-      </el-card>
+      </div>
     </div>
 
     <div v-else-if="reportData" class="report-content">
-      <el-card class="panel">
-        <div class="panel-header">
-          <div>
-            <p class="kicker">分享报告</p>
-            <h1>{{ reportData.filename || '分析报告' }}</h1>
-          </div>
-          <span class="badge">由 LiveMirror 生成</span>
-        </div>
+      <div class="report-header">
+        <h1>{{ reportData.filename || '分析报告' }}</h1>
+        <span class="badge">由 LiveMirror 生成</span>
+      </div>
 
-        <div class="summary-grid">
-          <div class="summary-item">
-            <span class="label">时长</span>
-            <strong>{{ formatDuration(reportData.duration) }}</strong>
-          </div>
-          <div class="summary-item">
-            <span class="label">文件</span>
-            <strong>{{ reportData.filename }}</strong>
-          </div>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="summary-label">时长</span>
+          <span class="summary-value">{{ formatDuration(reportData.duration) }}</span>
         </div>
-
-        <div v-if="reportData.transcription" class="section">
-          <h3>转写文本</h3>
-          <pre class="transcript">{{ reportData.transcription }}</pre>
+        <div class="summary-item">
+          <span class="summary-label">文件</span>
+          <span class="summary-value">{{ reportData.filename }}</span>
         </div>
+      </div>
 
-        <div v-if="reportData.segments && reportData.segments.length" class="section">
-          <h3>分段</h3>
-          <el-table :data="segmentRows" border>
-            <el-table-column prop="index" label="#" width="60" />
-            <el-table-column prop="start_time" label="开始" width="100" />
-            <el-table-column prop="end_time" label="结束" width="100" />
-            <el-table-column prop="content" label="内容" min-width="260" />
-          </el-table>
-        </div>
+      <div v-if="reportData.transcription" class="section">
+        <h2>转写文本</h2>
+        <pre class="transcript">{{ reportData.transcription }}</pre>
+      </div>
 
-        <div v-if="techniqueRows.length || attributionRows.length" class="section two-col">
-          <div v-if="techniqueRows.length">
-            <h3>话术分析</h3>
-            <ul class="list">
-              <li v-for="(item, i) in techniqueRows" :key="i">{{ item }}</li>
-            </ul>
-          </div>
-          <div v-if="attributionRows.length">
-            <h3>归因分析</h3>
-            <ul class="list">
-              <li v-for="(item, i) in attributionRows" :key="i">{{ item }}</li>
-            </ul>
-          </div>
-        </div>
+      <div v-if="reportData.segments && reportData.segments.length" class="section">
+        <h2>分段</h2>
+        <el-table :data="segmentRows" border>
+          <el-table-column prop="index" label="#" width="60" />
+          <el-table-column prop="start_time" label="开始" width="100" />
+          <el-table-column prop="end_time" label="结束" width="100" />
+          <el-table-column prop="content" label="内容" min-width="260" />
+        </el-table>
+      </div>
 
-        <div v-if="suggestionRows.length" class="section">
-          <h3>建议</h3>
-          <ul class="list">
-            <li v-for="(item, i) in suggestionRows" :key="i">{{ item }}</li>
+      <div v-if="techniqueRows.length || attributionRows.length" class="section two-col">
+        <div v-if="techniqueRows.length">
+          <h2>话术分析</h2>
+          <ul class="result-list">
+            <li v-for="(item, i) in techniqueRows" :key="i">{{ item }}</li>
           </ul>
         </div>
-
-        <div v-if="reportSummaryText" class="section">
-          <h3>摘要文案</h3>
-          <p class="summary-text">{{ reportSummaryText }}</p>
+        <div v-if="attributionRows.length">
+          <h2>归因分析</h2>
+          <ul class="result-list">
+            <li v-for="(item, i) in attributionRows" :key="i">{{ item }}</li>
+          </ul>
         </div>
-      </el-card>
+      </div>
+
+      <div v-if="suggestionRows.length" class="section">
+        <h2>建议</h2>
+        <ul class="result-list">
+          <li v-for="(item, i) in suggestionRows" :key="i">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div v-if="reportSummaryText" class="section">
+        <h2>摘要文案</h2>
+        <p class="summary-text">{{ reportSummaryText }}</p>
+      </div>
     </div>
 
     <div v-else-if="verifying" class="loading-state">
@@ -186,74 +180,52 @@ function formatTime(value: unknown) {
   min-height: 100vh;
 }
 
-/* Glass panel */
-.panel {
+/* Access form - centered card */
+.access-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.access-card {
+  max-width: 400px;
+  width: 100%;
+  padding: var(--space-8);
   border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-shadow-card);
-  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
-}
-
-.panel:hover {
-  box-shadow: var(--app-glow);
-  border-color: rgba(167, 139, 250, 0.15);
-}
-
-.panel :deep(.el-card__body) {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  align-items: center;
+  text-align: center;
 }
 
-/* Access card with glow border - login aesthetic */
-.access-card {
-  max-width: 420px;
-  margin: var(--space-10) auto;
-  width: 100%;
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-glow-strong), var(--app-shadow);
-  position: relative;
-  overflow: hidden;
-  animation: cardGlow 3s ease-in-out infinite alternate;
+.access-card h1 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--app-text);
+  margin: 0;
 }
 
-.access-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: var(--radius-lg);
-  padding: 1px;
-  background: var(--app-gradient-primary);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.4;
+.access-hint {
+  color: var(--app-text-soft);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin: 0;
 }
 
-@keyframes cardGlow {
-  0% {
-    box-shadow: var(--app-glow), var(--app-shadow);
-  }
-  100% {
-    box-shadow: var(--app-glow-strong), var(--app-shadow);
-  }
+.access-input {
+  max-width: 200px;
 }
 
-.kicker {
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Report header */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
 }
 
 h1 {
@@ -262,147 +234,82 @@ h1 {
   color: var(--app-text);
 }
 
-h3 {
-  font-size: var(--text-base);
+h2 {
+  font-size: var(--text-lg);
   font-weight: 600;
   color: var(--app-text);
-  margin-bottom: var(--space-2);
-}
-
-.access-hint {
-  color: var(--app-text-soft);
-  font-size: var(--text-sm);
-  line-height: 1.6;
-}
-
-.access-input {
-  max-width: 200px;
-}
-
-.access-input :deep(.el-input__wrapper) {
-  background: var(--app-surface-soft);
-  border: 1px solid var(--app-glass-border);
-  box-shadow: none;
-}
-
-/* Panel header with gradient underline */
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-  position: relative;
-  padding-bottom: var(--space-3);
-}
-
-.panel-header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--app-gradient-primary-h);
-  opacity: 0.3;
 }
 
 .badge {
   font-size: var(--text-xs);
   color: var(--app-text-faint);
   padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--app-glass-border);
+  border: 1px solid var(--app-border);
   border-radius: var(--radius-sm);
   white-space: nowrap;
-  background: var(--app-glass-bg);
 }
 
-/* Summary grid with glass cards and gradient top border */
+.report-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Summary grid */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
   padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  position: relative;
-  overflow: hidden;
-  transition: box-shadow var(--transition-normal);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
 }
 
-.summary-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--app-gradient-primary);
-}
-
-.summary-item:hover {
-  box-shadow: var(--app-glow);
-}
-
-.summary-item .label {
-  display: block;
-  margin-bottom: var(--space-2);
-  color: var(--app-text-soft);
+.summary-label {
   font-size: var(--text-xs);
+  color: var(--app-text-soft);
 }
 
-.summary-item strong {
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.summary-value {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--app-text);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
-/* Transcript - dark inset with left accent */
+/* Transcript - clean monospace block */
 .transcript {
   padding: var(--space-4);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.7;
-  border: 1px solid var(--app-glass-border);
-  border-left: 3px solid;
-  border-image: var(--app-gradient-primary) 1;
+  border: 1px solid var(--app-border);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
-/* Two-column with gradient divider */
+/* Two-column layout */
 .two-col {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
-  position: relative;
-}
-
-.two-col::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: var(--app-gradient-primary);
-  opacity: 0.2;
-  transform: translateX(-50%);
+  gap: var(--space-6);
 }
 
 .two-col > div {
@@ -410,10 +317,19 @@ h3 {
   min-width: 280px;
 }
 
-.list {
+.result-list {
   padding-left: var(--space-4);
   color: var(--app-text-soft);
   line-height: 1.7;
+}
+
+.result-list :deep(li) {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.result-list :deep(li:last-child) {
+  border-bottom: none;
 }
 
 .summary-text {
@@ -421,52 +337,17 @@ h3 {
   line-height: 1.7;
 }
 
-/* Table override */
-.panel :deep(.el-table) {
-  --el-table-tr-bg-color: transparent;
-  --el-table-row-hover-bg-color: rgba(167, 139, 250, 0.06);
-}
-
-.panel :deep(.el-table__row:hover > td) {
-  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.1);
-}
-
-/* Report content staggered entrance */
-.report-content .panel {
-  animation: staggerFadeIn 0.4s ease-out forwards;
-  opacity: 0;
-}
-
-.report-content .panel:nth-child(1) { animation-delay: 0ms; }
-.report-content .panel:nth-child(2) { animation-delay: 80ms; }
-.report-content .panel:nth-child(3) { animation-delay: 160ms; }
-
-@keyframes staggerFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .loading-state {
   padding: var(--space-10) var(--space-6);
 }
 
 @media (max-width: 720px) {
-  .panel-header {
+  .report-header {
     flex-direction: column;
   }
 
   .access-card {
-    margin: 20px auto;
-  }
-
-  .two-col::before {
-    display: none;
+    margin: 0 var(--space-4);
   }
 }
 </style>

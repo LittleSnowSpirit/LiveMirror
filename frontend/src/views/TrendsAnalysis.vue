@@ -1,76 +1,68 @@
-﻿<template>
+<template>
   <div class="analysis-page">
-    <el-card class="panel">
-      <div class="panel-header">
-        <div>
-          <p class="kicker">趋势</p>
-          <h1>跨场次趋势分析</h1>
-        </div>
-        <div class="header-actions">
-          <el-button @click="loadSessions">刷新场次</el-button>
-          <el-button type="primary" :disabled="selectedSessionIds.length < 2" :loading="loading" @click="analyzeTrends">
-            开始分析
-          </el-button>
-        </div>
-      </div>
+    <h1>趋势分析</h1>
 
-      <div class="selection-box">
-        <p class="copy">选择至少 2 个场次后再分析。</p>
-        <div class="session-grid">
-          <button
-            v-for="session in sessions"
-            :key="session.id"
-            type="button"
-            class="session-card"
-            :class="{ selected: selectedSessionIds.includes(session.id) }"
-            @click="toggleSession(session.id)"
-          >
-            <span class="session-date">{{ session.date }}</span>
-            <strong>{{ session.anchor_name || '主播' }}</strong>
-            <span class="session-score">{{ session.overall_score }} 分</span>
-          </button>
-        </div>
-      </div>
+    <div class="toolbar">
+      <el-button @click="loadSessions">刷新场次</el-button>
+      <el-button type="primary" :disabled="selectedSessionIds.length < 2" :loading="loading" @click="analyzeTrends">
+        开始分析
+      </el-button>
+    </div>
 
-      <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
-    </el-card>
+    <p class="hint">选择至少 2 个场次后再分析。</p>
+
+    <div class="session-list">
+      <label
+        v-for="session in sessions"
+        :key="session.id"
+        class="session-row"
+        :class="{ selected: selectedSessionIds.includes(session.id) }"
+      >
+        <input
+          type="checkbox"
+          :checked="selectedSessionIds.includes(session.id)"
+          @change="toggleSession(session.id)"
+        />
+        <span class="session-date">{{ session.date }}</span>
+        <span class="session-anchor">{{ session.anchor_name || '主播' }}</span>
+        <span class="session-score">{{ session.overall_score }} 分</span>
+      </label>
+    </div>
+
+    <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
 
     <el-skeleton v-if="loading && !trendReport" :rows="6" animated />
 
     <template v-else>
-      <el-card v-if="trendReport" class="panel">
-        <p class="kicker">结果</p>
+      <div v-if="trendReport" class="result-section">
         <h2>成长报告</h2>
         <p class="summary-text">{{ trendReport.summary || '暂无总结' }}</p>
         <div class="summary-grid">
           <div class="summary-item">
-            <span class="label">场次数量</span>
-            <strong>{{ trendReport.total_sessions ?? selectedSessionIds.length }}</strong>
+            <span class="summary-label">场次数量</span>
+            <span class="summary-value">{{ trendReport.total_sessions ?? selectedSessionIds.length }}</span>
           </div>
           <div class="summary-item">
-            <span class="label">趋势判断</span>
-            <strong>{{ trendReport.overall_trend || '未提供' }}</strong>
+            <span class="summary-label">趋势判断</span>
+            <span class="summary-value">{{ trendReport.overall_trend || '未提供' }}</span>
           </div>
         </div>
-      </el-card>
+      </div>
 
-      <el-card v-if="emotionLines.length" class="panel">
-        <p class="kicker">结果</p>
+      <div v-if="emotionLines.length" class="result-section">
         <h2>情绪趋势</h2>
         <pre class="result-block">{{ emotionLines.join('\n') }}</pre>
-      </el-card>
+      </div>
 
-      <el-card v-if="speechLines.length" class="panel">
-        <p class="kicker">结果</p>
+      <div v-if="speechLines.length" class="result-section">
         <h2>话术质量趋势</h2>
         <pre class="result-block">{{ speechLines.join('\n') }}</pre>
-      </el-card>
+      </div>
 
-      <el-card v-if="engagementLines.length" class="panel">
-        <p class="kicker">结果</p>
+      <div v-if="engagementLines.length" class="result-section">
         <h2>互动趋势</h2>
         <pre class="result-block">{{ engagementLines.join('\n') }}</pre>
-      </el-card>
+      </div>
     </template>
   </div>
 </template>
@@ -204,147 +196,97 @@ onMounted(() => {
   flex-direction: column;
   gap: var(--space-4);
   padding: var(--space-6) var(--space-6) var(--space-10);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Glass panel */
-.panel {
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-shadow-card);
-  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
-  animation: staggerFadeIn 0.4s ease-out forwards;
-  opacity: 0;
+h1 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--app-text);
 }
 
-.panel:nth-child(1) { animation-delay: 0ms; }
-.panel:nth-child(2) { animation-delay: 80ms; }
-.panel:nth-child(3) { animation-delay: 160ms; }
-.panel:nth-child(4) { animation-delay: 240ms; }
-.panel:nth-child(5) { animation-delay: 320ms; }
-
-.panel:hover {
-  box-shadow: var(--app-glow);
-  border-color: rgba(167, 139, 250, 0.15);
+h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--app-text);
 }
 
-.panel :deep(.el-card__body) {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-  position: relative;
-  padding-bottom: var(--space-3);
-}
-
-.panel-header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--app-gradient-primary-h);
-  opacity: 0.3;
-}
-
-.kicker {
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.copy,
-.summary-text {
-  color: var(--app-text-soft);
-  line-height: 1.7;
-}
-
-.header-actions {
+.toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
 
-/* Glass selection box */
-.selection-box {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
-  border: 1px solid var(--app-glass-border);
-}
-
-.session-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-2);
-}
-
-/* Glass session cards with gradient border on selected */
-.session-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  color: var(--app-text);
-  text-align: left;
-  cursor: pointer;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal), background var(--transition-normal);
-}
-
-.session-card.selected {
-  border-color: var(--app-primary);
-  background: rgba(167, 139, 250, 0.08);
-  box-shadow: var(--app-glow);
-  position: relative;
-}
-
-.session-card.selected::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: var(--radius-lg);
-  padding: 1px;
-  background: var(--app-gradient-primary);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.session-card:hover {
-  border-color: rgba(167, 139, 250, 0.25);
-  transform: translateY(-2px);
-  box-shadow: var(--app-glow);
-}
-
-.session-date,
-.session-score {
+.hint {
+  font-size: var(--text-sm);
   color: var(--app-text-soft);
-  font-size: var(--text-xs);
 }
 
-/* Summary grid with gradient numbers */
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.session-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--app-surface);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.session-row:hover {
+  background: var(--app-surface-soft);
+}
+
+.session-row.selected {
+  background: var(--app-surface-soft);
+}
+
+.session-row input[type="checkbox"] {
+  accent-color: var(--app-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.session-date {
+  font-size: var(--text-sm);
+  color: var(--app-text-soft);
+  min-width: 80px;
+}
+
+.session-anchor {
+  font-weight: 500;
+  color: var(--app-text);
+  flex: 1;
+}
+
+.session-score {
+  font-size: var(--text-sm);
+  color: var(--app-text-soft);
+}
+
+.summary-text {
+  color: var(--app-text-soft);
+  line-height: 1.7;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--app-border);
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -352,70 +294,42 @@ onMounted(() => {
 }
 
 .summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
   padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  position: relative;
-  overflow: hidden;
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
 }
 
-.summary-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--app-gradient-primary);
-}
-
-.summary-item strong {
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.label {
-  display: block;
-  margin-bottom: var(--space-2);
-  color: var(--app-text-soft);
+.summary-label {
   font-size: var(--text-xs);
+  color: var(--app-text-soft);
 }
 
-/* Dark inset result blocks with accent */
+.summary-value {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--app-text);
+}
+
 .result-block {
   padding: var(--space-4);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.7;
-  border: 1px solid var(--app-glass-border);
-  border-left: 3px solid;
-  border-image: var(--app-gradient-primary) 1;
+  border: 1px solid var(--app-border);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
-@keyframes staggerFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 720px) {
-  .panel-header {
-    flex-direction: column;
+  .session-row {
+    flex-wrap: wrap;
+    gap: var(--space-2);
   }
 }
 </style>

@@ -326,16 +326,12 @@ function batchStatusLabel(status: string) {
   padding: var(--space-6) var(--space-6) var(--space-10);
 }
 
-/* Glass panel */
 .panel {
   width: min(960px, 100%);
   margin: 0 auto;
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-shadow-glow);
+  border-radius: 6px;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
 }
 
 .panel :deep(.el-card__body) {
@@ -346,19 +342,16 @@ function batchStatusLabel(status: string) {
 
 .kicker {
   font-size: var(--text-xs);
-  color: var(--app-primary-strong);
-  font-weight: 800;
+  color: var(--app-text-faint);
+  font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 h1 {
   font-size: var(--text-4xl);
-  font-weight: 820;
-  letter-spacing: 0;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  color: var(--app-text);
 }
 
 .copy {
@@ -366,80 +359,27 @@ h1 {
   line-height: 1.7;
 }
 
-/* Gradient underline for active tab */
 .mode-tabs :deep(.el-tabs__header) {
   margin-bottom: var(--space-2);
 }
 
-.mode-tabs :deep(.el-tabs__active-bar) {
-  background: var(--app-gradient-primary-h);
-  height: 3px;
-  border-radius: 2px;
-}
-
-/* Drop zone — animated gradient dashed border */
 .drop-zone {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   padding: var(--space-10) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
+  border-radius: 6px;
+  border: 2px dashed var(--app-border);
+  background: var(--app-surface-soft);
   cursor: pointer;
-  overflow: hidden;
-  transition: background var(--transition-fast);
-}
-
-.drop-zone::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  padding: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--app-primary) 0,
-    var(--app-primary) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  background-size: 200% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.4;
-  animation: dashScroll 12s linear infinite;
-}
-
-.drop-zone:hover::before,
-.drop-zone.dragover::before {
-  opacity: 1;
-  background: repeating-linear-gradient(
-    90deg,
-    #a78bfa 0,
-    #f0abfc 12px,
-    transparent 12px,
-    transparent 20px
-  );
-  background-size: 200% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: dashScroll 6s linear infinite;
-}
-
-@keyframes dashScroll {
-  to { background-position: 200% 0; }
+  transition: border-color 150ms ease;
 }
 
 .drop-zone:hover,
 .drop-zone.dragover {
-  background: rgba(167, 139, 250, 0.06);
+  border-color: var(--app-primary);
 }
 
 .drop-icon {
@@ -447,14 +387,6 @@ h1 {
   line-height: 1;
   color: var(--app-text-faint);
   font-weight: 300;
-  transition: color var(--transition-fast);
-}
-
-.drop-zone:hover .drop-icon {
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .drop-text {
@@ -466,16 +398,16 @@ h1 {
   align-items: center;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
-  background: var(--app-gradient-primary);
-  color: #06110f;
+  background: var(--app-primary);
+  color: #fff;
   font-weight: 600;
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: box-shadow var(--transition-fast);
+  transition: opacity 150ms ease;
 }
 
 .drop-label:hover {
-  box-shadow: var(--app-glow);
+  opacity: 0.9;
 }
 
 .file-input-hidden {
@@ -491,17 +423,14 @@ h1 {
   color: var(--app-text-faint);
 }
 
-/* Selected file — glass */
 .selected-file {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--app-glass-border);
-  border-radius: var(--radius-md);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  background: var(--app-surface);
 }
 
 .file-name {
@@ -522,25 +451,19 @@ h1 {
   margin-top: var(--space-2);
 }
 
-/* Result box — glass with glow */
 .result-box {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4);
-  border: 1px solid var(--app-glass-border);
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  background: var(--app-surface);
 }
 
 .result-title {
   font-weight: 600;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--app-text);
 }
 
 .result-stats {
@@ -555,9 +478,8 @@ h1 {
 }
 
 .stat-num {
-  font-family: var(--font-heading);
   font-size: var(--text-2xl);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--app-text);
 }
 
@@ -580,7 +502,6 @@ h1 {
   gap: var(--space-2);
 }
 
-/* History */
 .batch-table {
   width: 100%;
 }

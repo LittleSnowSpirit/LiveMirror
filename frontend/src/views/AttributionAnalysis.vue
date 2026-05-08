@@ -1,46 +1,52 @@
-﻿<template>
+<template>
   <div class="analysis-page">
-    <el-card class="panel">
-      <div class="panel-header">
-        <div>
-          <p class="kicker">归因</p>
-          <h1>话术与情绪归因分析</h1>
-        </div>
-        <el-button @click="fillSample">填充示例</el-button>
-      </div>
+    <h1>归因分析</h1>
 
-      <div class="form-grid">
+    <div class="input-section">
+      <div class="form-field">
+        <label>任务 ID（可选）</label>
         <el-input v-model="taskIdInput" placeholder="可选：任务 ID" />
-        <el-input v-model="speechSegmentsText" type="textarea" :rows="8" placeholder="speech_segments JSON" />
-        <el-input v-model="emotionCurveText" type="textarea" :rows="8" placeholder="emotion_curve JSON" />
-        <el-input v-model="danmuListText" type="textarea" :rows="8" placeholder="danmu_list JSON" />
+      </div>
+      <div class="form-field">
+        <label>speech_segments JSON</label>
+        <el-input v-model="speechSegmentsText" type="textarea" :rows="6" placeholder="speech_segments JSON" />
+      </div>
+      <div class="form-field">
+        <label>emotion_curve JSON</label>
+        <el-input v-model="emotionCurveText" type="textarea" :rows="6" placeholder="emotion_curve JSON" />
+      </div>
+      <div class="form-field">
+        <label>danmu_list JSON</label>
+        <el-input v-model="danmuListText" type="textarea" :rows="6" placeholder="danmu_list JSON" />
+      </div>
+      <div class="form-field form-field--narrow">
+        <label>Top N</label>
         <el-input-number v-model="topN" :min="1" :max="20" controls-position="right" />
       </div>
 
       <div class="actions">
         <el-button type="primary" :loading="loading" @click="runAnalysis">开始分析</el-button>
+        <el-button @click="fillSample">填充示例</el-button>
         <el-button @click="loadFromReport">从最近报告填充</el-button>
       </div>
 
       <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
-    </el-card>
+    </div>
 
-    <el-card v-if="result" class="panel">
-      <p class="kicker">结果</p>
+    <div v-if="result" class="result-section">
       <h2>分析摘要</h2>
-      <ul v-if="resultSummary.length" class="list">
+      <ul v-if="resultSummary.length" class="result-list">
         <li v-for="(item, index) in resultSummary" :key="index">{{ item }}</li>
       </ul>
       <p v-else class="empty-result">分析完成，当前示例没有生成摘要列表。</p>
-    </el-card>
+    </div>
 
-    <el-card v-if="peakRows.length" class="panel">
-      <p class="kicker">结果</p>
+    <div v-if="peakRows.length" class="result-section">
       <h2>高峰与建议</h2>
-      <ul class="list">
+      <ul class="result-list">
         <li v-for="(item, index) in peakRows" :key="index">{{ item }}</li>
       </ul>
-    </el-card>
+    </div>
   </div>
 </template>
 
@@ -144,135 +150,84 @@ async function runAnalysis() {
 .analysis-page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-6);
   padding: var(--space-6) var(--space-6) var(--space-10);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Glass panel */
-.panel {
-  border-radius: var(--radius-lg);
-  background: var(--app-glass-bg);
-  backdrop-filter: blur(var(--app-glass-blur));
-  -webkit-backdrop-filter: blur(var(--app-glass-blur));
-  border: 1px solid var(--app-glass-border);
-  box-shadow: var(--app-shadow-card);
-  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
-  animation: staggerFadeIn 0.4s ease-out forwards;
-  opacity: 0;
+h1 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--app-text);
 }
 
-.panel:nth-child(1) { animation-delay: 0ms; }
-.panel:nth-child(2) { animation-delay: 80ms; }
-.panel:nth-child(3) { animation-delay: 160ms; }
-
-.panel:hover {
-  box-shadow: var(--app-glow);
-  border-color: rgba(167, 139, 250, 0.15);
+h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--app-text);
 }
 
-.panel :deep(.el-card__body) {
+.input-section {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-  position: relative;
-  padding-bottom: var(--space-3);
-}
-
-.panel-header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--app-gradient-primary-h);
-  opacity: 0.3;
-}
-
-.kicker {
-  font-size: var(--text-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Glass form grid */
-.form-grid {
+.form-field {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-3);
-  border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
-  border: 1px solid var(--app-glass-border);
-  border-left: 3px solid;
-  border-image: var(--app-gradient-primary) 1;
+  gap: var(--space-1);
 }
 
-.form-grid :deep(.el-textarea__inner),
-.form-grid :deep(.el-input__wrapper) {
-  background: var(--app-surface-soft);
-  border: 1px solid var(--app-glass-border);
-  box-shadow: none;
+.form-field label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--app-text-soft);
+}
+
+.form-field--narrow {
+  max-width: 160px;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  margin-top: var(--space-2);
 }
 
-.list {
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--app-border);
+}
+
+.result-list {
   padding-left: var(--space-4);
   color: var(--app-text-soft);
   line-height: 1.7;
 }
 
-.list :deep(li) {
+.result-list :deep(li) {
   padding: var(--space-2) 0;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.06);
-  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--app-border);
 }
 
-.list :deep(li:hover) {
-  background: rgba(167, 139, 250, 0.04);
-  border-radius: var(--radius-sm);
-}
-
-.list :deep(li:last-child) {
+.result-list :deep(li:last-child) {
   border-bottom: none;
 }
 
 .empty-result {
-  padding-left: 0;
   color: var(--app-text-soft);
   line-height: 1.7;
 }
 
-@keyframes staggerFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 720px) {
-  .panel-header {
-    flex-direction: column;
+  .form-field--narrow {
+    max-width: 100%;
   }
 }
 </style>

@@ -193,33 +193,24 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Bell button — gradient hover */
 .bell-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   padding: 0;
-  border: 1px solid var(--app-glass-border);
-  border-radius: var(--radius-full);
+  border: none;
+  border-radius: 4px;
   background: transparent;
   color: var(--app-text-soft);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: background 150ms ease, color 150ms ease;
 }
 
 .bell-btn:hover {
-  background: var(--app-glass-bg);
-  border-color: var(--app-primary);
-  box-shadow: var(--app-glow);
-}
-
-.bell-btn:hover .bell-icon {
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: var(--app-surface-soft);
+  color: var(--app-text);
 }
 
 .bell-icon {
@@ -228,21 +219,6 @@ onMounted(() => {
   justify-content: center;
 }
 
-/* Glow pulse animation for badge */
-.bell-btn :deep(.el-badge__content) {
-  animation: bellGlowPulse 2s ease-in-out infinite;
-}
-
-@keyframes bellGlowPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 8px 2px rgba(167, 139, 250, 0.3);
-  }
-}
-
-/* Glass popover panel */
 .notification-panel {
   display: flex;
   flex-direction: column;
@@ -254,16 +230,13 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--app-glass-border);
+  border-bottom: 1px solid var(--app-border);
 }
 
 .panel-title {
   font-weight: 600;
   font-size: var(--text-base);
-  background: var(--app-gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--app-text);
 }
 
 .notification-list {
@@ -272,15 +245,14 @@ onMounted(() => {
   max-height: 380px;
 }
 
-/* Notification items with hover glow */
 .notification-item {
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   cursor: pointer;
-  transition: background var(--transition-fast), box-shadow var(--transition-fast);
-  border-bottom: 1px solid var(--app-glass-border);
+  transition: background 150ms ease;
+  border-bottom: 1px solid var(--app-border);
 }
 
 .notification-item:last-child {
@@ -288,12 +260,11 @@ onMounted(() => {
 }
 
 .notification-item:hover {
-  background: rgba(167, 139, 250, 0.06);
-  box-shadow: inset 0 0 20px rgba(167, 139, 250, 0.04);
+  background: var(--app-surface-soft);
 }
 
 .notification-item.unread {
-  background: rgba(167, 139, 250, 0.08);
+  background: var(--app-surface-soft);
 }
 
 .item-indicator {
@@ -314,7 +285,7 @@ onMounted(() => {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: var(--radius-md);
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
@@ -377,7 +348,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--app-glass-border);
+  border-top: 1px solid var(--app-border);
 }
 
 .push-toggle {
@@ -396,11 +367,12 @@ onMounted(() => {
   color: var(--app-primary);
   text-decoration: none;
   font-weight: 500;
-  transition: text-shadow var(--transition-fast);
+  transition: color 150ms ease;
 }
 
 .view-all:hover {
-  text-shadow: 0 0 8px rgba(167, 139, 250, 0.4);
+  color: var(--app-primary);
+  opacity: 0.8;
 }
 
 @media (max-width: 720px) {
