@@ -162,6 +162,16 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         status="beta",
         description="粘贴直播回放链接，自动下载音频并分析。",
     ),
+    FeatureDefinition(
+        key="danmu",
+        label="弹幕数据",
+        group="analysis",
+        path="/api/danmu",
+        router_module="routes.core_danmu",
+        enabled=True,
+        status="beta",
+        description="上传弹幕文件（CSV/JSON），批量解析入库，查看批次和弹幕详情。",
+    ),
 )
 
 
@@ -195,6 +205,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "batch_export": None,
         "share": None,
         "link": "/upload",
+        "danmu": "/danmu",
     }
     navigation_labels = {
         "upload": "上传",
@@ -208,6 +219,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "batch_export": None,
         "share": None,
         "link": "链接分析",
+        "danmu": "弹幕",
     }
 
     return {

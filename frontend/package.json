@@ -16,6 +16,7 @@
     "@types/qrcode": "^1.5.6",
     "axios": "^1.15.0",
     "echarts": "^6.0.0",
+    "echarts-wordcloud": "^2.1.0",
     "element-plus": "^2.13.6",
     "pinia": "^3.0.4",
     "qrcode": "^1.5.4",

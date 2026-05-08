@@ -253,6 +253,48 @@ export interface FeatureResponse {
   groups: FeatureGroup[];
 }
 
+export interface DanmuBatch {
+  batch_id: string;
+  filename: string;
+  total_count: number;
+  success_count: number;
+  failed_count: number;
+  status: string;
+  created_at: string;
+}
+
+export interface DanmuBatchDetail extends DanmuBatch {
+  items?: Array<Record<string, unknown>>;
+}
+
+export interface DanmuAnalysisResult {
+  batch_id: string;
+  status: string;
+  total_count: number;
+  positive_count: number;
+  negative_count: number;
+  neutral_count: number;
+  positive_ratio: number;
+  negative_ratio: number;
+  emotion_curve: Array<{ time: number; score: number; count: number; positive: number; negative: number; neutral: number }>;
+  keywords: KeywordItem[];
+  density: Array<{ time: number; count: number; avgScore: number }>;
+  correlation?: CorrelationItem[];
+}
+
+export interface KeywordItem {
+  word: string;
+  count: number;
+  sentiment: string;
+}
+
+export interface CorrelationItem {
+  time: number;
+  text: string;
+  danmu_count: number;
+  danmu_score: number;
+}
+
 export interface LinkInfo {
   platform: string;
   video_id: string;
@@ -606,6 +648,55 @@ export async function updateProfile(data: { nickname?: string; bio?: string }) {
 export async function getProfile() {
   const response = await api.get<UserProfile>('/api/user/profile');
   return response.data;
+}
+
+export async function uploadDanmuFile(file: File, onProgress?: (progress: number) => void) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await api.post<{ batch_id: string; total_count: number; success_count: number; failed_count: number }>(
+    '/api/danmu/upload',
+    formData,
+    {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      onUploadProgress: (event) => {
+        if (event.total && onProgress) {
+          onProgress(Math.round((event.loaded * 100) / event.total));
+        }
+      },
+    }
+  );
+
+  return response.data;
+}
+
+export async function getDanmuBatches() {
+  const response = await api.get<{ success: boolean; batches: DanmuBatch[] }>('/api/danmu/batches');
+  return response.data.batches;
+}
+
+export async function getDanmuBatchDetail(batchId: string) {
+  const response = await api.get<DanmuBatchDetail>(`/api/danmu/batch/${batchId}`);
+  return response.data;
+}
+
+export async function triggerDanmuAnalysis(batchId: string) {
+  await api.post(`/api/danmu/batch/${batchId}/analyze`);
+}
+
+export async function getDanmuAnalysis(batchId: string) {
+  const response = await api.get<DanmuAnalysisResult>(`/api/danmu/batch/${batchId}/analysis`);
+  return response.data;
+}
+
+export async function getDanmuKeywords(batchId: string) {
+  const response = await api.get<{ success: boolean; keywords: KeywordItem[] }>(`/api/danmu/batch/${batchId}/keywords`);
+  return response.data.keywords;
+}
+
+export async function getDanmuCorrelation(batchId: string) {
+  const response = await api.get<{ success: boolean; correlation: CorrelationItem[] }>(`/api/danmu/batch/${batchId}/correlation`);
+  return response.data.correlation;
 }
 
 function handleAuthFailure() {

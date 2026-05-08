@@ -34,6 +34,7 @@
             {{ item.navigation_label || item.name }}
           </RouterLink>
           <RouterLink to="/history" class="nav-link">历史记录</RouterLink>
+          <RouterLink to="/danmu" class="nav-link">弹幕分析</RouterLink>
           <RouterLink to="/profile" class="nav-link">个人中心</RouterLink>
           <button class="theme-toggle" type="button" :aria-label="isDark ? '切换到亮色模式' : '切换到暗色模式'" @click="toggleTheme">
             {{ isDark ? '☾' : '☀' }}
@@ -82,6 +83,7 @@
               {{ item.navigation_label || item.name }}
             </RouterLink>
             <RouterLink to="/history" class="drawer-link" @click="drawerOpen = false">历史记录</RouterLink>
+            <RouterLink to="/danmu" class="drawer-link" @click="drawerOpen = false">弹幕分析</RouterLink>
             <RouterLink to="/profile" class="drawer-link" @click="drawerOpen = false">个人中心</RouterLink>
           </template>
           <template v-else>
