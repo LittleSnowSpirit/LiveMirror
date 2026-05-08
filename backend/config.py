@@ -55,6 +55,11 @@ class CoreSettings(BaseSettings):
 
     log_level: str = "INFO"
 
+    # VAPID for Web Push
+    vapid_private_key: str = ""
+    vapid_public_key: str = ""
+    vapid_subject: str = "mailto:admin@livemirror.com"
+
     @field_validator("upload_dir")
     @classmethod
     def normalize_upload_dir(cls, value: str) -> str:

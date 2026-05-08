@@ -119,11 +119,18 @@ def _run_danmu_analysis(batch_id: str, user_id: int) -> None:
     """后台线程：执行弹幕情感分析。失败时退还配额。"""
     from database import SessionLocal
     from services.danmu_analyzer import analyze_danmu_batch
+    from services.notification_service import create_notification
 
     db = SessionLocal()
     try:
         analyze_danmu_batch(db, batch_id)
         db.commit()
+        create_notification(
+            db, user_id, "danmu_completed", "弹幕分析完成",
+            "弹幕批次分析已完成",
+            link=f"/danmu/{batch_id}",
+            metadata={"batch_id": batch_id},
+        )
     except Exception:
         db.rollback()
         # 退还配额
@@ -138,6 +145,12 @@ def _run_danmu_analysis(batch_id: str, user_id: int) -> None:
                 db.commit()
         except Exception:
             db.rollback()
+        create_notification(
+            db, user_id, "danmu_failed", "弹幕分析失败",
+            "弹幕批次分析失败",
+            link=f"/danmu/{batch_id}",
+            metadata={"batch_id": batch_id},
+        )
         import logging
         logging.getLogger(__name__).exception("Danmu analysis failed for batch %s", batch_id)
     finally:

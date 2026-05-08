@@ -377,3 +377,60 @@ class ShareLink(Base):
             "view_count": self.view_count,
             "user_id": self.user_id,
         }
+
+
+# ==================== 通知系统模型 ====================
+
+
+class Notification(Base):
+    """通知模型"""
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    type = Column(String(32), nullable=False)
+    title = Column(String(200), nullable=False)
+    message = Column(Text, nullable=False)
+    is_read = Column(Boolean, default=False, nullable=False)
+    link = Column(String(500), nullable=True)
+    metadata_ = Column("metadata", SAJSON, nullable=True)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
+
+    __table_args__ = (
+        Index('idx_notification_user_read', 'user_id', 'is_read'),
+        Index('idx_notification_user_created', 'user_id', 'created_at'),
+    )
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "type": self.type,
+            "title": self.title,
+            "message": self.message,
+            "is_read": self.is_read,
+            "link": self.link,
+            "metadata": self.metadata_,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+        }
+
+
+class PushSubscription(Base):
+    """Web Push 订阅模型"""
+    __tablename__ = "push_subscriptions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    endpoint = Column(String(1000), unique=True, nullable=False)
+    p256dh = Column(String(255), nullable=False)
+    auth = Column(String(255), nullable=False)
+    user_agent = Column(String(500), nullable=True)
+    created_at = Column(DateTime, default=utc_now, nullable=False)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "endpoint": self.endpoint,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+        }

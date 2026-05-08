@@ -39,6 +39,7 @@
           <button class="theme-toggle" type="button" :aria-label="isDark ? '切换到亮色模式' : '切换到暗色模式'" @click="toggleTheme">
             {{ isDark ? '☾' : '☀' }}
           </button>
+          <NotificationBell />
           <button class="nav-link nav-button" type="button" @click="handleLogout">退出</button>
         </template>
         <template v-else>
@@ -93,6 +94,9 @@
         </nav>
 
         <div class="drawer-footer" v-if="authenticated">
+          <div class="drawer-bell">
+            <NotificationBell />
+          </div>
           <button class="drawer-link" type="button" @click="toggleTheme">
             {{ isDark ? '☾ 暗色模式' : '☀ 亮色模式' }}
           </button>
@@ -115,7 +119,9 @@
 import { computed, onMounted, ref, watch } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
-import { getFeatures, isAuthenticated, logout, type FeatureInfo } from './api';
+import { getFeatures, isAuthenticated, logout, getAccessToken, type FeatureInfo } from './api';
+import { useNotificationStore } from './stores/notification';
+import NotificationBell from './components/NotificationBell.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -123,6 +129,7 @@ const features = ref<FeatureInfo[]>([]);
 const authenticated = ref(isAuthenticated());
 const drawerOpen = ref(false);
 const isDark = ref(true);
+const notificationStore = useNotificationStore();
 
 function applyTheme(dark: boolean) {
   document.documentElement.dataset.theme = dark ? '' : 'light';
@@ -155,9 +162,17 @@ const navigationFeatures = computed(() => features.value.filter((feature) => (
   && feature.group !== 'legacy'
 )));
 
+function connectNotifications() {
+  if (authenticated.value) {
+    const token = getAccessToken();
+    if (token) notificationStore.connect(token);
+  }
+}
+
 onMounted(() => {
   initTheme();
   void refreshNavigation();
+  connectNotifications();
 });
 
 watch(
@@ -167,6 +182,14 @@ watch(
     void refreshNavigation();
   }
 );
+
+watch(authenticated, (isAuth) => {
+  if (isAuth) {
+    connectNotifications();
+  } else {
+    notificationStore.disconnect();
+  }
+});
 
 async function refreshNavigation() {
   if (!authenticated.value) {
@@ -183,6 +206,7 @@ async function refreshNavigation() {
 }
 
 async function handleLogout() {
+  notificationStore.disconnect();
   logout();
   authenticated.value = false;
   features.value = [];
@@ -684,6 +708,15 @@ h1, h2, h3, h4, h5, h6 {
 .drawer-footer {
   padding: var(--space-3) var(--space-4);
   border-top: 1px solid var(--app-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drawer-bell {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2) 0;
 }
 
 .drawer-logout {
