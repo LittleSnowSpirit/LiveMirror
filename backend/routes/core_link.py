@@ -14,6 +14,7 @@ from models import UsageRecord, UserQuota
 from routes.core_auth import get_current_user
 from services.database import create_task
 from services.link_parser import get_link_info, is_supported_url
+from services.quota import get_or_create_quota
 from services.task_queue import get_task_queue, process_link_task
 
 router = APIRouter(prefix="/api", tags=["core-link"])
@@ -21,25 +22,6 @@ router = APIRouter(prefix="/api", tags=["core-link"])
 
 class AnalyzeLinkRequest(BaseModel):
     url: str
-
-
-def _get_or_create_quota(db: Session, user_id: int) -> UserQuota:
-    """Return the current-week quota row, creating one if needed."""
-    today = date_type.today()
-    monday = today - timedelta(days=today.weekday())
-
-    quota = db.query(UserQuota).filter(UserQuota.user_id == user_id).first()
-    if quota is None:
-        quota = UserQuota(user_id=user_id, week_start_date=monday)
-        db.add(quota)
-        db.commit()
-        db.refresh(quota)
-    elif quota.week_start_date != monday:
-        quota.used_this_week = 0
-        quota.week_start_date = monday
-        db.commit()
-        db.refresh(quota)
-    return quota
 
 
 @router.post("/analyze-link")
@@ -59,8 +41,8 @@ async def analyze_link(
             detail="Unsupported URL. Supported platforms: Douyin, Bilibili.",
         )
 
-    user_id = _current_user.id if _current_user else 1
-    quota = _get_or_create_quota(db, user_id)
+    user_id = _current_user.id
+    quota = get_or_create_quota(db, user_id)
     if quota.used_this_week >= quota.weekly_limit:
         raise HTTPException(
             status_code=429,

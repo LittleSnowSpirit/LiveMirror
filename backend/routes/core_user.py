@@ -12,6 +12,8 @@ from sqlalchemy.orm import Session
 from config import settings
 from database import get_db
 from models import User, UserQuota, UsageRecord
+from routes.core_auth import get_current_user
+from services.quota import get_or_create_quota
 
 router = APIRouter(prefix="/api/user", tags=["core-user"])
 
@@ -22,32 +24,13 @@ _ALLOWED_AVATAR_TYPES = {"image/jpeg": ".jpg", "image/png": ".png"}
 _MAX_AVATAR_SIZE = 2 * 1024 * 1024
 
 
-def _get_or_create_quota(db: Session, user_id: int) -> UserQuota:
-    """Return the current-week quota row, creating one if it does not exist."""
-    today = date_type.today()
-    monday = today - timedelta(days=today.weekday())
-
-    quota = db.query(UserQuota).filter(UserQuota.user_id == user_id).first()
-    if quota is None:
-        quota = UserQuota(user_id=user_id, week_start_date=monday)
-        db.add(quota)
-        db.commit()
-        db.refresh(quota)
-    elif quota.week_start_date != monday:
-        quota.used_this_week = 0
-        quota.week_start_date = monday
-        db.commit()
-        db.refresh(quota)
-    return quota
-
-
 @router.get("/quota")
 async def get_user_quota(
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
-    user_id = _current_user.id if _current_user else 1
-    quota = _get_or_create_quota(db, user_id)
+    user_id = current_user.id
+    quota = get_or_create_quota(db, user_id)
 
     today = date_type.today()
     monday = today - timedelta(days=today.weekday())
@@ -67,9 +50,9 @@ async def get_user_quota(
 @router.get("/usage")
 async def get_user_usage(
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
-    user_id = _current_user.id if _current_user else 1
+    user_id = current_user.id
     records = (
         db.query(UsageRecord)
         .filter(UsageRecord.user_id == user_id)
@@ -95,9 +78,9 @@ class ProfileUpdate(BaseModel):
 @router.get("/profile")
 async def get_profile(
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
-    user_id = _current_user.id if _current_user else 1
+    user_id = current_user.id
     user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found.")
@@ -120,9 +103,9 @@ async def get_profile(
 async def update_profile(
     body: ProfileUpdate,
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
-    user_id = _current_user.id if _current_user else 1
+    user_id = current_user.id
     user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found.")
@@ -151,9 +134,9 @@ async def update_profile(
 async def upload_avatar(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    _current_user=None,
+    current_user=Depends(get_current_user),
 ):
-    user_id = _current_user.id if _current_user else 1
+    user_id = current_user.id
     user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found.")
