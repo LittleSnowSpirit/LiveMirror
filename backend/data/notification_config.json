@@ -8,10 +8,11 @@
     "recipients": []
   },
   "wechat": {
-    "enabled": false,
+    "enabled": true,
     "corp_id": "",
     "agent_id": "",
     "secret": "",
-    "user_ids": []
+    "user_ids": [],
+    "webhook_url": "https://test.webhook.url"
   }
 }

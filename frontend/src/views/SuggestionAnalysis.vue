@@ -66,8 +66,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { ElMessage } from 'element-plus';
 import { analyzeSuggestion, getReport, getStoredTaskId } from '../api';
+import { ElMessage } from 'element-plus';
 
 const taskIdInput = ref('');
 const speechType = ref('price_promotion');

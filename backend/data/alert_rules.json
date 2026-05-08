@@ -1,1 +1,82 @@
-{}
+{
+  "f91727726242": {
+    "id": "f91727726242",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T01:01:12.532946"
+  },
+  "ee6f649c95ea": {
+    "id": "ee6f649c95ea",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T01:01:12.543012"
+  },
+  "d5f06928dfe3": {
+    "id": "d5f06928dfe3",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T01:01:57.264881"
+  },
+  "c1b057cf0bd3": {
+    "id": "c1b057cf0bd3",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T01:01:57.273702"
+  },
+  "8d9476bb9bfe": {
+    "id": "8d9476bb9bfe",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T01:04:32.157375"
+  },
+  "865f8e5382dd": {
+    "id": "865f8e5382dd",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T01:04:32.165947"
+  },
+  "b55e539f8e38": {
+    "id": "b55e539f8e38",
+    "name": "测试规则",
+    "competitor_id": "",
+    "rule_type": "traffic_spike",
+    "threshold": 2.0,
+    "comparison": "gt",
+    "enabled": true,
+    "created_at": "2026-05-08T12:51:48.900425"
+  },
+  "1a303f2cb490": {
+    "id": "1a303f2cb490",
+    "name": "更新后的规则",
+    "competitor_id": "",
+    "rule_type": "promotion_activity",
+    "threshold": 0.0,
+    "comparison": "gt",
+    "enabled": false,
+    "created_at": "2026-05-08T12:51:48.912197"
+  }
+}

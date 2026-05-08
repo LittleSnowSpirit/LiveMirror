@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 
-FeatureStatus = Literal["stable", "beta", "legacy_pending", "disabled"]
+FeatureStatus = Literal["stable", "beta", "disabled"]
 
 
 @dataclass(frozen=True)
@@ -111,16 +111,6 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         enabled=True,
         status="beta",
         description="竞品直播间监控、告警规则和运营看板数据。",
-    ),
-    FeatureDefinition(
-        key="legacy_operations",
-        label="历史实验模块",
-        group="legacy",
-        path="/api/*",
-        router_module=None,
-        enabled=False,
-        status="legacy_pending",
-        description="选品、标题、装修、A/B、培训等模块保留源码，待逐个转正。",
     ),
 )
 

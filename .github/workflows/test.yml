@@ -30,6 +30,21 @@ jobs:
           python -m pip install -r requirements.txt
           python -m playwright install chromium
 
+      - name: Validate Alembic migrations
+        working-directory: ./backend
+        run: |
+          python -c "
+          from alembic.config import Config
+          from alembic import command
+          cfg = Config('alembic.ini')
+          cfg.set_main_option('script_location', 'migrations')
+          cfg.set_main_option('sqlalchemy.url', 'sqlite:///test_migration_check.db')
+          command.upgrade(cfg, 'head')
+          command.downgrade(cfg, 'base')
+          import os; os.remove('test_migration_check.db')
+          print('Migrations validated: upgrade and downgrade succeeded.')
+          "
+
       - name: Run full pytest suite
         env:
           DATABASE_URL: sqlite://

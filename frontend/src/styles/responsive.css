@@ -7,13 +7,12 @@
    断点定义
    ======================================== */
 :root {
-  --breakpoint-xs: 320px;   /* 小手机 */
-  --breakpoint-sm: 480px;   /* 大手机 */
-  --breakpoint-md: 768px;   /* 平板 */
-  --breakpoint-lg: 1024px;  /* 小桌面 */
-  --breakpoint-xl: 1440px;  /* 大桌面 */
-  
-  /* 移动端导航高度 */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+
   --mobile-nav-height: 56px;
   --mobile-header-height: 56px;
 }
@@ -26,12 +25,12 @@
 #app {
   width: 100%;
   max-width: 100%;
-  padding: 1rem;
+  padding: var(--space-4);
 }
 
 @media (min-width: 768px) {
   #app {
-    padding: 1.5rem;
+    padding: var(--space-6);
   }
 }
 
@@ -39,19 +38,19 @@
   #app {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: var(--space-8);
   }
 }
 
 /* 头部导航响应式 */
 header .wrapper {
-  padding: 0.5rem;
+  padding: var(--space-2);
   width: 100%;
 }
 
 @media (min-width: 768px) {
   header .wrapper {
-    padding: 1rem;
+    padding: var(--space-4);
   }
 }
 
@@ -71,7 +70,7 @@ header .wrapper {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--el-text-color-regular);
+  background: var(--app-text);
   position: relative;
   transition: all 0.3s ease;
 }
@@ -82,7 +81,7 @@ header .wrapper {
   position: absolute;
   width: 24px;
   height: 2px;
-  background: var(--el-text-color-regular);
+  background: var(--app-text);
   transition: all 0.3s ease;
 }
 
@@ -117,9 +116,9 @@ header .wrapper {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--el-bg-color);
+  background: var(--app-surface);
   z-index: 999;
-  padding: 1rem;
+  padding: var(--space-4);
   overflow-y: auto;
 }
 
@@ -141,19 +140,19 @@ header .wrapper {
 
 .mobile-nav-panel a {
   display: block;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
+  padding: var(--space-4);
+  margin: var(--space-2) 0;
+  border-radius: var(--radius-lg);
   text-decoration: none;
-  color: var(--el-text-color-regular);
-  font-size: 1.1rem;
-  transition: all 0.3s;
+  color: var(--app-text);
+  font-size: var(--text-lg);
+  transition: all var(--transition-fast);
 }
 
 .mobile-nav-panel a:hover,
 .mobile-nav-panel a.router-link-exact-active {
-  background-color: var(--el-fill-color-light);
-  color: var(--el-color-primary);
+  background-color: var(--app-primary-soft);
+  color: var(--app-primary);
 }
 
 /* 桌面端隐藏移动端导航 */
@@ -186,36 +185,32 @@ header .wrapper {
    ======================================== */
 @media (max-width: 480px) {
   body {
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
-  
+
   #app {
-    padding: 0.5rem;
+    padding: var(--space-2);
   }
-  
-  /* 卡片组件优化 */
+
   .el-card,
   .card {
-    border-radius: 8px;
+    border-radius: var(--radius-md);
   }
-  
-  /* 按钮优化 */
+
   .el-button {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding: 10px 16px;
+    font-size: var(--text-sm);
   }
-  
-  /* 表格横向滚动 */
+
   .el-table {
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
   }
-  
+
   .table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
-  /* 图表容器优化 */
+
   .chart-container {
     min-height: 250px;
   }
@@ -226,11 +221,11 @@ header .wrapper {
    ======================================== */
 @media (min-width: 481px) and (max-width: 1024px) {
   body {
-    font-size: 15px;
+    font-size: var(--text-base);
   }
-  
+
   #app {
-    padding: 1rem;
+    padding: var(--space-4);
   }
   
   .chart-container {
@@ -308,9 +303,9 @@ header .wrapper {
 img[lazy="loading"] {
   background: linear-gradient(
     90deg,
-    var(--el-fill-color-light) 25%,
-    var(--el-fill-color) 50%,
-    var(--el-fill-color-light) 75%
+    var(--app-surface-soft) 25%,
+    var(--app-surface-strong) 50%,
+    var(--app-surface-soft) 75%
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;

@@ -12,6 +12,8 @@ from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime
 import re
+from sqlalchemy.orm import Session
+from models import ExcellentExample as ExcellentExampleModel
 
 
 @dataclass
@@ -58,8 +60,8 @@ class ExcellentExample:
 
 class SuggestionEngine:
     """话术优化建议生成引擎"""
-    
-    def __init__(self):
+
+    def __init__(self, db: Optional[Session] = None):
         # 话术类型最佳实践
         self.best_practices = {
             'opening': {
@@ -442,62 +444,38 @@ class SuggestionEngine:
     ) -> List[ExcellentExample]:
         """
         推荐优秀话术示例
-        
+
         Args:
             speech_type: 话术类型
             limit: 返回数量
-            
+
         Returns:
             优秀示例列表
         """
-        # 这里是示例数据，实际应从数据库查询
-        examples_db = {
-            'price_promotion': [
-                ExcellentExample(
-                    speech_type='price_promotion',
-                    content='平时专柜卖 299 的产品，今天直播间福利价只要 99！立省 200 块！只有今天这个价格，错过就没有了！',
-                    score=92,
-                    emotion_impact=0.95,
-                    engagement_rate=35,
-                    session_id='session_001',
-                    timestamp=120
-                ),
-                ExcellentExample(
-                    speech_type='price_promotion',
-                    content='这个价格我真的亏本在卖！就是为了给大家送福利！抢到就是赚到！',
-                    score=88,
-                    emotion_impact=0.88,
-                    engagement_rate=28,
-                    session_id='session_002',
-                    timestamp=90
-                )
-            ],
-            'product_intro': [
-                ExcellentExample(
-                    speech_type='product_intro',
-                    content='这款面膜我连续用了 28 天，皮肤从干燥起皮到现在水嫩嫩的！早上上妆完全不卡粉！同事都问我是不是去做了美容！',
-                    score=90,
-                    emotion_impact=0.85,
-                    engagement_rate=22,
-                    session_id='session_003',
-                    timestamp=150
-                )
-            ],
-            'limited_offer': [
-                ExcellentExample(
-                    speech_type='limited_offer',
-                    content='只剩最后 50 单了！抢完马上下架！3、2、1，上链接！',
-                    score=95,
-                    emotion_impact=0.98,
-                    engagement_rate=45,
-                    session_id='session_004',
-                    timestamp=60
-                )
-            ]
-        }
-        
-        examples = examples_db.get(speech_type, [])
-        return examples[:limit]
+        if not self.db:
+            return []
+
+        # 从数据库查询，按 score 降序排列
+        rows = (
+            self.db.query(ExcellentExampleModel)
+            .filter(ExcellentExampleModel.speech_type == speech_type)
+            .order_by(ExcellentExampleModel.score.desc())
+            .limit(limit)
+            .all()
+        )
+
+        return [
+            ExcellentExample(
+                speech_type=row.speech_type,
+                content=row.content,
+                score=row.score,
+                emotion_impact=row.emotion_impact,
+                engagement_rate=row.engagement_rate,
+                session_id=row.session_id,
+                timestamp=row.timestamp
+            )
+            for row in rows
+        ]
     
     def generate_suggestions(
         self,

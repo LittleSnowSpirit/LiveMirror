@@ -52,8 +52,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
 import { uploadFile, setStoredTaskId } from '../api';
+import { ElMessage } from 'element-plus';
 
 const router = useRouter();
 const fileInput = ref<HTMLInputElement | null>(null);

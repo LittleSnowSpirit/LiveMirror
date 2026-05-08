@@ -17,14 +17,14 @@
   --safe-area-right: env(safe-area-inset-right, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-left: env(safe-area-inset-left, 0px);
-  
+
   /* 触摸反馈 */
-  --touch-feedback: rgba(102, 126, 234, 0.1);
-  
+  --touch-feedback: var(--app-primary-soft);
+
   /* 移动端间距 */
-  --mobile-spacing: 16px;
-  --mobile-spacing-sm: 8px;
-  --mobile-spacing-lg: 24px;
+  --mobile-spacing: var(--space-4);
+  --mobile-spacing-sm: var(--space-2);
+  --mobile-spacing-lg: var(--space-6);
 }
 
 /* 禁用文本选择，提升触摸体验 */
@@ -222,11 +222,12 @@ html {
 /* ==================== 卡片样式 ==================== */
 
 .card {
-  background: var(--card-bg, #ffffff);
-  border-radius: 12px;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-xl);
   padding: var(--mobile-spacing);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--app-shadow-card);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 @media (max-width: 768px) {
@@ -266,8 +267,8 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--card-bg, #ffffff);
-  border-top: 1px solid var(--border-color, #eee);
+  background: var(--app-surface);
+  border-top: 1px solid var(--app-border);
   padding-bottom: var(--safe-area-bottom);
   z-index: 1000;
 }
@@ -284,14 +285,14 @@ html {
   align-items: center;
   gap: 4px;
   padding: 8px 16px;
-  color: var(--text-secondary, #666);
+  color: var(--app-text-soft);
   text-decoration: none;
-  font-size: 12px;
-  transition: color 0.2s;
+  font-size: var(--text-xs);
+  transition: color var(--transition-fast);
 }
 
 .mobile-nav-item.active {
-  color: var(--primary-color, #667eea);
+  color: var(--app-primary);
 }
 
 .mobile-nav-icon {
@@ -303,8 +304,8 @@ html {
 .mobile-header {
   position: sticky;
   top: 0;
-  background: var(--card-bg, #ffffff);
-  border-bottom: 1px solid var(--border-color, #eee);
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
   padding-top: var(--safe-area-top);
   z-index: 1000;
 }
@@ -317,9 +318,10 @@ html {
 }
 
 .header-title {
-  font-size: 18px;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
   font-weight: 600;
-  color: var(--text-primary, #333);
+  color: var(--app-text);
 }
 
 /* ==================== 加载状态 ==================== */
@@ -327,13 +329,13 @@ html {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--skeleton-base, #f0f0f0) 25%,
-    var(--skeleton-highlight, #e0e0e0) 50%,
-    var(--skeleton-base, #f0f0f0) 75%
+    var(--app-surface-soft) 25%,
+    var(--app-surface-strong) 50%,
+    var(--app-surface-soft) 75%
   );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 @keyframes skeleton-loading {
@@ -436,20 +438,7 @@ html {
 }
 
 /* ==================== 深色模式 ==================== */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #1a1a1a;
-    --card-bg: #2d2d2d;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --text-tertiary: #808080;
-    --border-color: #404040;
-    --hover-bg: #3d3d3d;
-    --skeleton-base: #3d3d3d;
-    --skeleton-highlight: #4d4d4d;
-  }
-}
+/* Theme colors are handled by tokens.css via [data-theme] attribute */
 
 /* ==================== 打印优化 ==================== */
 
@@ -536,9 +525,9 @@ html {
 .font-bold { font-weight: 700; }
 
 /* 颜色 */
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-tertiary { color: var(--text-tertiary); }
+.text-primary { color: var(--app-text); }
+.text-secondary { color: var(--app-text-soft); }
+.text-tertiary { color: var(--app-text-faint); }
 
 /* 圆角 */
 .rounded { border-radius: 4px; }

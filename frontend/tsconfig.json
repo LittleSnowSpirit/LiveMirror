@@ -22,6 +22,7 @@
   },
   "include": [
     "env.d.ts",
+    "src/auto-imports.d.ts",
     "src/main.ts",
     "src/App.vue",
     "src/api/**/*.ts",

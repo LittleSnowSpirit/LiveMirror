@@ -48,6 +48,9 @@ frontend/.env
 frontend/src/auto-imports.d.ts
 frontend/src/components.d.ts
 
+# Claude Code
+.claude/
+
 # CodeX
 .codex/
 

@@ -77,8 +77,8 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { ElMessage } from 'element-plus';
 import { getEmotionTrend, getEngagementTrend, getGrowthReport, getSpeechQualityTrend, getTrendSessions } from '../api';
+import { ElMessage } from 'element-plus';
 import type { TrendSession } from '../api';
 
 const loading = ref(false);

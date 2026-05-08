@@ -1,7 +1,7 @@
 """
 数据库操作服务
 """
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from typing import Optional
 from sqlalchemy.orm import Session
 
@@ -58,7 +58,7 @@ def update_task_status(
     task.status = status
     task.current_step = current_step or status
     if task.started_at is None and status not in {"pending", "failed"}:
-        task.started_at = datetime.now(UTC)
+        task.started_at = datetime.now(timezone.utc)
     if progress is not None:
         task.progress = progress
     if error_message is not None:
@@ -85,7 +85,7 @@ def update_task_analysis(db: Session, task: Task, analysis_result: dict, report_
     task.status = "completed"
     task.current_step = "completed"
     task.progress = 100
-    task.completed_at = datetime.now(UTC)
+    task.completed_at = datetime.now(timezone.utc)
     db.commit()
     db.refresh(task)
 
