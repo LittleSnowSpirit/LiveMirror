@@ -24,7 +24,8 @@ async def list_history(
     if status:
         query = query.filter(Task.status == status)
     if search:
-        query = query.filter(Task.filename.ilike(f"%{search}%"))
+        escaped = search.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+        query = query.filter(Task.filename.ilike(f"%{escaped}%", escape="\\"))
 
     total = query.count()
     items = (

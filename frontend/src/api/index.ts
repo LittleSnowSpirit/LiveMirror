@@ -685,17 +685,17 @@ export async function triggerDanmuAnalysis(batchId: string) {
 }
 
 export async function getDanmuAnalysis(batchId: string) {
-  const response = await api.get<DanmuAnalysisResult>(`/api/danmu/batch/${batchId}/analysis`);
+  const response = await api.get<DanmuAnalysisResult>(`/api/danmu/analysis/${batchId}`);
   return response.data;
 }
 
 export async function getDanmuKeywords(batchId: string) {
-  const response = await api.get<{ success: boolean; keywords: KeywordItem[] }>(`/api/danmu/batch/${batchId}/keywords`);
+  const response = await api.get<{ success: boolean; keywords: KeywordItem[] }>(`/api/danmu/analysis/${batchId}/keywords`);
   return response.data.keywords;
 }
 
-export async function getDanmuCorrelation(batchId: string) {
-  const response = await api.get<{ success: boolean; correlation: CorrelationItem[] }>(`/api/danmu/batch/${batchId}/correlation`);
+export async function getDanmuCorrelation(batchId: string, taskId: string) {
+  const response = await api.get<{ success: boolean; correlation: CorrelationItem[] }>(`/api/danmu/analysis/${batchId}/correlation?task_id=${taskId}`);
   return response.data.correlation;
 }
 

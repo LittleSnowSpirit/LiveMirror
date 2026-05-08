@@ -24,6 +24,8 @@ async def export_pdf(
     task = get_task(db, task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found.")
+    if task.user_id is not None and task.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden.")
     if task.status != "completed":
         raise HTTPException(status_code=400, detail="Task is not completed.")
 
@@ -47,6 +49,8 @@ async def export_image(
     task = get_task(db, task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found.")
+    if task.user_id is not None and task.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden.")
     if task.status != "completed":
         raise HTTPException(status_code=400, detail="Task is not completed.")
 
@@ -62,10 +66,12 @@ async def export_image(
 
 
 @router.get("/{task_id}/{format}")
-async def export_report(task_id: str, format: str, db: Session = Depends(get_db), _current_user=Depends(get_current_user)):
+async def export_report(task_id: str, format: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     task = get_task(db, task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found.")
+    if task.user_id is not None and task.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden.")
     if task.status != "completed":
         raise HTTPException(status_code=400, detail="Task is not completed.")
 

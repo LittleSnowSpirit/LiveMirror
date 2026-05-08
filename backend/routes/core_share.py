@@ -55,7 +55,6 @@ async def get_share(
     token: str,
     access_code: str = Query(..., description="4-digit access code"),
     db: Session = Depends(get_db),
-    _current_user=Depends(get_current_user),
 ):
     share = db.query(ShareLink).filter(ShareLink.token == token).first()
     if share is None:
