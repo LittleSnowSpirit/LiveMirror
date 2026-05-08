@@ -15,3 +15,4 @@ reportlab>=4.0.0  # PDF 导出
 psycopg2-binary>=2.9.9  # PostgreSQL 驱动
 celery[redis]>=5.3.0  # 任务队列
 redis>=5.0.0  # Redis 客户端
+yt-dlp>=2024.1.0  # 链接解析与音频下载

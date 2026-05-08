@@ -12,6 +12,95 @@ from config import settings
 logger = logging.getLogger(__name__)
 
 
+def process_link_task(task_id: str, url: str) -> None:
+    """Full pipeline for a link-based analysis task.
+
+    download -> transcribe -> analyze -> report
+    """
+    from database import get_db
+    from services.core_analysis import build_core_analysis, build_report_data
+    from services.database import (
+        get_task,
+        update_task_analysis,
+        update_task_duration,
+        update_task_status,
+        update_task_transcription,
+    )
+    from services.downloader import download_audio
+    from services.link_parser import parse_url
+    from services.transcription import get_transcription_service
+
+    db = next(get_db())
+    try:
+        task = get_task(db, task_id)
+        if task is None:
+            return
+
+        # Step 1: Download (0 -> 30%)
+        update_task_status(db, task, "downloading", 5, current_step="downloading")
+        try:
+            platform, video_id = parse_url(url)
+        except ValueError as exc:
+            update_task_status(db, task, "failed", 0, str(exc))
+            return
+
+        from config import settings as cfg
+
+        dl = download_audio(url, cfg.download_dir, video_id)
+        if not dl.success:
+            update_task_status(db, task, "failed", 0, dl.error or "Download failed")
+            return
+
+        # Update file path on the task so transcription can find it
+        task.file_path = dl.file_path
+        task.file_size = __import__("pathlib").Path(dl.file_path).stat().st_size
+        db.commit()
+
+        # Step 2: Transcribe (30 -> 60%)
+        update_task_status(db, task, "transcribing", 35, current_step="transcribing")
+        service = get_transcription_service()
+        result = service.transcribe(dl.file_path)
+
+        task = get_task(db, task_id)
+        if task is None:
+            return
+
+        update_task_duration(db, task, result.duration or float(dl.duration))
+        update_task_transcription(db, task, result.text, result.segments)
+        task.language = result.language
+
+        # Data quality scoring
+        quality_score = 1.0
+        text = result.text or ""
+        if not text.strip():
+            quality_score = 0.0
+        elif len(text.strip()) < 10:
+            quality_score = 0.3
+        task.data_quality_score = quality_score
+        db.commit()
+
+        # Step 3: Analyze (60 -> 100%)
+        update_task_status(db, task, "analyzing", 75, current_step="analyzing")
+        analysis = build_core_analysis(result.text, result.segments, result.duration)
+        report = build_report_data(
+            task_id=task.task_id,
+            filename=task.filename,
+            transcription=result.text,
+            segments=result.segments,
+            duration=result.duration,
+            language=result.language,
+            analysis=analysis,
+        )
+        update_task_analysis(db, task, analysis, report)
+    except Exception as exc:
+        logger.exception("Link task %s failed", task_id)
+        task = get_task(db, task_id)
+        if task is not None:
+            update_task_status(db, task, "failed", 0, str(exc))
+    finally:
+        db.close()
+
+
 class BackgroundTaskQueue:
     def __init__(self, max_workers: int | None = None, thread_name_prefix: str = "livemirror-task") -> None:
         self.max_workers = max(1, max_workers or settings.task_worker_count)

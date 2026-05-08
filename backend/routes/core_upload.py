@@ -73,7 +73,7 @@ async def upload_media(
         save_path.unlink(missing_ok=True)
         raise HTTPException(status_code=400, detail="Uploaded file is empty.")
 
-    create_task(db, task_id, safe_name, str(save_path), file_size)
+    create_task(db, task_id, safe_name, str(save_path), file_size, source_type="upload")
 
     get_task_queue().submit(task_id, _process_upload_task, task_id)
 

@@ -1,50 +1,60 @@
-﻿<template>
+<template>
   <div class="upload-page">
     <el-card class="panel">
-      <p class="kicker">上传</p>
+      <p class="kicker">创建任务</p>
       <h1>创建分析任务</h1>
-      <p class="copy">请选择音视频文件，系统会返回任务 ID，用于后续查看报告。</p>
+      <p class="copy">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
 
-      <div class="picker">
-        <input ref="fileInput" class="file-input" type="file" accept="audio/*,video/*" @change="handleFileChange" />
-        <div class="file-meta">
-          <p class="file-name">{{ fileName || '还没有选择文件' }}</p>
-          <p class="file-hint">支持常见音视频格式。</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <el-button type="primary" :disabled="!selectedFile || uploading" :loading="uploading" @click="handleUpload">
-          上传并创建任务
-        </el-button>
-        <el-button @click="router.push('/report')">去报告页</el-button>
-      </div>
-
-      <el-progress v-if="uploading || uploadProgress > 0" :percentage="uploadProgress" :stroke-width="10" />
-
-      <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
-
-      <div v-if="result" class="result-box">
-        <p class="result-title">上传完成</p>
-        <dl>
-          <div>
-            <dt>任务 ID</dt>
-            <dd>{{ result.task_id }}</dd>
+      <el-tabs v-model="activeTab" class="mode-tabs">
+        <!-- File Upload Tab -->
+        <el-tab-pane label="上传文件" name="upload">
+          <div class="picker">
+            <input ref="fileInput" class="file-input" type="file" accept="audio/*,video/*" @change="handleFileChange" />
+            <div class="file-meta">
+              <p class="file-name">{{ fileName || '还没有选择文件' }}</p>
+              <p class="file-hint">支持常见音视频格式。</p>
+            </div>
           </div>
-          <div>
-            <dt>文件名</dt>
-            <dd>{{ result.filename }}</dd>
+
+          <div class="actions">
+            <el-button type="primary" :disabled="!selectedFile || uploading" :loading="uploading" @click="handleUpload">
+              上传并创建任务
+            </el-button>
+            <el-button @click="router.push('/report')">去报告页</el-button>
           </div>
-          <div>
-            <dt>状态</dt>
-            <dd>{{ result.status }}</dd>
+
+          <el-progress v-if="uploading || uploadProgress > 0" :percentage="uploadProgress" :stroke-width="10" />
+
+          <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
+
+          <div v-if="result" class="result-box">
+            <p class="result-title">上传完成</p>
+            <dl>
+              <div>
+                <dt>任务 ID</dt>
+                <dd>{{ result.task_id }}</dd>
+              </div>
+              <div>
+                <dt>文件名</dt>
+                <dd>{{ result.filename }}</dd>
+              </div>
+              <div>
+                <dt>状态</dt>
+                <dd>{{ result.status }}</dd>
+              </div>
+            </dl>
+            <div class="actions">
+              <el-button type="primary" @click="openReport">查看报告</el-button>
+              <el-button @click="resetForm">继续上传</el-button>
+            </div>
           </div>
-        </dl>
-        <div class="actions">
-          <el-button type="primary" @click="openReport">查看报告</el-button>
-          <el-button @click="resetForm">继续上传</el-button>
-        </div>
-      </div>
+        </el-tab-pane>
+
+        <!-- Link Analysis Tab -->
+        <el-tab-pane label="粘贴链接" name="link">
+          <LinkInput />
+        </el-tab-pane>
+      </el-tabs>
     </el-card>
   </div>
 </template>
@@ -54,8 +64,10 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { uploadFile, setStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
+import LinkInput from '../components/LinkInput.vue';
 
 const router = useRouter();
+const activeTab = ref('upload');
 const fileInput = ref<HTMLInputElement | null>(null);
 const selectedFile = ref<File | null>(null);
 const fileName = ref('');
@@ -164,6 +176,10 @@ h1 {
 .file-hint {
   color: var(--app-text-soft);
   line-height: 1.7;
+}
+
+.mode-tabs :deep(.el-tabs__header) {
+  margin-bottom: 8px;
 }
 
 .picker {

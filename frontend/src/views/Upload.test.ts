@@ -15,9 +15,22 @@ vi.mock('../api', () => ({
 vi.mock('element-plus', () => ({
   ElMessage: mockElMessage,
   ElCard: { template: '<div><slot /></div>' },
-  ElButton: { template: '<button @click=\"$emit(\'click\')\"><slot /></button>' },
+  ElButton: { template: '<button @click="$emit(\'click\')"><slot /></button>' },
   ElProgress: { template: '<div />' },
   ElAlert: { template: '<div>{{ title }}</div>', props: ['title'] },
+  ElTabs: {
+    template: '<div><slot /></div>',
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+  },
+  ElTabPane: {
+    template: '<div><slot /></div>',
+    props: ['label', 'name'],
+  },
+}));
+
+vi.mock('../components/LinkInput.vue', () => ({
+  default: { template: '<div class="link-input-stub" />' },
 }));
 
 const router = createRouter({
@@ -43,7 +56,7 @@ beforeEach(() => {
 });
 
 describe('Upload.vue', () => {
-  it('renders the upload form', async () => {
+  it('renders the upload form with tabs', async () => {
     const wrapper = await mountUpload();
     expect(wrapper.text()).toContain('创建分析任务');
     expect(wrapper.find('input[type="file"]').exists()).toBe(true);
