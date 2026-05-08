@@ -66,6 +66,13 @@ npm run test          # 运行前端测试 (vitest)
 - 前端: vitest + @vue/test-utils, 测试文件与源文件同目录 (`*.test.ts`)
 - Element Plus 组件在测试中需要 mock (vitest 环境不支持 CSS 导入)
 
+## 提交规范
+
+- **每个开发阶段完成后必须提交代码**，不要积累大量变更后再提交
+- 提交信息格式：`<type>: <简短描述>`，type 包括 feat/fix/chore/docs/refactor/test
+- 描述说明这批变更做了什么，不要罗列文件清单
+- 敏感文件（.env、credentials）禁止提交，.env.example 可以
+
 ## 构建注意事项
 
 - Element Plus 使用显式 import (`import { ElMessage } from 'element-plus'`), 不依赖 AutoImport
