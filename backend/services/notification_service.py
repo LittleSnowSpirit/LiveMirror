@@ -66,8 +66,15 @@ def create_notification(
     message: str,
     link: str | None = None,
     metadata: dict[str, Any] | None = None,
+    *,
+    _commit: bool = True,
 ) -> Notification:
-    """创建通知并 emit 事件。不阻塞主流程。"""
+    """创建通知并 emit 事件。
+
+    Args:
+        db: 数据库 session
+        _commit: 是否自行 commit。为 False 时由调用方管理事务。
+    """
     notification = Notification(
         user_id=user_id,
         type=type,
@@ -77,8 +84,9 @@ def create_notification(
         metadata_=metadata,
     )
     db.add(notification)
-    db.commit()
-    db.refresh(notification)
+    if _commit:
+        db.commit()
+        db.refresh(notification)
 
     try:
         unread_count = get_unread_count(db, user_id)

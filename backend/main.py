@@ -29,8 +29,6 @@ async def lifespan(_app: FastAPI):
 
 
 def create_app() -> FastAPI:
-    init_db()
-
     app = FastAPI(
         title="LiveMirror Core API",
         description="Core upload, transcription, report, attribution, suggestion, trend, and auth APIs.",
