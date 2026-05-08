@@ -47,7 +47,7 @@ async def upload_danmu(
     safe_name = Path(file.filename).name
     danmu_dir = Path(settings.upload_dir) / "danmu"
     danmu_dir.mkdir(parents=True, exist_ok=True)
-    save_path = danmu_dir / safe_name
+    save_path = danmu_dir / f"{uuid.uuid4().hex[:8]}_{safe_name}"
 
     try:
         with save_path.open("wb") as buffer:

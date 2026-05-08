@@ -56,7 +56,7 @@ class Token(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     token = Column(String(500), unique=True, index=True, nullable=False)
-    user_id = Column(Integer, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
     expires_at = Column(DateTime, nullable=False)
     is_revoked = Column(Boolean, default=False)
     created_at = Column(DateTime, default=utc_now)
@@ -103,7 +103,8 @@ class Danmu(Base):
     
     # 关联
     user = relationship("User", back_populates="danmus")
-    
+    batch = relationship("DanmuBatch", back_populates="danmus", foreign_keys=[batch_id])
+
     # 复合索引优化查询
     __table_args__ = (
         Index('idx_danmu_timestamp_type', 'timestamp', 'danmu_type'),
@@ -163,7 +164,9 @@ class DanmuBatch(Base):
     
     created_at = Column(DateTime, default=utc_now)
     completed_at = Column(DateTime, nullable=True)
-    
+
+    danmus = relationship("Danmu", back_populates="batch", cascade="all, delete-orphan", foreign_keys="Danmu.batch_id")
+
     def to_dict(self) -> dict:
         """转换为字典"""
         return {

@@ -11,10 +11,12 @@ router = APIRouter(prefix="/api/report", tags=["core-report"])
 
 
 @router.get("/{task_id}")
-async def get_report(task_id: str, db: Session = Depends(get_db), _current_user=Depends(get_current_user)):
+async def get_report(task_id: str, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     task = get_task(db, task_id)
     if task is None:
         raise HTTPException(status_code=404, detail="Task not found.")
+    if task.user_id is not None and task.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden.")
     if task.status == "failed":
         raise HTTPException(status_code=400, detail=task.error_message or "Task failed.")
     if task.status != "completed":
