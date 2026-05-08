@@ -18,9 +18,9 @@
     <template v-else>
       <!-- Stat Cards -->
       <div class="stats-row">
-        <StatCard label="弹幕总数" :value="analysis.total_count" icon="+" />
-        <StatCard label="正面占比" :value="formatPercent(analysis.positive_ratio)" icon="" />
-        <StatCard label="负面占比" :value="formatPercent(analysis.negative_ratio)" icon="" />
+        <StatCard label="弹幕总数" :value="metrics.total_count" icon="+" />
+        <StatCard label="正面占比" :value="formatPercent(metrics.sentiment_distribution?.positive)" icon="" />
+        <StatCard label="负面占比" :value="formatPercent(metrics.sentiment_distribution?.negative)" icon="" />
         <StatCard label="分析状态" :value="statusLabel" icon="" />
       </div>
 
@@ -35,7 +35,7 @@
           <WordCloud :data="analysis.keywords" @word-click="handleWordClick" />
         </BasePanel>
         <BasePanel title="弹幕密度" subtitle="各时间段弹幕数量">
-          <DanmuDensity :data="analysis.density" />
+          <DanmuDensity :data="densityData" />
         </BasePanel>
       </div>
 
@@ -92,6 +92,8 @@ const emit = defineEmits<{
 const loading = ref(true);
 const analysis = ref<DanmuAnalysisResult | null>(null);
 
+const metrics = computed(() => analysis.value?.metrics || { total_count: 0, danmu_density: 0, sentiment_volatility: 0, sentiment_distribution: { positive: 0, negative: 0, neutral: 0 } });
+
 const statusLabel = computed(() => {
   if (!analysis.value) return '';
   const map: Record<string, string> = {
@@ -101,6 +103,11 @@ const statusLabel = computed(() => {
     failed: '失败',
   };
   return map[analysis.value.status] || analysis.value.status;
+});
+
+const densityData = computed(() => {
+  if (!analysis.value?.highlights) return [];
+  return analysis.value.highlights.map((h) => ({ time: h.time, count: h.count, avgScore: h.avg_score }));
 });
 
 const topKeywords = computed(() => {
@@ -127,7 +134,8 @@ const comparisonDanmuData = computed(() => {
   }));
 });
 
-function formatPercent(value: number) {
+function formatPercent(value?: number) {
+  if (value == null) return '--';
   return `${(value * 100).toFixed(1)}%`;
 }
 
