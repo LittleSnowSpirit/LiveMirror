@@ -9,6 +9,7 @@ passlib[bcrypt]>=1.7.4
 python-multipart>=0.0.6
 bcrypt>=4.0.0
 httpx>=0.26.0  # DashScope API 调用
+dashscope>=1.20.0  # DashScope SDK (ASR + LLM)
 faster-whisper>=1.0.0  # Whisper 转写
 reportlab>=4.0.0  # PDF 导出
 psycopg2-binary>=2.9.9  # PostgreSQL 驱动
