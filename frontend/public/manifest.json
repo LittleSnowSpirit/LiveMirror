@@ -57,22 +57,6 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/screenshots/home.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "主页"
-    },
-    {
-      "src": "/screenshots/mobile.png",
-      "sizes": "750x1334",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "移动端"
-    }
-  ],
   "categories": ["productivity", "utilities"],
   "lang": "zh-CN",
   "dir": "ltr",
