@@ -307,6 +307,7 @@ onBeforeUnmount(() => {
   align-items: stretch;
 }
 
+/* Glass input area */
 .input-container {
   display: flex;
   flex: 1;
@@ -317,6 +318,20 @@ onBeforeUnmount(() => {
   flex: 1;
 }
 
+.input-container :deep(.el-input__wrapper) {
+  background: var(--app-glass-bg) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--app-glass-border) !important;
+  box-shadow: none !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-container :deep(.el-input__wrapper:focus-within) {
+  border-color: rgba(167, 139, 250, 0.3) !important;
+  box-shadow: var(--app-glow) !important;
+}
+
 .input-icon {
   font-size: 16px;
 }
@@ -325,7 +340,7 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
 }
 
-/* Platform tag */
+/* Platform tag — gradient pill badges */
 .platform-tag-row {
   display: flex;
   align-items: center;
@@ -335,33 +350,41 @@ onBeforeUnmount(() => {
 .platform-tag {
   display: inline-flex;
   align-items: center;
-  padding: 2px 10px;
+  padding: 3px 12px;
   border-radius: var(--radius-full, 9999px);
   font-size: var(--font-xs, 12px);
   font-weight: 600;
   letter-spacing: 0.02em;
+  border: none;
 }
 
 .platform-tag.douyin {
-  background: rgba(254, 44, 85, 0.15);
+  background: linear-gradient(135deg, rgba(254, 44, 85, 0.2), rgba(254, 44, 85, 0.08));
   color: #fe2c55;
-  border: 1px solid rgba(254, 44, 85, 0.3);
+  box-shadow: 0 0 12px rgba(254, 44, 85, 0.15);
 }
 
 .platform-tag.bilibili {
-  background: rgba(0, 161, 214, 0.15);
+  background: linear-gradient(135deg, rgba(0, 161, 214, 0.2), rgba(0, 161, 214, 0.08));
   color: #00a1d6;
-  border: 1px solid rgba(0, 161, 214, 0.3);
+  box-shadow: 0 0 12px rgba(0, 161, 214, 0.15);
 }
 
-/* Preview card */
+/* Preview card — glass */
 .preview-card {
   display: flex;
   gap: 16px;
   padding: 14px;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg, 10px);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  transition: box-shadow var(--transition-fast);
+}
+
+.preview-card:hover {
+  box-shadow: var(--app-glow);
 }
 
 .preview-thumb {
@@ -417,15 +440,17 @@ onBeforeUnmount(() => {
   margin-top: 4px;
 }
 
-/* Progress panel */
+/* Progress panel — glass with gradient steps */
 .progress-panel {
   display: flex;
   flex-direction: column;
   gap: 14px;
   padding: 16px;
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-lg, 10px);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
 }
 
 .progress-steps {
@@ -460,13 +485,17 @@ onBeforeUnmount(() => {
   color: var(--app-text-soft);
   font-size: var(--font-sm, 14px);
   font-weight: 700;
+  transition: box-shadow var(--transition-fast);
 }
 
+/* Active step — gradient dot with glow */
 .progress-step.active .step-indicator {
-  background: var(--app-primary);
+  background: var(--app-gradient-primary);
   color: #fff;
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
 }
 
+/* Done step — success color */
 .progress-step.done .step-indicator {
   background: var(--app-success);
   color: #fff;

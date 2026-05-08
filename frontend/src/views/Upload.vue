@@ -1,14 +1,14 @@
 <template>
   <div class="upload-page">
-    <el-card class="panel">
+    <el-card class="panel glass">
       <p class="kicker">创建任务</p>
       <h1>创建分析任务</h1>
       <p class="copy">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
 
-      <el-tabs v-model="activeTab" class="mode-tabs">
+      <el-tabs v-model="activeTab" class="mode-tabs styled-tabs">
         <!-- File Upload Tab -->
         <el-tab-pane label="上传文件" name="upload">
-          <div class="picker">
+          <div class="picker drop-zone">
             <input ref="fileInput" class="file-input" type="file" accept="audio/*,video/*" @change="handleFileChange" />
             <div class="file-meta">
               <p class="file-name">{{ fileName || '还没有选择文件' }}</p>
@@ -23,11 +23,13 @@
             <el-button @click="router.push('/report')">去报告页</el-button>
           </div>
 
-          <el-progress v-if="uploading || uploadProgress > 0" :percentage="uploadProgress" :stroke-width="10" />
+          <div v-if="uploading || uploadProgress > 0" class="progress-glow">
+            <el-progress :percentage="uploadProgress" :stroke-width="10" />
+          </div>
 
           <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
 
-          <div v-if="result" class="result-box">
+          <div v-if="result" class="result-box result-success">
             <p class="result-title">上传完成</p>
             <dl>
               <div>
@@ -149,8 +151,16 @@ function resetForm() {
   margin: 0 auto;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(135deg, rgba(45, 212, 191, 0.08), transparent 38%),
-    var(--app-surface);
+    linear-gradient(135deg, rgba(167, 139, 250, 0.06), transparent 38%),
+    var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  transition: box-shadow var(--transition-normal);
+}
+
+.panel:hover {
+  box-shadow: var(--app-glow);
 }
 
 .panel :deep(.el-card__body) {
@@ -161,9 +171,12 @@ function resetForm() {
 
 .kicker {
   font-size: var(--text-xs);
-  color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1 {
@@ -178,8 +191,59 @@ h1 {
   line-height: 1.7;
 }
 
-.mode-tabs :deep(.el-tabs__header) {
+/* Tab bar — gradient underline on active tab */
+.styled-tabs :deep(.el-tabs__header) {
   margin-bottom: var(--space-2);
+}
+
+.styled-tabs :deep(.el-tabs__active-bar) {
+  background: var(--app-gradient-primary-h);
+  height: 3px;
+  border-radius: 2px;
+}
+
+.styled-tabs :deep(.el-tabs__item.is-active) {
+  color: var(--app-primary-strong);
+}
+
+/* Drop zone — animated dashed border */
+.drop-zone {
+  position: relative;
+  border: none;
+  background: var(--app-bg-deep);
+  z-index: 0;
+}
+
+.drop-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 1.5px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--app-primary) 0,
+    var(--app-primary) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  opacity: 0.3;
+  animation: dashScroll 20s linear infinite;
+}
+
+@keyframes dashScroll {
+  to {
+    background-position: 200px 0;
+  }
+}
+
+.drop-zone:hover::before {
+  opacity: 0.6;
 }
 
 .picker {
@@ -187,9 +251,9 @@ h1 {
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-4);
-  border: 1px dashed var(--app-border-strong);
   border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
+  position: relative;
+  z-index: 0;
 }
 
 .file-input {
@@ -207,6 +271,14 @@ h1 {
   gap: var(--space-2);
 }
 
+/* Progress bar — glow container */
+.progress-glow {
+  padding: var(--space-2) 0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--app-glow-accent);
+}
+
+/* Result area — glass card with success glow */
 .result-box {
   display: flex;
   flex-direction: column;
@@ -214,7 +286,15 @@ h1 {
   padding: var(--space-4);
   border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
-  background: var(--app-surface-soft);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.result-success {
+  border-color: rgba(74, 222, 128, 0.2);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
 }
 
 .result-title {

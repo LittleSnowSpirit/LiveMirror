@@ -186,9 +186,20 @@ function formatTime(value: unknown) {
   min-height: 100vh;
 }
 
+/* Glass panel */
 .panel {
   border-radius: var(--radius-lg);
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-shadow-card);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.panel:hover {
+  box-shadow: var(--app-glow);
+  border-color: rgba(167, 139, 250, 0.15);
 }
 
 .panel :deep(.el-card__body) {
@@ -197,17 +208,52 @@ function formatTime(value: unknown) {
   gap: var(--space-4);
 }
 
+/* Access card with glow border - login aesthetic */
 .access-card {
   max-width: 420px;
   margin: var(--space-10) auto;
   width: 100%;
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-glow-strong), var(--app-shadow);
+  position: relative;
+  overflow: hidden;
+  animation: cardGlow 3s ease-in-out infinite alternate;
+}
+
+.access-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: var(--app-gradient-primary);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+@keyframes cardGlow {
+  0% {
+    box-shadow: var(--app-glow), var(--app-shadow);
+  }
+  100% {
+    box-shadow: var(--app-glow-strong), var(--app-shadow);
+  }
 }
 
 .kicker {
   font-size: var(--text-xs);
-  color: var(--app-primary-strong);
   font-weight: 800;
   text-transform: uppercase;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1 {
@@ -233,22 +279,44 @@ h3 {
   max-width: 200px;
 }
 
+.access-input :deep(.el-input__wrapper) {
+  background: var(--app-surface-soft);
+  border: 1px solid var(--app-glass-border);
+  box-shadow: none;
+}
+
+/* Panel header with gradient underline */
 .panel-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-4);
+  position: relative;
+  padding-bottom: var(--space-3);
+}
+
+.panel-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--app-gradient-primary-h);
+  opacity: 0.3;
 }
 
 .badge {
   font-size: var(--text-xs);
   color: var(--app-text-faint);
   padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--app-border);
+  border: 1px solid var(--app-glass-border);
   border-radius: var(--radius-sm);
   white-space: nowrap;
+  background: var(--app-glass-bg);
 }
 
+/* Summary grid with glass cards and gradient top border */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -257,9 +325,28 @@ h3 {
 
 .summary-item {
   padding: var(--space-3);
-  border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
-  background: var(--app-bg-deep);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  border: 1px solid var(--app-glass-border);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal);
+}
+
+.summary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--app-gradient-primary);
+}
+
+.summary-item:hover {
+  box-shadow: var(--app-glow);
 }
 
 .summary-item .label {
@@ -269,27 +356,53 @@ h3 {
   font-size: var(--text-xs);
 }
 
+.summary-item strong {
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .section {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
+/* Transcript - dark inset with left accent */
 .transcript {
   padding: var(--space-4);
-  border: 1px solid var(--app-border);
   border-radius: var(--radius-lg);
   background: var(--app-bg-deep);
   color: var(--app-text);
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.7;
+  border: 1px solid var(--app-glass-border);
+  border-left: 3px solid;
+  border-image: var(--app-gradient-primary) 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
 }
 
+/* Two-column with gradient divider */
 .two-col {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
+  position: relative;
+}
+
+.two-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--app-gradient-primary);
+  opacity: 0.2;
+  transform: translateX(-50%);
 }
 
 .two-col > div {
@@ -308,6 +421,37 @@ h3 {
   line-height: 1.7;
 }
 
+/* Table override */
+.panel :deep(.el-table) {
+  --el-table-tr-bg-color: transparent;
+  --el-table-row-hover-bg-color: rgba(167, 139, 250, 0.06);
+}
+
+.panel :deep(.el-table__row:hover > td) {
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.1);
+}
+
+/* Report content staggered entrance */
+.report-content .panel {
+  animation: staggerFadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.report-content .panel:nth-child(1) { animation-delay: 0ms; }
+.report-content .panel:nth-child(2) { animation-delay: 80ms; }
+.report-content .panel:nth-child(3) { animation-delay: 160ms; }
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .loading-state {
   padding: var(--space-10) var(--space-6);
 }
@@ -319,6 +463,10 @@ h3 {
 
   .access-card {
     margin: 20px auto;
+  }
+
+  .two-col::before {
+    display: none;
   }
 }
 </style>

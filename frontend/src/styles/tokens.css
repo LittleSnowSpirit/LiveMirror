@@ -54,10 +54,25 @@
   --app-danger-soft: rgba(251, 113, 133, 0.12);
   --app-info-soft: rgba(96, 165, 250, 0.12);
 
+  /* Glass / Glow */
+  --app-glass-bg: rgba(20, 20, 20, 0.55);
+  --app-glass-border: rgba(167, 139, 250, 0.08);
+  --app-glass-blur: 16px;
+  --app-glow: 0 0 20px rgba(167, 139, 250, 0.15);
+  --app-glow-strong: 0 0 40px rgba(167, 139, 250, 0.25);
+  --app-glow-accent: 0 0 20px rgba(240, 171, 252, 0.15);
+
+  /* Gradients */
+  --app-gradient-primary: linear-gradient(135deg, #a78bfa 0%, #f0abfc 100%);
+  --app-gradient-primary-h: linear-gradient(90deg, #a78bfa 0%, #f0abfc 100%);
+  --app-gradient-surface: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, transparent 100%);
+  --app-gradient-border: linear-gradient(135deg, rgba(167, 139, 250, 0.3) 0%, rgba(240, 171, 252, 0.3) 100%);
+
   /* Shadows */
   --app-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
   --app-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.28);
   --app-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.24);
+  --app-shadow-glow: 0 4px 24px rgba(167, 139, 250, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 
   /* Typography */
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -190,10 +205,25 @@
   --app-danger-soft: rgba(225, 29, 72, 0.08);
   --app-info-soft: rgba(37, 99, 235, 0.08);
 
+  /* Glass / Glow */
+  --app-glass-bg: rgba(255, 255, 255, 0.7);
+  --app-glass-border: rgba(124, 58, 237, 0.1);
+  --app-glass-blur: 16px;
+  --app-glow: 0 0 20px rgba(124, 58, 237, 0.08);
+  --app-glow-strong: 0 0 40px rgba(124, 58, 237, 0.15);
+  --app-glow-accent: 0 0 20px rgba(192, 38, 211, 0.08);
+
+  /* Gradients */
+  --app-gradient-primary: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+  --app-gradient-primary-h: linear-gradient(90deg, #7c3aed 0%, #c026d3 100%);
+  --app-gradient-surface: linear-gradient(180deg, rgba(124, 58, 237, 0.03) 0%, transparent 100%);
+  --app-gradient-border: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(192, 38, 211, 0.2) 100%);
+
   /* Shadows */
   --app-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
   --app-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.06);
   --app-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --app-shadow-glow: 0 4px 24px rgba(124, 58, 237, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
 
   /* Overlay */
   --overlay-bg: rgba(0, 0, 0, 0.4);

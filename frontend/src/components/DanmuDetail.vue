@@ -178,18 +178,51 @@ onMounted(fetchData);
   align-items: center;
 }
 
+/* Stat cards with stagger animation */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-3);
 }
 
+.stats-row > * {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.stats-row > *:nth-child(1) { animation-delay: 0ms; }
+.stats-row > *:nth-child(2) { animation-delay: 80ms; }
+.stats-row > *:nth-child(3) { animation-delay: 160ms; }
+.stats-row > *:nth-child(4) { animation-delay: 240ms; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chart containers — glass glow on hover */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-4);
 }
 
+.two-col > :deep(.base-panel) {
+  transition: box-shadow var(--transition-fast);
+  border: 1px solid var(--app-glass-border);
+  border-radius: var(--radius-lg);
+}
+
+.two-col > :deep(.base-panel:hover) {
+  box-shadow: var(--app-glow);
+}
+
+/* Keyword gradient pill badges */
 .keyword-tags {
   display: flex;
   flex-wrap: wrap;
@@ -200,6 +233,25 @@ onMounted(fetchData);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  border: none !important;
+  background: var(--app-glass-bg) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-full) !important;
+  padding: 0 var(--space-3) !important;
+  height: 28px !important;
+  font-size: var(--text-xs) !important;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.keyword-tag:hover {
+  box-shadow: var(--app-glow);
+  transform: translateY(-1px);
+}
+
+/* Gradient pill variants for sentiment */
+.keyword-tag:deep(.el-tag__content) {
+  position: relative;
 }
 
 .kw-count {

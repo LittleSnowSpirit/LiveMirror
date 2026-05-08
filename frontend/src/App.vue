@@ -237,6 +237,20 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Noise texture overlay for depth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 a {
@@ -259,6 +273,7 @@ a,
 :focus-visible {
   outline: 2px solid var(--app-primary);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
 }
 
 html {
@@ -288,8 +303,11 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   gap: var(--space-4);
   padding: var(--space-4) 40px;
-  border-bottom: 1px solid var(--app-border);
-  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-glass-border);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 0 rgba(167, 139, 250, 0.06);
 }
 
 .brand {
@@ -307,14 +325,18 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  background: var(--app-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brand-signal {
   width: 10px;
   height: 10px;
   border-radius: var(--radius-sm);
-  background: var(--app-primary);
-  box-shadow: 0 0 0 4px var(--app-primary-soft);
+  background: var(--app-gradient-primary);
+  box-shadow: 0 0 0 4px var(--app-primary-soft), 0 0 12px rgba(167, 139, 250, 0.4);
 }
 
 .brand-copy {
@@ -354,9 +376,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link.router-link-active {
-  border-color: var(--app-primary);
+  border-color: rgba(167, 139, 250, 0.3);
   color: var(--app-primary);
   background: var(--app-primary-soft);
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.1);
 }
 
 .theme-toggle {
@@ -412,10 +435,18 @@ h1, h2, h3, h4, h5, h6 {
 .panel h3 { font-size: var(--text-xl); }
 
 .el-card {
-  border-color: var(--app-border) !important;
-  background: var(--app-surface) !important;
+  border-color: var(--app-glass-border) !important;
+  background: var(--app-glass-bg) !important;
   color: var(--app-text) !important;
   box-shadow: var(--app-shadow-card) !important;
+  backdrop-filter: blur(var(--app-glass-blur));
+  -webkit-backdrop-filter: blur(var(--app-glass-blur));
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal) !important;
+}
+
+.el-card:hover {
+  border-color: rgba(167, 139, 250, 0.15) !important;
+  box-shadow: var(--app-shadow-glow) !important;
 }
 
 .el-card__body {
@@ -431,17 +462,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .el-button--primary {
   --el-button-bg-color: var(--app-primary);
-  --el-button-border-color: var(--app-primary);
+  --el-button-border-color: transparent;
   --el-button-text-color: #06110f;
   --el-button-hover-bg-color: var(--app-primary-strong);
-  --el-button-hover-border-color: var(--app-primary-strong);
+  --el-button-hover-border-color: transparent;
   --el-button-hover-text-color: #06110f;
   --el-button-active-bg-color: var(--app-primary-strong);
-  --el-button-active-border-color: var(--app-primary-strong);
+  --el-button-active-border-color: transparent;
   --el-button-active-text-color: #06110f;
-  background-color: var(--app-primary) !important;
-  border-color: var(--app-primary) !important;
+  background: var(--app-gradient-primary) !important;
+  border-color: transparent !important;
   color: #06110f !important;
+  box-shadow: 0 2px 12px rgba(167, 139, 250, 0.25);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal) !important;
+}
+
+.el-button--primary:hover {
+  box-shadow: 0 4px 24px rgba(167, 139, 250, 0.4);
+  transform: translateY(-1px);
 }
 
 .el-button--default,
@@ -506,12 +544,18 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 1px var(--app-primary) inset;
 }
 
+.el-input__wrapper:focus-within,
+.el-textarea__inner:focus-within {
+  box-shadow: 0 0 0 1px var(--app-primary) inset, 0 0 0 3px rgba(167, 139, 250, 0.15) !important;
+}
+
 .el-progress-bar__outer {
   background-color: var(--app-surface-strong);
 }
 
 .el-progress-bar__inner {
-  background: linear-gradient(90deg, var(--app-primary), var(--app-primary-strong));
+  background: var(--app-gradient-primary);
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.3);
 }
 
 .el-tag {
@@ -527,13 +571,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .el-table {
-  --el-table-bg-color: var(--app-surface);
-  --el-table-tr-bg-color: var(--app-surface);
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
   --el-table-header-bg-color: var(--app-surface-soft);
   --el-table-row-hover-bg-color: var(--app-surface-strong);
   --el-table-border-color: var(--app-border);
   --el-table-text-color: var(--app-text);
   --el-table-header-text-color: var(--app-text);
+}
+
+.el-table th.el-table__cell {
+  position: relative;
+}
+
+.el-table th.el-table__cell::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--app-gradient-primary-h);
+  opacity: 0.3;
 }
 
 .el-empty {
@@ -631,12 +690,15 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   bottom: 0;
   width: 280px;
-  background: var(--app-surface);
+  background: var(--app-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   z-index: 41;
   display: flex;
   flex-direction: column;
   box-shadow: var(--app-shadow);
   overflow-y: auto;
+  border-right: 1px solid var(--app-glass-border);
 }
 
 .drawer-enter-active,
@@ -746,18 +808,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Page transition */
-.page-fade-enter-active,
+.page-fade-enter-active {
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
 .page-fade-leave-active {
-  transition: opacity 250ms ease-out, transform 250ms ease-out;
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
 }
 
 .page-fade-enter-from {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(12px);
 }
 
 .page-fade-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 </style>
