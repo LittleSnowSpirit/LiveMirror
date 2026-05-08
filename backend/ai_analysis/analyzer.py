@@ -281,7 +281,7 @@ class LiveMirrorAnalyzer:
                 # 调用 AI API
                 result = self._call_ai_api(batch_text, data_changes)
 
-                if result:
+                if result and self._validate_ai_result(result):
                     # 解析结果
                     batch_highlights = result.get("highlights", [])
                     batch_crashes = result.get("crashes", [])
@@ -365,6 +365,15 @@ class LiveMirrorAnalyzer:
             print(f"API 调用失败：{e}")
             return None
     
+    @staticmethod
+    def _validate_ai_result(result: Dict[str, Any]) -> bool:
+        """Validate that AI result contains required keys."""
+        if not isinstance(result, dict):
+            return False
+        if "highlights" not in result and "crashes" not in result:
+            return False
+        return True
+
     def _call_deepseek_api(self, prompt: str) -> Optional[Dict[str, Any]]:
         """调用 DeepSeek API"""
         try:

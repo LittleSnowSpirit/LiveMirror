@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount, flushPromises } from '@vue/test-utils';
 import { createRouter, createMemoryHistory } from 'vue-router';
+import { setActivePinia, createPinia } from 'pinia';
 
 const mockGetTaskStatus = vi.fn();
 const mockGetReport = vi.fn();
@@ -14,6 +15,14 @@ vi.mock('../api', () => ({
   exportReport: (...args: unknown[]) => mockExportReport(...args),
   getStoredTaskId: (...args: unknown[]) => mockGetStoredTaskId(...args),
   setStoredTaskId: (...args: unknown[]) => mockSetStoredTaskId(...args),
+}));
+
+vi.mock('../components/ExportPanel.vue', () => ({
+  default: { template: '<div class="export-panel-stub" />', props: ['taskId'], emits: ['share'] },
+}));
+
+vi.mock('../components/ShareDialog.vue', () => ({
+  default: { template: '<div class="share-dialog-stub" />', props: ['visible', 'taskId'], emits: ['update:visible'] },
 }));
 
 vi.mock('element-plus', () => ({
@@ -54,6 +63,7 @@ async function mountReport() {
 beforeEach(() => {
   vi.clearAllMocks();
   localStorage.clear();
+  setActivePinia(createPinia());
   mockGetStoredTaskId.mockReturnValue('');
   mockGetTaskStatus.mockReset();
   mockGetReport.mockReset();

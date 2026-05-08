@@ -70,6 +70,8 @@ def create_app() -> FastAPI:
                 "/api/history",
                 "/api/user",
                 "/api/batch-export",
+                "/api/share",
+                "/api/shares",
             ],
         }
 

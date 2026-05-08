@@ -81,6 +81,9 @@ export interface AuthTokens {
 export interface UserProfile {
   id: number;
   username: string;
+  nickname: string;
+  bio: string;
+  avatar_url: string;
   email?: string | null;
   is_active: boolean;
   created_at: string;
@@ -292,6 +295,22 @@ export interface UsageRecord {
   status: string;
 }
 
+export interface ShareLink {
+  id: string;
+  task_id: string;
+  token: string;
+  access_code: string;
+  template_config: string | null;
+  created_at: string;
+  expires_at: string | null;
+  view_count: number;
+}
+
+export interface SharedReportData {
+  report: ReportData;
+  template_config: string | null;
+}
+
 export function setAuthTokens(tokens: AuthTokens) {
   localStorage.setItem('access_token', tokens.access_token);
   localStorage.setItem('refresh_token', tokens.refresh_token);
@@ -496,6 +515,76 @@ export async function batchExport(taskIds: string[], format: 'json' | 'markdown'
   const response = await api.post<Blob>('/api/batch-export', { task_ids: taskIds, format }, {
     responseType: 'blob'
   });
+  return response.data;
+}
+
+export async function createShareLink(taskId: string, templateConfig?: object, expiresInDays?: number) {
+  const response = await api.post<ShareLink>('/api/share', {
+    task_id: taskId,
+    template_config: templateConfig ? JSON.stringify(templateConfig) : undefined,
+    expires_in_days: expiresInDays,
+  });
+  return response.data;
+}
+
+export async function getShareLink(token: string, accessCode: string) {
+  const response = await api.get<SharedReportData>(`/api/share/${token}`, {
+    params: { access_code: accessCode },
+  });
+  return response.data;
+}
+
+export async function deleteShareLink(token: string) {
+  await api.delete(`/api/share/${token}`);
+}
+
+export async function getShareLinks() {
+  const response = await api.get<{ success: boolean; shares: ShareLink[] }>('/api/share');
+  return response.data.shares;
+}
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+export async function exportPDF(taskId: string, template?: string) {
+  const params: Record<string, string> = {};
+  if (template) params.template = template;
+  const response = await api.get<Blob>(`/api/export/${taskId}/pdf`, {
+    responseType: 'blob',
+    params,
+  });
+  downloadBlob(response.data, `livemirror-report-${taskId}.pdf`);
+}
+
+export async function exportImage(taskId: string) {
+  const response = await api.get<Blob>(`/api/export/${taskId}/image`, {
+    responseType: 'blob',
+  });
+  downloadBlob(response.data, `livemirror-report-${taskId}.png`);
+}
+
+export async function uploadAvatar(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await api.post<{ avatar_url: string }>('/api/user/avatar', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+}
+
+export async function updateProfile(data: { nickname?: string; bio?: string }) {
+  const response = await api.put<UserProfile>('/api/user/profile', data);
+  return response.data;
+}
+
+export async function getProfile() {
+  const response = await api.get<UserProfile>('/api/user/profile');
   return response.data;
 }
 

@@ -142,6 +142,16 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         status="stable",
         description="批量导出多个任务报告为 ZIP 文件。",
     ),
+    FeatureDefinition(
+        key="share",
+        label="分享链接",
+        group="core",
+        path="/api/share",
+        router_module="routes.core_share",
+        enabled=True,
+        status="stable",
+        description="创建和管理报告分享链接，支持访问码验证。",
+    ),
 )
 
 
@@ -173,6 +183,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "history": "/history",
         "user": "/profile",
         "batch_export": None,
+        "share": None,
     }
     navigation_labels = {
         "upload": "上传",
@@ -184,6 +195,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "history": "历史",
         "user": "个人中心",
         "batch_export": None,
+        "share": None,
     }
 
     return {

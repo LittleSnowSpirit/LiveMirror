@@ -116,6 +116,9 @@
 
       <el-empty v-else-if="!loading && taskId" description="报告尚未准备好" />
     </template>
+
+    <ExportPanel v-if="taskId" :task-id="taskId" @share="showShareDialog = true" />
+    <ShareDialog v-model:visible="showShareDialog" :task-id="taskId" />
   </div>
 </template>
 
@@ -125,6 +128,10 @@ import { useRoute } from 'vue-router';
 import { exportReport, getReport, getStoredTaskId, getTaskStatus, setStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
 import type { ReportData, TaskInfo } from '../api';
+import ExportPanel from '../components/ExportPanel.vue';
+import ShareDialog from '../components/ShareDialog.vue';
+
+const showShareDialog = ref(false);
 
 const route = useRoute();
 const taskIdInput = ref('');
