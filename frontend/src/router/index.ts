@@ -72,6 +72,24 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/danmu',
+    name: 'danmu',
+    component: () => import('../views/Danmu.vue'),
+    meta: {
+      title: '弹幕分析 - LiveMirror',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/danmu/:batchId',
+    name: 'danmu-detail',
+    component: () => import('../views/Danmu.vue'),
+    meta: {
+      title: '弹幕详情 - LiveMirror',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/history',
     name: 'history',
     component: () => import('../views/History.vue'),

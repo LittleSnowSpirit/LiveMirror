@@ -68,7 +68,8 @@ class Danmu(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
-    
+    batch_id = Column(String(100), ForeignKey("danmu_batches.batch_id"), nullable=True, index=True)
+
     # 弹幕内容
     content = Column(Text, nullable=False)
     
