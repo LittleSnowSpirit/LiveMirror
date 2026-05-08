@@ -81,10 +81,23 @@ npm run test          # 运行前端测试 (vitest)
 
 ## Agent Team 协作
 
-使用 Agent Team 并行开发时，遵循 `.claude/skills/agent-team.md` 规范：
+**必须使用 Agent Team 工具（TeamCreate），不要用 subagent。** 用户需要在 UI 中看到团队状态和任务进度。
+
+开发流程：
+1. **需求问答**：用 AskUserQuestion 多问问题，充分确认需求
+2. **任务规划**：用 TaskCreate 创建任务列表，模块分明、分类明确、任务量够大
+3. **创建团队**：用 TeamCreate 创建团队
+4. **分配任务**：用 Agent（带 team_name）启动 Teammate，用 TaskUpdate 分配 owner
+5. **并行开发**：Teammate 各自认领任务执行
+6. **验收提交**：Lead 验证后统一提交
+
+角色分工：
 - **Team Lead**：只协调，不写代码（Delegate Mode）
 - **数据层 Agent**：数据库、服务层、API 路由、后端测试
 - **交互层 Agent**：前端页面、API 客户端、状态管理、前端测试
 - **基建 Agent**：Docker、CI/CD、PWA、部署脚本
+
+约束：
 - Lead 先定义 API 合约，再启动 Teammate 并行开发
 - Teammate 复杂任务先 Plan Mode，Lead 审核后执行
+- 每个 Agent 负责 3-5 个相关任务，不要拆太细
