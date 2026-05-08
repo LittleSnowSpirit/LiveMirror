@@ -99,25 +99,18 @@ def get_danmu_batches(db: Session, user_id: int) -> list[DanmuBatch]:
     )
 
 
-def get_danmu_batch_detail(db: Session, batch_id: int) -> Optional[DanmuBatch]:
+def get_danmu_batch_detail(db: Session, batch_id: str) -> Optional[DanmuBatch]:
     """获取单个批次详情。"""
-    return db.query(DanmuBatch).filter(DanmuBatch.id == batch_id).first()
+    return db.query(DanmuBatch).filter(DanmuBatch.batch_id == batch_id).first()
 
 
 def get_danmu_by_batch(
-    db: Session, batch_id: int, limit: int = 1000
+    db: Session, batch_id: str, limit: int = 1000
 ) -> list[Danmu]:
-    """获取指定批次的弹幕列表。
-
-    通过 DanmuBatch.id 找到 batch_id 字符串，再查 Danmu 表。
-    """
-    batch = db.query(DanmuBatch).filter(DanmuBatch.id == batch_id).first()
-    if not batch:
-        return []
-
+    """获取指定批次的弹幕列表。"""
     return (
         db.query(Danmu)
-        .filter(Danmu.batch_id == batch.batch_id)
+        .filter(Danmu.batch_id == batch_id)
         .order_by(Danmu.timestamp)
         .limit(limit)
         .all()

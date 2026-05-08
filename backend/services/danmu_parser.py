@@ -18,9 +18,6 @@ _COLUMN_ALIASES: dict[str, list[str]] = {
     "username": ["username", "user", "name", "nickname", "用户", "昵称"],
 }
 
-_DETECTED_COLUMNS: dict[str, str] = {}
-
-
 def _resolve_column(header: str) -> Optional[str]:
     """将 CSV 列名映射到标准字段名。"""
     lower = header.strip().lower()

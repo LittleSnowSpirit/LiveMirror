@@ -25,22 +25,24 @@ _ALLOWED_EXTENSIONS = {"json", "csv"}
 _CHUNK_SIZE = 1024 * 1024
 
 
-def _get_or_create_quota(db: Session, user_id: int) -> UserQuota:
+def _get_or_create_quota(db: Session, user_id: int, *, lock: bool = False) -> UserQuota:
     """Return the current-week quota row, creating one if needed."""
     today = date_type.today()
     monday = today - timedelta(days=today.weekday())
 
-    quota = db.query(UserQuota).filter(UserQuota.user_id == user_id).first()
+    query = db.query(UserQuota).filter(UserQuota.user_id == user_id)
+    if lock:
+        query = query.with_for_update()
+    quota = query.first()
+
     if quota is None:
         quota = UserQuota(user_id=user_id, week_start_date=monday)
         db.add(quota)
-        db.commit()
-        db.refresh(quota)
+        db.flush()
     elif quota.week_start_date != monday:
         quota.used_this_week = 0
         quota.week_start_date = monday
-        db.commit()
-        db.refresh(quota)
+        db.flush()
     return quota
 
 
@@ -111,14 +113,16 @@ async def list_batches(
 
 @router.get("/batch/{batch_id}")
 async def batch_detail(
-    batch_id: int,
+    batch_id: str,
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user),
 ):
     """获取单个批次详情及其弹幕。"""
     batch = get_danmu_batch_detail(db, batch_id)
-    if not batch or batch.user_id != current_user.id:
+    if not batch:
         raise HTTPException(status_code=404, detail="Batch not found.")
+    if batch.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden.")
 
     danmus = get_danmu_by_batch(db, batch.id)
     result = batch.to_dict()
@@ -129,8 +133,8 @@ async def batch_detail(
 # ── 弹幕分析 API ──────────────────────────────────────────────
 
 
-def _run_danmu_analysis(batch_id: str) -> None:
-    """后台线程：执行弹幕情感分析。"""
+def _run_danmu_analysis(batch_id: str, user_id: int) -> None:
+    """后台线程：执行弹幕情感分析。失败时退还配额。"""
     from database import SessionLocal
     from services.danmu_analyzer import analyze_danmu_batch
 
@@ -140,6 +144,18 @@ def _run_danmu_analysis(batch_id: str) -> None:
         db.commit()
     except Exception:
         db.rollback()
+        # 退还配额
+        try:
+            today = date_type.today()
+            monday = today - timedelta(days=today.weekday())
+            quota = db.query(UserQuota).filter(
+                UserQuota.user_id == user_id
+            ).first()
+            if quota and quota.week_start_date == monday and quota.used_this_week > 0:
+                quota.used_this_week -= 1
+                db.commit()
+        except Exception:
+            db.rollback()
         import logging
         logging.getLogger(__name__).exception("Danmu analysis failed for batch %s", batch_id)
     finally:
@@ -160,8 +176,8 @@ async def trigger_danmu_analysis(
     if batch.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="Forbidden.")
 
-    # 配额检查
-    quota = _get_or_create_quota(db, current_user.id)
+    # 配额检查（行锁防竞态）
+    quota = _get_or_create_quota(db, current_user.id, lock=True)
     if quota.used_this_week >= quota.weekly_limit:
         raise HTTPException(
             status_code=429,
@@ -170,11 +186,10 @@ async def trigger_danmu_analysis(
 
     # 消耗配额
     quota.used_this_week += 1
-    usage = UsageRecord(user_id=current_user.id)
+    usage = UsageRecord(user_id=current_user.id, task_id=batch_id)
     db.add(usage)
-    db.commit()
 
-    background_tasks.add_task(_run_danmu_analysis, batch_id)
+    background_tasks.add_task(_run_danmu_analysis, batch_id, current_user.id)
     return {"status": "processing", "batch_id": batch_id}
 
 
@@ -192,7 +207,7 @@ async def get_danmu_analysis(
         raise HTTPException(status_code=403, detail="Forbidden.")
 
     report = db.query(AnalysisReport).filter(
-        AnalysisReport.task_id == batch_id
+        AnalysisReport.batch_id == batch_id
     ).first()
 
     if not report or not report.report_data:
@@ -224,7 +239,7 @@ async def get_speech_danmu_correlation(
 
     # 先检查缓存
     report = db.query(AnalysisReport).filter(
-        AnalysisReport.task_id == batch_id
+        AnalysisReport.batch_id == batch_id
     ).first()
 
     correlations = None
@@ -264,7 +279,7 @@ async def get_danmu_keywords(
         raise HTTPException(status_code=403, detail="Forbidden.")
 
     report = db.query(AnalysisReport).filter(
-        AnalysisReport.task_id == batch_id
+        AnalysisReport.batch_id == batch_id
     ).first()
 
     if not report or not report.report_data:
