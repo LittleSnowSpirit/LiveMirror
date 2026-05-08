@@ -40,7 +40,7 @@ class ConnectionManager:
                 dead.append(ws)
         for ws in dead:
             conns.discard(ws)
-        if conns and not conns:
+        if not conns:
             del self._connections[user_id]
 
     def get_user_connection_count(self, user_id: int) -> int:

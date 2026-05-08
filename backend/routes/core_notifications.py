@@ -120,7 +120,7 @@ async def push_subscribe(
     return {"success": True}
 
 
-@router.delete("/push-subscribe")
+@router.post("/push-unsubscribe")
 async def push_unsubscribe(
     body: PushUnsubscribeBody,
     db: Session = Depends(get_db),

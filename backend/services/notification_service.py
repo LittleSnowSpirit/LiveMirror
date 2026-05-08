@@ -45,7 +45,7 @@ class NotificationEmitter:
         if self._loop is None:
             logger.warning("NotificationEmitter: no event loop set, skipping emit for user %d", user_id)
             return
-        for cb in cbs:
+        for cb in list(cbs):  # snapshot to avoid RuntimeError on concurrent mutation
             try:
                 asyncio.run_coroutine_threadsafe(cb(payload), self._loop)
             except Exception:
@@ -89,6 +89,12 @@ def create_notification(
         })
     except Exception:
         logger.exception("Failed to emit notification event for user %d", user_id)
+
+    try:
+        from services.push_service import send_push_notification
+        send_push_notification(db, user_id, title, message, link)
+    except Exception:
+        logger.exception("Failed to send push notification for user %d", user_id)
 
     return notification
 
