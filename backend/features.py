@@ -152,6 +152,16 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         status="stable",
         description="创建和管理报告分享链接，支持访问码验证。",
     ),
+    FeatureDefinition(
+        key="link",
+        label="链接分析",
+        group="core",
+        path="/api",
+        router_module="routes.core_link",
+        enabled=True,
+        status="beta",
+        description="粘贴直播回放链接，自动下载音频并分析。",
+    ),
 )
 
 
@@ -184,6 +194,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "user": "/profile",
         "batch_export": None,
         "share": None,
+        "link": "/upload",
     }
     navigation_labels = {
         "upload": "上传",
@@ -196,6 +207,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "user": "个人中心",
         "batch_export": None,
         "share": None,
+        "link": "链接分析",
     }
 
     return {

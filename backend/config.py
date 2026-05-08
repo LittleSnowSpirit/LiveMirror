@@ -47,11 +47,26 @@ class CoreSettings(BaseSettings):
     dashscope_asr_model: str = "paraformer-v2"
     openai_api_key: Optional[str] = None
     openai_api_base: str = "https://api.openai.com/v1"
+
+    # Link analysis
+    yt_dlp_path: str = "yt-dlp"
+    download_dir: str = "./uploads/downloads"
+    max_download_duration: int = 600
+
     log_level: str = "INFO"
 
     @field_validator("upload_dir")
     @classmethod
     def normalize_upload_dir(cls, value: str) -> str:
+        path = Path(value)
+        if not path.is_absolute():
+            path = BASE_DIR / path
+        path.mkdir(parents=True, exist_ok=True)
+        return str(path)
+
+    @field_validator("download_dir")
+    @classmethod
+    def normalize_download_dir(cls, value: str) -> str:
         path = Path(value)
         if not path.is_absolute():
             path = BASE_DIR / path

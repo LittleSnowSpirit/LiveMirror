@@ -253,6 +253,16 @@ export interface FeatureResponse {
   groups: FeatureGroup[];
 }
 
+export interface LinkInfo {
+  platform: string;
+  video_id: string;
+  title: string;
+  duration: number;
+  thumbnail_url: string;
+  uploader: string;
+  error?: string;
+}
+
 export interface HistoryItem {
   task_id: string;
   filename: string;
@@ -541,6 +551,16 @@ export async function deleteShareLink(token: string) {
 export async function getShareLinks() {
   const response = await api.get<{ success: boolean; shares: ShareLink[] }>('/api/share');
   return response.data.shares;
+}
+
+export async function getLinkInfo(url: string): Promise<LinkInfo> {
+  const { data } = await api.get('/api/link-info', { params: { url } });
+  return data;
+}
+
+export async function analyzeLink(url: string): Promise<{ task_id: string }> {
+  const { data } = await api.post('/api/analyze-link', { url });
+  return data;
 }
 
 function downloadBlob(blob: Blob, filename: string) {

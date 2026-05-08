@@ -23,13 +23,23 @@ def get_db() -> Session:
         db.close()
 
 
-def create_task(db: Session, task_id: str, filename: str, file_path: str, file_size: int) -> Task:
+def create_task(
+    db: Session,
+    task_id: str,
+    filename: str,
+    file_path: str,
+    file_size: int,
+    source_type: str = "upload",
+    source_url: str | None = None,
+) -> Task:
     """创建新任务"""
     task = Task(
         task_id=task_id,
         filename=filename,
         file_path=file_path,
         file_size=file_size,
+        source_type=source_type,
+        source_url=source_url,
         status="pending",
         current_step="pending",
         provider=settings.transcription_provider,

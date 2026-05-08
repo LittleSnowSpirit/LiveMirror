@@ -199,6 +199,8 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
     filename = Column(String(255), nullable=False)
     file_path = Column(String(500), nullable=False)
+    source_type = Column(String(20), nullable=True)  # "upload" | "link"
+    source_url = Column(String(1000), nullable=True)
     file_size = Column(Integer, nullable=False, default=0)
     duration = Column(Float, nullable=True)
 
@@ -228,6 +230,8 @@ class Task(Base):
             "filename": self.filename,
             "file_size": self.file_size,
             "duration": self.duration,
+            "source_type": self.source_type,
+            "source_url": self.source_url,
             "status": self.status,
             "current_step": self.current_step,
             "provider": self.provider,
