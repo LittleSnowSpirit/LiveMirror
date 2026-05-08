@@ -44,6 +44,7 @@ class CoreSettings(BaseSettings):
 
     dashscope_api_key: Optional[str] = None
     dashscope_model: str = "qwen-plus"
+    dashscope_asr_model: str = "paraformer-v2"
     openai_api_key: Optional[str] = None
     openai_api_base: str = "https://api.openai.com/v1"
     log_level: str = "INFO"

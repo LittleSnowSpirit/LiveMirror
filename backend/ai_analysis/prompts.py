@@ -8,8 +8,14 @@ SYSTEM_ROLE = """你是一位资深直播运营专家，拥有 5 年直播带货
 你擅长识别主播话术中的关键模式，包括促单技巧、互动策略、产品介绍方法，
 以及可能导致翻车的敏感表述。
 
+你的核心能力：
+1. 识别显性爆点和翻车点（明显的好话术和问题话术）
+2. 主动发现隐性问题——那些表面正常但实际上可能影响转化的话术模式，
+   包括：节奏失控、互动密度不足、话术单一重复、情绪走势异常等
+3. 从整体直播流程的视角评估话术布局是否合理
+
 你的任务是分析直播转写稿，找出"爆点"（高转化话术）和"翻车点"（负面话术），
-并给出专业的优化建议。"""
+评估直播节奏和互动质量，并给出专业的优化建议。"""
 
 # 话术分段 Prompt
 SEGMENTATION_PROMPT = """
@@ -184,7 +190,11 @@ FULL_ANALYSIS_PROMPT = """
 2. 识别爆点（高转化话术）
 3. 识别翻车点（负面话术）
 4. 归因分析（关联假设的数据变化）
-5. 给出优化建议
+5. 节奏分析：评估整场直播的节奏是否合理（开场暖场 -> 产品介绍 -> 促单转化 -> 收尾的比例）
+6. 互动密度分析：统计每分钟互动引导次数，判断是否过少或过度
+7. 话术多样性分析：是否过度重复使用相同话术，话术变化是否丰富
+8. 情绪曲线分析：整场直播的情绪走向（平稳、逐步升温、高开低走、波动等）
+9. 给出优化建议
 
 数据变化参考（可选）：
 {data_changes}
@@ -230,6 +240,89 @@ FULL_ANALYSIS_PROMPT = """
       "risk_level": 7
     }}
   ],
+  "rhythm_analysis": {{
+    "overall_rating": "优秀|良好|一般|较差",
+    "score": 80,
+    "phases": [
+      {{
+        "phase": "开场暖场",
+        "start_time": "00:00:00",
+        "end_time": "00:03:00",
+        "proportion": "10%",
+        "evaluation": "评价"
+      }},
+      {{
+        "phase": "产品介绍",
+        "start_time": "00:03:00",
+        "end_time": "00:20:00",
+        "proportion": "55%",
+        "evaluation": "评价"
+      }},
+      {{
+        "phase": "促单转化",
+        "start_time": "00:20:00",
+        "end_time": "00:28:00",
+        "proportion": "22%",
+        "evaluation": "评价"
+      }},
+      {{
+        "phase": "收尾",
+        "start_time": "00:28:00",
+        "end_time": "00:30:00",
+        "proportion": "8%",
+        "evaluation": "评价"
+      }}
+    ],
+    "issues": ["节奏问题列表"],
+    "suggestions": ["节奏优化建议"]
+  }},
+  "engagement_metrics": {{
+    "interactions_per_minute": 2.5,
+    "total_interactions": 75,
+    "interaction_types": {{
+      "question_prompts": 20,
+      "call_to_action": 30,
+      "like_share_reminders": 15,
+      "other": 10
+    }},
+    "rating": "良好",
+    "score": 72,
+    "dead_zones": [
+      {{
+        "start_time": "00:10:00",
+        "end_time": "00:12:00",
+        "description": "连续 2 分钟无互动引导"
+      }}
+    ],
+    "suggestions": ["互动优化建议"]
+  }},
+  "emotion_curve": {{
+    "overall_trend": "逐步升温|平稳|高开低走|波动|持续低迷",
+    "score": 78,
+    "phases": [
+      {{
+        "time_range": "00:00:00-00:05:00",
+        "emotion": "热情|平稳|低落|激动|平淡",
+        "intensity": 7,
+        "description": "描述"
+      }}
+    ],
+    "peak_moments": ["情绪高点时刻"],
+    "low_moments": ["情绪低点时刻"]
+  }},
+  "speech_diversity": {{
+    "score": 65,
+    "repeated_phrases": [
+      {{
+        "phrase": "重复的话术",
+        "count": 5,
+        "first_occurrence": "00:02:00",
+        "last_occurrence": "00:25:00"
+      }}
+    ],
+    "vocabulary_richness": "丰富|一般|单一",
+    "suggestions": ["话术多样性优化建议"]
+  }},
   "attributions": [
     {{
       "data_change_type": "类型",

@@ -19,16 +19,23 @@ from .report_generator import create_report_generator
 class LiveMirrorAnalyzer:
     """
     LiveMirror AI 话术分析器
-    
+
     核心功能：
     1. 话术分段
     2. 爆点识别
     3. 翻车识别
     4. 归因分析
-    5. 优化建议
-    6. 报告生成
+    5. 节奏分析
+    6. 互动密度分析
+    7. 情绪曲线分析
+    8. 话术多样性分析
+    9. 优化建议
+    10. 报告生成
     """
-    
+
+    # 支持的 AI 后端
+    SUPPORTED_BACKENDS = ("deepseek", "gpt", "dashscope")
+
     def __init__(
         self,
         api_key: Optional[str] = None,
@@ -38,28 +45,44 @@ class LiveMirrorAnalyzer:
     ):
         """
         初始化分析器
-        
+
         Args:
-            api_key: DeepSeek API Key（或 GPT API Key）
+            api_key: AI API Key（DeepSeek / GPT / DashScope）
             api_base: API 基础 URL
             model: 使用的模型名称
             cost_optimization: 是否启用成本优化（预筛选）
         """
-        self.api_key = api_key or os.getenv("DEEPSEEK_API_KEY")
+        # 判断后端类型
+        self._backend = self._detect_backend(model)
+
+        if self._backend == "dashscope":
+            self.api_key = api_key or os.getenv("DASHSCOPE_API_KEY")
+        else:
+            self.api_key = api_key or os.getenv("DEEPSEEK_API_KEY")
         self.api_base = api_base
         self.model = model
         self.cost_optimization = cost_optimization
-        
+
         # 初始化子模块
         self.rule_analyzer = create_rule_analyzer()
         self.suggester = create_suggester()
         self.report_generator = create_report_generator(
-            model_version="v1.0",
-            api_model=model
+            model_version="v2.0",
+            api_model=model,
         )
-        
+
         # 分析缓存
         self._cache = {}
+
+    @staticmethod
+    def _detect_backend(model: str) -> str:
+        """根据模型名称推断后端类型。"""
+        model_lower = model.lower()
+        if "dashscope" in model_lower or model_lower.startswith("qwen"):
+            return "dashscope"
+        if "deepseek" in model_lower:
+            return "deepseek"
+        return "gpt"
     
     def analyze(
         self,
@@ -69,19 +92,19 @@ class LiveMirrorAnalyzer:
     ) -> Dict[str, Any]:
         """
         完整分析流程
-        
+
         Args:
             transcript: 直播转写稿全文
             data_changes: 数据变化点列表（可选）
             segment_duration: 分段时长（秒），默认 45 秒
-        
+
         Returns:
-            完整分析报告
+            完整分析报告（含节奏、互动、情绪、话术多样性等新维度）
         """
         # Step 1: 话术分段
         print("[Step 1] 话术分段...")
         segments = self._segment_transcript(transcript, segment_duration)
-        
+
         # Step 2: 预筛选（成本优化）
         if self.cost_optimization:
             print("[Step 2] 预筛选段落...")
@@ -90,36 +113,42 @@ class LiveMirrorAnalyzer:
             priorities = {
                 "high_priority": segments,
                 "medium_priority": [],
-                "low_priority": []
+                "low_priority": [],
             }
-        
+
         # Step 3: AI 分析高优先级段落
         print("[Step 3] AI 深度分析...")
-        highlights, crashes = self._ai_analyze_segments(
+        ai_result = self._ai_analyze_segments(
             priorities["high_priority"],
-            data_changes
+            data_changes,
         )
-        
+        highlights = ai_result.get("highlights", [])
+        crashes = ai_result.get("crashes", [])
+        rhythm_analysis = ai_result.get("rhythm_analysis")
+        engagement_metrics = ai_result.get("engagement_metrics")
+        emotion_curve = ai_result.get("emotion_curve")
+        speech_diversity = ai_result.get("speech_diversity")
+
         # Step 4: 规则分析中低优先级段落
         print("[Step 4] 规则分析...")
         rule_highlights, rule_crashes = self._rule_analyze_segments(
             priorities["medium_priority"] + priorities["low_priority"]
         )
-        
+
         # 合并结果
         highlights.extend(rule_highlights)
         crashes.extend(rule_crashes)
-        
+
         # Step 5: 生成优化建议
         print("[Step 5] 生成优化建议...")
         suggestions = self._generate_suggestions(crashes)
-        
+
         # Step 6: 归因分析
         print("[Step 6] 归因分析...")
         attributions = self._analyze_attributions(
             segments, highlights, crashes, data_changes
         )
-        
+
         # Step 7: 生成报告
         print("[Step 7] 生成报告...")
         report = self.report_generator.generate_report(
@@ -127,9 +156,13 @@ class LiveMirrorAnalyzer:
             highlights=highlights,
             crashes=crashes,
             attributions=attributions,
-            suggestions=suggestions
+            suggestions=suggestions,
+            rhythm_analysis=rhythm_analysis,
+            engagement_metrics=engagement_metrics,
+            emotion_curve=emotion_curve,
+            speech_diversity=speech_diversity,
         )
-        
+
         print("[完成] 分析完成！")
         return report
     
@@ -210,19 +243,30 @@ class LiveMirrorAnalyzer:
         self,
         segments: List[Dict[str, Any]],
         data_changes: Optional[List[Dict[str, Any]]] = None
-    ) -> Tuple[List[Dict], List[Dict]]:
+    ) -> Dict[str, Any]:
         """
-        使用 AI 分析段落
-        
+        使用 AI 分析段落，返回包含新维度的完整结果。
+
         Returns:
-            (highlights, crashes) 元组
+            {
+              "highlights": [...],
+              "crashes": [...],
+              "rhythm_analysis": {...} | None,
+              "engagement_metrics": {...} | None,
+              "emotion_curve": {...} | None,
+              "speech_diversity": {...} | None,
+            }
         """
         if not segments:
-            return [], []
-        
-        highlights = []
-        crashes = []
-        
+            return {"highlights": [], "crashes": []}
+
+        highlights: List[Dict] = []
+        crashes: List[Dict] = []
+        rhythm_analysis: Optional[Dict] = None
+        engagement_metrics: Optional[Dict] = None
+        emotion_curve: Optional[Dict] = None
+        speech_diversity: Optional[Dict] = None
+
         # 批量处理（减少 API 调用）
         # 每 5 个段落调用一次 API
         batch_size = 5
@@ -232,16 +276,16 @@ class LiveMirrorAnalyzer:
                 f"[段落{seg['segment_id']}] {seg['content']}"
                 for seg in batch
             ])
-            
+
             try:
                 # 调用 AI API
                 result = self._call_ai_api(batch_text, data_changes)
-                
+
                 if result:
                     # 解析结果
                     batch_highlights = result.get("highlights", [])
                     batch_crashes = result.get("crashes", [])
-                    
+
                     # 更新段落标记
                     for h in batch_highlights:
                         seg_id = h.get("segment_id")
@@ -249,25 +293,42 @@ class LiveMirrorAnalyzer:
                             if seg["segment_id"] == seg_id:
                                 seg["is_highlight"] = True
                                 break
-                    
+
                     for c in batch_crashes:
                         seg_id = c.get("segment_id")
                         for seg in segments:
                             if seg["segment_id"] == seg_id:
                                 seg["is_crash"] = True
                                 break
-                    
+
                     highlights.extend(batch_highlights)
                     crashes.extend(batch_crashes)
-                    
+
+                    # 提取新维度（取最后一次有效的结果）
+                    if result.get("rhythm_analysis"):
+                        rhythm_analysis = result["rhythm_analysis"]
+                    if result.get("engagement_metrics"):
+                        engagement_metrics = result["engagement_metrics"]
+                    if result.get("emotion_curve"):
+                        emotion_curve = result["emotion_curve"]
+                    if result.get("speech_diversity"):
+                        speech_diversity = result["speech_diversity"]
+
             except Exception as e:
                 print(f"[警告] AI 分析批次 {i//batch_size + 1} 失败：{e}")
                 # 降级到规则分析
                 rule_h, rule_c = self._rule_analyze_segments(batch)
                 highlights.extend(rule_h)
                 crashes.extend(rule_c)
-        
-        return highlights, crashes
+
+        return {
+            "highlights": highlights,
+            "crashes": crashes,
+            "rhythm_analysis": rhythm_analysis,
+            "engagement_metrics": engagement_metrics,
+            "emotion_curve": emotion_curve,
+            "speech_diversity": speech_diversity,
+        }
     
     def _call_ai_api(
         self,
@@ -276,31 +337,30 @@ class LiveMirrorAnalyzer:
     ) -> Optional[Dict[str, Any]]:
         """
         调用 AI API 进行分析
-        
-        支持 DeepSeek 和 GPT
+
+        支持 DeepSeek、GPT 和 DashScope（通义千问）
         """
         if not self.api_key:
             print("[警告] 未配置 API Key，使用规则分析降级")
             return None
-        
+
         # 构建 Prompt
         data_changes_str = json.dumps(data_changes, ensure_ascii=False) if data_changes else "无"
-        
+
         prompt = get_prompt(
             "full_analysis",
             transcript=text,
-            data_changes=data_changes_str
+            data_changes=data_changes_str,
         )
-        
+
         try:
-            # 尝试使用 DeepSeek API
-            if "deepseek" in self.model.lower():
-                result = self._call_deepseek_api(prompt)
+            if self._backend == "dashscope":
+                return self._call_dashscope_api(prompt)
+            elif self._backend == "deepseek":
+                return self._call_deepseek_api(prompt)
             else:
-                result = self._call_gpt_api(prompt)
-            
-            return result
-            
+                return self._call_gpt_api(prompt)
+
         except Exception as e:
             print(f"API 调用失败：{e}")
             return None
@@ -370,7 +430,7 @@ class LiveMirrorAnalyzer:
                 json=payload,
                 timeout=60
             )
-            
+
             if response.status_code == 200:
                 result = response.json()
                 content = result["choices"][0]["message"]["content"]
@@ -378,9 +438,48 @@ class LiveMirrorAnalyzer:
             else:
                 print(f"GPT API 错误：{response.status_code}")
                 return None
-                
+
         except ImportError:
-            print("[警告] 未安装 requests 库，使用规则分析")
+            print("[警告] 未安装 httpx 库，使用规则分析")
+            return None
+
+    def _call_dashscope_api(self, prompt: str) -> Optional[Dict[str, Any]]:
+        """
+        调用 DashScope（通义千问）API
+
+        使用 dashscope SDK 的 Generation.call 接口
+        """
+        try:
+            import dashscope
+            from dashscope import Generation
+        except ImportError:
+            print("[警告] 未安装 dashscope SDK，使用规则分析降级")
+            return None
+
+        dashscope.api_key = self.api_key
+
+        try:
+            response = Generation.call(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_ROLE},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.3,
+                result_format="message",
+                # 通义千问支持 JSON 输出
+                extra_body={"response_format": {"type": "json_object"}},
+            )
+
+            if response.status_code == 200:
+                content = response.output.choices[0].message.content
+                return json.loads(content)
+            else:
+                print(f"DashScope API 错误：status={response.status_code}, message={response.message}")
+                return None
+
+        except Exception as e:
+            print(f"DashScope API 调用异常：{e}")
             return None
     
     def _rule_analyze_segments(
@@ -525,11 +624,18 @@ def create_analyzer(
     model: str = "deepseek-chat",
     cost_optimization: bool = True
 ) -> LiveMirrorAnalyzer:
-    """工厂函数：创建分析器实例"""
+    """
+    工厂函数：创建分析器实例
+
+    支持的模型前缀：
+    - deepseek-*  → DeepSeek API
+    - gpt-*       → OpenAI GPT API
+    - qwen-*      → DashScope 通义千问 API
+    """
     return LiveMirrorAnalyzer(
         api_key=api_key,
         model=model,
-        cost_optimization=cost_optimization
+        cost_optimization=cost_optimization,
     )
 
 
@@ -541,12 +647,12 @@ def analyze_transcript(
 ) -> Dict[str, Any]:
     """
     便捷函数：一键分析转写稿
-    
+
     Args:
         transcript: 直播转写稿
         api_key: API Key
         model: 模型名称
-    
+
     Returns:
         分析报告
     """
