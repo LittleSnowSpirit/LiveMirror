@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from contextlib import asynccontextmanager
 from importlib import import_module
 
@@ -12,6 +13,7 @@ from config import settings
 from database import init_db
 from features import enabled_router_modules
 from routes.core_auth import get_current_user
+from services.notification_service import emitter
 from services.task_queue import shutdown_task_queue
 from services.transcription import check_transcription_environment
 
@@ -19,6 +21,7 @@ from services.transcription import check_transcription_environment
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     init_db()
+    emitter.set_loop(asyncio.get_event_loop())
     try:
         yield
     finally:
@@ -49,6 +52,14 @@ def create_app() -> FastAPI:
         if getattr(module.router, "prefix", "").startswith("/api"):
             dependencies.append(Depends(get_current_user))
         app.include_router(module.router, dependencies=dependencies)
+
+    # WebSocket 路由（不走 /api 前缀的自动认证）
+    from routes import ws_notifications
+    app.include_router(ws_notifications.router)
+
+    # VAPID 公钥端点（不需要认证）
+    from routes.core_notifications import vapid_router
+    app.include_router(vapid_router)
 
     @app.get("/")
     async def root():

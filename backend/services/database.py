@@ -76,6 +76,18 @@ def update_task_status(
     db.commit()
     db.refresh(task)
 
+    if status == "failed" and task.user_id:
+        try:
+            from services.notification_service import create_notification
+            create_notification(
+                db, task.user_id, "task_failed", "分析失败",
+                f"文件 {task.filename} 的分析失败",
+                link=f"/report/{task.task_id}",
+                metadata={"task_id": task.task_id},
+            )
+        except Exception:
+            pass
+
 
 def update_task_transcription(db: Session, task: Task, transcription: str, segments: list):
     """更新任务转写结果"""
@@ -98,6 +110,18 @@ def update_task_analysis(db: Session, task: Task, analysis_result: dict, report_
     task.completed_at = datetime.now(timezone.utc)
     db.commit()
     db.refresh(task)
+
+    if task.user_id:
+        try:
+            from services.notification_service import create_notification
+            create_notification(
+                db, task.user_id, "task_completed", "分析完成",
+                f"文件 {task.filename} 的分析已完成",
+                link=f"/report/{task.task_id}",
+                metadata={"task_id": task.task_id},
+            )
+        except Exception:
+            pass
 
 
 def update_task_duration(db: Session, task: Task, duration: float):

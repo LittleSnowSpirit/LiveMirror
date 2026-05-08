@@ -296,6 +296,17 @@ export interface CorrelationItem {
   danmu_score: number;
 }
 
+export interface NotificationItem {
+  id: number;
+  type: string;
+  title: string;
+  message: string;
+  is_read: boolean;
+  link?: string;
+  metadata?: Record<string, unknown>;
+  created_at: string;
+}
+
 export interface LinkInfo {
   platform: string;
   video_id: string;
@@ -604,6 +615,41 @@ export async function getLinkInfo(url: string): Promise<LinkInfo> {
 export async function analyzeLink(url: string): Promise<{ task_id: string }> {
   const { data } = await api.post('/api/analyze-link', { url });
   return data;
+}
+
+export async function getNotifications(params: { page?: number; page_size?: number; unread_only?: boolean; type?: string }) {
+  const response = await api.get<{ notifications: NotificationItem[]; total: number; unread_count: number }>('/api/notifications', { params });
+  return response.data;
+}
+
+export async function getUnreadCount() {
+  const response = await api.get<{ unread_count: number }>('/api/notifications/unread-count');
+  return response.data.unread_count;
+}
+
+export async function markNotificationsRead(ids: number[]) {
+  await api.post('/api/notifications/mark-read', { ids });
+}
+
+export async function markAllNotificationsRead() {
+  await api.post('/api/notifications/mark-all-read');
+}
+
+export async function deleteNotification(id: number) {
+  await api.delete(`/api/notifications/${id}`);
+}
+
+export async function getVapidKey() {
+  const response = await api.get<{ public_key: string }>('/api/notifications/vapid-public-key');
+  return response.data.public_key;
+}
+
+export async function pushSubscribe(subscription: { endpoint: string; keys: { p256dh: string; auth: string } }) {
+  await api.post('/api/notifications/push-subscribe', subscription);
+}
+
+export async function pushUnsubscribe(endpoint: string) {
+  await api.delete('/api/notifications/push-unsubscribe', { data: { endpoint } });
 }
 
 function downloadBlob(blob: Blob, filename: string) {

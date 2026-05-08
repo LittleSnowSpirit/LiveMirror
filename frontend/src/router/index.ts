@@ -108,6 +108,15 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/notifications',
+    name: 'notifications',
+    component: () => import('../views/NotificationHistory.vue'),
+    meta: {
+      title: '通知中心 - LiveMirror',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/share/:token',
     name: 'shared-report',
     component: () => import('../views/SharedReport.vue'),

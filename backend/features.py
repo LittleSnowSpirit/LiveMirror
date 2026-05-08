@@ -172,6 +172,16 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         status="beta",
         description="上传弹幕文件（CSV/JSON），批量解析入库，查看批次和弹幕详情。",
     ),
+    FeatureDefinition(
+        key="notifications",
+        label="通知中心",
+        group="core",
+        path="/api/notifications",
+        router_module="routes.core_notifications",
+        enabled=True,
+        status="beta",
+        description="站内通知、WebSocket 实时推送和 Web Push 订阅。",
+    ),
 )
 
 
@@ -206,6 +216,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "share": None,
         "link": "/upload",
         "danmu": "/danmu",
+        "notifications": None,
     }
     navigation_labels = {
         "upload": "上传",
@@ -220,6 +231,7 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "share": None,
         "link": "链接分析",
         "danmu": "弹幕",
+        "notifications": None,
     }
 
     return {
