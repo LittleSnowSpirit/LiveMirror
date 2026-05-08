@@ -72,6 +72,24 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/history',
+    name: 'history',
+    component: () => import('../views/History.vue'),
+    meta: {
+      title: '历史记录 - LiveMirror',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('../views/Profile.vue'),
+    meta: {
+      title: '个人中心 - LiveMirror',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }

@@ -4,32 +4,30 @@ import json
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
+from sqlalchemy.orm import Session
 
+from database import get_db
 from routes.core_auth import get_current_user
-from services.database import get_db, get_task
+from services.database import get_task
 
 router = APIRouter(prefix="/api/export", tags=["core-export"])
 
 
 @router.get("/{task_id}/{format}")
-async def export_report(task_id: str, format: str, _current_user=Depends(get_current_user)):
-    db = next(get_db())
-    try:
-        task = get_task(db, task_id)
-        if task is None:
-            raise HTTPException(status_code=404, detail="Task not found.")
-        if task.status != "completed":
-            raise HTTPException(status_code=400, detail="Task is not completed.")
+async def export_report(task_id: str, format: str, db: Session = Depends(get_db), _current_user=Depends(get_current_user)):
+    task = get_task(db, task_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found.")
+    if task.status != "completed":
+        raise HTTPException(status_code=400, detail="Task is not completed.")
 
-        report = task.report_data or {}
-        normalized_format = format.lower()
-        if normalized_format == "json":
-            return JSONResponse(content=report)
-        if normalized_format in {"markdown", "md"}:
-            return PlainTextResponse(content=_to_markdown(report), media_type="text/markdown; charset=utf-8")
-        raise HTTPException(status_code=400, detail="Unsupported export format. Use json or markdown.")
-    finally:
-        db.close()
+    report = task.report_data or {}
+    normalized_format = format.lower()
+    if normalized_format == "json":
+        return JSONResponse(content=report)
+    if normalized_format in {"markdown", "md"}:
+        return PlainTextResponse(content=_to_markdown(report), media_type="text/markdown; charset=utf-8")
+    raise HTTPException(status_code=400, detail="Unsupported export format. Use json or markdown.")
 
 
 def _to_markdown(report: dict) -> str:

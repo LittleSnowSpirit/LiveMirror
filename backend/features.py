@@ -112,6 +112,36 @@ FEATURES: tuple[FeatureDefinition, ...] = (
         status="beta",
         description="竞品直播间监控、告警规则和运营看板数据。",
     ),
+    FeatureDefinition(
+        key="history",
+        label="历史任务",
+        group="core",
+        path="/api/history",
+        router_module="routes.core_history",
+        enabled=True,
+        status="stable",
+        description="分页查询历史任务列表，支持按状态筛选和搜索。",
+    ),
+    FeatureDefinition(
+        key="user",
+        label="用户配额与用量",
+        group="core",
+        path="/api/user",
+        router_module="routes.core_user",
+        enabled=True,
+        status="stable",
+        description="查询用户每周配额和使用记录。",
+    ),
+    FeatureDefinition(
+        key="batch_export",
+        label="批量导出",
+        group="core",
+        path="/api/batch-export",
+        router_module="routes.core_batch_export",
+        enabled=True,
+        status="stable",
+        description="批量导出多个任务报告为 ZIP 文件。",
+    ),
 )
 
 
@@ -140,6 +170,9 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "suggestions": "/suggestions",
         "trends": "/trends",
         "monitor": "/monitor",
+        "history": "/history",
+        "user": "/profile",
+        "batch_export": None,
     }
     navigation_labels = {
         "upload": "上传",
@@ -148,6 +181,9 @@ def _feature_to_payload(feature: FeatureDefinition) -> dict:
         "suggestions": "建议",
         "trends": "趋势",
         "monitor": "监控",
+        "history": "历史",
+        "user": "个人中心",
+        "batch_export": None,
     }
 
     return {

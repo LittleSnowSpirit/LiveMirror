@@ -1,7 +1,8 @@
 """数据模型"""
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, Float, Text, ForeignKey, Index
-from sqlalchemy.orm import relationship
-from datetime import datetime, timezone
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Float, Text, ForeignKey, Index, Date
+from sqlalchemy.orm import relationship, Mapped, mapped_column
+from datetime import datetime, timezone, date as date_type
+from typing import Optional
 from database import Base
 import bcrypt
 
@@ -187,6 +188,7 @@ class Task(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     task_id = Column(String(100), unique=True, index=True, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
     filename = Column(String(255), nullable=False)
     file_path = Column(String(500), nullable=False)
     file_size = Column(Integer, nullable=False, default=0)
@@ -268,3 +270,53 @@ class ExcellentExample(Base):
             "timestamp": self.timestamp,
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
+
+
+# ==================== 用户配额和使用记录 ====================
+
+class UserQuota(Base):
+    """用户配额模型 — 每周免费分析次数"""
+    __tablename__ = "user_quotas"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), unique=True, nullable=False, index=True)
+    weekly_limit = Column(Integer, nullable=False, default=2)
+    used_this_week = Column(Integer, nullable=False, default=0)
+    week_start_date = Column(Date, nullable=False)
+
+    created_at = Column(DateTime, default=utc_now)
+    updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "weekly_limit": self.weekly_limit,
+            "used_this_week": self.used_this_week,
+            "remaining": max(0, self.weekly_limit - self.used_this_week),
+            "week_start_date": self.week_start_date.isoformat() if self.week_start_date else None,
+        }
+
+
+class UsageRecord(Base):
+    """使用记录模型 — 每次分析的记录"""
+    __tablename__ = "usage_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    task_id = Column(String(100), ForeignKey("tasks.task_id"), nullable=True, index=True)
+    created_at = Column(DateTime, default=utc_now, index=True)
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "task_id": self.task_id,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+        }
+
+
+# 添加 Task 表的复合索引
+Task.__table_args__ = (
+    Index('idx_task_user_created', 'user_id', 'created_at'),
+)

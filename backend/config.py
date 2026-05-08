@@ -24,7 +24,8 @@ class CoreSettings(BaseSettings):
     port: int = 8000
     debug: bool = True
 
-    database_url: str = "sqlite:///./data/livemirror-dev.db"
+    database_url: str = "postgresql://livemirror:livemirror@localhost:5432/livemirror"
+    redis_url: str = "redis://localhost:6379/0"
     upload_dir: str = "./uploads"
     max_file_size: int = 2 * 1024 * 1024 * 1024
     allowed_extensions: str = "mp3,wav,m4a,mp4,avi,mov"

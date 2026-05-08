@@ -67,6 +67,9 @@ def create_app() -> FastAPI:
                 "/api/suggestions",
                 "/api/trends",
                 "/api/monitor",
+                "/api/history",
+                "/api/user",
+                "/api/batch-export",
             ],
         }
 
