@@ -270,15 +270,16 @@ export interface DanmuBatchDetail extends DanmuBatch {
 export interface DanmuAnalysisResult {
   batch_id: string;
   status: string;
-  total_count: number;
-  positive_count: number;
-  negative_count: number;
-  neutral_count: number;
-  positive_ratio: number;
-  negative_ratio: number;
   emotion_curve: Array<{ time: number; score: number; count: number; positive: number; negative: number; neutral: number }>;
   keywords: KeywordItem[];
-  density: Array<{ time: number; count: number; avgScore: number }>;
+  metrics: {
+    total_count: number;
+    danmu_density: number;
+    sentiment_volatility: number;
+    sentiment_distribution: { positive: number; negative: number; neutral: number };
+  };
+  highlights: Array<{ time: number; count: number; avg_score: number; sample_danmus: string[] }>;
+  echarts?: Record<string, unknown>;
   correlation?: CorrelationItem[];
 }
 
