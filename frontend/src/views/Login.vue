@@ -1,16 +1,26 @@
 ﻿<template>
-  <div class="auth-page">
-    <div class="auth-card">
-      <p class="brand-mark">LiveMirror</p>
-      <p class="brand-sub">创作者工作室</p>
+  <div ref="pageRef" class="auth-page">
+    <div class="auth-card" data-animate="scale">
+      <div data-stagger>
+        <p class="brand-mark" data-animate style="transition-delay: 0ms">LiveMirror</p>
+        <p class="brand-sub" data-animate style="transition-delay: 80ms">创作者工作室</p>
+      </div>
 
       <form class="auth-form" @submit.prevent="handleLogin">
-        <el-input v-model="username" placeholder="用户名" autocomplete="username" />
-        <el-input v-model="password" type="password" placeholder="密码" autocomplete="current-password" show-password />
-        <el-button type="primary" native-type="submit" :loading="loading">登录</el-button>
+        <div data-stagger>
+          <div data-animate style="transition-delay: 160ms">
+            <el-input v-model="username" placeholder="用户名" autocomplete="username" class="auth-input" />
+          </div>
+          <div data-animate style="transition-delay: 240ms">
+            <el-input v-model="password" type="password" placeholder="密码" autocomplete="current-password" show-password class="auth-input" />
+          </div>
+          <div data-animate style="transition-delay: 320ms">
+            <el-button type="primary" native-type="submit" :loading="loading">登录</el-button>
+          </div>
+        </div>
       </form>
 
-      <div class="links">
+      <div class="links" data-animate="fade" style="transition-delay: 400ms">
         <router-link to="/register">没有账号？去注册</router-link>
         <router-link to="/">返回首页</router-link>
       </div>
@@ -19,16 +29,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { login, setAuthTokens } from '../api';
 import { ElMessage } from 'element-plus';
+import { useReveal } from '../composables/useReveal';
 
 const router = useRouter();
 const route = useRoute();
 const username = ref('');
 const password = ref('');
 const loading = ref(false);
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
+
+onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+});
 
 async function handleLogin() {
   if (!username.value.trim() || !password.value.trim()) {
@@ -118,5 +135,13 @@ async function handleLogin() {
 
 .links a:hover {
   color: var(--app-primary);
+}
+
+.auth-input :deep(.el-input__wrapper) {
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.auth-input :deep(.el-input__wrapper:focus-within) {
+  box-shadow: 0 0 0 2px var(--app-primary-soft);
 }
 </style>

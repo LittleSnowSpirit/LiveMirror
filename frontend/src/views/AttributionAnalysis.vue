@@ -1,25 +1,25 @@
 <template>
-  <div class="analysis-page">
-    <h1>归因分析</h1>
+  <div ref="pageRef" class="analysis-page">
+    <h1 data-animate>归因分析</h1>
 
-    <div class="input-section">
-      <div class="form-field">
+    <div class="input-section" data-stagger>
+      <div class="form-field" data-animate>
         <label>任务 ID（可选）</label>
         <el-input v-model="taskIdInput" placeholder="可选：任务 ID" />
       </div>
-      <div class="form-field">
+      <div class="form-field" data-animate>
         <label>speech_segments JSON</label>
         <el-input v-model="speechSegmentsText" type="textarea" :rows="6" placeholder="speech_segments JSON" />
       </div>
-      <div class="form-field">
+      <div class="form-field" data-animate>
         <label>emotion_curve JSON</label>
         <el-input v-model="emotionCurveText" type="textarea" :rows="6" placeholder="emotion_curve JSON" />
       </div>
-      <div class="form-field">
+      <div class="form-field" data-animate>
         <label>danmu_list JSON</label>
         <el-input v-model="danmuListText" type="textarea" :rows="6" placeholder="danmu_list JSON" />
       </div>
-      <div class="form-field form-field--narrow">
+      <div class="form-field form-field--narrow" data-animate>
         <label>Top N</label>
         <el-input-number v-model="topN" :min="1" :max="20" controls-position="right" />
       </div>
@@ -33,28 +33,32 @@
       <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
     </div>
 
-    <div v-if="result" class="result-section">
+    <div v-if="result" class="result-section" data-animate>
       <h2>分析摘要</h2>
-      <ul v-if="resultSummary.length" class="result-list">
-        <li v-for="(item, index) in resultSummary" :key="index">{{ item }}</li>
+      <ul v-if="resultSummary.length" class="result-list" data-stagger>
+        <li v-for="(item, index) in resultSummary" :key="index" data-animate>{{ item }}</li>
       </ul>
       <p v-else class="empty-result">分析完成，当前示例没有生成摘要列表。</p>
     </div>
 
-    <div v-if="peakRows.length" class="result-section">
+    <div v-if="peakRows.length" class="result-section" data-animate>
       <h2>高峰与建议</h2>
-      <ul class="result-list">
-        <li v-for="(item, index) in peakRows" :key="index">{{ item }}</li>
+      <ul class="result-list" data-stagger>
+        <li v-for="(item, index) in peakRows" :key="index" data-animate>{{ item }}</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, nextTick, watch } from 'vue';
 import { analyzeAttribution, getReport, getStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
+import { useReveal } from '@/composables/useReveal';
 
+const { observe } = useReveal();
+
+const pageRef = ref<HTMLElement | null>(null);
 const taskIdInput = ref('');
 const topN = ref(10);
 const speechSegmentsText = ref('[]');
@@ -144,6 +148,16 @@ async function runAnalysis() {
     loading.value = false;
   }
 }
+
+onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+});
+
+watch(result, () => {
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+  });
+});
 </script>
 
 <style scoped>

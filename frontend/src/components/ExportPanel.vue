@@ -3,7 +3,7 @@
     <h3>导出与分享</h3>
     <div class="export-actions">
       <el-dropdown trigger="click" @command="handleExportPDF">
-        <el-button :disabled="!taskId">
+        <el-button class="press-scale" :disabled="!taskId">
           导出 PDF
           <el-icon class="el-icon--right"><arrow-down /></el-icon>
         </el-button>
@@ -16,11 +16,11 @@
         </template>
       </el-dropdown>
 
-      <el-button :disabled="!taskId" @click="handleExportImage">
+      <el-button class="press-scale" :disabled="!taskId" @click="handleExportImage">
         导出图片
       </el-button>
 
-      <el-button type="primary" :disabled="!taskId" @click="$emit('share')">
+      <el-button class="press-scale" type="primary" :disabled="!taskId" @click="$emit('share')">
         分享
       </el-button>
     </div>

@@ -1,7 +1,7 @@
 ﻿<template>
-  <div class="report-page">
+  <div ref="pageRef" class="report-page">
     <!-- Top bar: query + task info -->
-    <el-card class="top-bar">
+    <el-card class="top-bar" data-animate="fade">
       <div class="top-bar-inner">
         <div class="query-row">
           <el-input v-model="taskIdInput" placeholder="输入任务 ID" />
@@ -25,13 +25,13 @@
     <template v-else>
       <div v-if="taskInfo" class="report-layout">
         <!-- Left column: main content -->
-        <div class="report-main">
-          <el-card v-if="reportData" class="section-card">
+        <div class="report-main" data-stagger>
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">转写文本</h3>
             <pre class="transcript">{{ reportData.transcription || '暂无转写文本' }}</pre>
           </el-card>
 
-          <el-card v-if="reportData" class="section-card">
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">分段详情</h3>
             <el-table v-if="segmentRows.length" :data="segmentRows" border>
               <el-table-column prop="index" label="#" width="60" />
@@ -42,31 +42,31 @@
             <el-empty v-else description="暂无分段数据" />
           </el-card>
 
-          <el-card v-if="reportData" class="section-card">
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">话术分析</h3>
-            <ul class="analysis-list" v-if="techniqueRows.length">
-              <li v-for="(item, index) in techniqueRows" :key="index">{{ item }}</li>
+            <ul class="analysis-list" v-if="techniqueRows.length" data-stagger>
+              <li v-for="(item, index) in techniqueRows" :key="index" data-animate="fade">{{ item }}</li>
             </ul>
             <el-empty v-else description="暂无话术分析" />
           </el-card>
 
-          <el-card v-if="reportData" class="section-card">
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">归因分析</h3>
-            <ul class="analysis-list" v-if="attributionRows.length">
-              <li v-for="(item, index) in attributionRows" :key="index">{{ item }}</li>
+            <ul class="analysis-list" v-if="attributionRows.length" data-stagger>
+              <li v-for="(item, index) in attributionRows" :key="index" data-animate="fade">{{ item }}</li>
             </ul>
             <el-empty v-else description="暂无归因分析" />
           </el-card>
 
-          <el-card v-if="reportData" class="section-card">
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">建议</h3>
-            <ul class="analysis-list" v-if="suggestionRows.length">
-              <li v-for="(item, index) in suggestionRows" :key="index">{{ item }}</li>
+            <ul class="analysis-list" v-if="suggestionRows.length" data-stagger>
+              <li v-for="(item, index) in suggestionRows" :key="index" data-animate="fade">{{ item }}</li>
             </ul>
             <el-empty v-else description="暂无建议" />
           </el-card>
 
-          <el-card v-if="reportData" class="section-card">
+          <el-card v-if="reportData" class="section-card" data-animate>
             <h3 class="section-heading">摘要文案</h3>
             <p class="summary-text">{{ reportSummaryText }}</p>
           </el-card>
@@ -76,7 +76,7 @@
 
         <!-- Right sidebar -->
         <aside class="report-sidebar">
-          <el-card v-if="reportData" class="sidebar-card">
+          <el-card v-if="reportData" class="sidebar-card" data-animate style="transition-delay: 120ms">
             <h3 class="section-heading">摘要</h3>
             <dl class="summary-dl">
               <div class="summary-row">
@@ -100,12 +100,12 @@
             <p v-if="taskInfo.error_message" class="error-text">{{ taskInfo.error_message }}</p>
           </el-card>
 
-          <el-card class="sidebar-card">
+          <el-card class="sidebar-card" data-animate style="transition-delay: 180ms">
             <h3 class="section-heading">导出</h3>
             <ExportPanel v-if="taskId" :task-id="taskId" @share="showShareDialog = true" />
           </el-card>
 
-          <el-card class="sidebar-card">
+          <el-card class="sidebar-card" data-animate style="transition-delay: 240ms">
             <h3 class="section-heading">分享</h3>
             <el-button @click="showShareDialog = true">生成分享链接</el-button>
           </el-card>
@@ -118,15 +118,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, nextTick, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { exportReport, getReport, getStoredTaskId, getTaskStatus, setStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
 import type { ReportData, TaskInfo } from '../api';
+import { useReveal } from '../composables/useReveal';
 import ExportPanel from '../components/ExportPanel.vue';
 import ShareDialog from '../components/ShareDialog.vue';
 
 const showShareDialog = ref(false);
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
 
 const route = useRoute();
 const taskIdInput = ref('');
@@ -275,7 +278,13 @@ function refresh() {
   loadReport();
 }
 
+watch(reportData, async () => {
+  await nextTick();
+  pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+});
+
 onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
   taskIdInput.value = (route.params.taskId?.toString() || route.query.taskId?.toString() || getStoredTaskId() || '').trim();
   if (taskIdInput.value) {
     loadReport();

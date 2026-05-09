@@ -1,6 +1,6 @@
 <template>
-  <div class="analysis-page">
-    <h1>趋势分析</h1>
+  <div ref="pageRef" class="analysis-page">
+    <h1 data-animate>趋势分析</h1>
 
     <div class="toolbar">
       <el-button @click="loadSessions">刷新场次</el-button>
@@ -11,11 +11,12 @@
 
     <p class="hint">选择至少 2 个场次后再分析。</p>
 
-    <div class="session-list">
+    <div class="session-list" data-stagger>
       <label
         v-for="session in sessions"
         :key="session.id"
         class="session-row"
+        data-animate
         :class="{ selected: selectedSessionIds.includes(session.id) }"
       >
         <input
@@ -34,32 +35,32 @@
     <el-skeleton v-if="loading && !trendReport" :rows="6" animated />
 
     <template v-else>
-      <div v-if="trendReport" class="result-section">
+      <div v-if="trendReport" class="result-section" data-animate>
         <h2>成长报告</h2>
         <p class="summary-text">{{ trendReport.summary || '暂无总结' }}</p>
-        <div class="summary-grid">
-          <div class="summary-item">
+        <div class="summary-grid" data-stagger>
+          <div class="summary-item" data-animate="scale">
             <span class="summary-label">场次数量</span>
             <span class="summary-value">{{ trendReport.total_sessions ?? selectedSessionIds.length }}</span>
           </div>
-          <div class="summary-item">
+          <div class="summary-item" data-animate="scale">
             <span class="summary-label">趋势判断</span>
             <span class="summary-value">{{ trendReport.overall_trend || '未提供' }}</span>
           </div>
         </div>
       </div>
 
-      <div v-if="emotionLines.length" class="result-section">
+      <div v-if="emotionLines.length" class="result-section" data-animate>
         <h2>情绪趋势</h2>
         <pre class="result-block">{{ emotionLines.join('\n') }}</pre>
       </div>
 
-      <div v-if="speechLines.length" class="result-section">
+      <div v-if="speechLines.length" class="result-section" data-animate>
         <h2>话术质量趋势</h2>
         <pre class="result-block">{{ speechLines.join('\n') }}</pre>
       </div>
 
-      <div v-if="engagementLines.length" class="result-section">
+      <div v-if="engagementLines.length" class="result-section" data-animate>
         <h2>互动趋势</h2>
         <pre class="result-block">{{ engagementLines.join('\n') }}</pre>
       </div>
@@ -68,10 +69,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, nextTick, watch } from 'vue';
 import { getEmotionTrend, getEngagementTrend, getGrowthReport, getSpeechQualityTrend, getTrendSessions } from '../api';
 import { ElMessage } from 'element-plus';
 import type { TrendSession } from '../api';
+import { useReveal } from '@/composables/useReveal';
+
+const { observe } = useReveal();
+const pageRef = ref<HTMLElement | null>(null);
 
 const loading = ref(false);
 const errorMessage = ref('');
@@ -187,6 +192,15 @@ async function analyzeTrends() {
 
 onMounted(() => {
   loadSessions();
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+  });
+});
+
+watch(trendReport, () => {
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+  });
 });
 </script>
 
@@ -248,6 +262,12 @@ h2 {
 
 .session-row.selected {
   background: var(--app-surface-soft);
+  animation: sessionPulse 300ms ease;
+}
+
+@keyframes sessionPulse {
+  0%, 100% { background: var(--app-surface-soft); }
+  50% { background: var(--app-primary-soft, var(--app-surface-soft)); }
 }
 
 .session-row input[type="checkbox"] {

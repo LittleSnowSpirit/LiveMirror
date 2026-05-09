@@ -38,14 +38,16 @@
     </div>
 
     <!-- Platform Tag -->
-    <div v-if="detectedPlatform" class="platform-tag-row">
-      <span
-        class="platform-tag"
-        :class="detectedPlatform"
-      >
-        {{ platformLabel }}
-      </span>
-    </div>
+    <Transition name="slide-from-left">
+      <div v-if="detectedPlatform" class="platform-tag-row">
+        <span
+          class="platform-tag"
+          :class="detectedPlatform"
+        >
+          {{ platformLabel }}
+        </span>
+      </div>
+    </Transition>
 
     <!-- Error Message -->
     <el-alert
@@ -58,7 +60,8 @@
     />
 
     <!-- Preview Card -->
-    <div v-if="previewData && !previewData.error" class="preview-card">
+    <Transition name="scale-in">
+      <div v-if="previewData && !previewData.error" class="preview-card">
       <div class="preview-thumb">
         <img
           v-if="previewData.thumbnail_url"
@@ -87,6 +90,7 @@
         </el-button>
       </div>
     </div>
+    </Transition>
 
     <!-- Analyzing Progress -->
     <div v-if="analyzing" class="progress-panel">
@@ -462,9 +466,16 @@ onBeforeUnmount(() => {
   font-weight: 700;
 }
 
+@keyframes stepBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 .progress-step.active .step-indicator {
   background: var(--app-primary);
   color: #fff;
+  animation: stepBounce 400ms var(--ease-out-back, cubic-bezier(0.34, 1.56, 0.64, 1));
 }
 
 .progress-step.done .step-indicator {
@@ -512,5 +523,24 @@ onBeforeUnmount(() => {
   .progress-step {
     min-width: 60px;
   }
+}
+
+/* Transitions */
+.scale-in-enter-active {
+  transition: opacity 300ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)), transform 300ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.scale-in-enter-from {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.slide-from-left-enter-active {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.slide-from-left-enter-from {
+  opacity: 0;
+  transform: translateX(-12px);
 }
 </style>

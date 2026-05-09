@@ -9,8 +9,8 @@
       </div>
     </div>
 
-    <div class="module-list">
-      <div v-for="(mod, index) in modules" :key="mod.key" class="module-item">
+    <div ref="moduleListRef" class="module-list" data-stagger>
+      <div v-for="(mod, index) in modules" :key="mod.key" class="module-item" data-animate>
         <el-switch v-model="mod.visible" @change="emitConfig" />
         <span class="module-label" :class="{ disabled: !mod.visible }">{{ mod.label }}</span>
         <div class="module-order">
@@ -37,7 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, onMounted, useTemplateRef } from 'vue';
+import { useReveal } from '../composables/useReveal';
 
 interface ModuleConfig {
   key: string;
@@ -63,6 +64,14 @@ const presets: Record<string, boolean[]> = {
 };
 
 const modules = reactive<ModuleConfig[]>(defaultModules.map((m) => ({ ...m })));
+const moduleListRef = useTemplateRef<HTMLElement>('moduleListRef');
+const { observe } = useReveal();
+
+onMounted(() => {
+  if (moduleListRef.value) {
+    moduleListRef.value.querySelectorAll<HTMLElement>('.module-item').forEach(observe);
+  }
+});
 
 const emit = defineEmits<{
   'update:config': [config: { visible: string[]; order: string[] }];

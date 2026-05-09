@@ -1,7 +1,7 @@
 <template>
-  <div class="shared-report-page">
+  <div ref="pageRef" class="shared-report-page">
     <div v-if="!verified" class="access-form">
-      <div class="access-card">
+      <div class="access-card" data-animate="scale">
         <h1>输入访问码</h1>
         <p class="access-hint">请输入 4 位提取码以查看分享的报告。</p>
 
@@ -21,14 +21,14 @@
       </div>
     </div>
 
-    <div v-else-if="reportData" class="report-content">
-      <div class="report-header">
+    <div v-else-if="reportData" class="report-content" data-stagger>
+      <div class="report-header" data-animate>
         <h1>{{ reportData.filename || '分析报告' }}</h1>
         <span class="badge">由 LiveMirror 生成</span>
       </div>
 
-      <div class="summary-grid">
-        <div class="summary-item">
+      <div class="summary-grid" data-stagger>
+        <div class="summary-item" data-animate="scale">
           <span class="summary-label">时长</span>
           <span class="summary-value">{{ formatDuration(reportData.duration) }}</span>
         </div>
@@ -38,12 +38,12 @@
         </div>
       </div>
 
-      <div v-if="reportData.transcription" class="section">
+      <div v-if="reportData.transcription" class="section" data-animate>
         <h2>转写文本</h2>
         <pre class="transcript">{{ reportData.transcription }}</pre>
       </div>
 
-      <div v-if="reportData.segments && reportData.segments.length" class="section">
+      <div v-if="reportData.segments && reportData.segments.length" class="section" data-animate>
         <h2>分段</h2>
         <el-table :data="segmentRows" border>
           <el-table-column prop="index" label="#" width="60" />
@@ -53,29 +53,29 @@
         </el-table>
       </div>
 
-      <div v-if="techniqueRows.length || attributionRows.length" class="section two-col">
+      <div v-if="techniqueRows.length || attributionRows.length" class="section two-col" data-animate>
         <div v-if="techniqueRows.length">
           <h2>话术分析</h2>
-          <ul class="result-list">
-            <li v-for="(item, i) in techniqueRows" :key="i">{{ item }}</li>
+          <ul class="result-list" data-stagger>
+            <li v-for="(item, i) in techniqueRows" :key="i" data-animate="fade">{{ item }}</li>
           </ul>
         </div>
         <div v-if="attributionRows.length">
           <h2>归因分析</h2>
-          <ul class="result-list">
-            <li v-for="(item, i) in attributionRows" :key="i">{{ item }}</li>
+          <ul class="result-list" data-stagger>
+            <li v-for="(item, i) in attributionRows" :key="i" data-animate="fade">{{ item }}</li>
           </ul>
         </div>
       </div>
 
-      <div v-if="suggestionRows.length" class="section">
+      <div v-if="suggestionRows.length" class="section" data-animate>
         <h2>建议</h2>
-        <ul class="result-list">
-          <li v-for="(item, i) in suggestionRows" :key="i">{{ item }}</li>
+        <ul class="result-list" data-stagger>
+          <li v-for="(item, i) in suggestionRows" :key="i" data-animate="fade">{{ item }}</li>
         </ul>
       </div>
 
-      <div v-if="reportSummaryText" class="section">
+      <div v-if="reportSummaryText" class="section" data-animate>
         <h2>摘要文案</h2>
         <p class="summary-text">{{ reportSummaryText }}</p>
       </div>
@@ -88,12 +88,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, nextTick, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { getShareLink } from '../api';
 import type { ReportData } from '../api';
+import { useReveal } from '../composables/useReveal';
 
 const route = useRoute();
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
 const token = computed(() => route.params.token as string);
 const accessCode = ref('');
 const verifying = ref(false);
@@ -101,7 +104,13 @@ const verified = ref(false);
 const errorMessage = ref('');
 const reportData = ref<ReportData | null>(null);
 
+watch([verified, reportData], async () => {
+  await nextTick();
+  pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+});
+
 onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
   if (!token.value) {
     errorMessage.value = '无效的分享链接';
   }

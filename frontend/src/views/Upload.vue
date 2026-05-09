@@ -1,16 +1,23 @@
 <template>
-  <div class="upload-page">
-    <h1 class="page-title">上传分析</h1>
-    <p class="page-desc">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
+  <div ref="pageRef" class="upload-page">
+    <h1 class="page-title" data-animate>上传分析</h1>
+    <p class="page-desc" data-animate style="transition-delay: 80ms">选择上传文件或粘贴直播回放链接，系统会返回任务 ID，用于后续查看报告。</p>
 
-    <el-card class="upload-card">
+    <el-card class="upload-card" data-animate="fade" style="transition-delay: 160ms">
       <el-tabs v-model="activeTab" class="upload-tabs">
         <!-- File Upload Tab -->
         <el-tab-pane label="上传文件" name="upload">
-          <div class="drop-zone" @click="fileInput?.click()">
+          <div
+            class="drop-zone"
+            :class="{ 'drop-zone--active': isDragOver }"
+            @click="fileInput?.click()"
+            @dragover.prevent="isDragOver = true"
+            @dragleave="isDragOver = false"
+            @drop.prevent="handleDrop"
+          >
             <input ref="fileInput" class="file-input-hidden" type="file" accept="audio/*,video/*" @change="handleFileChange" />
             <div class="drop-content">
-              <span class="drop-icon">📎</span>
+              <span class="drop-icon" :class="{ 'drop-icon--active': isDragOver }">📎</span>
               <p class="drop-text">拖放文件到此处或点击选择</p>
               <p class="drop-hint">{{ fileName || '支持常见音视频格式' }}</p>
             </div>
@@ -29,27 +36,29 @@
 
           <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
 
-          <div v-if="result" class="result-box">
-            <p class="result-title">上传完成</p>
-            <dl>
-              <div>
-                <dt>任务 ID</dt>
-                <dd>{{ result.task_id }}</dd>
+          <Transition name="slide-up">
+            <div v-if="result" class="result-box">
+              <p class="result-title">上传完成</p>
+              <dl>
+                <div>
+                  <dt>任务 ID</dt>
+                  <dd>{{ result.task_id }}</dd>
+                </div>
+                <div>
+                  <dt>文件名</dt>
+                  <dd>{{ result.filename }}</dd>
+                </div>
+                <div>
+                  <dt>状态</dt>
+                  <dd>{{ result.status }}</dd>
+                </div>
+              </dl>
+              <div class="actions">
+                <el-button type="primary" @click="openReport">查看报告</el-button>
+                <el-button @click="resetForm">继续上传</el-button>
               </div>
-              <div>
-                <dt>文件名</dt>
-                <dd>{{ result.filename }}</dd>
-              </div>
-              <div>
-                <dt>状态</dt>
-                <dd>{{ result.status }}</dd>
-              </div>
-            </dl>
-            <div class="actions">
-              <el-button type="primary" @click="openReport">查看报告</el-button>
-              <el-button @click="resetForm">继续上传</el-button>
             </div>
-          </div>
+          </Transition>
         </el-tab-pane>
 
         <!-- Link Analysis Tab -->
@@ -62,13 +71,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { uploadFile, setStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
+import { useReveal } from '../composables/useReveal';
 import LinkInput from '../components/LinkInput.vue';
 
 const router = useRouter();
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
 const activeTab = ref('upload');
 const fileInput = ref<HTMLInputElement | null>(null);
 const selectedFile = ref<File | null>(null);
@@ -76,7 +88,22 @@ const fileName = ref('');
 const uploading = ref(false);
 const uploadProgress = ref(0);
 const errorMessage = ref('');
+const isDragOver = ref(false);
 const result = ref<{ task_id: string; filename: string; status: string } | null>(null);
+
+onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+});
+
+function handleDrop(event: DragEvent) {
+  isDragOver.value = false;
+  const file = event.dataTransfer?.files?.[0];
+  if (file) {
+    selectedFile.value = file;
+    fileName.value = file.name;
+    errorMessage.value = '';
+  }
+}
 
 function handleFileChange(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -189,6 +216,21 @@ function resetForm() {
   border-color: var(--app-primary);
 }
 
+@keyframes borderPulse {
+  0%, 100% { border-color: var(--app-primary); }
+  50% { border-color: var(--app-primary-soft, rgba(99, 102, 241, 0.3)); }
+}
+
+.drop-zone--active {
+  animation: borderPulse 1.2s ease-in-out infinite;
+  background: var(--app-surface-soft);
+}
+
+.drop-icon--active {
+  transform: scale(1.1);
+  transition: transform 200ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
 .file-input-hidden {
   display: none;
 }
@@ -258,5 +300,14 @@ dt {
 dd {
   color: var(--app-text);
   word-break: break-all;
+}
+
+.slide-up-enter-active {
+  transition: opacity 400ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)), transform 400ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
 }
 </style>

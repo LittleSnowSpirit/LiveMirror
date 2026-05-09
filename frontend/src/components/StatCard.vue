@@ -1,7 +1,7 @@
 <template>
-  <div class="stat-card">
+  <div ref="cardEl" class="stat-card hover-lift" data-animate="fade">
     <div class="stat-icon" v-if="icon">{{ icon }}</div>
-    <div class="stat-value">{{ value }}</div>
+    <div class="stat-value">{{ displayValue }}</div>
     <div class="stat-label">{{ label }}</div>
     <div v-if="trend !== undefined && trend !== null" class="stat-trend" :class="trend > 0 ? 'up' : 'down'">
       {{ trend > 0 ? '+' : '' }}{{ trend }}%
@@ -10,12 +10,29 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+import { computed, ref, onMounted } from 'vue';
+import { useCountUp } from '../composables/useCountUp';
+import { useReveal } from '../composables/useReveal';
+
+const props = defineProps<{
   label: string;
   value: string | number;
   icon?: string;
   trend?: number;
 }>();
+
+const cardEl = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
+onMounted(() => { if (cardEl.value) observe(cardEl.value); });
+
+const numericValue = computed(() => {
+  const n = typeof props.value === 'number' ? props.value : parseFloat(String(props.value));
+  return isNaN(n) ? 0 : n;
+});
+
+const isNumeric = computed(() => typeof props.value === 'number' || !isNaN(parseFloat(String(props.value))));
+const animatedDisplay = useCountUp(numericValue, { duration: 800 });
+const displayValue = computed(() => isNumeric.value ? animatedDisplay.value : props.value);
 </script>
 
 <style scoped>

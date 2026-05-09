@@ -1,6 +1,6 @@
 <template>
-  <div class="notification-history-page">
-    <div class="page-header">
+  <div ref="pageRef" class="notification-history-page">
+    <div class="page-header" data-animate>
       <div class="header-left">
         <h1 class="page-title">通知中心</h1>
         <span v-if="store.unreadCount > 0" class="unread-badge">{{ store.unreadCount }} 条未读</span>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="notification-list" v-loading="store.loading">
-      <template v-if="store.notifications.length > 0">
+      <TransitionGroup name="notif-item" tag="div" v-if="store.notifications.length > 0">
         <div
           v-for="item in store.notifications"
           :key="item.id"
@@ -66,7 +66,7 @@
             </el-button>
           </div>
         </div>
-      </template>
+      </TransitionGroup>
       <div v-else class="empty-state">
         <el-empty description="暂无通知" />
       </div>
@@ -85,10 +85,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick, watch } from 'vue';
 import { ElSelect, ElOption, ElSwitch, ElButton, ElIcon, ElPagination, ElEmpty } from 'element-plus';
 import { SuccessFilled, WarningFilled, CircleCloseFilled, InfoFilled } from '@element-plus/icons-vue';
 import { useNotificationStore } from '../stores/notification';
+import { useReveal } from '@/composables/useReveal';
+
+const { observe } = useReveal();
+const pageRef = ref<HTMLElement | null>(null);
 
 const store = useNotificationStore();
 
@@ -154,6 +158,15 @@ async function handleDelete(id: number) {
 
 onMounted(() => {
   loadData();
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+  });
+});
+
+watch(() => store.notifications, () => {
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+  });
 });
 </script>
 
@@ -354,6 +367,31 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   margin-top: var(--space-6);
+}
+
+/* Unread items: subtle left-border pulse */
+.list-item.unread .item-indicator.active {
+  animation: indicatorPulse 2s ease infinite;
+}
+
+@keyframes indicatorPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Mark-as-read background transition */
+.list-item {
+  transition: background 400ms ease;
+}
+
+/* TransitionGroup leave: slide out to right */
+.notif-item-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notif-item-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 
 @media (max-width: 720px) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div ref="pageRef" class="profile-page">
     <el-card class="panel">
       <p class="kicker">个人中心</p>
       <h1>我的账户</h1>
@@ -9,7 +9,7 @@
       </div>
 
       <template v-else>
-        <div class="section avatar-section">
+        <div class="section avatar-section" data-animate="scale">
           <div class="avatar-wrapper" @click="triggerAvatarUpload">
             <img
               v-if="avatarPreview || userStore.profile?.avatar_url"
@@ -31,7 +31,7 @@
           />
         </div>
 
-        <div class="section">
+        <div class="section" data-animate>
           <h2>编辑资料</h2>
           <div class="form-grid">
             <div class="form-field">
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="section" data-animate>
           <h2>用户信息</h2>
           <dl class="info-grid">
             <div>
@@ -72,13 +72,13 @@
           </dl>
         </div>
 
-        <div class="section">
+        <div class="section" data-animate>
           <h2>本周配额</h2>
           <div v-if="userStore.quota" class="quota-card">
             <div class="quota-ring">
-              <span class="quota-number">{{ userStore.quota.used_this_week }}</span>
+              <span class="quota-number">{{ quotaUsedDisplay }}</span>
               <span class="quota-sep">/</span>
-              <span class="quota-limit">{{ userStore.quota.weekly_limit }}</span>
+              <span class="quota-limit">{{ quotaLimitDisplay }}</span>
               <p class="quota-label">已用次数</p>
             </div>
             <div class="quota-details">
@@ -88,19 +88,20 @@
                 :percentage="quotaPercentage"
                 :stroke-width="8"
                 :status="quotaPercentage >= 100 ? 'exception' : undefined"
+                class="quota-progress"
               />
             </div>
           </div>
           <p v-else class="empty-text">暂无配额信息</p>
         </div>
 
-        <div class="section">
+        <div class="section" data-animate>
           <h2>使用记录</h2>
           <div v-if="userStore.usageRecords.length === 0" class="empty-text">
             <el-empty description="暂无使用记录" />
           </div>
-          <div v-else class="usage-list">
-            <div v-for="record in userStore.usageRecords" :key="record.id" class="usage-item">
+          <div v-else class="usage-list" data-stagger>
+            <div v-for="record in userStore.usageRecords" :key="record.id" class="usage-item" data-animate="fade">
               <div class="usage-info">
                 <p class="usage-filename">{{ record.filename }}</p>
                 <p class="usage-meta">{{ formatTime(record.created_at) }}</p>
@@ -120,10 +121,19 @@
 import { computed, onMounted, ref } from 'vue';
 import { getCurrentUser, type UserProfile } from '../api';
 import { useUserStore } from '../stores/user';
+import { useReveal } from '../composables/useReveal';
+import { useCountUp } from '../composables/useCountUp';
 import { ElMessage } from 'element-plus';
 
 const userStore = useUserStore();
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
 const user = ref<UserProfile | null>(null);
+
+const quotaUsedTarget = computed(() => userStore.quota?.used_this_week ?? 0);
+const quotaLimitTarget = computed(() => userStore.quota?.weekly_limit ?? 0);
+const quotaUsedDisplay = useCountUp(quotaUsedTarget);
+const quotaLimitDisplay = useCountUp(quotaLimitTarget);
 const avatarInput = ref<HTMLInputElement | null>(null);
 const avatarPreview = ref('');
 const saving = ref(false);
@@ -135,6 +145,8 @@ const quotaPercentage = computed(() => {
 });
 
 onMounted(async () => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+
   try {
     user.value = await getCurrentUser();
   } catch {
@@ -265,11 +277,12 @@ h2 {
   height: 100px;
   border-radius: 50%;
   cursor: pointer;
-  transition: opacity 150ms ease;
+  transition: opacity 150ms ease, transform 200ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .avatar-wrapper:hover {
   opacity: 0.85;
+  transform: scale(1.02);
 }
 
 .avatar-img {
@@ -452,6 +465,14 @@ dd {
 
 .loading-state {
   padding: var(--space-5) 0;
+}
+
+.quota-progress :deep(.el-progress-bar__inner) {
+  animation: progressBar 800ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+@keyframes progressBar {
+  from { width: 0; }
 }
 
 @media (max-width: 720px) {
