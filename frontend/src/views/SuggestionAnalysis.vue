@@ -1,21 +1,21 @@
 <template>
-  <div class="analysis-page">
-    <h1>话术建议</h1>
+  <div ref="pageRef" class="analysis-page">
+    <h1 data-animate>话术建议</h1>
 
-    <div class="input-section">
-      <div class="form-field">
+    <div class="input-section" data-stagger>
+      <div class="form-field" data-animate>
         <label>任务 ID（可选）</label>
         <el-input v-model="taskIdInput" placeholder="可选：任务 ID" />
       </div>
-      <div class="form-field">
+      <div class="form-field" data-animate>
         <label>话术类型</label>
         <el-input v-model="speechType" placeholder="话术类型，例如 price_promotion" />
       </div>
-      <div class="form-field">
+      <div class="form-field" data-animate>
         <label>话术内容</label>
         <el-input v-model="speechContent" type="textarea" :rows="6" placeholder="输入待分析话术" />
       </div>
-      <div class="metrics-row">
+      <div class="metrics-row" data-animate>
         <div class="form-field form-field--narrow">
           <label>情绪影响</label>
           <el-input-number v-model="emotionImpact" :min="0" :max="1" :step="0.05" controls-position="right" />
@@ -39,34 +39,34 @@
       <el-alert v-if="errorMessage" :title="errorMessage" type="error" :closable="false" show-icon />
     </div>
 
-    <div v-if="reportSuggestions.length" class="result-section">
+    <div v-if="reportSuggestions.length" class="result-section" data-animate>
       <h2>最近报告中的建议</h2>
-      <ul class="result-list">
-        <li v-for="(item, index) in reportSuggestions" :key="index">{{ item }}</li>
+      <ul class="result-list" data-stagger>
+        <li v-for="(item, index) in reportSuggestions" :key="index" data-animate>{{ item }}</li>
       </ul>
     </div>
 
-    <div v-if="result" class="result-section">
+    <div v-if="result" class="result-section" data-animate>
       <h2>分析输出</h2>
 
       <div v-if="issueRows.length" class="subsection">
         <h3>问题</h3>
-        <ul class="result-list">
-          <li v-for="(item, index) in issueRows" :key="index">{{ item }}</li>
+        <ul class="result-list" data-stagger>
+          <li v-for="(item, index) in issueRows" :key="index" data-animate>{{ item }}</li>
         </ul>
       </div>
 
       <div v-if="rewriteRows.length" class="subsection">
         <h3>改写建议</h3>
-        <ul class="result-list">
-          <li v-for="(item, index) in rewriteRows" :key="index">{{ item }}</li>
+        <ul class="result-list" data-stagger>
+          <li v-for="(item, index) in rewriteRows" :key="index" data-animate>{{ item }}</li>
         </ul>
       </div>
 
       <div v-if="exampleRows.length" class="subsection">
         <h3>优秀话术</h3>
-        <ul class="result-list">
-          <li v-for="(item, index) in exampleRows" :key="index">{{ item }}</li>
+        <ul class="result-list" data-stagger>
+          <li v-for="(item, index) in exampleRows" :key="index" data-animate>{{ item }}</li>
         </ul>
       </div>
     </div>
@@ -74,9 +74,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, nextTick, watch } from 'vue';
 import { analyzeSuggestion, getReport, getStoredTaskId } from '../api';
 import { ElMessage } from 'element-plus';
+import { useReveal } from '@/composables/useReveal';
+
+const { observe } = useReveal();
+const pageRef = ref<HTMLElement | null>(null);
 
 const taskIdInput = ref('');
 const speechType = ref('price_promotion');
@@ -171,6 +175,16 @@ async function runAnalysis() {
     loading.value = false;
   }
 }
+
+onMounted(() => {
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
+});
+
+watch([result, reportSuggestions], () => {
+  nextTick(() => {
+    pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+  });
+});
 </script>
 
 <style scoped>

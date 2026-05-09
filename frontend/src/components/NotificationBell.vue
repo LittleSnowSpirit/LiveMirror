@@ -8,9 +8,9 @@
     @show="onOpen"
   >
     <template #reference>
-      <button class="bell-btn" type="button" aria-label="通知">
-        <el-badge :value="store.unreadCount" :hidden="store.unreadCount === 0" :max="99">
-          <span class="bell-icon">
+      <button class="bell-btn" :class="{ 'has-unread': store.unreadCount > 0 }" type="button" aria-label="通知">
+        <el-badge :value="store.unreadCount" :hidden="store.unreadCount === 0" :max="99" :class="{ 'bell-badge': store.unreadCount > 0 }">
+          <span class="bell-icon" :class="{ shaking: shouldShake }">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
               <path d="M13.73 21a2 2 0 0 1-3.46 0" />
@@ -33,7 +33,7 @@
         </el-button>
       </div>
 
-      <div class="notification-list">
+      <div class="notification-list" data-stagger>
         <template v-if="store.notifications.length > 0">
           <div
             v-for="item in store.notifications"
@@ -81,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { SuccessFilled, WarningFilled, CircleCloseFilled, InfoFilled } from '@element-plus/icons-vue';
@@ -101,6 +101,14 @@ const router = useRouter();
 const pushEnabled = ref(false);
 const pushSupported = ref(false);
 const pushPermission = ref<NotificationPermission>('default');
+const shouldShake = ref(false);
+
+watch(() => store.unreadCount, (newVal, oldVal) => {
+  if (newVal > (oldVal ?? 0)) {
+    shouldShake.value = true;
+    setTimeout(() => { shouldShake.value = false; }, 600);
+  }
+});
 
 const pushDisabled = computed(() => {
   return !pushSupported.value || pushPermission.value === 'denied';
@@ -157,6 +165,12 @@ async function togglePush(enabled: boolean) {
 
 function onOpen() {
   store.fetchNotifications(1, 10);
+  // Trigger stagger animation on notification items after data loads
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.notification-popover .notification-item').forEach((el, i) => {
+      (el as HTMLElement).style.transitionDelay = `${i * 60}ms`;
+    });
+  });
 }
 
 async function handleMarkAllRead() {
@@ -213,6 +227,18 @@ onMounted(() => {
   color: var(--app-text);
 }
 
+.bell-btn.has-unread .bell-icon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.bell-badge {
+  animation: pulse 2s ease infinite;
+}
+
+.bell-icon.shaking {
+  animation: bellShake 600ms ease-in-out;
+}
+
 .bell-icon {
   display: inline-flex;
   align-items: center;
@@ -251,8 +277,15 @@ onMounted(() => {
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background 150ms ease, opacity 200ms var(--ease-out-expo), transform 200ms var(--ease-out-expo);
   border-bottom: 1px solid var(--app-border);
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+[data-stagger] .notification-item {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .notification-item:last-child {

@@ -24,29 +24,33 @@
       </el-button>
     </div>
 
-    <div v-else class="share-result">
-      <div class="result-field">
-        <label>分享链接</label>
-        <div class="copy-row">
-          <el-input :model-value="shareUrl" readonly />
-          <el-button @click="copyText(shareUrl)">复制</el-button>
+    <Transition name="share-result" appear>
+      <div v-if="createdShare" class="share-result">
+        <div class="result-field">
+          <label>分享链接</label>
+          <div class="copy-row">
+            <el-input :model-value="shareUrl" readonly />
+            <el-button class="press-scale" @click="copyText(shareUrl)">复制</el-button>
+          </div>
         </div>
-      </div>
 
-      <div class="result-field">
-        <label>提取码</label>
-        <div class="copy-row">
-          <el-input :model-value="createdShare.access_code" readonly class="access-code-input" />
-          <el-button @click="copyText(createdShare.access_code)">复制</el-button>
+        <div class="result-field">
+          <label>提取码</label>
+          <div class="copy-row">
+            <el-input :model-value="createdShare.access_code" readonly class="access-code-input" />
+            <el-button class="press-scale" @click="copyText(createdShare.access_code)">复制</el-button>
+          </div>
         </div>
-      </div>
 
-      <div class="qr-section">
-        <canvas ref="qrCanvas" />
-      </div>
+        <div class="qr-section">
+          <Transition name="qr-scale" appear>
+            <canvas v-if="createdShare" ref="qrCanvas" />
+          </Transition>
+        </div>
 
-      <el-button text @click="createdShare = null">创建新的分享链接</el-button>
-    </div>
+        <el-button class="press-scale" text @click="createdShare = null">创建新的分享链接</el-button>
+      </div>
+    </Transition>
 
     <el-divider v-if="existingShares.length > 0" />
 
@@ -291,6 +295,38 @@ function formatDate(iso: string) {
 .share-meta {
   font-size: 12px;
   color: var(--app-text-soft);
+}
+
+/* Share result transition: fade-in + slide-up */
+.share-result-enter-active {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.share-result-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.share-result-enter-from {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.share-result-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* QR code scale-in transition */
+.qr-scale-enter-active {
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.qr-scale-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.qr-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+.qr-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
 }
 
 @media (max-width: 720px) {

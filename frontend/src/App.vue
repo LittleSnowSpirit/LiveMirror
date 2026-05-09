@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="app-shell">
-    <header class="topbar">
+    <header class="topbar" :class="{ scrolled: topbarScrolled }">
       <div class="topbar-left">
         <button
           class="hamburger-btn"
@@ -36,7 +36,7 @@
           <RouterLink to="/history" class="nav-link">历史记录</RouterLink>
           <RouterLink to="/danmu" class="nav-link">弹幕分析</RouterLink>
           <RouterLink to="/profile" class="nav-link">个人中心</RouterLink>
-          <button class="theme-toggle" type="button" :aria-label="isDark ? '切换到亮色模式' : '切换到暗色模式'" @click="toggleTheme">
+          <button class="theme-toggle" :class="{ rotating: themeRotating }" type="button" :aria-label="isDark ? '切换到亮色模式' : '切换到暗色模式'" @click="toggleTheme">
             {{ isDark ? '☾' : '☀' }}
           </button>
           <NotificationBell />
@@ -59,8 +59,8 @@
     </Transition>
 
     <!-- Mobile drawer -->
-    <Transition name="drawer">
-      <aside v-if="drawerOpen" class="drawer">
+    <Transition name="drawer" @after-enter="drawerLinksVisible = true" @before-leave="drawerLinksVisible = false">
+      <aside v-if="drawerOpen" class="drawer" :class="{ 'drawer-open': drawerLinksVisible }">
         <div class="drawer-header">
           <span class="brand-mark">
             <span class="brand-signal" aria-hidden="true"></span>
@@ -116,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
 import { useRoute, useRouter } from 'vue-router';
 import { getFeatures, isAuthenticated, logout, getAccessToken, type FeatureInfo } from './api';
@@ -128,7 +128,10 @@ const router = useRouter();
 const features = ref<FeatureInfo[]>([]);
 const authenticated = ref(isAuthenticated());
 const drawerOpen = ref(false);
+const drawerLinksVisible = ref(false);
 const isDark = ref(true);
+const topbarScrolled = ref(false);
+const themeRotating = ref(false);
 const notificationStore = useNotificationStore();
 
 function applyTheme(dark: boolean) {
@@ -141,9 +144,11 @@ function applyTheme(dark: boolean) {
 }
 
 function toggleTheme() {
+  themeRotating.value = true;
   isDark.value = !isDark.value;
   applyTheme(isDark.value);
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light');
+  setTimeout(() => { themeRotating.value = false; }, 400);
 }
 
 function initTheme() {
@@ -169,10 +174,20 @@ function connectNotifications() {
   }
 }
 
+function onScroll() {
+  topbarScrolled.value = window.scrollY > 4;
+}
+
 onMounted(() => {
   initTheme();
   void refreshNavigation();
   connectNotifications();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll);
 });
 
 watch(
@@ -216,6 +231,7 @@ async function handleLogout() {
 
 <style>
 @import './styles/tokens.css';
+@import './styles/animations.css';
 
 /* ========== Reset ========== */
 *, *::before, *::after {
@@ -277,6 +293,15 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 var(--space-6);
   border-bottom: 1px solid var(--app-border);
   background: var(--app-surface);
+  transition: box-shadow var(--transition-normal);
+}
+
+.topbar.scrolled {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .topbar.scrolled {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
 .topbar-left {
@@ -362,7 +387,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--app-text-soft);
   font-size: 15px;
   cursor: pointer;
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition: color var(--transition-fast), background var(--transition-fast), transform 400ms var(--ease-spring);
+}
+
+.theme-toggle.rotating {
+  transform: rotate(180deg);
 }
 
 .theme-toggle:hover {
@@ -375,10 +404,13 @@ h1, h2, h3, h4, h5, h6 {
   min-height: calc(100vh - 56px);
 }
 
-/* Page transition — fade only, no displacement */
-.page-fade-enter-active,
+/* Page transition — expo enter, quick leave */
+.page-fade-enter-active {
+  transition: opacity 250ms var(--ease-out-expo);
+}
+
 .page-fade-leave-active {
-  transition: opacity 150ms ease;
+  transition: opacity 180ms ease;
 }
 
 .page-fade-enter-from,
@@ -702,7 +734,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .drawer-enter-active,
 .drawer-leave-active {
-  transition: transform 200ms ease;
+  transition: transform 250ms var(--ease-out-expo);
 }
 
 .drawer-enter-from,
@@ -757,8 +789,26 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   font-size: var(--text-sm);
   font-weight: 500;
-  transition: color var(--transition-fast), background var(--transition-fast);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: color var(--transition-fast), background var(--transition-fast), opacity 200ms var(--ease-out-expo), transform 200ms var(--ease-out-expo);
 }
+
+.drawer-open .drawer-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.drawer-open .drawer-link:nth-child(1) { transition-delay: 40ms; }
+.drawer-open .drawer-link:nth-child(2) { transition-delay: 80ms; }
+.drawer-open .drawer-link:nth-child(3) { transition-delay: 120ms; }
+.drawer-open .drawer-link:nth-child(4) { transition-delay: 160ms; }
+.drawer-open .drawer-link:nth-child(5) { transition-delay: 200ms; }
+.drawer-open .drawer-link:nth-child(6) { transition-delay: 240ms; }
+.drawer-open .drawer-link:nth-child(7) { transition-delay: 280ms; }
+.drawer-open .drawer-link:nth-child(8) { transition-delay: 320ms; }
+.drawer-open .drawer-link:nth-child(9) { transition-delay: 360ms; }
+.drawer-open .drawer-link:nth-child(10) { transition-delay: 400ms; }
 
 .drawer-link:hover,
 .drawer-link.router-link-active {

@@ -1,5 +1,5 @@
 <template>
-  <div class="base-panel" :class="{ 'no-padding': noPadding }">
+  <div ref="panelEl" class="base-panel hover-lift" :class="{ 'no-padding': noPadding }" data-animate>
     <div v-if="title || $slots.header" class="panel-header">
       <slot name="header">
         <h3 v-if="title" class="panel-title">{{ title }}</h3>
@@ -14,11 +14,21 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useReveal } from '../composables/useReveal';
+
 defineProps<{
   title?: string;
   subtitle?: string;
   noPadding?: boolean;
 }>();
+
+const panelEl = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
+
+onMounted(() => {
+  if (panelEl.value) observe(panelEl.value);
+});
 </script>
 
 <style scoped>
@@ -27,6 +37,11 @@ defineProps<{
   border: 1px solid var(--app-border);
   border-radius: 6px;
   overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.base-panel:hover {
+  border-color: var(--app-border-strong);
 }
 
 .base-panel:not(.no-padding) {

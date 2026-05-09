@@ -1,7 +1,7 @@
 <template>
-  <div class="danmu-detail">
+  <div ref="pageRef" class="danmu-detail">
     <div class="detail-header">
-      <el-button text @click="emit('back')">
+      <el-button text data-animate="slide-left" @click="emit('back')">
         &larr; 返回列表
       </el-button>
     </div>
@@ -17,24 +17,24 @@
 
     <template v-else>
       <!-- Stat Cards -->
-      <div class="stats-row">
-        <StatCard label="弹幕总数" :value="metrics.total_count" icon="+" />
-        <StatCard label="正面占比" :value="formatPercent(metrics.sentiment_distribution?.positive)" icon="" />
-        <StatCard label="负面占比" :value="formatPercent(metrics.sentiment_distribution?.negative)" icon="" />
-        <StatCard label="分析状态" :value="statusLabel" icon="" />
+      <div class="stats-row" data-stagger>
+        <StatCard label="弹幕总数" :value="metrics.total_count" icon="+" data-animate="fade" />
+        <StatCard label="正面占比" :value="formatPercent(metrics.sentiment_distribution?.positive)" icon="" data-animate="fade" />
+        <StatCard label="负面占比" :value="formatPercent(metrics.sentiment_distribution?.negative)" icon="" data-animate="fade" />
+        <StatCard label="分析状态" :value="statusLabel" icon="" data-animate="fade" />
       </div>
 
       <!-- Emotion Curve -->
-      <BasePanel title="情感曲线" subtitle="弹幕情感得分随时间变化">
+      <BasePanel title="情感曲线" subtitle="弹幕情感得分随时间变化" data-animate>
         <EmotionCurve :data="analysis.emotion_curve" />
       </BasePanel>
 
       <!-- Two columns: word cloud + density -->
       <div class="two-col">
-        <BasePanel title="关键词云" subtitle="高频弹幕关键词">
+        <BasePanel title="关键词云" subtitle="高频弹幕关键词" data-animate>
           <WordCloud :data="analysis.keywords" @word-click="handleWordClick" />
         </BasePanel>
-        <BasePanel title="弹幕密度" subtitle="各时间段弹幕数量">
+        <BasePanel title="弹幕密度" subtitle="各时间段弹幕数量" data-animate>
           <DanmuDensity :data="densityData" />
         </BasePanel>
       </div>
@@ -44,6 +44,7 @@
         v-if="analysis.correlation && analysis.correlation.length > 0"
         title="话术-弹幕对比"
         subtitle="主播话术与弹幕反应的关联分析"
+        data-animate
       >
         <SpeechDanmuComparison
           :speech-data="speechData"
@@ -52,13 +53,14 @@
       </BasePanel>
 
       <!-- Top 10 Keywords -->
-      <BasePanel title="Top 10 关键词" subtitle="出现频率最高的弹幕关键词">
-        <div class="keyword-tags">
+      <BasePanel title="Top 10 关键词" subtitle="出现频率最高的弹幕关键词" data-animate>
+        <div class="keyword-tags" data-stagger>
           <el-tag
             v-for="kw in topKeywords"
             :key="kw.word"
             :type="sentimentTagType(kw.sentiment)"
             class="keyword-tag"
+            data-animate="scale"
             effect="plain"
           >
             {{ kw.word }}
@@ -71,9 +73,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 import { ElMessage } from 'element-plus';
 import { getDanmuAnalysis, type DanmuAnalysisResult } from '../api';
+import { useReveal } from '@/composables/useReveal';
+
+const { observe } = useReveal();
 import StatCard from './StatCard.vue';
 import BasePanel from './BasePanel.vue';
 import EmotionCurve from './charts/EmotionCurve.vue';
@@ -89,6 +94,7 @@ const emit = defineEmits<{
   back: [];
 }>();
 
+const pageRef = ref<HTMLElement | null>(null);
 const loading = ref(true);
 const analysis = ref<DanmuAnalysisResult | null>(null);
 
@@ -157,6 +163,8 @@ async function fetchData() {
     analysis.value = null;
   } finally {
     loading.value = false;
+    await nextTick();
+    pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
   }
 }
 

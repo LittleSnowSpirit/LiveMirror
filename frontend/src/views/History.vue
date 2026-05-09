@@ -1,8 +1,8 @@
 <template>
-  <div class="history-page">
-    <h1>历史记录</h1>
+  <div ref="pageRef" class="history-page">
+    <h1 data-animate>历史记录</h1>
 
-    <div class="toolbar">
+    <div class="toolbar" data-animate style="transition-delay: 80ms">
       <el-input
         v-model="searchQuery"
         placeholder="搜索文件名"
@@ -39,7 +39,7 @@
       <el-table-column prop="filename" label="文件名" min-width="200" show-overflow-tooltip />
       <el-table-column label="状态" width="100">
         <template #default="{ row }">
-          <el-tag :type="statusType(row.status)" size="small">
+          <el-tag :type="statusType(row.status)" size="small" :class="{ 'status-pulse': row.status === 'transcribing' || row.status === 'processing' }">
             {{ statusLabel(row.status) }}
           </el-tag>
         </template>
@@ -67,7 +67,7 @@
       </el-table-column>
     </el-table>
 
-    <div v-if="taskStore.total > taskStore.pageSize" class="pagination-wrap">
+    <div v-if="taskStore.total > taskStore.pageSize" class="pagination-wrap" data-animate="fade">
       <el-pagination
         v-model:current-page="currentPage"
         :page-size="taskStore.pageSize"
@@ -84,9 +84,12 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useTaskStore } from '../stores/task';
+import { useReveal } from '../composables/useReveal';
 
 const router = useRouter();
 const taskStore = useTaskStore();
+const pageRef = ref<HTMLElement | null>(null);
+const { observe } = useReveal();
 
 const searchQuery = ref('');
 const statusFilter = ref('');
@@ -95,6 +98,7 @@ const currentPage = ref(1);
 
 onMounted(() => {
   loadTasks();
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
 });
 
 function loadTasks() {
@@ -248,5 +252,14 @@ h1 {
 
 .loading-state {
   padding: var(--space-5) 0;
+}
+
+.status-pulse {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 </style>

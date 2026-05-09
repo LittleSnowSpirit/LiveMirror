@@ -1,16 +1,19 @@
 <template>
-  <div class="danmu-page">
+  <div ref="pageRef" class="danmu-page">
     <!-- Upload & History mode -->
     <el-card v-if="!activeBatchId" class="panel">
-      <p class="kicker">弹幕分析</p>
-      <h1>弹幕数据分析</h1>
-      <p class="copy">上传弹幕文件（CSV/JSON），系统将进行情感分析、关键词提取和密度统计。</p>
+      <div data-stagger>
+        <p class="kicker" data-animate>弹幕分析</p>
+        <h1 data-animate>弹幕数据分析</h1>
+        <p class="copy" data-animate>上传弹幕文件（CSV/JSON），系统将进行情感分析、关键词提取和密度统计。</p>
+      </div>
 
       <el-tabs v-model="activeTab" class="mode-tabs">
         <!-- Upload Tab -->
         <el-tab-pane label="上传弹幕" name="upload">
           <div
             class="drop-zone"
+            data-animate="fade"
             :class="{ dragover: isDragover }"
             @dragover.prevent="isDragover = true"
             @dragleave="isDragover = false"
@@ -52,29 +55,31 @@
             show-icon
           />
 
-          <div v-if="uploadResult" class="result-box">
-            <p class="result-title">上传完成</p>
-            <div class="result-stats">
-              <div class="result-stat">
-                <span class="stat-num">{{ uploadResult.total_count }}</span>
-                <span class="stat-desc">总条数</span>
+          <Transition name="result-slide">
+            <div v-if="uploadResult" class="result-box">
+              <p class="result-title">上传完成</p>
+              <div class="result-stats">
+                <div class="result-stat">
+                  <span class="stat-num">{{ totalCountDisplay }}</span>
+                  <span class="stat-desc">总条数</span>
+                </div>
+                <div class="result-stat success">
+                  <span class="stat-num">{{ successCountDisplay }}</span>
+                  <span class="stat-desc">成功</span>
+                </div>
+                <div class="result-stat danger">
+                  <span class="stat-num">{{ failedCountDisplay }}</span>
+                  <span class="stat-desc">失败</span>
+                </div>
               </div>
-              <div class="result-stat success">
-                <span class="stat-num">{{ uploadResult.success_count }}</span>
-                <span class="stat-desc">成功</span>
-              </div>
-              <div class="result-stat danger">
-                <span class="stat-num">{{ uploadResult.failed_count }}</span>
-                <span class="stat-desc">失败</span>
-              </div>
-            </div>
             <div class="actions">
               <el-button type="primary" :loading="analyzing" @click="startAnalysis">
                 开始分析
               </el-button>
               <el-button @click="resetUpload">继续上传</el-button>
             </div>
-          </div>
+            </div>
+          </Transition>
 
           <div class="actions" v-if="!uploadResult">
             <el-button
@@ -102,7 +107,7 @@
             v-else
             :data="batches"
             stripe
-            class="batch-table"
+            class="batch-table animate-rows"
             @row-click="goToDetail"
           >
             <el-table-column prop="filename" label="文件名" min-width="180" show-overflow-tooltip />
@@ -141,7 +146,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import {
@@ -151,10 +156,15 @@ import {
   type DanmuBatch,
 } from '../api';
 import DanmuDetail from '../components/DanmuDetail.vue';
+import { useReveal } from '@/composables/useReveal';
+import { useCountUp } from '@/composables/useCountUp';
+
+const { observe } = useReveal();
 
 const route = useRoute();
 const router = useRouter();
 
+const pageRef = ref<HTMLElement | null>(null);
 const activeTab = ref('upload');
 const activeBatchId = ref('');
 
@@ -172,12 +182,22 @@ const analyzing = ref(false);
 const batches = ref<DanmuBatch[]>([]);
 const loadingBatches = ref(false);
 
+// Count-up for upload result stats
+const totalCountTarget = computed(() => uploadResult.value?.total_count ?? 0);
+const successCountTarget = computed(() => uploadResult.value?.success_count ?? 0);
+const failedCountTarget = computed(() => uploadResult.value?.failed_count ?? 0);
+const totalCountDisplay = useCountUp(totalCountTarget);
+const successCountDisplay = useCountUp(successCountTarget);
+const failedCountDisplay = useCountUp(failedCountTarget);
+
 // Check route param for direct detail access
 onMounted(() => {
   const batchId = route.params.batchId as string;
   if (batchId) {
     activeBatchId.value = batchId;
   }
+  // Observe scroll-reveal elements
+  pageRef.value?.querySelectorAll('[data-animate]').forEach(el => observe(el as HTMLElement));
 });
 
 watch(() => route.params.batchId, (id) => {
@@ -191,6 +211,13 @@ watch(activeTab, (tab) => {
   if (tab === 'history') {
     loadBatches();
   }
+});
+
+// Re-observe elements when uploadResult appears
+watch(uploadResult, () => {
+  setTimeout(() => {
+    pageRef.value?.querySelectorAll('[data-animate]:not(.is-visible)').forEach(el => observe(el as HTMLElement));
+  }, 50);
 });
 
 async function loadBatches() {
@@ -517,6 +544,45 @@ h1 {
 .empty-state {
   padding: var(--space-10) 0;
 }
+
+/* Result slide-in transition */
+.result-slide-enter-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.result-slide-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.result-slide-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.result-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Table row hover left-border accent */
+.batch-table :deep(.el-table__row:hover) td:first-child {
+  border-left: 2px solid var(--app-primary);
+  padding-left: calc(var(--space-3) - 2px);
+}
+
+/* Staggered fade-in for table rows */
+.batch-table.animate-rows :deep(.el-table__row) {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+.batch-table.animate-rows :deep(.el-table__row:nth-child(1)) { animation-delay: 0ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(2)) { animation-delay: 60ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(3)) { animation-delay: 120ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(4)) { animation-delay: 180ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(5)) { animation-delay: 240ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(6)) { animation-delay: 300ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(7)) { animation-delay: 360ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(8)) { animation-delay: 420ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(9)) { animation-delay: 480ms; }
+.batch-table.animate-rows :deep(.el-table__row:nth-child(10)) { animation-delay: 540ms; }
 
 @media (max-width: 720px) {
   .result-stats {
