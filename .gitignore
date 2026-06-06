@@ -60,3 +60,14 @@ frontend/src/components.d.ts
 # OS files
 .DS_Store
 Thumbs.db
+.gitnexus
+
+# SQLite WAL files
+*.db-shm
+*.db-wal
+
+# Build output
+frontend/dev-dist/
+
+# Graphify output
+graphify-out/
